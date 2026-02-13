@@ -15,10 +15,22 @@
   <style>
     html, body { height: 100%; margin: 0; }
     #app { display: flex; flex-direction: column; height: 100%; }
-    #topbar {
+    #topbar {<div id="panelBody">
+    <div class="row">
+  <button id="togglePanel" class="btn">Hide panel</button>
+</div>
       padding: 10px; border-bottom: 1px solid #ddd; background: #fff;
       display: grid; gap: 8px;
+      </div>
     }
+    #topbar.collapsed #panelBody { display: none; }
+    const toggleBtn = document.getElementById("togglePanel");
+const topbar = document.getElementById("topbar");
+
+toggleBtn.addEventListener("click", () => {
+  topbar.classList.toggle("collapsed");
+  toggleBtn.textContent = topbar.classList.contains("collapsed") ? "Show panel" : "Hide panel";
+});
     #map { flex: 1; }
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .pill { padding: 6px 10px; border: 1px solid #ddd; border-radius: 999px; background: #fafafa; }
@@ -201,8 +213,12 @@
 
   if (cat.includes("bib")) return filters.bib.checked;
 
-  // "selected"/anything else Michelin: allowed if Michelin is toggled on
-  return true;
+  // If user has unchecked all award tiers, hide unknown Michelin too.
+const anyTierOn = filters.m1.checked || filters.m2.checked || filters.m3.checked || filters.bib.checked;
+if (!anyTierOn) return false;
+
+// Otherwise keep showing Selected/Other when Michelin is enabled
+return true;
 }
 
   function ribbonTierOk(cat) {
@@ -253,8 +269,12 @@
     const center = userLoc ? `${userLoc.lat},${userLoc.lon}` : null;
 
     const actions = [];
-
     const target = ' target="_blank" rel="noopener" ';
+    // If build step enriched Kakao place_url, prefer direct place page:
+    if (p.kakao_url) {actions.push(`<a class="linkbtn" href="${escapeAttr(p.kakao_url)}"${target}>Open in KakaoMap (place)</a>`);
+}
+
+
 
     // Prefer search-by-name (closer to "the restaurant") and offer a "pin" look as fallback.
     if (lat != null && lon != null) {

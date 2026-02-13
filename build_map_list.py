@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 from slugify import slugify
 import random
 import json
-
+import os
 
 # -------------------------
 # Constants
@@ -36,7 +36,7 @@ BLUER_API = f"{BLUER_BASE}/api/v1"
 # -------------------------
 # Data model
 # -------------------------
-@dataclass(frozen=True)
+@dataclass
 class Place:
     source: str  # "michelin" | "blueribbon"
     name: str
@@ -52,14 +52,142 @@ class Place:
     latitude: float | None
     longitude: float | None
     captured_at: str  # ISO timestamp
+    kakao_id: str | None = None
+    kakao_url: str | None = None
 
 
 # -------------------------
 # Shared helpers
 # -------------------------
+def kakao_rest_key() -> str | None:
+        return os.getenv("KAKAO_REST_API_KEY") or None
+
+def kakao_local_keyword_search(
+            s: requests.Session,
+            *,
+            api_key: str,
+            query: str,
+            x: float | None = None,  # longitude
+            y: float | None = None,  # latitude
+            radius_m: int | None = 2000,
+            size: int = 5,
+            sleep_s: float = 0.15,
+    ) -> list[dict]:
+        """
+        Kakao Local Keyword Search:
+        https://dapi.kakao.com/v2/local/search/keyword.json
+
+        Returns list of documents (dicts).
+        """
+        if not query.strip():
+            return []
+
+        time.sleep(sleep_s)
+
+        url = "https://dapi.kakao.com/v2/local/search/keyword.json"
+        params = {"query": query, "size": size}
+
+        # If we have coordinates, bias results to that area.
+        if x is not None and y is not None:
+            params.update({"x": str(x), "y": str(y)})
+            if radius_m is not None:
+                params["radius"] = str(int(radius_m))
+
+        r = s.get(url, params=params, headers={"Authorization": f"KakaoAK {api_key}"}, timeout=30)
+        r.raise_for_status()
+        data = r.json()
+        docs = data.get("documents") or []
+        return docs if isinstance(docs, list) else []
+
+def choose_best_kakao_doc(docs: list[dict], name: str, address: str | None) -> dict | None:
+        """
+        Very simple scorer:
+        - prefer exact-ish name match
+        - prefer address overlap
+        - otherwise first
+        """
+        if not docs:
+            return None
+
+        n = (name or "").strip().lower()
+        a = (address or "").strip().lower()
+
+        def score(d: dict) -> int:
+            s = 0
+            pn = (d.get("place_name") or "").strip().lower()
+            ra = (d.get("road_address_name") or "").strip().lower()
+            aa = (d.get("address_name") or "").strip().lower()
+
+            if pn == n:
+                s += 50
+            elif n and pn and (n in pn or pn in n):
+                s += 25
+
+            # any address overlap helps
+            for candidate in (ra, aa):
+                if a and candidate:
+                    if candidate == a:
+                        s += 40
+                    elif a in candidate or candidate in a:
+                        s += 15
+
+            # prefer docs that have a phone (often more “real listing”)
+            if (d.get("phone") or "").strip():
+                s += 2
+
+            return s
+
+        return max(docs, key=score)
+
+def enrich_with_kakao(places: list[Place], *, sleep_s: float = 0.15) -> list[Place]:
+        key = kakao_rest_key()
+        if not key:
+            print("[kakao] KAKAO_REST_API_KEY not set; skipping enrichment.")
+            return places
+
+        s = requests.Session()
+
+        out: list[Place] = []
+        hit = 0
+
+        for p in places:
+            # already has kakao
+            if p.kakao_id or p.kakao_url:
+                out.append(p)
+                continue
+
+            # build a strong query
+            query = " ".join([x for x in [p.name, p.address] if x]).strip()
+
+            docs = kakao_local_keyword_search(
+                s,
+                api_key=key,
+                query=query,
+                x=p.longitude,
+                y=p.latitude,
+                radius_m=2500,
+                size=5,
+                sleep_s=sleep_s,
+            )
+            best = choose_best_kakao_doc(docs, p.name, p.address)
+
+            if best:
+                hit += 1
+                out.append(
+                    Place(
+                        **{**asdict(p)},
+                        kakao_id=str(best.get("id") or "") or None,
+                        kakao_url=str(best.get("place_url") or "") or None,
+                    )
+                )
+            else:
+                out.append(p)
+
+        print(f"[kakao] enriched {hit}/{len(places)} places with kakao place ids.")
+        return out
+
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
-
 
 def write_places_csv(places: list[Place], path: str) -> None:
     # Determine CSV columns
@@ -247,6 +375,7 @@ def write_kml_for_mymaps_layered(places: list[Place], path: str) -> None:
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
+
 # -------------------------
 # MICHELIN
 # -------------------------
@@ -406,8 +535,6 @@ def michelin_extract_geo_address_from_page(soup: BeautifulSoup, html: str) -> tu
 
     return None, None, None
 
-
-
 def michelin_category_from_next_data(soup: BeautifulSoup) -> str | None:
     """
     Michelin pages are Next.js. __NEXT_DATA__ often contains an award/selection token
@@ -441,18 +568,28 @@ def michelin_category_from_next_data(soup: BeautifulSoup) -> str | None:
     walk(data)
     blob = " ".join(strings).lower()
 
-    # Common tokens across locales / builds
-    if re.search(r"\b(three|3)\s*star", blob) or "3stars" in blob or "three_star" in blob or "three-star" in blob:
+    # Stars: lots of builds use "one_star", "one-star", "1-star", "1star", etc.
+    one_star = any(t in blob for t in ["one_star", "one-star", "1-star", "1star", "michelin_one_star"]) or re.search(
+        r"\b(one|1)\s*star", blob)
+    two_star = any(t in blob for t in ["two_star", "two-star", "2-star", "2star", "michelin_two_star"]) or re.search(
+        r"\b(two|2)\s*star", blob)
+    three_star = any(
+        t in blob for t in ["three_star", "three-star", "3-star", "3star", "michelin_three_star"]) or re.search(
+        r"\b(three|3)\s*star", blob)
+
+    if three_star:
         return "3 Stars"
-    if re.search(r"\b(two|2)\s*star", blob) or "2stars" in blob or "two_star" in blob or "two-star" in blob:
+    if two_star:
         return "2 Stars"
-    if re.search(r"\b(one|1)\s*star", blob) or "1star" in blob or "one_star" in blob or "one-star" in blob:
+    if one_star:
         return "1 Star"
+
     if "bib" in blob and "gourmand" in blob:
         return "Bib Gourmand"
+
+    # Michelin often uses "selected" for "Michelin Selected"
     if "selected" in blob:
         return "Selected"
-
     return None
 
 # --- rewritten method ---
@@ -892,6 +1029,8 @@ def write_geojson(places: list[Place], path: str) -> None:
             "url": p.url,
             "address": p.address,
             "year": p.year,
+            "kakao_id": p.kakao_id,
+            "kakao_url": p.kakao_url,
         }
 
         if p.latitude is not None and p.longitude is not None:
@@ -911,8 +1050,6 @@ def write_geojson(places: list[Place], path: str) -> None:
 # Main
 # -------------------------
 def main() -> None:
-    import os
-
     parser = argparse.ArgumentParser()
 
     # existing args (keep whatever you already had)
@@ -955,6 +1092,9 @@ def main() -> None:
         print("Total:", len(places))
         print("By source:", {"michelin": mic_total, "blueribbon": br_total, "other": other_total})
         print("Mappable by source:", {"michelin": mic_map, "blueribbon": br_map})
+        # --- sanity check ---
+        from collections import Counter
+        print("[michelin] category counts:", Counter([p.category or "(none)" for p in michelin_places]).most_common(20))
 
     # ============================================================
     # TEMP: Michelin-only test mode (skip Blue Ribbon entirely)
@@ -994,6 +1134,7 @@ def main() -> None:
         extra_br = load_blueribbon_from_csv(args.blueribbon_csv)
 
     combined = merge_places(michelin_places, bluer_places, extra_br)
+    combined = enrich_with_kakao(combined, sleep_s=0.15)
     combined.sort(key=lambda p: (p.source, (p.category or ""), p.name.lower()))
 
     write_places_csv(combined, combined_csv)
