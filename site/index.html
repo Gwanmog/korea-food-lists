@@ -36,6 +36,36 @@
     height: 1px;
     overflow: hidden;
   }
+  
+    /* --- Sorted list --- */
+    #list {
+      max-height: 190px;
+      overflow: auto;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 6px;
+      background: #fafafa;
+    }
+    .list-item {
+      padding: 6px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .list-item:hover { background: #fff; }
+    .tag {
+      font-size: 12px;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: #fff;
+      white-space: nowrap;
+    }
+
   </style>
 </head>
 <body>
@@ -74,6 +104,12 @@
     <div class="muted">
       Tip: Tap a pin → “Kakao directions” uses your current location as start (if you tapped “Use my location”).
     </div>
+
+    <div class="row" style="justify-content: space-between;">
+      <span class="muted">Sorted (best first)</span>
+      <button id="fitBtn" class="btn" style="background:#fff;color:#111;border-color:#ddd;">Fit to results</button>
+    </div>
+    <div id="list" aria-label="Sorted restaurant list"></div>
   </div>
 
   <div id="map"></div>
@@ -108,6 +144,20 @@
     return `http://m.map.kakao.com/scheme/route?sp=${spLat},${spLon}&ep=${epLat},${epLon}&by=${enc(by || "foot")}`;
   }
 
+
+  // --- Google Maps URLs ---
+  function googleSearch(query) {
+    return `https://www.google.com/maps/search/?api=1&query=${enc(query)}`;
+  }
+  function googleLook(lat, lon) {
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+  }
+  function googleDirections(spLat, spLon, epLat, epLon, mode) {
+    const travelmode = (mode || "walking");
+    return `https://www.google.com/maps/dir/?api=1&origin=${spLat},${spLon}&destination=${epLat},${epLon}&travelmode=${enc(travelmode)}`;
+  }
+
+
   // --- Map ---
   const map = L.map('map', { zoomControl: true }).setView([37.5665, 126.9780], 12); // Seoul default
 
@@ -123,6 +173,8 @@
   const locStatus = document.getElementById("locStatus");
   const qEl = document.getElementById("q");
   const countEl = document.getElementById("count");
+  const listEl = document.getElementById("list");
+  const fitBtn = document.getElementById("fitBtn");
 
   const filters = {
     michelin: document.getElementById("f_michelin"),
@@ -201,16 +253,27 @@
     const center = userLoc ? `${userLoc.lat},${userLoc.lon}` : null;
 
     const actions = [];
+
+    const target = ' target="_blank" rel="noopener" ';
+
+    // Prefer search-by-name (closer to "the restaurant") and offer a "pin" look as fallback.
     if (lat != null && lon != null) {
-      actions.push(`<a class="linkbtn" href="${kakaoLookWeb(lat, lon)}">Open in KakaoMap</a>`);
+      actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(q, `${lat},${lon}`)}"${target}>Search in KakaoMap</a>`);
+      actions.push(`<a class="linkbtn" href="${kakaoLookWeb(lat, lon)}"${target}>Kakao pin</a>`);
+
+      actions.push(`<a class="linkbtn" href="${googleLook(lat, lon)}"${target}>Open in Google Maps</a>`);
+
       if (userLoc) {
-        actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'foot')}">Kakao directions (walk)</a>`);
-        actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'publictransit')}">Kakao directions (transit)</a>`);
+        actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'foot')}"${target}>Kakao directions (walk)</a>`);
+        actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'publictransit')}"${target}>Kakao directions (transit)</a>`);
+        actions.push(`<a class="linkbtn" href="${googleDirections(userLoc.lat, userLoc.lon, lat, lon, 'walking')}"${target}>Google directions (walk)</a>`);
+        actions.push(`<a class="linkbtn" href="${googleDirections(userLoc.lat, userLoc.lon, lat, lon, 'transit')}"${target}>Google directions (transit)</a>`);
       } else {
         actions.push(`<span class="muted">Tap “Use my location” to enable directions.</span>`);
       }
     } else {
-      actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(q, center)}">Search in KakaoMap</a>`);
+      actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(q, center)}"${target}>Search in KakaoMap</a>`);
+      actions.push(`<a class="linkbtn" href="${googleSearch(q)}"${target}>Search in Google Maps</a>`);
     }
 
     if (p.url) {
@@ -228,6 +291,48 @@
   let allFeatures = [];
   let layer = null;
 
+
+  function michelinRank(cat) {
+    cat = (cat || "").toLowerCase();
+    if (cat.includes("3") && cat.includes("star")) return 300;
+    if (cat.includes("three") && cat.includes("star")) return 300;
+    if (cat.includes("2") && cat.includes("star")) return 200;
+    if (cat.includes("two") && cat.includes("star")) return 200;
+    if (cat.includes("1") && cat.includes("star")) return 100;
+    if (cat.includes("one") && cat.includes("star")) return 100;
+    if (cat.includes("bib")) return 50;
+    if (cat.includes("selected")) return 10;
+    return 0;
+  }
+
+  function blueRank(cat) {
+    cat = (cat || "").toUpperCase();
+    if (cat === "RIBBON_THREE") return 30;
+    if (cat === "RIBBON_TWO") return 20;
+    if (cat === "RIBBON_ONE") return 10;
+    return 0;
+  }
+
+  function placeRank(p) {
+    const src = (p.source || "").toLowerCase();
+    if (src.includes("michelin")) return 1000 + michelinRank(p.category);
+    if (src.includes("blue")) return 500 + blueRank(p.category);
+    return 0;
+  }
+
+  function badgeText(p) {
+    const src = (p.source || "").toLowerCase();
+    const cat = (p.category || "");
+    if (src.includes("michelin")) return cat || "Michelin";
+    if (src.includes("blue")) {
+      if (cat === "RIBBON_THREE") return "Blue 3";
+      if (cat === "RIBBON_TWO") return "Blue 2";
+      if (cat === "RIBBON_ONE") return "Blue 1";
+      return "Blue";
+    }
+    return "";
+  }
+
   function render() {
     const q = (qEl.value || "").trim();
     const filtered = allFeatures.filter(f => {
@@ -235,12 +340,22 @@
       return passesFilters(p) && textMatch(p, q);
     });
 
-    if (layer) {
+    // Sort best-first (Michelin stars > Bib > Selected > other; then Blue Ribbon).
+    const sorted = filtered.slice().sort((a, b) => {
+      const pa = a.properties || {};
+      const pb = b.properties || {};
+      const ra = placeRank(pa);
+      const rb = placeRank(pb);
+      if (ra !== rb) return rb - ra;
+      return String(pa.name || "").localeCompare(String(pb.name || ""), undefined, { sensitivity: "base" });
+    });
+
+if (layer) {
       layer.remove();
       layer = null;
     }
 
-    layer = L.geoJSON(filtered, {
+    layer = L.geoJSON(sorted, {
       pointToLayer: (feature, latlng) => L.circleMarker(latlng, { radius: 7, weight: 2, fillOpacity: 0.6 }),
       onEachFeature: (feature, l) => {
         const p = feature.properties || {};
@@ -251,7 +366,37 @@
       }
     }).addTo(map);
 
-    countEl.textContent = `${filtered.length} places shown`;
+    // Build clickable sorted list
+    listEl.innerHTML = "";
+    const itemLayers = [];
+    layer.eachLayer(l => itemLayers.push(l));
+
+    itemLayers.forEach(l => {
+      const f = l.feature || {};
+      const p = (f.properties || {});
+      const div = document.createElement("div");
+      div.className = "list-item";
+
+      const nameEl = document.createElement("div");
+      nameEl.textContent = p.name || "(unnamed)";
+
+      const tagEl = document.createElement("div");
+      tagEl.className = "tag";
+      tagEl.textContent = badgeText(p);
+
+      div.appendChild(nameEl);
+      if (tagEl.textContent) div.appendChild(tagEl);
+
+      div.addEventListener("click", () => {
+        const latlng = l.getLatLng && l.getLatLng();
+        if (latlng) map.setView(latlng, Math.max(map.getZoom(), 15));
+        if (l.openPopup) l.openPopup();
+      });
+
+      listEl.appendChild(div);
+    });
+
+    countEl.textContent = `${sorted.length} places shown`;
   }
 
   function setUserLocation(lat, lon) {
@@ -287,6 +432,14 @@
 
   Object.values(filters).forEach(cb => cb.addEventListener("change", render));
   qEl.addEventListener("input", () => render());
+
+  fitBtn.addEventListener("click", () => {
+    if (!layer) return;
+    const bounds = layer.getBounds && layer.getBounds();
+    if (bounds && bounds.isValid && bounds.isValid()) {
+      map.fitBounds(bounds.pad(0.15));
+    }
+  });
 
   // Load GeoJSON (expects it in ../out/places.geojson or you can copy into site/)
   async function boot() {

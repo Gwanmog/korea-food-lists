@@ -406,6 +406,55 @@ def michelin_extract_geo_address_from_page(soup: BeautifulSoup, html: str) -> tu
 
     return None, None, None
 
+
+
+def michelin_category_from_next_data(soup: BeautifulSoup) -> str | None:
+    """
+    Michelin pages are Next.js. __NEXT_DATA__ often contains an award/selection token
+    even when it isn't visible in plain text. We do a defensive recursive search for
+    known award keywords.
+    """
+    sc = soup.find("script", id="__NEXT_DATA__")
+    raw = (sc.string or "").strip() if sc else ""
+    if not raw:
+        return None
+
+    try:
+        data = json.loads(raw)
+    except Exception:
+        return None
+
+    strings: list[str] = []
+
+    def walk(x):
+        if isinstance(x, dict):
+            for k, v in x.items():
+                if isinstance(k, str):
+                    strings.append(k)
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+        elif isinstance(x, str):
+            strings.append(x)
+
+    walk(data)
+    blob = " ".join(strings).lower()
+
+    # Common tokens across locales / builds
+    if re.search(r"\b(three|3)\s*star", blob) or "3stars" in blob or "three_star" in blob or "three-star" in blob:
+        return "3 Stars"
+    if re.search(r"\b(two|2)\s*star", blob) or "2stars" in blob or "two_star" in blob or "two-star" in blob:
+        return "2 Stars"
+    if re.search(r"\b(one|1)\s*star", blob) or "1star" in blob or "one_star" in blob or "one-star" in blob:
+        return "1 Star"
+    if "bib" in blob and "gourmand" in blob:
+        return "Bib Gourmand"
+    if "selected" in blob:
+        return "Selected"
+
+    return None
+
 # --- rewritten method ---
 
 def michelin_parse_detail(s: requests.Session, url: str, sleep_s: float, captured_at: str) -> Place:
@@ -460,17 +509,20 @@ def michelin_parse_detail(s: requests.Session, url: str, sleep_s: float, capture
         price = m_cp.group(1)
         cuisine = m_cp.group(2).strip()
 
-    category = None
-    if "Bib Gourmand" in text:
-        category = "Bib Gourmand"
-    elif re.search(r"\b3\s*Stars?\b", text):
-        category = "3 Stars"
-    elif re.search(r"\b2\s*Stars?\b", text):
-        category = "2 Stars"
-    elif re.search(r"\b1\s*Star\b", text):
-        category = "1 Star"
-    elif "Selected Restaurants" in text or "Selected" in text:
-        category = "Selected"
+    # Category (award) — prefer Next.js payload when available, then fall back to text heuristics.
+    category = michelin_category_from_next_data(soup)
+
+    if not category:
+        if "Bib Gourmand" in text:
+            category = "Bib Gourmand"
+        elif re.search(r"\b3\s*Stars?\b", text):
+            category = "3 Stars"
+        elif re.search(r"\b2\s*Stars?\b", text):
+            category = "2 Stars"
+        elif re.search(r"\b1\s*Star\b", text):
+            category = "1 Star"
+        elif "Selected Restaurants" in text or "Selected" in text:
+            category = "Selected"
 
     phone = None
     m_phone = re.search(r"\+82\s*\d{1,2}[-\s]?\d{3,4}[-\s]?\d{4}", text)
