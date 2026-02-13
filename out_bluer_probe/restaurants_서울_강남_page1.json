@@ -1,0 +1,4248 @@
+{
+  "_embedded": {
+    "restaurants": [
+      {
+        "createdDate": 1580143338000,
+        "id": 30639,
+        "headerInfo": {
+          "nameKR": "다이닝마",
+          "nameEN": "DINING MA",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_THREE",
+          "ribbonTypeByOrdinal": 0
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "",
+          "websiteFacebook": "",
+          "phone": "02-518-7400",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "도산공원 사거리에서 BMW 강남전시장 골목으로 진입하면 우측",
+          "priceRangeMin": 180000,
+          "priceRangeMax": 990000,
+          "openDate": "20191111",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2019년 11월 11일"
+        },
+        "juso": {
+          "detailAddress": "유일빌딩 2층",
+          "roadAddrPart1": "서울특별시 강남구 언주로152길 8",
+          "roadAddrPart2": "(신사동)",
+          "jibunAddr": "서울특별시 강남구 신사동 630-12 유일빌딩",
+          "engAddr": "8, Eonju-ro 152-gil, Gangnam-gu, Seoul",
+          "zipNo": "06021",
+          "admCd": "1168010700",
+          "detBdNmList": "",
+          "bdNm": "유일빌딩",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "신사동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "8",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "압구정동/도산공원",
+          "map_1": "서울 강남지역",
+          "map_2": "d. 언주로-도산공원-로데오거리"
+        },
+        "gps": {
+          "latitude": 37.52249740233286,
+          "longitude": 127.03426739117289
+        },
+        "review": {
+          "review": "중국 3대 진미로 뽑히는 샥스핀을 전문으로 하는 고급 중식당으로, 룸으로만 구성되어 있어 프라이빗하게 식사를 즐길 수 있다. 동충하초, 산삼, 자라, 제비집 등 고급 식자재를 활용하여 맛뿐만 아니라 건강까지 고려한 수준급 중식 요리를 선보인다.",
+          "reviewSimple": "중국 3대 진미로 뽑히는 샥스핀을 전문으로 하는 고급 중식당으로, 룸으로만 구성되어 있어 프라이빗하게 식사를 즐길 수 있다. 동충하초, 산삼, 자라, 제비집 등 고급 식자재를 활용하여 맛뿐만 아니라 건강까지 고려한 수준급 중식 요리를 선보인다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 3,
+          "avgTaste": 1.6667,
+          "avgMood": 1.6667,
+          "avgService": 1.3333,
+          "avgSatisfaction": 0.6667,
+          "avgCreativity": 1.0,
+          "avgTraditionality": 1.6667
+        },
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 1022,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>11:30부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "중식",
+          "일반중식"
+        ],
+        "foodDetailTypes": [
+          "일반중식"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760425431000,
+          "url": "/images/es_f1fa131ef8324c8ba133315f9acc71ec.png",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30639/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1436236247000,
+        "id": 28167,
+        "headerInfo": {
+          "nameKR": "권숙수",
+          "nameEN": "KOREAN DINING KWONSOOKSOO",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_THREE",
+          "ribbonTypeByOrdinal": 0
+        },
+        "defaultInfo": {
+          "chefName": "권우중",
+          "website": "http://kwonsooksoo.com",
+          "websiteInstagram": "https://www.instagram.com/kwonsooksoo/",
+          "websiteFacebook": "",
+          "phone": "0507-1354-6268",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "청담사거리에서 학동사거리 방향으로 직진. 순수도산점에서 우회전하면 우측",
+          "priceRangeMin": 210000,
+          "priceRangeMax": 340000,
+          "openDate": "20150701",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2015년 07월 01일"
+        },
+        "juso": {
+          "detailAddress": "이에스빌딩 4층",
+          "roadAddrPart1": "서울특별시 강남구 압구정로80길 37",
+          "roadAddrPart2": "(청담동)",
+          "jibunAddr": "서울특별시 강남구 청담동 92-18 이에스빌딩",
+          "engAddr": "37, Apgujeong-ro 80-gil, Gangnam-gu, Seoul",
+          "zipNo": "06016",
+          "admCd": "1168010400",
+          "detBdNmList": "",
+          "bdNm": "이에스빌딩",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "청담동",
+          "liNm": "",
+          "rn": "압구정로80길",
+          "buldMnnm": "37",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "e. 압구정로데오-청담사거리"
+        },
+        "gps": {
+          "latitude": 37.524328,
+          "longitude": 127.043571
+        },
+        "review": {
+          "review": "한식을 양식의 형식으로 풀어낸 모던한식 스타일을 선보이는 권우중 셰프의 한식당. 직접 담근 장과 김치, 식초를 사용하여 모던하면서도 한식 전통의 맛을 잘 살리고 있다는 평을 받고 있다. 전통적인 1인 독상을 구현한 점도 독특하다. 여러 종류의 김치로 구성된 김치 카트를 선보이는 등 끊임없이 새로운 모습을 보여준다.",
+          "reviewSimple": "한식을 양식의 형식으로 풀어낸 모던한식 스타일을 선보이는 권우중 셰프의 한식당. 직접 담근 장과 김치, 식초를 사용하여 모던하면서도 한식 전통의 맛을 잘 살리고 있다는 평을 받고 있다. 전통적인 1인 독상을 구현한 점도 독특하다. 여러 종류의 김치로 구성된 김치 카트를 선보이는 등 끊임없이 새로운 모습을 보여준다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 28,
+          "avgTaste": 2.2143,
+          "avgMood": 2.1429,
+          "avgService": 2.1071,
+          "avgSatisfaction": 1.7857,
+          "avgCreativity": 2.0,
+          "avgTraditionality": 1.6071
+        },
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(일반한식)",
+          "모던한식"
+        ],
+        "foodDetailTypes": [
+          "모던한식"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760058747000,
+          "url": "/images/es_c03a2e8289d44d18ae79e5b85cce5ed3.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28167/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1584152475000,
+        "id": 30720,
+        "headerInfo": {
+          "nameKR": "김씨부인",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/kimssibooin_korean_dessert/",
+          "websiteFacebook": "",
+          "phone": "02-532-5327 ",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "NOT",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "고속터미널역 5번 출구에서 직진하다 반포1교에서 우회전하면 우측 ",
+          "priceRangeMin": 4000,
+          "priceRangeMax": 38000,
+          "openDate": "201709",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2017년 09월 "
+        },
+        "juso": {
+          "detailAddress": "트윈빌 2층",
+          "roadAddrPart1": "서울특별시 서초구 서래로1길 8",
+          "roadAddrPart2": " (반포동)",
+          "jibunAddr": "서울특별시 서초구 반포동 97-10 97-10 트윈빌",
+          "engAddr": "8 Seorae-ro 1-gil, Seocho-gu, Seoul",
+          "zipNo": "06581",
+          "admCd": "1165010700",
+          "detBdNmList": "",
+          "bdNm": "97-10 트윈빌",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "반포동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "8",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "서래마을",
+          "map_1": "서울 강남지역",
+          "map_2": "r-2. 서래마을"
+        },
+        "gps": {
+          "latitude": 37.4962577972563,
+          "longitude": 126.997750985843
+        },
+        "review": {
+          "review": "한식 디저트와 전통차를 선보이는 카페다. 떡, 한과, 정과로 구성되어 있는 소반 차림이 대표 메뉴며 단아함과 기품이 느껴진다. 다기와 차, 수제청 등도 판매하고 있다.",
+          "reviewSimple": "한식 디저트와 전통차를 선보이는 카페다. 떡, 한과, 정과로 구성되어 있는 소반 차림이 대표 메뉴며 단아함과 기품이 느껴진다. 다기와 차, 수제청 등도 판매하고 있다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "명절선물2026",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 1086,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>09:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "디저트/스위트",
+          "한식디저트",
+          "한과"
+        ],
+        "foodDetailTypes": [
+          "한식디저트",
+          "한과"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": null,
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/30720/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1368359850000,
+        "id": 20987,
+        "headerInfo": {
+          "nameKR": "합",
+          "nameEN": "",
+          "nameCN": "合",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "신용일",
+          "website": "https://haap.co.kr/",
+          "websiteInstagram": "https://www.instagram.com/haap2010/",
+          "websiteFacebook": "",
+          "phone": "010-9727-8191",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "",
+          "priceRangeMin": 3000,
+          "priceRangeMax": 3000,
+          "openDate": "20110927",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2011년 09월 27일"
+        },
+        "juso": {
+          "detailAddress": "컨템포빌딩 지하 1층",
+          "roadAddrPart1": "서울특별시 강남구 논현로175길 109",
+          "roadAddrPart2": " (신사동)",
+          "jibunAddr": "서울특별시 강남구 신사동 525-9 컨템포빌딩",
+          "engAddr": "109 Nonhyeon-ro 175-gil, Gangnam-gu, Seoul",
+          "zipNo": "06028",
+          "admCd": "1168010700",
+          "detBdNmList": "청담93.3빌딩",
+          "bdNm": "컨템포빌딩",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "신사동",
+          "liNm": "",
+          "rn": "도산대로61길",
+          "buldMnnm": "109",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "가로수길/신사역",
+          "map_1": "서울 강남지역",
+          "map_2": "a. 신사역-압구정역"
+        },
+        "gps": {
+          "latitude": 37.5223173108567,
+          "longitude": 127.020612195958
+        },
+        "review": {
+          "review": "프랑스식 디저트를 배운 신용일 셰프가 현대적으로 재현한 전통 떡을 맛볼 수 있다. 떡을 만들 때 오븐을 사용하는 등 전통과 현대를 접목시키고자 한다. 요즘 접하기 어려운 증편, 개성식 주악과 약과 등이 인기 메뉴다.",
+          "reviewSimple": "프랑스식 디저트를 배운 신용일 셰프가 현대적으로 재현한 전통 떡을 맛볼 수 있다. 떡을 만들 때 오븐을 사용하는 등 전통과 현대를 접목시키고자 한다. 요즘 접하기 어려운 증편, 개성식 주악과 약과 등이 인기 메뉴다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "명절선물2026",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": "원서점(010-5027-8190)"
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>09:30부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "디저트/스위트",
+          "한식디저트",
+          "한과",
+          "떡"
+        ],
+        "foodDetailTypes": [
+          "한식디저트",
+          "한과",
+          "떡"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1770005025000,
+          "url": "/images/20987_thumb.JPG",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/20987/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1697274546000,
+        "id": 36669,
+        "headerInfo": {
+          "nameKR": "앨리스프로젝트",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/alice.project_seoul/",
+          "websiteFacebook": "",
+          "phone": "0507-1344-0972",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "NOT",
+          "parking": "양재 공영주차장 유료 이용, 60분 6천원",
+          "creditCard": "",
+          "visit": "양재천 카페거리에 위치하고 있습니다!",
+          "priceRangeMin": 5000,
+          "priceRangeMax": 38000,
+          "openDate": "20220501",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2022년 05월 01일"
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 서초구 양재천로 107-4",
+          "roadAddrPart2": " (양재동)",
+          "jibunAddr": "서울특별시 서초구 양재동 95-10 양재천가",
+          "engAddr": "107-4 Yangjaecheon-ro, Seocho-gu, Seoul",
+          "zipNo": "06748",
+          "admCd": "1165010200",
+          "detBdNmList": "",
+          "bdNm": "양재천가",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "양재동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "107",
+          "buldSlno": "4",
+          "zone2_1": "서울 강남",
+          "zone2_2": "도곡/양재/매봉",
+          "map_1": "서울 강남지역",
+          "map_2": "o. 양재-매봉역"
+        },
+        "gps": {
+          "latitude": 37.4770034056652,
+          "longitude": 127.04036955084
+        },
+        "review": {
+          "review": "다양한 차와 함께 디저트를 즐길 수 있는 디저트 카페. 파인 다이닝에서 맛볼 만한 플레이팅의 디저트를 접할 수 있다. 미리 예약하면 디저트 코스도 맛볼 수 있는데, 네 가지 디저트와 차로 구성된 메뉴는 시즌마다 달라진다. 오픈 키친에 카운터 석이 있어 디저트 만드는 모습을 볼 수도 있다. ",
+          "reviewSimple": "다양한 차와 함께 디저트를 즐길 수 있는 디저트 카페. 파인 다이닝에서 맛볼 만한 플레이팅의 디저트를 접할 수 있다. 미리 예약하면 디저트 코스도 맛볼 수 있는데, 네 가지 디저트와 차로 구성된 메뉴는 시즌마다 달라진다.  오픈 키친에 카운터 석이 있어 디저트 만드는 모습을 볼 수도 있다. ",
+          "readerReview": "해외 출신 셰프님인데, 다채로운 재료를 활용한 플레이팅 디저트를 판매하고 있어요! 디저트 코스도 접해봤는데 정말 새로운 경험이고, 맛 밸런스가 대단했어요!!",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "#피스타치오디저트2026",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 3836,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "디저트/스위트",
+          "라이브디저트",
+          "디저트전문점"
+        ],
+        "foodDetailTypes": [
+          "라이브디저트",
+          "디저트전문점"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1769761433000,
+          "url": "/images/es_73fd5de2f0d14fc7b90ea70a172d8f4f.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/36669/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1345905423000,
+        "id": 12482,
+        "headerInfo": {
+          "nameKR": "투뿔코리안스테이크하우스",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://www.twoppul.com",
+          "websiteInstagram": "https://www.instagram.com/dinehill_official/",
+          "websiteFacebook": "",
+          "phone": "02-3448-5646",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "CHAIN_STORE",
+          "parkingType": "NOT",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "도산공원사거리에서 강남세브란스병원 방향으로 직진. 탐앤탐스 골목으로 좌회전 후 첫 번째 골목에서 우회전",
+          "priceRangeMin": 18000,
+          "priceRangeMax": 79000,
+          "openDate": "201205",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2012년 05월 "
+        },
+        "juso": {
+          "detailAddress": "청호빌딩",
+          "roadAddrPart1": "서울특별시 강남구 언주로148길 19",
+          "roadAddrPart2": "(논현동)",
+          "jibunAddr": "서울특별시 강남구 논현동 97-7 청호빌딩",
+          "engAddr": "19, Eonju-ro 148-gil, Gangnam-gu, Seoul",
+          "zipNo": "06054",
+          "admCd": "1168010800",
+          "detBdNmList": "",
+          "bdNm": "청호빌딩",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "논현동",
+          "liNm": "",
+          "rn": "언주로148길",
+          "buldMnnm": "19",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "논현동/영동시장",
+          "map_1": "서울 강남지역",
+          "map_2": "g. 학동사거리-강남구청역"
+        },
+        "gps": {
+          "latitude": 37.52101,
+          "longitude": 127.0361
+        },
+        "review": {
+          "review": "채끝등심을 사용하는 투뿔등심의 붐을 일으킨 곳. 질 좋고 가격 대비 좋은 고기로 입소문이 나면서 유명해졌다. 다양한 특수부위도 맛볼 수 있으며 식사 메뉴인 차돌볶음밥도 인기가 좋다. ",
+          "reviewSimple": "채끝등심을 사용하는 투뿔등심의 붐을 일으킨 곳. 질 좋고 가격 대비 좋은 고기로 입소문이 나면서 유명해졌다. 다양한 특수부위도 맛볼 수 있으며 식사 메뉴인 차돌볶음밥도 인기가 좋다. ",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": false,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": "여의도점(02-2088-3041), 광화문점(02-3783-0607), 강남점(02-539-8456), 그랑서울점(02-2158-7903), 판교점(031-703-9601)"
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>11:30부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(육류)",
+          "소고기구이"
+        ],
+        "foodDetailTypes": [
+          "소고기구이"
+        ],
+        "feature107": true,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1769130102000,
+          "url": "/images/es_3412e12a98ac423684a4735db2d3fbf2.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/12482/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1284994680000,
+        "id": 5722,
+        "headerInfo": {
+          "nameKR": "듀자미",
+          "nameEN": "Deux Amis",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/deuxamis_patisserie_seoul/",
+          "websiteFacebook": "",
+          "phone": "02-3443-0030",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "신사역 8번 출구에서 직진. 가로수길 초입에서 좌회전 후 오렌즈 옆 골목으로 좌회전",
+          "priceRangeMin": 5500,
+          "priceRangeMax": 9000,
+          "openDate": "20091115",
+          "openEra": "",
+          "businessHours": "12:00~21:30 ",
+          "menu": "캐러멜소금케이크, 딸기생크림케이크, 말차산딸기케이크(각 7천5백원), 달콤밤송이(8천5백원), 밀푀유말차(9천원), 아메리카노(5천5백원), 카페라테(6천5백원)",
+          "dayOff": "명절 당일 휴무",
+          "newOpenDate": "2009년 11월 15일"
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 강남구 도산대로11길 28",
+          "roadAddrPart2": "(신사동)",
+          "jibunAddr": "서울특별시 강남구 신사동 535-9",
+          "engAddr": "28, Dosan-daero 11-gil, Gangnam-gu, Seoul",
+          "zipNo": "06034",
+          "admCd": "1168010700",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "신사동",
+          "liNm": "",
+          "rn": "도산대로11길",
+          "buldMnnm": "28",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "가로수길/신사역",
+          "map_1": "서울 강남지역",
+          "map_2": "a. 신사역-압구정역"
+        },
+        "gps": {
+          "latitude": 37.51933,
+          "longitude": 127.0226
+        },
+        "review": {
+          "review": "케이크가 맛있는 디저트 카페로, 매일매일 디저트를 직접 만든다. 소금을 가미한 캐러멜소금케이크와 딸기생크림케이크가 대표 메뉴며 부드러운 크림이 인상적이다. 케이크 외에도 마카롱, 밀푀유, 몽블랑 등 다양한 프랑스식 디저트를 선보인다.",
+          "reviewSimple": "케이크가 맛있는 디저트 카페로, 매일매일 디저트를 직접 만든다. 소금을 가미한 캐러멜소금케이크와 딸기생크림케이크가 대표 메뉴며 부드러운 크림이 인상적이다. 케이크 외에도 마카롱, 밀푀유, 몽블랑 등 다양한 프랑스식 디저트를 선보인다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 14,
+          "avgTaste": 1.6429,
+          "avgMood": 1.4286,
+          "avgService": 1.4286,
+          "avgSatisfaction": 1.2143,
+          "avgCreativity": 1.4286,
+          "avgTraditionality": 1.4286
+        },
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "디저트/스위트",
+          "디저트전문점"
+        ],
+        "foodDetailTypes": [
+          "디저트전문점"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1768437181000,
+          "url": "/images/es_a4d2074febf344f38a0a232ca1d3ea7b.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/5722/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1520234238000,
+        "id": 29346,
+        "headerInfo": {
+          "nameKR": "레스토랑온",
+          "nameEN": "Restaurant ON",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "김준형",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/restaurant_on/",
+          "websiteFacebook": "",
+          "phone": "02-547-0467 ",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "",
+          "visit": "청담역 10번 출구에서 우회전 후 직진하면 좌측",
+          "priceRangeMin": 140000,
+          "priceRangeMax": 250000,
+          "openDate": "201712",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2017년 12월 "
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 강남구 도산대로92길 42",
+          "roadAddrPart2": "(청담동)",
+          "jibunAddr": "서울특별시 강남구 청담동 62-33",
+          "engAddr": "42, Dosan-daero 92-gil, Gangnam-gu, Seoul",
+          "zipNo": "06070",
+          "admCd": "1168010400",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "청담동",
+          "liNm": "",
+          "rn": "도산대로92길",
+          "buldMnnm": "42",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "f. 청담사거리-영동대교남단-청담역"
+        },
+        "gps": {
+          "latitude": 37.521946,
+          "longitude": 127.049384
+        },
+        "review": {
+          "review": "우리나라 프렌치 셰프 1세대인 서승호 셰프의 제자 김준형 오너 셰프가 운영하는 레스토랑. 클래식한 프렌치를 선보이며, 메뉴는 그날 들어오는 재료의 상태에 따라 조금씩 바뀐다.",
+          "reviewSimple": "우리나라 프렌치 셰프 1세대인 서승호 셰프의 제자 김준형 오너 셰프가 운영하는 레스토랑. 클래식한 프렌치를 선보이며, 메뉴는 그날 들어오는 재료의 상태에 따라 조금씩 바뀐다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "흑백요리사2",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "프랑스식"
+        ],
+        "foodDetailTypes": [
+          "프랑스식"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1768198227000,
+          "url": "/images/es_90d8b345ce32467687a8a16e1ef5c540.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29346/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1629301134000,
+        "id": 32069,
+        "headerInfo": {
+          "nameKR": "드레스덴그린",
+          "nameEN": "DRESDEN GREEN",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "박가람 셰프",
+          "website": "http://dresdengreenseoul.com/kr",
+          "websiteInstagram": "",
+          "websiteFacebook": "",
+          "phone": "02-6205-0329",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "YES",
+          "parking": "건물 내 주차, 3시간 무료",
+          "creditCard": "y",
+          "visit": "학동사거리에서 청담사거리 방향으로 200미터 직진 ",
+          "priceRangeMin": 170000,
+          "priceRangeMax": 270000,
+          "openDate": "20210730",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2021년 07월 30일"
+        },
+        "juso": {
+          "detailAddress": " 청담 스퀘어 B동 2층",
+          "roadAddrPart1": "서울특별시 강남구 도산대로 420",
+          "roadAddrPart2": "(청담동)",
+          "jibunAddr": "서울특별시 강남구 청담동 3 청담스퀘어",
+          "engAddr": "420, Dosan-daero, Gangnam-gu, Seoul",
+          "zipNo": "06062",
+          "admCd": "1168010400",
+          "detBdNmList": "",
+          "bdNm": "청담스퀘어",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "청담동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "420",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "g. 학동사거리-강남구청역"
+        },
+        "gps": {
+          "latitude": 37.5230546690263,
+          "longitude": 127.042083071774
+        },
+        "review": {
+          "review": "자연의 식재료를 섬세하게 요리하여 아름답게 차려내는 파인다이닝으로, 박가람 셰프가 총괄하고 있다. 셰프의 쿠킹 퍼포먼스와 함께 메뉴에 따라 달라지는 접시와 커트러리도 시선을 끈다. 커다란 오픈 키친에 넓게 배치된 홀 좌석과 3개의 룸이 있어 프라이빗한 식사를 즐기기에 좋다.",
+          "reviewSimple": "자연의 식재료를 섬세하게 요리하여 아름답게 차려내는 파인다이닝으로, 박가람 셰프가 총괄하고 있다. 셰프의 쿠킹 퍼포먼스와 함께 메뉴에 따라 달라지는 접시와 커트러리도 시선을 끈다. 커다란 오픈 키친에 넓게 배치된 홀 좌석과 3개의 룸이 있어 프라이빗한 식사를 즐기기에 좋다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "흑백요리사2",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 2127,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "컨템포러리"
+        ],
+        "foodDetailTypes": [
+          "컨템포러리"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1768196252000,
+          "url": "/images/es_81a1274a508a4c9293d13bc9b151de96.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32069/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1468397151000,
+        "id": 28584,
+        "headerInfo": {
+          "nameKR": "몽고네",
+          "nameEN": "MONGONE",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/mongone_osteria/",
+          "websiteFacebook": "",
+          "phone": "02-540-0680 ",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "CHAIN_STORE",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "압구정로데오역 5번 출구에서 직진. SC제일은행에서 우회전하면 좌측",
+          "priceRangeMin": 28000,
+          "priceRangeMax": 150000,
+          "openDate": "201605",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2016년 05월 "
+        },
+        "juso": {
+          "detailAddress": "1층",
+          "roadAddrPart1": "서울특별시 강남구 선릉로155길 5",
+          "roadAddrPart2": "(신사동)",
+          "jibunAddr": "서울특별시 강남구 신사동 665-10",
+          "engAddr": "5, Seolleung-ro 155-gil, Gangnam-gu, Seoul",
+          "zipNo": "06019",
+          "admCd": "1168010700",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "신사동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "5",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "압구정동/도산공원",
+          "map_1": "서울 강남지역",
+          "map_2": "d. 언주로-도산공원-로데오거리"
+        },
+        "gps": {
+          "latitude": 37.525231,
+          "longitude": 127.039135
+        },
+        "review": {
+          "review": "풍미 좋은 파스타로 유명한 이탈리안 레스토랑. 해산물의 풍미를 느낄 수 있는 봉골레파스타 등이 인기 메뉴며 어란파스타는 스페셜플레이트로 선보인다.",
+          "reviewSimple": "",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "연희동본점(02-336-6808)",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "이탈리아식",
+          "파스타"
+        ],
+        "foodDetailTypes": [
+          "이탈리아식",
+          "파스타"
+        ],
+        "feature107": true,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1768195382000,
+          "url": "/images/es_c310ae20adc24f5a816da1ba96353d9e.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/28584/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1143903600000,
+        "id": 931,
+        "headerInfo": {
+          "nameKR": "프로간장게장",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://www.prosoycrab.co.kr",
+          "websiteInstagram": "https://www.instagram.com/prosoycrab/",
+          "websiteFacebook": "https://www.facebook.com/thepro4126",
+          "phone": "02-543-4126",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "HEAD_STORE",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "",
+          "priceRangeMin": 14000,
+          "priceRangeMax": 96000,
+          "openDate": "1980",
+          "openEra": "",
+          "businessHours": "10:00~23:00 ",
+          "menu": "간장게장(중 9만2천원, 대 11만4천원, 특대 13만6천원), 양념게장(중 9만6천원, 대 12만원, 특대 14만2천원), 반반게장(중 9만5천원, 대 11만8천원, 특대 14만원)",
+          "dayOff": "연중무휴",
+          "newOpenDate": "1980년 "
+        },
+        "juso": {
+          "detailAddress": "지하1, 2층, 지상 1층",
+          "roadAddrPart1": "서울특별시 서초구 강남대로97길 7",
+          "roadAddrPart2": " (잠원동)",
+          "jibunAddr": "서울특별시 서초구 잠원동 27-1",
+          "engAddr": "7 Gangnam-daero 97-gil, Seocho-gu, Seoul",
+          "zipNo": "06526",
+          "admCd": "1165010600",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "잠원동",
+          "liNm": "",
+          "rn": "강남대로97길",
+          "buldMnnm": "7",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "가로수길/신사역",
+          "map_1": "서울 강남지역",
+          "map_2": "a. 신사역-압구정역"
+        },
+        "gps": {
+          "latitude": 37.5145780257989,
+          "longitude": 127.019168572867
+        },
+        "review": {
+          "review": "간장게장으로는 타의 추종을 불허하는 곳. 충남 서산에서 직송된 꽃게 게장을 5일 정도 숙성시켜 낸다. 가격대는 높은 편이지만 다른 곳에서 보기 어려운 사이즈의 꽃게를 맛볼 수 있다. 프로야구 출범 초기에 프로야구 선수들이 자주 찾아 프로집으로 불리면서 상호를 프로간장게장으로 했다고 한다.",
+          "reviewSimple": "간장게장으로는 타의 추종을 불허하는 곳. 충남 서산에서 직송된 꽃게 게장을 5일 정도 숙성시켜 낸다. 가격대는 높은 편이지만 다른 곳에서 보기 어려운 사이즈의 꽃게를 맛볼 수 있다. 프로야구 출범 초기에 프로야구 선수들이 자주 찾아 프로집으로 불리면서 상호를 프로간장게장으로 했다고 한다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": false,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "200석",
+          "room": "없음",
+          "toilet": "SEX_IN",
+          "toiletEtc": "",
+          "chain": true,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": "삼성점(02-544-4126), 인천파라다이스시티점(032-729-5151)"
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>10:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(어패류)",
+          "게장",
+          "꽃게"
+        ],
+        "foodDetailTypes": [
+          "게장",
+          "꽃게"
+        ],
+        "feature107": false,
+        "brandBranches": [
+          {
+            "id": 14736,
+            "name": "프로간장게장(삼성점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 강남구 테헤란로83길 53"
+          }
+        ],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1767931884000,
+          "url": "/images/es_a4509585604c4aa6a23b69b9975e4175.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/931/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1656727225000,
+        "id": 33205,
+        "headerInfo": {
+          "nameKR": "김영모과자점",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "김영모",
+          "website": "https://www.k-bread.com/",
+          "websiteInstagram": "https://www.instagram.com/kimyoungmo_official/",
+          "websiteFacebook": "",
+          "phone": "02-2055-1983",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "HEAD_STORE",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "",
+          "visit": "",
+          "priceRangeMin": 5200,
+          "priceRangeMax": 7500,
+          "openDate": "1982",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "1982년 "
+        },
+        "juso": {
+          "detailAddress": "서초그랑몰 102호",
+          "roadAddrPart1": "서울특별시 서초구 효령로 403",
+          "roadAddrPart2": "(서초동)",
+          "jibunAddr": "서울특별시 서초구 서초동 1335",
+          "engAddr": "403 Hyoryeong-ro, Seocho-gu, Seoul",
+          "zipNo": "06630",
+          "admCd": "1165010800",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "서초동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "403",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "교대/남부터미널/서초",
+          "map_1": "서울 강남지역",
+          "map_2": "m. 교보타워사거리-강남역-뱅뱅사거리"
+        },
+        "gps": {
+          "latitude": 37.4889155854443,
+          "longitude": 127.027749222342
+        },
+        "review": {
+          "review": "제과명장 김영모가 운영하는 곳으로, 40여 년의 세월 동안 변함 없는 맛으로 정상의 자리를 지키고 있다. 바게트샌드위치와 몽블랑이 인기 메뉴다. 브런치 메뉴도 많이 찾는다.",
+          "reviewSimple": "제과명장 김영모가 운영하는 곳으로, 40여 년의 세월 동안 변함 없는 맛으로 정상의 자리를 지키고 있다. 바게트샌드위치와 몽블랑이 인기 메뉴다. 브런치 메뉴도 많이 찾는다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": true,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 2738,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>08:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "베이커리"
+        ],
+        "foodDetailTypes": [
+          "베이커리"
+        ],
+        "feature107": false,
+        "brandBranches": [
+          {
+            "id": 29593,
+            "name": "김영모(잠실에비뉴엘점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 송파구 올림픽로 300"
+          },
+          {
+            "id": 29595,
+            "name": "김영모과자점(강남구청점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 강남구 선릉로126길 6"
+          },
+          {
+            "id": 29594,
+            "name": "김영모과자점(대치점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 강남구 남부순환로 2927"
+          },
+          {
+            "id": 6771,
+            "name": "김영모과자점(도곡타워점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 강남구 언주로30길 10"
+          },
+          {
+            "id": 29592,
+            "name": "김영모과자점(서초동성당점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 서초구 서초대로64길 41-4"
+          },
+          {
+            "id": 7043,
+            "name": "김영모과자점(신반포점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 서초구 신반포로 100"
+          }
+        ],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1767930334000,
+          "url": "/images/es_6c3ae774fde5417c9fb274714c80b864.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33205/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1673860516000,
+        "id": 34374,
+        "headerInfo": {
+          "nameKR": "정대",
+          "nameEN": "",
+          "nameCN": "正大",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "이정대",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/jungdaeseoul/",
+          "websiteFacebook": "",
+          "phone": "02-737-3204",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "",
+          "visit": "",
+          "priceRangeMin": 380000,
+          "priceRangeMax": 380000,
+          "openDate": "20230125",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2023년 01월 25일"
+        },
+        "juso": {
+          "detailAddress": "1층 102호",
+          "roadAddrPart1": "서울특별시 강남구 도산대로 501",
+          "roadAddrPart2": " (청담동)",
+          "jibunAddr": "서울특별시 강남구 청담동 119-3",
+          "engAddr": "501 Dosan-daero, Gangnam-gu, Seoul",
+          "zipNo": "06011",
+          "admCd": "1168010400",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "청담동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "501",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "e. 압구정로데오-청담사거리"
+        },
+        "gps": {
+          "latitude": 37.5246564917753,
+          "longitude": 127.047716782173
+        },
+        "review": {
+          "review": "도쿄의 유명 스시야 사이토 출신 이정대 셰프가 운영하는 하이엔드 스시야. 코스의 대부분을 국내산 재료를 활용하며, 원재료의 특징을 잘 살린 클래식한 스타일을 선보인다. 특히 일본산 참치의 퀄리티가 뛰어나다.",
+          "reviewSimple": "도쿄의 유명 스시야 사이토 출신 이정대 셰프가 운영하는 하이엔드 스시야. 코스의 대부분을 국내산 재료를 활용하며, 원재료의 특징을 잘 살린 클래식한 스타일을 선보인다. 특히 일본산 참치의 퀄리티가 뛰어나다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "샴페인, 와인, 사케 각 750ml 기준 7만원/ 위스키, 일본소주 1병당 15만원",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 3089,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>17:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "일식",
+          "스시"
+        ],
+        "foodDetailTypes": [
+          "스시"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1767752281000,
+          "url": "/images/es_579773369f1c473f8355a8f8a37a78c4.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/34374/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1547117583000,
+        "id": 29781,
+        "headerInfo": {
+          "nameKR": "모노로그",
+          "nameEN": "",
+          "nameCN": "モノログ",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/monologue_seoul/",
+          "websiteFacebook": "",
+          "phone": "02-545-9996",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "신사역 1번 출구에서 직진하다 스타벅스 옆 골목으로 진입. 사거리에서 영동중앙교회 방향으로 직진하면 우측",
+          "priceRangeMin": 200000,
+          "priceRangeMax": 300000,
+          "openDate": "20180401",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2018년 04월 01일"
+        },
+        "juso": {
+          "detailAddress": "하우스오브신세계청담 1층",
+          "roadAddrPart1": "서울특별시 강남구 도산대로 442",
+          "roadAddrPart2": " (청담동)",
+          "jibunAddr": "서울특별시 강남구 청담동 4-1 피엔폴루스",
+          "engAddr": "442 Dosan-daero, Gangnam-gu, Seoul",
+          "zipNo": "06062",
+          "admCd": "1168010400",
+          "detBdNmList": "",
+          "bdNm": "피엔폴루스",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "청담동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "442",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "g. 학동사거리-강남구청역"
+        },
+        "gps": {
+          "latitude": 37.5233111622682,
+          "longitude": 127.044119009562
+        },
+        "review": {
+          "review": "제철 식자재를 활용해 술안주로 좋은 갓포 요리를 낸다. 오마카세 구성은 그날그날 조금씩 달라지며 손님의 취향과 양에 맞춰 요리를 수정하는 등 맞춤형 오마카세를 낸다. 요리는 니혼슈와 페어링해 즐기기 좋다. ",
+          "reviewSimple": "제철 식자재를 활용해 술안주로 좋은 갓포 요리를 낸다. 오마카세 구성은 그날그날 조금씩 달라지며 손님의 취향과 양에 맞춰 요리를 수정하는 등 맞춤형 오마카세를 낸다. 요리는 니혼슈와 페어링해 즐기기 좋다. ",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": "흑백요리사2",
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 318,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>18:30부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "일식",
+          "일식오마카세",
+          "갓포요리"
+        ],
+        "foodDetailTypes": [
+          "일식오마카세",
+          "갓포요리"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1767750674000,
+          "url": "/images/es_27fc80682b014922a7215011a0e52d76.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29781/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1143903600000,
+        "id": 388,
+        "headerInfo": {
+          "nameKR": "버드나무집",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "",
+          "websiteFacebook": "",
+          "phone": "02-3473-4167 ",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "HEAD_STORE",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "뱅뱅사거리 남강빌딩 뒤편",
+          "priceRangeMin": 15000,
+          "priceRangeMax": 88000,
+          "openDate": "1977",
+          "openEra": "",
+          "businessHours": "11:00~21:30 ",
+          "menu": "주물럭(130g 8만5천원), 등심(130g 8만8천원), 생갈비(200g 12만원), 양념갈비(250g 8만5천원), 육회(130g 5만3천원), 갈비탕(3만2천원), 정식(120g 4만9천원), 물냉면, 비빔냉면(각 1만5천원)",
+          "dayOff": "연중무휴",
+          "newOpenDate": "1977년 "
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 서초구 효령로 434",
+          "roadAddrPart2": "(서초동)",
+          "jibunAddr": "서울특별시 서초구 서초동 1340-5 버드나무집",
+          "engAddr": "434, Hyoryeong-ro, Seocho-gu, Seoul",
+          "zipNo": "06729",
+          "admCd": "1165010800",
+          "detBdNmList": "",
+          "bdNm": "버드나무집",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "서초동",
+          "liNm": "",
+          "rn": "효령로",
+          "buldMnnm": "434",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "교대/남부터미널/서초",
+          "map_1": "서울 강남지역",
+          "map_2": "m. 교보타워사거리-강남역-뱅뱅사거리"
+        },
+        "gps": {
+          "latitude": 37.4891,
+          "longitude": 127.0312
+        },
+        "review": {
+          "review": "등심을 숙성시켜 양념한 생등심과 주물럭이 대표 메뉴다. 숯불을 사용해 굽기 때문에 맛이 더욱 좋다. 점심때는 한정 수량으로 파는 갈비탕을 먹고자 일찌감치 사람들이 몰려든다. 물냉면도 전문점 못지않다. 저녁에는 고기만 판매한다.",
+          "reviewSimple": "등심을 숙성시켜 양념한 생등심과 주물럭이 대표 메뉴다. 숯불을 사용해 굽기 때문에 맛이 더욱 좋다. 점심때는 한정 수량으로 파는 갈비탕을 먹고자 일찌감치 사람들이 몰려든다. 물냉면도 전문점 못지않다. 저녁에는 고기만 판매한다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": false,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 42,
+          "avgTaste": 2.4048,
+          "avgMood": 1.5238,
+          "avgService": 1.5714,
+          "avgSatisfaction": 0.8095,
+          "avgCreativity": 0.1429,
+          "avgTraditionality": 0.2619
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "300석",
+          "room": "없음",
+          "toilet": "SEX_IN",
+          "toiletEtc": "",
+          "chain": true,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": "우면점(02-597-5900), 이천점(031-631-5757), 역삼점(02-2088-3392)"
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>11:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(육류)",
+          "소고기구이",
+          "소갈비"
+        ],
+        "foodDetailTypes": [
+          "소고기구이",
+          "소갈비"
+        ],
+        "feature107": true,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760513322000,
+          "url": "/images/388_thumb.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/388/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1253003354000,
+        "id": 4872,
+        "headerInfo": {
+          "nameKR": "송강",
+          "nameEN": "",
+          "nameCN": "松江",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://www.song-gang.com/",
+          "websiteInstagram": "",
+          "websiteFacebook": "",
+          "phone": "02-598-9288",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "방배역에서 서울고등학교 방향으로 직진. 서울고교교차로에서 우회전하면 우측",
+          "priceRangeMin": 17000,
+          "priceRangeMax": 230000,
+          "openDate": "19780210",
+          "openEra": "",
+          "businessHours": "11:00~15:00/17:00~22:00 (마지막 주문 21:10) ",
+          "menu": "장어코스(22만원), 갯벌장어구이(8만5천원), 민물장어구이(4만5천원), 송강정식(2만5천원~3만원), 복국(1만9천원)",
+          "dayOff": "명절 휴무",
+          "newOpenDate": "1978년 02월 10일"
+        },
+        "juso": {
+          "detailAddress": "정호빌딩",
+          "roadAddrPart1": "서울특별시 서초구 명달로9길 5",
+          "roadAddrPart2": "(방배동)",
+          "jibunAddr": "서울특별시 서초구 방배동 1002-1 정호빌딩",
+          "engAddr": "5, Myeongdal-ro 9-gil, Seocho-gu, Seoul",
+          "zipNo": "06707",
+          "admCd": "1165010100",
+          "detBdNmList": "",
+          "bdNm": "정호빌딩",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "방배동",
+          "liNm": "",
+          "rn": "명달로9길",
+          "buldMnnm": "5",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "방배/사당/이수",
+          "map_1": "서울 강남지역",
+          "map_2": "p. 교대역-서초역-예술의전당"
+        },
+        "gps": {
+          "latitude": 37.48186,
+          "longitude": 127.0045
+        },
+        "review": {
+          "review": "큼직한 갯벌장어구이가 유명한 곳으로, 고소하면서도 기름기 많은 장어의 맛을 느낄 수 있다. 4~6월에는 임진강에서 잡히는 황복이 별미며 운이 좋으면 큼지막한 자연산 장어도 맛볼 수 있다. 장어 외에 참복 사시미로도 유명하며, 사시미 주문 시 예약하면 숙성 과정을 거친 회를 맛볼 수 있다.",
+          "reviewSimple": "큼직한 갯벌장어구이가 유명한 곳으로, 고소하면서도 기름기 많은 장어의 맛을 느낄 수 있다. 4~6월에는 임진강에서 잡히는 황복이 별미며 운이 좋으면 큼지막한 자연산 장어도 맛볼 수 있다. 장어 외에 참복 사시미로도 유명하며, 사시미 주문 시 예약하면 숙성 과정을 거친 회를 맛볼 수 있다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 6,
+          "avgTaste": 1.6667,
+          "avgMood": 1.6667,
+          "avgService": 2.0,
+          "avgSatisfaction": 1.0,
+          "avgCreativity": 0.6667,
+          "avgTraditionality": 1.1667
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>10:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(민물어패류)",
+          "장어",
+          "한식(어패류)",
+          "복",
+          "황복"
+        ],
+        "foodDetailTypes": [
+          "장어",
+          "복",
+          "황복"
+        ],
+        "feature107": true,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760934368000,
+          "url": "/images/4872_3.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4872/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1231834202000,
+        "id": 4652,
+        "headerInfo": {
+          "nameKR": "한일관",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://www.hanilkwan.co.kr",
+          "websiteInstagram": "",
+          "websiteFacebook": "",
+          "phone": "1577-9963 ",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "HEAD_STORE",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "성수대교남단교차로에서 호산병원 옆 골목으로 진입. 좌회전하면 우측",
+          "priceRangeMin": 14000,
+          "priceRangeMax": 96000,
+          "openDate": "1939",
+          "openEra": "",
+          "businessHours": "11:30~21:30(마지막 주문 20:30) | 토, 일요일 11:00~21:30(마지막 주문 20:30) ",
+          "menu": "점심불고기상차림, 신선로(각 3만7천원), 전통갈비구이새상차림(4만8천원), 등심불고기구이상차림(5만4천원), 전통갈비구이상차림(7만2천원), 전통갈비탕(1만9천원), 해물파전(2만4천원), 전통갈비구이(250g~300g 2대 4만8천원)",
+          "dayOff": "명절 당일 휴무",
+          "newOpenDate": "1939년 "
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 강남구 압구정로38길 14",
+          "roadAddrPart2": "(신사동)",
+          "jibunAddr": "서울특별시 강남구 신사동 619-4 한일관",
+          "engAddr": "14, Apgujeong-ro 38-gil, Gangnam-gu, Seoul",
+          "zipNo": "06023",
+          "admCd": "1168010700",
+          "detBdNmList": "",
+          "bdNm": "한일관",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "신사동",
+          "liNm": "",
+          "rn": "압구정로38길",
+          "buldMnnm": "14",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "압구정동/도산공원",
+          "map_1": "서울 강남지역",
+          "map_2": "b. 압구정역-언주로"
+        },
+        "gps": {
+          "latitude": 37.52779,
+          "longitude": 127.0325
+        },
+        "review": {
+          "review": "1939년부터 종로에서 불고기 전문점으로 이름을 날렸던 곳으로, 한정식도 겸하고 있다. 현대화된 상차림으로 나오는 불고기나 갈비 등의 점심 세트메뉴가 경쟁력 있다. 널찍한 공간에 소모임이나 연회에도 적합하게 꾸며져 있다.",
+          "reviewSimple": "1939년부터 종로에서 불고기 전문점으로 이름을 날렸던 곳으로, 한정식도 겸하고 있다. 현대화된 상차림으로 나오는 불고기나 갈비 등의 점심 세트메뉴가 경쟁력 있다. 널찍한 공간에 소모임이나 연회에도 적합하게 꾸며져 있다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 15,
+          "avgTaste": 2.0667,
+          "avgMood": 1.8667,
+          "avgService": 2.0,
+          "avgSatisfaction": 1.6667,
+          "avgCreativity": 0.6,
+          "avgTraditionality": 0.9333
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "350석",
+          "room": "11개(10~30, 40, 50석)",
+          "toilet": "SEX_IN",
+          "toiletEtc": "",
+          "chain": true,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": "을지로점(1577-9963), 센터원점(02-1577-9963)"
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>11:30부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(육류)",
+          "소불고기",
+          "한식(일반한식)",
+          "일반한식"
+        ],
+        "foodDetailTypes": [
+          "소불고기",
+          "일반한식"
+        ],
+        "feature107": true,
+        "brandBranches": [
+          {
+            "id": 7612,
+            "name": "한일관(영등포점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 영등포구 영중로 15"
+          },
+          {
+            "id": 7611,
+            "name": "한일관(을지로점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 중구 을지로5길 19"
+          }
+        ],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1758824602000,
+          "url": "/images/4652_6.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/4652/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1143903600000,
+        "id": 941,
+        "headerInfo": {
+          "nameKR": "필경재",
+          "nameEN": "",
+          "nameCN": "必敬齋",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://www.philkyungjae.co.kr",
+          "websiteInstagram": "",
+          "websiteFacebook": "",
+          "phone": "02-445-2115 ",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "수서성당 옆",
+          "priceRangeMin": 66000,
+          "priceRangeMax": 280000,
+          "openDate": "19990501",
+          "openEra": "",
+          "businessHours": "12:00~15:00/18:00~22:00 ",
+          "menu": "점심미정식(6만6천원), 죽정식(12만원), 국화정식(16만원), 매화정식(22만원), 수라정식(28만원)",
+          "dayOff": "명절 당일 휴무",
+          "newOpenDate": "1999년 05월 01일"
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 강남구 광평로 205",
+          "roadAddrPart2": "(수서동)",
+          "jibunAddr": "서울특별시 강남구 수서동 739-1",
+          "engAddr": "205, Gwangpyeong-ro, Gangnam-gu, Seoul",
+          "zipNo": "06352",
+          "admCd": "1168011500",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "수서동",
+          "liNm": "",
+          "rn": "광평로",
+          "buldMnnm": "205",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "개포/일원/수서",
+          "map_1": "서울 강남지역",
+          "map_2": "aa. 수서-가락시장-문정동"
+        },
+        "gps": {
+          "latitude": 37.48484,
+          "longitude": 127.0952
+        },
+        "review": {
+          "review": "서울을 대표하는 전통 한정식집. 구절판, 신선로, 신선한 육회와 떡갈비구이 등 육류, 간장게장과 생선구이, 장어구이, 전복죽, 해산물 등 정통 한정식을 맛볼 수 있다. 식사 후에는 한국식 정원에서 후식을 즐길 수 있다. 필경재는 세종대왕의 5남인 광평대군의 증손 이천수가 성종 때 건립해 19대째 살아오는 전통 한옥으로, 1987년 전통건조물 제1호로 지정된 유서 깊은 곳이다.",
+          "reviewSimple": "서울을 대표하는 전통 한정식집. 구절판, 신선로, 신선한 육회와 떡갈비구이 등 육류, 간장게장과 생선구이, 장어구이, 전복죽, 해산물 등 정통 한정식을 맛볼 수 있다. 식사 후에는 한국식 정원에서 후식을 즐길 수 있다. 필경재는 세종대왕의 5남인 광평대군의 증손 이천수가 성종 때 건립해 19대째 살아오는 전통 한옥으로, 1987년 전통건조물 제1호로 지정된 유서 깊은 곳이다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 36,
+          "avgTaste": 2.1944,
+          "avgMood": 2.75,
+          "avgService": 2.3333,
+          "avgSatisfaction": 1.1389,
+          "avgCreativity": 0.25,
+          "avgTraditionality": 0.4722
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "전통 한옥을 개조",
+          "seat": "130석",
+          "room": "10개",
+          "toilet": "UNISEX_IN",
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(일반한식)",
+          "한정식"
+        ],
+        "foodDetailTypes": [
+          "한정식"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1758686507000,
+          "url": "/images/941_thumb.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/941/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1537055428000,
+        "id": 29470,
+        "headerInfo": {
+          "nameKR": "서관면옥",
+          "nameEN": "",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://seogwanmyeonog.kr",
+          "websiteInstagram": "https://www.instagram.com/seogwanmyeonog/",
+          "websiteFacebook": "",
+          "phone": "02-521-9945",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "HEAD_STORE",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "y",
+          "visit": "교대역 1번 출구에서 KEB하나은행과 SC제일은행 사이 골목으로 진입해 직진",
+          "priceRangeMin": 16000,
+          "priceRangeMax": 110000,
+          "openDate": "20180801",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2018년 08월 01일"
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 서초구 서초대로56길 11",
+          "roadAddrPart2": "(서초동)",
+          "jibunAddr": "서울특별시 서초구 서초동 1675-5",
+          "engAddr": "11, Seocho-daero 56-gil, Seocho-gu, Seoul",
+          "zipNo": "06633",
+          "admCd": "1165010800",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "서초구",
+          "emdNm": "서초동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "11",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "교대/남부터미널/서초",
+          "map_1": "서울 강남지역",
+          "map_2": "p. 교대역-서초역-예술의전당"
+        },
+        "gps": {
+          "latitude": 37.49398971324013,
+          "longitude": 127.01726966280745
+        },
+        "review": {
+          "review": "북한식 물냉면을 제대로 재현했다는 평가를 받고 있는 평양냉면집. 제주도에서 가져온 단메밀, 쓴메밀, 기타 메밀 등을 섞어 만든 면은 구수한 맛이 일품이다. 한우로 육수를 내 깊고 진한 맛이 나는 물냉면과 육수, 생들기름을 넣고 고명과 비벼먹는 골동냉면도 인기다.",
+          "reviewSimple": "북한식 물냉면을 제대로 재현했다는 평가를 받고 있는 평양냉면집. 제주도에서 가져온 단메밀, 쓴메밀, 기타 메밀 등을 섞어 만든 면은 구수한 맛이 일품이다. 한우로 육수를 내 깊고 진한 맛이 나는 물냉면과 육수, 생들기름을 넣고 고명과 비벼먹는 골동냉면도 인기다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 8,
+          "avgTaste": 2.125,
+          "avgMood": 2.0,
+          "avgService": 1.875,
+          "avgSatisfaction": 1.25,
+          "avgCreativity": 1.5,
+          "avgTraditionality": 1.75
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": true,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 32,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>11:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(면류)",
+          "평양냉면",
+          "한식(탕/국/찌개/전골)",
+          "어복쟁반"
+        ],
+        "foodDetailTypes": [
+          "평양냉면",
+          "어복쟁반"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760492451000,
+          "url": "/images/es_83bace9f4df648099e9db3b373e5ff1c.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/29470/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1663721004000,
+        "id": 33632,
+        "headerInfo": {
+          "nameKR": "미우",
+          "nameEN": "",
+          "nameCN": "味牛",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/miu_84/",
+          "websiteFacebook": "",
+          "phone": "02-544-7775",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "",
+          "visit": "압구정역 6번 출구에서 도보 10분",
+          "priceRangeMin": 30000,
+          "priceRangeMax": 62000,
+          "openDate": "20141022",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2014년 10월 22일"
+        },
+        "juso": {
+          "detailAddress": "미성상가 지하",
+          "roadAddrPart1": "서울특별시 강남구 압구정로 113-22",
+          "roadAddrPart2": "(압구정동)",
+          "jibunAddr": "서울특별시 강남구 압구정동 415 미성상가",
+          "engAddr": "113-22 Apgujeong-ro, Gangnam-gu, Seoul",
+          "zipNo": "06000",
+          "admCd": "1168011000",
+          "detBdNmList": "",
+          "bdNm": "미성상가",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "압구정동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "113",
+          "buldSlno": "22",
+          "zone2_1": "서울 강남",
+          "zone2_2": "압구정동/도산공원",
+          "map_1": "서울 강남지역",
+          "map_2": "a. 신사역-압구정역"
+        },
+        "gps": {
+          "latitude": 37.5247411726121,
+          "longitude": 127.019644043561
+        },
+        "review": {
+          "review": "품질 좋은 한우를 숯불에 구워 먹는 곳으로, 특수부위나 우설은 미리 예약하는 것이 좋다. 테이블 수가 적어서 예약이 힘든 곳 중의 하나로, 인스타를 팔로우하면 예약 관련 사항을 빨리 받아볼 수 있다. ",
+          "reviewSimple": "품질좋은 한우를 숯불에 구워 먹는 곳으로, 특수부위나 우설은 미리 예약하는 것이 좋다. 테이블 수가 적어서 예약이 힘든 곳 중의 하나로, 인스타를 팔로우하면 예약 관련 사항을 빨리 받아볼 수 있다. ",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 1,
+          "avgTaste": 2.0,
+          "avgMood": 1.0,
+          "avgService": 2.0,
+          "avgSatisfaction": 2.0,
+          "avgCreativity": 1.0,
+          "avgTraditionality": 2.0
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 0,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>17:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(육류)",
+          "소고기구이"
+        ],
+        "foodDetailTypes": [
+          "소고기구이"
+        ],
+        "feature107": true,
+        "brandBranches": [],
+        "expiredBusinessDate": false,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760494283000,
+          "url": "/images/es_6271556eed2d4b0b8482fe028f7f70fe.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33632/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1660613585000,
+        "id": 33482,
+        "headerInfo": {
+          "nameKR": "부베트",
+          "nameEN": "Buvette",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "",
+          "website": "http://www.buvette.co.kr/",
+          "websiteInstagram": "https://www.instagram.com/buvetteseoul/",
+          "websiteFacebook": "",
+          "phone": "02-3442-7859",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "YES",
+          "parking": "호텔 지하5층 1시간 지원 / 만차 시 지원 불가",
+          "creditCard": "",
+          "visit": "압구정역 3번 출구로 나와 안다즈호텔 상업시설 1층",
+          "priceRangeMin": 16000,
+          "priceRangeMax": 48000,
+          "openDate": "20220819",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2022년 08월 19일"
+        },
+        "juso": {
+          "detailAddress": "안다즈호텔 상업시설 1층",
+          "roadAddrPart1": "서울특별시 강남구 논현로 854",
+          "roadAddrPart2": "(신사동)",
+          "jibunAddr": "서울특별시 강남구 신사동 603 ANdAZ",
+          "engAddr": "854 Nonhyeon-ro, Gangnam-gu, Seoul",
+          "zipNo": "06022",
+          "admCd": "1168010700",
+          "detBdNmList": "",
+          "bdNm": "ANdAZ",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "신사동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "854",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "압구정동/도산공원",
+          "map_1": "서울 강남지역",
+          "map_2": "b. 압구정역-언주로"
+        },
+        "gps": {
+          "latitude": 37.5253215967063,
+          "longitude": 127.028865132152
+        },
+        "review": {
+          "review": "뉴욕에서 시작된 프렌치 스타일 올데이브런치 레스토랑으로, 런던, 파리, 도쿄, 멕시코시티에 이어 서울에 상륙하였다. 클래식한 유럽 분위기에서 커피 한잔 또는 크로크마담과 함께하는 점심, 저녁 식사 후에는 칵테일 한잔까지, 올데이로 즐기는 프렌치 게스트로텍을 표방한다.",
+          "reviewSimple": "뉴욕에서 시작된 프렌치 스타일 올데이브런치 레스토랑으로, 런던, 파리, 도쿄, 멕시코시티에 이어 서울에 상륙하였다. 클래식한 유럽 분위기에서 커피 한잔 또는 크로크마담과 함께하는 점심, 저녁 식사 후에는 칵테일 한잔까지, 올데이로 즐기는 프렌치 게스트로텍을 표방한다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": false,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": "뉴욕, 파리, 도쿄, 런던, 멕시코시티(Global Branches)"
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 2873,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>10:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "기타",
+          "브런치카페"
+        ],
+        "foodDetailTypes": [
+          "브런치카페"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1763009257000,
+          "url": "/images/es_c74a678e989f434287b64e7b7f54da4b.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": {
+          "createdDate": 1763009257000,
+          "url": "/images/es_6e591a1daebc46b4823a582d98f03702.jpg",
+          "orderAscending": 0
+        },
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33482/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1658898770000,
+        "id": 33364,
+        "headerInfo": {
+          "nameKR": "김인복의광평(삼성본점)",
+          "nameEN": "",
+          "nameCN": "廣坪",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "김인복",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/gwang_pyung/",
+          "websiteFacebook": "",
+          "phone": "02-561-9990",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "HEAD_STORE",
+          "parkingType": "YES",
+          "parking": "",
+          "creditCard": "",
+          "visit": "봉은사역 5번 출구에서 406m",
+          "priceRangeMin": 17000,
+          "priceRangeMax": 130000,
+          "openDate": "202207",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2022년 07월 "
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 강남구 영동대로106길 45",
+          "roadAddrPart2": "(삼성동)",
+          "jibunAddr": "서울특별시 강남구 삼성동 162-29",
+          "engAddr": "45 Yeongdong-daero 106-gil, Gangnam-gu, Seoul",
+          "zipNo": "06170",
+          "admCd": "1168010500",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "삼성동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "45",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "삼성동/대치동",
+          "map_1": "서울 강남지역",
+          "map_2": "j. 봉은사로-삼성역"
+        },
+        "gps": {
+          "latitude": 37.5143594876356,
+          "longitude": 127.064878819823
+        },
+        "review": {
+          "review": "제주산 메밀로 만든 평양냉면과 돔베고기, 제주산 돼지생고기를 맛볼 수 있는 제주 테마 식당이다. 함께 나오는 전복보쌈김치도 제주의 맛을 한껏 살렸다. 돼지고기와 한우는 비장탄이 들어 있는 무쇠화로에 구워 먹는다.",
+          "reviewSimple": "제주산 메밀로 만든 평양냉면과 돔베고기, 제주산 돼지생고기를 맛볼 수 있는 제주 테마 식당이다. 함께 나오는 전복보쌈김치도 제주의 맛을 한껏 살렸다. 돼지고기와 한우는 비장탄이 들어 있는 무쇠화로에 구워 먹는다.",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 5,
+          "avgTaste": 2.0,
+          "avgMood": 1.8,
+          "avgService": 2.0,
+          "avgSatisfaction": 1.2,
+          "avgCreativity": 1.0,
+          "avgTraditionality": 1.0
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": true,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 2814,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>11:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "한식(면류)",
+          "평양냉면"
+        ],
+        "foodDetailTypes": [
+          "평양냉면"
+        ],
+        "feature107": false,
+        "brandBranches": [
+          {
+            "id": 45037,
+            "name": "김인복의광평(강남직영점)",
+            "siNm": null,
+            "sggNm": null,
+            "roadAddrPart1": "서울특별시 서초구 서운로 135"
+          }
+        ],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1760500356000,
+          "url": "/images/es_33ecc6d86305425ca923f1e8cee1da14.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/33364/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1651749191000,
+        "id": 32924,
+        "headerInfo": {
+          "nameKR": "블루바이필레터",
+          "nameEN": "BLUE by. Filleter",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "정세욱",
+          "website": "",
+          "websiteInstagram": "https://www.instagram.com/filleter.fish/",
+          "websiteFacebook": "",
+          "phone": "0507-1350-0407",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "",
+          "visit": "",
+          "priceRangeMin": 28000,
+          "priceRangeMax": 40000,
+          "openDate": "20220427",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2022년 04월 27일"
+        },
+        "juso": {
+          "detailAddress": "",
+          "roadAddrPart1": "서울특별시 강남구 선릉로141길 4",
+          "roadAddrPart2": " (논현동)",
+          "jibunAddr": "서울특별시 강남구 논현동 101-18",
+          "engAddr": "4 Seolleung-ro 141-gil, Gangnam-gu, Seoul",
+          "zipNo": "06056",
+          "admCd": "1168010800",
+          "detBdNmList": "",
+          "bdNm": "",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "논현동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "4",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "g. 학동사거리-강남구청역"
+        },
+        "gps": {
+          "latitude": 37.5204615260968,
+          "longitude": 127.039643755702
+        },
+        "review": {
+          "review": "생선과 해산물을 전문으로 하는 와인바 겸 캐주얼 레스토랑. 전설의 프렌치펍 루이쌍끄 출신인 정세욱 셰프가 프렌치 스타일로 조리한 다양한 해산물을 맛볼 수 있다. ",
+          "reviewSimple": "",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": {
+          "reviewCnt": 3,
+          "avgTaste": 2.6667,
+          "avgMood": 2.3333,
+          "avgService": 2.3333,
+          "avgSatisfaction": 2.6667,
+          "avgCreativity": 2.3333,
+          "avgTraditionality": 2.3333
+        },
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 2597,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>18:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "프랑스식",
+          "프렌치비스트로",
+          "바",
+          "와인바"
+        ],
+        "foodDetailTypes": [
+          "프렌치비스트로",
+          "와인바"
+        ],
+        "feature107": false,
+        "brandBranches": [],
+        "expiredBusinessDate": true,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1753674632000,
+          "url": "/images/es_4e777c8f859548e9be10a01830f672a9.png",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32924/holidayList"
+          }
+        }
+      },
+      {
+        "createdDate": 1648049659000,
+        "id": 32685,
+        "headerInfo": {
+          "nameKR": "구찌오스테리아 다 마시모보투라 서울",
+          "nameEN": "GUCCI OSTERIA SEOUL",
+          "nameCN": "",
+          "bookYear": "2026",
+          "ribbonType": "RIBBON_TWO",
+          "ribbonTypeByOrdinal": 1
+        },
+        "defaultInfo": {
+          "chefName": "전형규 셰프, 다비데카델리니 셰프",
+          "website": "https://gucciosteria.com/ko/seoul",
+          "websiteInstagram": "https://www.instagram.com/gucciosteria",
+          "websiteFacebook": "",
+          "phone": "02-795-1119",
+          "websiteStore": "",
+          "websiteReserveNaver": "",
+          "websiteReserveCatch": "",
+          "websiteReserveOther": ""
+        },
+        "statusInfo": {
+          "storeType": "NOT",
+          "parkingType": "VALET",
+          "parking": "",
+          "creditCard": "",
+          "visit": "",
+          "priceRangeMin": 31000,
+          "priceRangeMax": 180000,
+          "openDate": "20220328",
+          "openEra": "",
+          "businessHours": "",
+          "menu": "",
+          "dayOff": "",
+          "newOpenDate": "2022년 03월 28일"
+        },
+        "juso": {
+          "detailAddress": "구찌그룹코리아사옥 5층",
+          "roadAddrPart1": "서울특별시 강남구 압구정로 462",
+          "roadAddrPart2": " (청담동)",
+          "jibunAddr": "서울특별시 강남구 청담동 99-15 구찌그룹코리아사옥",
+          "engAddr": "462 Apgujeong-ro, Gangnam-gu, Seoul",
+          "zipNo": "06015",
+          "admCd": "1168010400",
+          "detBdNmList": "",
+          "bdNm": "구찌그룹코리아사옥",
+          "siNm": "서울특별시",
+          "sggNm": "강남구",
+          "emdNm": "청담동",
+          "liNm": "",
+          "rn": "",
+          "buldMnnm": "462",
+          "buldSlno": "0",
+          "zone2_1": "서울 강남",
+          "zone2_2": "청담동/강남구청역",
+          "map_1": "서울 강남지역",
+          "map_2": "e. 압구정로데오-청담사거리"
+        },
+        "gps": {
+          "latitude": 37.5250692655256,
+          "longitude": 127.046525926229
+        },
+        "review": {
+          "review": "명품 브랜드 구찌가 운영하는 컨템포러리 이탈리안 레스토랑 ‘구찌 오스테리아 다 마시모보투라’의 서울 매장이다. 세계적인 셰프 마시모보투라의 완성도 높은 코스 요리를 선보이는 곳으로, 이탈리아의 식재료와 한국의 문화가 어우러지는 메뉴로 구성된다. 피렌체, LA, 도쿄에 이은 세계 네 번째 매장이다. 최근 이태원에서 청담동으로 이전하면서 테이스팅 코스와 단품 메뉴로 운영하고 있다.",
+          "reviewSimple": "",
+          "readerReview": "",
+          "businessReview": ""
+        },
+        "extraInfo": {
+          "wineInputType": "NO_CHECK",
+          "wineInputYesEtc": "",
+          "wineCorkageEtc": "",
+          "holidayYn": true,
+          "wineOrderYn": false
+        },
+        "evaluateInfo": null,
+        "tags": null,
+        "etcInfo": {
+          "interior": "",
+          "seat": "",
+          "room": "",
+          "toilet": null,
+          "toiletEtc": "",
+          "chain": false,
+          "close": false,
+          "renewal": false,
+          "reviewerRecommend": false,
+          "onlySiteView": false,
+          "head": "",
+          "branch": ""
+        },
+        "status": "ACTIVE",
+        "buzUsername": "",
+        "brandMatchStatus": "NORMAL",
+        "brandRejectReason": "",
+        "orderDescending": 2510,
+        "foodTypeDetails": null,
+        "features": null,
+        "countEvaluate": 0,
+        "bookmark": false,
+        "workingHour": "영업 시작 전<br/>12:00부터 영업 시작",
+        "hourInfoBreakEnd2Times": null,
+        "foodTypes": [
+          "이탈리아식"
+        ],
+        "foodDetailTypes": [
+          "이탈리아식"
+        ],
+        "feature107": true,
+        "brandBranches": [],
+        "expiredBusinessDate": false,
+        "brandHead": null,
+        "firstImage": {
+          "createdDate": 1763453010000,
+          "url": "/images/es_5cbf13986a15494291386b4b00603a97.jpg",
+          "orderAscending": 0
+        },
+        "firstLogoImage": null,
+        "_links": {
+          "self": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685"
+          },
+          "restaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685{?projection}",
+            "templated": true
+          },
+          "businessOrders": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/businessOrders"
+          },
+          "childrenRestaurants": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/childrenRestaurants{?projection}",
+            "templated": true
+          },
+          "foodTypeCategories": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/foodTypeCategories"
+          },
+          "parentRestaurant": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/parentRestaurant{?projection}",
+            "templated": true
+          },
+          "menuList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/menuList"
+          },
+          "relativeWriter": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/relativeWriter"
+          },
+          "evaluates": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/evaluates"
+          },
+          "restaurantFeatures": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/restaurantFeatures"
+          },
+          "wineList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/wineList"
+          },
+          "reports": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/reports"
+          },
+          "hourList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/hourList"
+          },
+          "holidayList": {
+            "href": "http://bluer.co.kr:443/api/v1/restaurants/32685/holidayList"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "http://bluer.co.kr:443/api/v1/restaurants?query=&zone1=%EC%84%9C%EC%9A%B8+%EA%B0%95%EB%82%A8&foodType=&foodTypeDetail=&page=0&size=24&sort=headerInfo.ribbonType,asc&sort=updatedDate,id,desc"
+    },
+    "prev": {
+      "href": "http://bluer.co.kr:443/api/v1/restaurants?query=&zone1=%EC%84%9C%EC%9A%B8+%EA%B0%95%EB%82%A8&foodType=&foodTypeDetail=&page=0&size=24&sort=headerInfo.ribbonType,asc&sort=updatedDate,id,desc"
+    },
+    "self": {
+      "href": "http://bluer.co.kr:443/api/v1/restaurants?query=&zone1=%EC%84%9C%EC%9A%B8+%EA%B0%95%EB%82%A8&foodType=&foodTypeDetail=&page=1&size=24&sort=headerInfo.ribbonType,asc&sort=updatedDate,id,desc"
+    },
+    "next": {
+      "href": "http://bluer.co.kr:443/api/v1/restaurants?query=&zone1=%EC%84%9C%EC%9A%B8+%EA%B0%95%EB%82%A8&foodType=&foodTypeDetail=&page=2&size=24&sort=headerInfo.ribbonType,asc&sort=updatedDate,id,desc"
+    },
+    "last": {
+      "href": "http://bluer.co.kr:443/api/v1/restaurants?query=&zone1=%EC%84%9C%EC%9A%B8+%EA%B0%95%EB%82%A8&foodType=&foodTypeDetail=&page=162&size=24&sort=headerInfo.ribbonType,asc&sort=updatedDate,id,desc"
+    }
+  },
+  "page": {
+    "size": 24,
+    "totalElements": 3894,
+    "totalPages": 163,
+    "number": 1
+  }
+}

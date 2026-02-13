@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="373dd145-df4b-4c40-86c9-1e80ed2a112a" name="Changes" comment="initial commit (after a fair bit of work ;P)">
-      <change afterPath="$PROJECT_DIR$/site/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_map_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/build_map_list.py" afterDir="false" />
-    </list>
+    <list default="true" id="373dd145-df4b-4c40-86c9-1e80ed2a112a" name="Changes" comment="work in progress." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,11 +82,20 @@
       <option name="project" value="LOCAL" />
       <updated>1770932203651</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="work in progress.">
+      <option name="closed" value="true" />
+      <created>1770961563160</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770961563160</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit (after a fair bit of work ;P)" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit (after a fair bit of work ;P)" />
+    <MESSAGE value="work in progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress." />
   </component>
 </project>
