@@ -20,6 +20,7 @@ import requests
 from bs4 import BeautifulSoup
 from slugify import slugify
 import random
+import json
 
 
 # -------------------------
@@ -253,11 +254,16 @@ def michelin_session() -> requests.Session:
     s = requests.Session()
     s.headers.update(
         {
-            "User-Agent": "Mozilla/5.0 (compatible; KoreaFoodListBuilder/1.0)",
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
             "Accept-Language": "en-US,en;q=0.8,ko;q=0.7",
         }
     )
     return s
+
 
 
 def get_html(s: requests.Session, url: str, sleep_s: float, allow_404: bool = False) -> str | None:
@@ -314,22 +320,6 @@ def _as_float(x):
     except (TypeError, ValueError):
         return None
 
-def _flatten_ldjson(data):
-    """Yield all dict nodes from JSON-LD structures (dict/list, including @graph)."""
-    stack = [data]
-    while stack:
-        obj = stack.pop()
-        if isinstance(obj, dict):
-            yield obj
-            g = obj.get("@graph")
-            if isinstance(g, list):
-                stack.extend(g)
-            for v in obj.values():
-                if isinstance(v, (dict, list)):
-                    stack.append(v)
-        elif isinstance(obj, list):
-            stack.extend(obj)
-
 def _addr_to_str(addr):
     if isinstance(addr, str):
         return addr.strip()
@@ -344,43 +334,38 @@ def _addr_to_str(addr):
         return ", ".join([p for p in parts if p])
     return None
 
-def _coords_from_hasmap(hasmap):
-    """
-    Michelin sometimes uses hasMap URLs (Google maps or OSM) containing coords.
-    Try to extract lat/lon from common patterns.
-    """
-    if not isinstance(hasmap, str):
-        return (None, None)
+def _coords_from_hasmap(hasmap: str | None) -> tuple[float | None, float | None]:
+    if not hasmap or not isinstance(hasmap, str):
+        return None, None
 
-    # Patterns: "...?q=lat,lon" or "...@lat,lon," etc.
+    # patterns like q=lat,lon
     m = re.search(r"[?&]q=([-0-9.]+),\s*([-0-9.]+)", hasmap)
     if m:
-        return (_as_float(m.group(1)), _as_float(m.group(2)))
+        return _as_float(m.group(1)), _as_float(m.group(2))
 
+    # patterns like @lat,lon
     m = re.search(r"@([-0-9.]+),\s*([-0-9.]+)", hasmap)
     if m:
-        return (_as_float(m.group(1)), _as_float(m.group(2)))
-
-    return (None, None)
-
-def michelin_extract_coords_from_html(html: str) -> tuple[float | None, float | None]:
-    # common patterns: @lat,lon or q=lat,lon or lat=...&lng=...
-    m = re.search(r"@([-0-9.]+),\s*([-0-9.]+)", html)
-    if m:
-        return float(m.group(1)), float(m.group(2))
-
-    m = re.search(r"[?&]q=([-0-9.]+),\s*([-0-9.]+)", html)
-    if m:
-        return float(m.group(1)), float(m.group(2))
-
-    m = re.search(r"[?&]lat=([-0-9.]+).*?[?&](?:lng|lon)=([-0-9.]+)", html)
-    if m:
-        return float(m.group(1)), float(m.group(2))
+        return _as_float(m.group(1)), _as_float(m.group(2))
 
     return None, None
 
+def _coords_from_html_lat_lon_literals(html: str) -> tuple[float | None, float | None]:
+    """
+    Extract latitude/longitude literal pairs from raw HTML, e.g.
+    "latitude":37.1234 ... "longitude":126.9876
+    """
+    m_lat = re.search(r'"latitude"\s*:\s*([-0-9.]+)', html)
+    m_lon = re.search(r'"longitude"\s*:\s*([-0-9.]+)', html)
+    if m_lat and m_lon:
+        lat = _as_float(m_lat.group(1))
+        lon = _as_float(m_lon.group(1))
+        if lat is not None and lon is not None and (-90 <= lat <= 90) and (-180 <= lon <= 180):
+            return lat, lon
+    return None, None
 
-def michelin_extract_geo_and_address(soup: BeautifulSoup) -> tuple[float | None, float | None, str | None]:
+def michelin_extract_geo_address_from_page(soup: BeautifulSoup, html: str) -> tuple[float | None, float | None, str | None]:
+    # 1) JSON-LD
     scripts = soup.find_all("script", {"type": "application/ld+json"})
     for sc in scripts:
         raw = (sc.string or "").strip()
@@ -392,37 +377,32 @@ def michelin_extract_geo_and_address(soup: BeautifulSoup) -> tuple[float | None,
         except json.JSONDecodeError:
             continue
 
-        for node in _flatten_ldjson(data):
-            t = node.get("@type")
-
-            # Accept broader venue types Michelin may use
-            venue_types = {"Restaurant", "FoodEstablishment", "LocalBusiness"}
-            is_venue = False
-            if isinstance(t, str) and t in venue_types:
-                is_venue = True
-            elif isinstance(t, list) and any(x in venue_types for x in t if isinstance(x, str)):
-                is_venue = True
-
-            if not is_venue:
+        # JSON-LD sometimes is a list, but your snippet shows a dict
+        nodes = data if isinstance(data, list) else [data]
+        for node in nodes:
+            if not isinstance(node, dict):
+                continue
+            if node.get("@type") not in ("Restaurant", "FoodEstablishment", "LocalBusiness"):
                 continue
 
-            # Address
             addr_str = _addr_to_str(node.get("address"))
 
-            # Geo (multiple shapes)
+            # try geo if present (often missing)
             geo = node.get("geo") or {}
             lat = _as_float(geo.get("latitude", geo.get("lat")))
             lon = _as_float(geo.get("longitude", geo.get("lng", geo.get("lon"))))
-
-            # hasMap fallback
-            if lat is None or lon is None:
-                lat2, lon2 = _coords_from_hasmap(node.get("hasMap"))
-                lat = lat if lat is not None else lat2
-                lon = lon if lon is not None else lon2
-
-            # sanity range
-            if lat is not None and lon is not None and (-90 <= lat <= 90) and (-180 <= lon <= 180):
+            if lat is not None and lon is not None:
                 return lat, lon, addr_str
+
+            # try hasMap (your debug says this exists)
+            lat2, lon2 = _coords_from_hasmap(node.get("hasMap"))
+            if lat2 is not None and lon2 is not None:
+                return lat2, lon2, addr_str
+
+    # 2) Raw HTML fallback (your debug says latitude/longitude strings exist)
+    lat3, lon3 = _coords_from_html_lat_lon_literals(html)
+    if lat3 is not None and lon3 is not None:
+        return lat3, lon3, None
 
     return None, None, None
 
@@ -434,37 +414,31 @@ def michelin_parse_detail(s: requests.Session, url: str, sleep_s: float, capture
         raise RuntimeError(f"Failed to fetch Michelin detail page: {url}")
 
     soup = BeautifulSoup(html, "lxml")
-    # TEMP: dump a short JSON-LD snippet so we can see Michelin's schema
-    sc = soup.find("script", {"type": "application/ld+json"})
-    if sc and sc.string:
-        snippet = sc.string.strip().replace("\n", " ")
-        print("[michelin ld snippet]", snippet[:600])
-    else:
-        print("[michelin ld snippet] (missing)")
-    # TEMP: check for hasMap / geo keywords in the HTML
-    print("[michelin debug] contains 'hasMap':", "hasMap" in html)
-    print("[michelin debug] contains 'geo':", '"geo"' in html or "'geo'" in html)
-    print("[michelin debug] contains 'latitude':", "latitude" in html)
-    print("[michelin debug] contains 'longitude':", "longitude" in html)
-    print("[michelin debug] contains 'map':", "map" in html.lower())
 
-    lat, lon, addr_ld = michelin_extract_geo_and_address(soup)
-
-    # ✅ new fallback if JSON-LD doesn't include geo
-    if lat is None or lon is None:
-        lat2, lon2 = michelin_extract_coords_from_html(html)
-        lat = lat if lat is not None else lat2
-        lon = lon if lon is not None else lon2
-
+    # --- Name early (helps debug readability) ---
     h1 = soup.find("h1")
     name = h1.get_text(strip=True) if h1 else url.rstrip("/").split("/")[-1]
 
-    # TEMP DEBUG — you can delete later
-    has_ld = soup.find("script", {"type": "application/ld+json"}) is not None
-    has_next = soup.find("script", id="__NEXT_DATA__") is not None
-    title = soup.title.get_text(strip=True) if soup.title else "(no title)"
-    print(f"[michelin detail debug] url={url} | title={title!r} | ld+json={has_ld} | __NEXT_DATA__={has_next} | html_len={len(html)}")
-
+# --- TEMP DEBUG (safe) ---
+#    sc = soup.find("script", {"type": "application/ld+json"})
+#    if sc and sc.string:
+#        snippet = sc.string.strip().replace("\n", " ")
+#        print("[michelin ld snippet]", snippet[:600])
+#    else:
+#        print("[michelin ld snippet] (missing)")
+#
+#    print("[michelin debug] contains 'hasMap':", "hasMap" in html)
+#    print("[michelin debug] contains 'geo':", '"geo"' in html or "'geo'" in html)
+#    print("[michelin debug] contains 'latitude':", "latitude" in html)
+#    print("[michelin debug] contains 'longitude':", "longitude" in html)
+#    print("[michelin debug] contains 'map':", "map" in html.lower())
+#
+#    has_ld = soup.find("script", {"type": "application/ld+json"}) is not None
+#    has_next = soup.find("script", id="__NEXT_DATA__") is not None
+#    title = soup.title.get_text(strip=True) if soup.title else "(no title)"
+#    print(f"[michelin detail debug] url={url} | title={title!r} | ld+json={has_ld} | __NEXT_DATA__={has_next} | html_len={len(html)}")
+#
+    # --- Text heuristics ---
     text = soup.body.get_text(separator="\n", strip=True) if soup.body else ""
 
     address = None
@@ -503,10 +477,12 @@ def michelin_parse_detail(s: requests.Session, url: str, sleep_s: float, capture
     if m_phone:
         phone = m_phone.group(0).replace(" ", "")
 
-    # ✅ Geo + address from JSON-LD (robust extractor)
-    lat, lon, addr_ld = michelin_extract_geo_and_address(soup)
+    # --- ✅ Geo + optional address from page (ONLY ONCE) ---
+    lat, lon, addr_ld = michelin_extract_geo_address_from_page(soup, html)
+
     if addr_ld and not address:
         address = addr_ld
+
     if address:
         if "South Korea" in address:
             country = country or "South Korea"
@@ -710,30 +686,30 @@ def collect_bluer_restaurants_zone(
             break
 
     # --- DEBUG breakdown ---
-    def _get_header(it: dict) -> dict:
-        h = it.get("headerInfo") or {}
-        return h if isinstance(h, dict) else {}
-
-    year_counts: dict[str, int] = {}
-    ribbon_counts: dict[str, int] = {}
-    missing_header = 0
-
-    for it in all_items:
-        h = _get_header(it)
-        if not h:
-            missing_header += 1
-            continue
-        y = str(h.get("bookYear") or "").strip() or "(missing)"
-        r = str(h.get("ribbonType") or "").strip() or "(missing)"
-        year_counts[y] = year_counts.get(y, 0) + 1
-        ribbon_counts[r] = ribbon_counts.get(r, 0) + 1
-
-    top_years = sorted(year_counts.items(), key=lambda kv: kv[1], reverse=True)[:10]
-    top_ribbons = sorted(ribbon_counts.items(), key=lambda kv: kv[1], reverse=True)[:10]
-
-    print(f"[bluer] total items collected: {len(all_items)} (missing headerInfo: {missing_header})")
-    print(f"[bluer] top bookYear counts: {top_years}")
-    print(f"[bluer] top ribbonType counts: {top_ribbons}")
+#    def _get_header(it: dict) -> dict:
+#        h = it.get("headerInfo") or {}
+#        return h if isinstance(h, dict) else {}
+#
+#    year_counts: dict[str, int] = {}
+#    ribbon_counts: dict[str, int] = {}
+#    missing_header = 0
+#
+#    for it in all_items:
+#        h = _get_header(it)
+#        if not h:
+#            missing_header += 1
+#            continue
+#        y = str(h.get("bookYear") or "").strip() or "(missing)"
+#        r = str(h.get("ribbonType") or "").strip() or "(missing)"
+#        year_counts[y] = year_counts.get(y, 0) + 1
+#        ribbon_counts[r] = ribbon_counts.get(r, 0) + 1
+#
+#    top_years = sorted(year_counts.items(), key=lambda kv: kv[1], reverse=True)[:10]
+#    top_ribbons = sorted(ribbon_counts.items(), key=lambda kv: kv[1], reverse=True)[:10]
+#
+#    print(f"[bluer] total items collected: {len(all_items)} (missing headerInfo: {missing_header})")
+#    print(f"[bluer] top bookYear counts: {top_years}")
+#    print(f"[bluer] top ribbonType counts: {top_ribbons}")
     # --- end debug ---
 
     return all_items
@@ -806,7 +782,7 @@ def scrape_blueribbon_seoul(out_csv: str, sleep_s: float = 0.8) -> list[Place]:
         items = collect_bluer_restaurants_zone(s, zone1=z, sleep_s=sleep_s)
         all_items.extend(items)
         zone_filtered = [it for it in items if is_blueribbon_winner(it)]
-        print(f"[bluer] zone1={z} filtered winners 2024–2026: {len(zone_filtered)}/{len(items)}")
+        print(f"[bluer] zone1={z} filtered winners: {len(zone_filtered)}/{len(items)}")
         time.sleep(3.0)
 
     filtered = [it for it in all_items if is_blueribbon_winner(it)]
@@ -845,8 +821,6 @@ def load_blueribbon_from_csv(csv_path: str) -> list[Place]:
             )
         )
     return places
-
-import json
 
 def write_geojson(places: list[Place], path: str) -> None:
     """
@@ -941,10 +915,6 @@ def main() -> None:
             sleep_s=args.sleep,
             limit=args.test_michelin
         )
-
-        # If your scrape returns more than N, truncate for speed
-        if n > 0:
-            michelin_places = michelin_places[:n]
 
         # Export just Michelin so your map can be validated quickly
         write_places_csv(michelin_places, f"{outdir}/michelin_only.csv")
