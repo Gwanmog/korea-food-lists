@@ -813,22 +813,36 @@ def michelin_parse_detail(s: requests.Session, url: str, sleep_s: float, capture
 
     # Category (award) — prefer Next.js payload when available, then fall back to text heuristics.
     category = michelin_category_from_next_data(soup)
-    # If Michelin doesn't explicitly say stars/bib in the Next.js blob,
-    # it's very often "Michelin Selected". Avoid showing "(none)".
-    if category is None:
-        category = "Selected"
 
+    # Text heuristics (Michelin pages often contain "One Star: High quality cooking")
     if not category:
-        if "Bib Gourmand" in text:
+        t = text  # already built above
+
+        if re.search(r"\bBib\s+Gourmand\b", t, flags=re.IGNORECASE):
             category = "Bib Gourmand"
-        elif re.search(r"\b3\s*Stars?\b", text):
+
+        # Stars: handle "One Star", "Two Stars", "Three Stars" phrasing
+        elif re.search(r"\bThree\s+Stars?\b", t, flags=re.IGNORECASE):
             category = "3 Stars"
-        elif re.search(r"\b2\s*Stars?\b", text):
+        elif re.search(r"\bTwo\s+Stars?\b", t, flags=re.IGNORECASE):
             category = "2 Stars"
-        elif re.search(r"\b1\s*Star\b", text):
+        elif re.search(r"\bOne\s+Star\b", t, flags=re.IGNORECASE):
             category = "1 Star"
-        elif "Selected Restaurants" in text or "Selected" in text:
+
+        # Also handle numeric star phrasing if it appears
+        elif re.search(r"\b3\s*Stars?\b", t):
+            category = "3 Stars"
+        elif re.search(r"\b2\s*Stars?\b", t):
+            category = "2 Stars"
+        elif re.search(r"\b1\s*Star\b", t):
+            category = "1 Star"
+
+        elif re.search(r"\bSelected\b", t, flags=re.IGNORECASE):
             category = "Selected"
+
+    # Final fallback: if we STILL didn't find anything, treat as Selected instead of (none)
+    if not category:
+        category = "Selected"
 
     phone = None
     m_phone = re.search(r"\+82\s*\d{1,2}[-\s]?\d{3,4}[-\s]?\d{4}", text)
