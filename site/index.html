@@ -13,28 +13,138 @@
   />
 
   <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #ffffff;
+      --panel2: #fafafa;
+      --text: #111111;
+      --muted: #666666;
+      --border: #dddddd;
+
+      --btn-bg: #111111;
+      --btn-text: #ffffff;
+      --btn-border: #111111;
+
+      --btn2-bg: #ffffff;
+      --btn2-text: #111111;
+      --btn2-border: #dddddd;
+
+      --hover: #ffffff;
+      --tag-bg: #ffffff;
+      --tag-text: #333333;
+      --tag-border: #dddddd;
+
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* Dark mode */
+    body.dark {
+      --bg: #0b0d12;
+      --panel: #101522;
+      --panel2: #0e1320;
+      --text: #e8ecf6;
+      --muted: #aab2c5;
+      --border: rgba(255,255,255,0.10);
+
+      --btn-bg: #e8ecf6;
+      --btn-text: #0b0d12;
+      --btn-border: rgba(255,255,255,0.25);
+
+      --btn2-bg: rgba(255,255,255,0.06);
+      --btn2-text: #e8ecf6;
+      --btn2-border: rgba(255,255,255,0.14);
+
+      --hover: rgba(255,255,255,0.06);
+      --tag-bg: rgba(255,255,255,0.06);
+      --tag-text: #e8ecf6;
+      --tag-border: rgba(255,255,255,0.14);
+
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
     html, body { height: 100%; margin: 0; }
+    body { background: var(--bg); color: var(--text); }
     #app { display: flex; flex-direction: column; height: 100%; }
 
     #topbar {
       padding: 10px;
-      border-bottom: 1px solid #ddd;
-      background: #fff;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
       display: grid;
       gap: 8px;
+      box-shadow: var(--shadow);
+      z-index: 999; /* keep above map */
     }
 
     #map { flex: 1; }
 
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .pill { padding: 6px 10px; border: 1px solid #ddd; border-radius: 999px; background: #fafafa; }
-    .btn { padding: 8px 10px; border: 1px solid #333; border-radius: 10px; background: #111; color: #fff; cursor: pointer; }
-    .btn:disabled { opacity: .4; cursor: not-allowed; }
-    .muted { color: #666; font-size: 12px; }
-    .popup-title { font-weight: 700; margin-bottom: 6px; }
+    .pill {
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .btn {
+      padding: 8px 10px;
+      border: 1px solid var(--btn-border);
+      border-radius: 10px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      cursor: pointer;
+      transition: transform .05s ease, opacity .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+    .btn.secondary {
+      background: var(--btn2-bg);
+      color: var(--btn2-text);
+      border-color: var(--btn2-border);
+    }
+
+    .muted { color: var(--muted); font-size: 12px; }
+
+    .title {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel2);
+      user-select: none;
+    }
+    .title .spark { opacity: .9; }
+    .title .sub { font-weight: 600; opacity: .8; }
+
+    /* Search input */
+    #q {
+      background: var(--panel2);
+      color: var(--text);
+      border: 1px solid var(--border) !important;
+      outline: none;
+    }
+    #q::placeholder { color: var(--muted); }
+
+    /* Popup + links */
+    .popup-title { font-weight: 800; margin-bottom: 6px; }
     .popup-line { margin: 2px 0; }
     .popup-actions { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .linkbtn { display: inline-block; padding: 7px 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #111; background: #fff; }
+    .linkbtn {
+      display: inline-block;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--panel2);
+    }
+    .linkbtn:hover { background: var(--hover); }
 
     .visually-hidden {
       position: absolute;
@@ -54,43 +164,69 @@
       height: 190px;
       resize: vertical;
       overflow: auto;
-      border: 1px solid #eee;
-      border-radius: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 6px;
-      background: #fafafa;
+      background: var(--panel2);
     }
 
     .list-item {
       padding: 6px 8px;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
     }
-    .list-item:hover { background: #fff; }
+    .list-item:hover { background: var(--hover); }
+
     .tag {
       font-size: 12px;
-      color: #333;
-      border: 1px solid #ddd;
+      color: var(--tag-text);
+      border: 1px solid var(--tag-border);
       border-radius: 999px;
       padding: 2px 8px;
-      background: #fff;
+      background: var(--tag-bg);
       white-space: nowrap;
     }
+
+    /* Make leaflet controls look nicer in dark mode */
+    body.dark .leaflet-control-zoom a {
+      background: var(--panel) !important;
+      color: var(--text) !important;
+      border-color: var(--border) !important;
+    }
+    body.dark .leaflet-control-attribution {
+      background: rgba(16, 21, 34, 0.75) !important;
+      color: var(--muted) !important;
+      border: 1px solid var(--border) !important;
+    }
+    body.dark .leaflet-control-attribution a { color: var(--text) !important; }
   </style>
 </head>
 
-<body>
+<body class="dark">
 <div id="app">
   <div id="topbar">
     <div class="row" style="justify-content: space-between;">
       <div class="row">
+        <!-- ✅ Cute title (left of location button) -->
+        <div class="title" title="Seoul Food Scout">
+          <span class="spark">🍜</span>
+          <span>Seoul Food Scout</span>
+          <span class="sub muted">v2</span>
+        </div>
+
         <button id="locBtn" class="btn">Use my location</button>
         <span id="locStatus" class="muted">Location not set</span>
       </div>
-      <span class="muted">Tip: “Use my location” enables Kakao/Google directions</span>
+
+      <div class="row">
+        <!-- ✅ Dark mode toggle -->
+        <button id="themeBtn" class="btn secondary" title="Toggle dark mode">🌙 Dark</button>
+        <span class="muted">Tip: “Use my location” enables Kakao/Google directions</span>
+      </div>
     </div>
 
     <div class="row">
@@ -112,15 +248,16 @@
       <label for="q" class="visually-hidden">Search restaurants</label>
       <input id="q" type="search"
              placeholder="Search name / cuisine / address…"
-             style="flex:1; padding:10px; border-radius:10px; border:1px solid #ddd;">
+             style="flex:1; padding:10px; border-radius:10px;">
       <span id="count" class="muted"></span>
-      <button id="fitBtn" class="btn" style="background:#fff;color:#111;border-color:#ddd;">Fit</button>
+      <button id="fitBtn" class="btn secondary">Fit</button>
     </div>
 
-    <div id="listWrap">
+    <!-- ✅ List hidden by default -->
+    <div id="listWrap" class="collapsed">
       <div class="row" style="justify-content: space-between;">
         <span class="muted">Sorted (best first)</span>
-        <button id="toggleList" class="btn" style="background:#fff;color:#111;border-color:#ddd;">Hide list</button>
+        <button id="toggleList" class="btn secondary">Show list</button>
       </div>
       <div id="list" aria-label="Sorted restaurant list"></div>
     </div>
@@ -174,6 +311,27 @@
 
   const listWrap = document.getElementById("listWrap");
   const toggleListBtn = document.getElementById("toggleList");
+
+  // ✅ Theme toggle (default dark, persisted)
+  const themeBtn = document.getElementById("themeBtn");
+  function applyTheme(isDark) {
+    document.body.classList.toggle("dark", !!isDark);
+    themeBtn.textContent = isDark ? "🌙 Dark" : "☀️ Light";
+    try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch (_) {}
+  }
+  (function initTheme() {
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (_) {}
+    // default: dark
+    const isDark = (saved === "light") ? false : true;
+    applyTheme(isDark);
+  })();
+  themeBtn.addEventListener("click", () => {
+    const isDarkNow = document.body.classList.contains("dark");
+    applyTheme(!isDarkNow);
+  });
+
+  // ✅ List toggle (hidden by default via class="collapsed" in HTML)
   toggleListBtn.addEventListener("click", () => {
     listWrap.classList.toggle("collapsed");
     toggleListBtn.textContent = listWrap.classList.contains("collapsed") ? "Show list" : "Hide list";
@@ -243,11 +401,11 @@
   function escapeAttr(s) { return escapeHtml(s); }
 
   function shortGoogleQuery(p) {
-  const name = (p.name || "").trim();
-  // Google tends to resolve the place better with "Name + Seoul"
-  // than with a big English address blob.
-  return name ? `${name} Seoul` : "Seoul";
-}
+    const name = (p.name || "").trim();
+    // Google tends to resolve the place better with "Name + Seoul"
+    // than with a big English address blob.
+    return name ? `${name} Seoul` : "Seoul";
+  }
 
   function shortKakaoQuery(p) {
     // Kakao search is VERY sensitive to long English address blobs.
