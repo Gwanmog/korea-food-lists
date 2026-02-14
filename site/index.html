@@ -267,18 +267,25 @@
       </div>
 
       <div class="row">
-        <button id="themeBtn" class="btn secondary" title="Toggle dark mode">🌙 Dark</button>
-        <button id="panelBtn" class="btn secondary" title="Show/hide filters">☰ Filters</button>
-        <span class="muted tip">Tip: “Use my location” enables Kakao/Google directions</span>
-      </div>
+  <button id="themeBtn" class="btn secondary" title="Toggle dark mode">🌙 Dark</button>
+
+  <div class="row" style="gap:6px;">
+    <button id="langEn" class="btn secondary" title="English">🇺🇸</button>
+    <button id="langKo" class="btn secondary" title="한국어">🇰🇷</button>
+  </div>
+
+  <button id="panelBtn" class="btn secondary" title="Show/hide filters">☰ Filters</button>
+  <span id="tipText" class="muted tip">Tip: “Use my location” enables Kakao/Google directions</span>
+</div>
+
     </div>
 
     <!-- Collapsible panel (closed on mobile, open on desktop) -->
     <div id="panel" class="panel open">
 
       <div class="row">
-        <span class="pill"><label><input type="checkbox" id="f_michelin" checked> Michelin</label></span>
-        <span class="pill"><label><input type="checkbox" id="f_blu" checked> Blue Ribbon</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_michelin" checked> <span id="lblMichelin">Michelin</span></label></span>
+<span class="pill"><label><input type="checkbox" id="f_blu" checked> <span id="lblBlueRibbon">Blue Ribbon</span></label></span>
 
         <span class="pill"><label><input type="checkbox" id="f_m1" checked> ⭐</label></span>
         <span class="pill"><label><input type="checkbox" id="f_m2" checked> ⭐⭐</label></span>
@@ -303,8 +310,8 @@
       <!-- List hidden by default -->
       <div id="listWrap" class="collapsed">
         <div class="row" style="justify-content: space-between;">
-          <span class="muted">Sorted (best first)</span>
-          <button id="toggleList" class="btn secondary">Show list</button>
+          <span id="sortedText" class="muted">Sorted (best first)</span>
+<button id="toggleList" class="btn secondary">Show list</button>
         </div>
         <div id="list" aria-label="Sorted restaurant list"></div>
       </div>
@@ -383,12 +390,151 @@
   // List toggle (hidden by default via class="collapsed" in HTML)
   toggleListBtn.addEventListener("click", () => {
     listWrap.classList.toggle("collapsed");
-    toggleListBtn.textContent = listWrap.classList.contains("collapsed") ? "Show list" : "Hide list";
+    toggleListBtn.textContent = listWrap.classList.contains("collapsed")
+  ? I18N[LANG].showList
+  : I18N[LANG].hideList;
   });
 
   // Mobile panel toggle
   const panelBtn = document.getElementById("panelBtn");
   const panel = document.getElementById("panel");
+  // ---------------- i18n (EN/KR) ----------------
+const langEnBtn = document.getElementById("langEn");
+const langKoBtn = document.getElementById("langKo");
+
+const tipTextEl = document.getElementById("tipText");
+const lblMichelinEl = document.getElementById("lblMichelin");
+const lblBlueRibbonEl = document.getElementById("lblBlueRibbon");
+const sortedTextEl = document.getElementById("sortedText");
+
+const I18N = {
+  en: {
+    pageTitle: "Eat my Seoul",
+    title: "Eat my Seoul",
+    useMyLocation: "Use my location",
+    locationNotSet: "Location not set",
+    gettingLocation: "Getting location…",
+    locationSet: (lat, lon) => `Location set: ${lat.toFixed(5)}, ${lon.toFixed(5)}`,
+    locationFailed: (msg) => `Location failed: ${msg}`,
+    tip: 'Tip: “Use my location” enables Kakao/Google directions',
+    filtersOpen: "✕ Close",
+    filtersClosed: "☰ Filters",
+    michelin: "Michelin",
+    blueRibbon: "Blue Ribbon",
+    searchPlaceholder: "Search name / cuisine / address…",
+    fit: "Fit",
+    sorted: "Sorted (best first)",
+    showList: "Show list",
+    hideList: "Hide list",
+    source: "Source",
+    category: "Category",
+    cuisine: "Cuisine",
+    address: "Address",
+    openKakaoPlace: ${t.openKakaoPlace},
+    searchKakao: ${t.searchKakao},
+    kakaoPin: ${t.kakaoPin},
+    searchGoogle: ${t.searchGoogle},
+    googlePin: ${t.googlePin},
+    kakaoWalk: ${t.kakaoWalk},
+    kakaoTransit: "Kakao directions (transit)",
+    googleWalk: "Google directions (walk)",
+    googleTransit: "Google directions (transit)",
+    enableDirections: ${t.enableDirections},
+    sourcePage: ${t.sourcePage},
+    placesShown: (n) => `${n} places shown`,
+  },
+  ko: {
+    pageTitle: "먹고 또 먹고, 서울 (Eat my Seoul)",
+    title: "Eat my Seoul",
+    useMyLocation: "내 위치 사용",
+    locationNotSet: "위치 미설정",
+    gettingLocation: "위치 확인 중…",
+    locationSet: (lat, lon) => `위치 설정됨: ${lat.toFixed(5)}, ${lon.toFixed(5)}`,
+    locationFailed: (msg) => `위치 확인 실패: ${msg}`,
+    tip: "팁: “내 위치 사용”을 누르면 카카오/구글 길찾기가 활성화돼요",
+    filtersOpen: "✕ 닫기",
+    filtersClosed: "☰ 필터",
+    michelin: "미쉐린",
+    blueRibbon: "블루리본",
+    searchPlaceholder: "이름 / 음식 종류 / 주소 검색…",
+    fit: "맞춤",
+    sorted: "정렬 (추천 순)",
+    showList: "목록 보기",
+    hideList: "목록 숨기기",
+    source: "출처",
+    category: "등급",
+    cuisine: "음식",
+    address: "주소",
+    openKakaoPlace: "카카오맵 열기 (장소)",
+    searchKakao: "카카오맵에서 검색",
+    kakaoPin: "카카오 핀",
+    searchGoogle: "구글 지도에서 검색",
+    googlePin: "구글 핀",
+    kakaoWalk: "카카오 길찾기 (도보)",
+    kakaoTransit: "카카오 길찾기 (대중교통)",
+    googleWalk: "구글 길찾기 (도보)",
+    googleTransit: "구글 길찾기 (대중교통)",
+    enableDirections: "“내 위치 사용”을 누르면 길찾기를 사용할 수 있어요.",
+    sourcePage: "출처 페이지",
+    placesShown: (n) => `${n}곳 표시`,
+  }
+};
+
+let LANG = "en";
+
+function setLang(next) {
+  LANG = (next === "ko") ? "ko" : "en";
+  try { localStorage.setItem("lang", LANG); } catch (_) {}
+  applyLang();
+}
+
+function getLang() {
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch (_) {}
+  if (saved === "en" || saved === "ko") return saved;
+  // auto-detect: Korean phones/browsers
+  const nav = (navigator.language || "").toLowerCase();
+  return nav.startsWith("ko") ? "ko" : "en";
+}
+
+function applyLang() {
+  const t = I18N[LANG];
+
+  // Page title (tab)
+  document.title = t.pageTitle;
+
+  // Header buttons/text
+  locBtn.textContent = t.useMyLocation;
+  if (!userLoc) locStatus.textContent = t.locationNotSet;
+
+  // Tip + labels
+  if (tipTextEl) tipTextEl.textContent = t.tip;
+  if (lblMichelinEl) lblMichelinEl.textContent = t.michelin;
+  if (lblBlueRibbonEl) lblBlueRibbonEl.textContent = t.blueRibbon;
+  if (sortedTextEl) sortedTextEl.textContent = t.sorted;
+
+  // Search + fit
+  qEl.placeholder = t.searchPlaceholder;
+  fitBtn.textContent = t.fit;
+
+  // Panel button text (depends on open/closed)
+  if (panelBtn && panel) {
+    panelBtn.textContent = panel.classList.contains("open") ? t.filtersOpen : t.filtersClosed;
+  }
+
+  // List toggle button (depends on collapsed)
+  toggleListBtn.textContent = listWrap.classList.contains("collapsed") ? t.showList : t.hideList;
+
+  // Re-render so popup/list text uses the new language
+  render();
+}
+
+langEnBtn.addEventListener("click", () => setLang("en"));
+langKoBtn.addEventListener("click", () => setLang("ko"));
+
+// init language
+setLang(getLang());
+
 
   function isMobile() {
     return window.matchMedia("(max-width: 640px)").matches;
@@ -396,7 +542,9 @@
 
   function setPanelOpen(open) {
     panel.classList.toggle("open", !!open);
-    panelBtn.textContent = panel.classList.contains("open") ? "✕ Close" : "☰ Filters";
+    panelBtn.textContent = panel.classList.contains("open")
+  ? I18N[LANG].filtersOpen
+  : I18N[LANG].filtersClosed;
   }
 
   // default: open on desktop, closed on mobile
@@ -485,12 +633,13 @@
   }
 
   function popupHtml(p, lat, lon) {
+    const t = I18N[LANG];
     const title = `<div class="popup-title">${escapeHtml(p.name || "")}</div>`;
     const lines = [];
-    if (p.source) lines.push(`<div class="popup-line"><b>Source</b>: ${escapeHtml(p.source)}</div>`);
-    if (p.category) lines.push(`<div class="popup-line"><b>Category</b>: ${escapeHtml(p.category)}</div>`);
-    if (p.cuisine) lines.push(`<div class="popup-line"><b>Cuisine</b>: ${escapeHtml(p.cuisine)}</div>`);
-    if (p.address) lines.push(`<div class="popup-line"><b>Address</b>: ${escapeHtml(p.address)}</div>`);
+    if (p.source) lines.push(`<div class="popup-line"><b>${t.source}</b>: ${escapeHtml(p.source)}</div>`);
+    if (p.category) lines.push(`<div class="popup-line"><b>${t.category}</b>: ${escapeHtml(p.category)}</div>`);
+    if (p.cuisine) lines.push(`<div class="popup-line"><b>${t.cuisine}</b>: ${escapeHtml(p.cuisine)}</div>`);
+    if (p.address) lines.push(`<div class="popup-line"><b>${t.address}</b>: ${escapeHtml(p.address)}</div>`);
 
     const actions = [];
     const target = ' target="_blank" rel="noopener" ';
@@ -563,7 +712,7 @@
 
   function setUserLocation(lat, lon) {
     userLoc = { lat, lon };
-    locStatus.textContent = `Location set: ${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+    locStatus.textContent = I18N[LANG].locationSet(lat, lon);
     if (userMarker) userMarker.remove();
     userMarker = L.marker([lat, lon]).addTo(map).bindPopup("You are here");
   }
@@ -571,7 +720,7 @@
   locBtn.addEventListener("click", () => {
     if (!navigator.geolocation) { alert("Geolocation not supported."); return; }
     locBtn.disabled = true;
-    locStatus.textContent = "Getting location…";
+    locStatus.textContent = I18N[LANG].gettingLocation;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setUserLocation(pos.coords.latitude, pos.coords.longitude);
@@ -579,7 +728,7 @@
         locBtn.disabled = false;
         render();
       },
-      (err) => { locStatus.textContent = `Location failed: ${err.message}`; locBtn.disabled = false; },
+      (err) => { locStatus.textContent = I18N[LANG].locationFailed(err.message); locBtn.disabled = false; },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }
     );
   });
@@ -662,7 +811,7 @@
       listEl.appendChild(div);
     });
 
-    countEl.textContent = `${sorted.length} places shown`;
+    countEl.textContent = I18N[LANG].placesShown(sorted.length);
   }
 
   async function boot() {
