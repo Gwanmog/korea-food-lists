@@ -15,23 +15,17 @@
   <style>
     html, body { height: 100%; margin: 0; }
     #app { display: flex; flex-direction: column; height: 100%; }
-    #topbar {<div id="panelBody">
-    <div class="row">
-  <button id="togglePanel" class="btn">Hide panel</button>
-</div>
-      padding: 10px; border-bottom: 1px solid #ddd; background: #fff;
-      display: grid; gap: 8px;
-      </div>
-    }
-    #topbar.collapsed #panelBody { display: none; }
-    const toggleBtn = document.getElementById("togglePanel");
-const topbar = document.getElementById("topbar");
 
-toggleBtn.addEventListener("click", () => {
-  topbar.classList.toggle("collapsed");
-  toggleBtn.textContent = topbar.classList.contains("collapsed") ? "Show panel" : "Hide panel";
-});
+    #topbar {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+      display: grid;
+      gap: 8px;
+    }
+
     #map { flex: 1; }
+
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .pill { padding: 6px 10px; border: 1px solid #ddd; border-radius: 999px; background: #fafafa; }
     .btn { padding: 8px 10px; border: 1px solid #333; border-radius: 10px; background: #111; color: #fff; cursor: pointer; }
@@ -41,23 +35,31 @@ toggleBtn.addEventListener("click", () => {
     .popup-line { margin: 2px 0; }
     .popup-actions { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
     .linkbtn { display: inline-block; padding: 7px 10px; border: 1px solid #ddd; border-radius: 10px; text-decoration: none; color: #111; background: #fff; }
+
     .visually-hidden {
-    position: absolute;
-    left: -10000px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-  
-    /* --- Sorted list --- */
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* Sorted list area */
+    #listWrap { display: grid; gap: 8px; }
+    #listWrap.collapsed #list { display: none; }
+
     #list {
-      max-height: 190px;
+      min-height: 120px;
+      max-height: 320px;
+      height: 190px;
+      resize: vertical;
       overflow: auto;
       border: 1px solid #eee;
       border-radius: 10px;
       padding: 6px;
       background: #fafafa;
     }
+
     .list-item {
       padding: 6px 8px;
       border-radius: 10px;
@@ -77,15 +79,18 @@ toggleBtn.addEventListener("click", () => {
       background: #fff;
       white-space: nowrap;
     }
-
   </style>
 </head>
+
 <body>
 <div id="app">
   <div id="topbar">
-    <div class="row">
-      <button id="locBtn" class="btn">Use my location</button>
-      <span id="locStatus" class="muted">Location not set</span>
+    <div class="row" style="justify-content: space-between;">
+      <div class="row">
+        <button id="locBtn" class="btn">Use my location</button>
+        <span id="locStatus" class="muted">Location not set</span>
+      </div>
+      <span class="muted">Tip: “Use my location” enables Kakao/Google directions</span>
     </div>
 
     <div class="row">
@@ -96,6 +101,7 @@ toggleBtn.addEventListener("click", () => {
       <span class="pill"><label><input type="checkbox" id="f_m2" checked> ⭐⭐</label></span>
       <span class="pill"><label><input type="checkbox" id="f_m3" checked> ⭐⭐⭐</label></span>
       <span class="pill"><label><input type="checkbox" id="f_bib" checked> 🟢 Bib</label></span>
+      <span class="pill"><label><input type="checkbox" id="f_sel" checked> Selected</label></span>
 
       <span class="pill"><label><input type="checkbox" id="f_r1" checked> 🔵</label></span>
       <span class="pill"><label><input type="checkbox" id="f_r2" checked> 🔵🔵</label></span>
@@ -103,25 +109,21 @@ toggleBtn.addEventListener("click", () => {
     </div>
 
     <div class="row">
-  <label for="q" class="visually-hidden">
-    Search restaurants by name, cuisine, or address
-  </label>
-
-  <input id="q" type="search"
-         placeholder="Search name / cuisine / address…"
-         style="flex:1; padding:10px; border-radius:10px; border:1px solid #ddd;">
-
-  <span id="count" class="muted"></span>
-</div>
-    <div class="muted">
-      Tip: Tap a pin → “Kakao directions” uses your current location as start (if you tapped “Use my location”).
+      <label for="q" class="visually-hidden">Search restaurants</label>
+      <input id="q" type="search"
+             placeholder="Search name / cuisine / address…"
+             style="flex:1; padding:10px; border-radius:10px; border:1px solid #ddd;">
+      <span id="count" class="muted"></span>
+      <button id="fitBtn" class="btn" style="background:#fff;color:#111;border-color:#ddd;">Fit</button>
     </div>
 
-    <div class="row" style="justify-content: space-between;">
-      <span class="muted">Sorted (best first)</span>
-      <button id="fitBtn" class="btn" style="background:#fff;color:#111;border-color:#ddd;">Fit to results</button>
+    <div id="listWrap">
+      <div class="row" style="justify-content: space-between;">
+        <span class="muted">Sorted (best first)</span>
+        <button id="toggleList" class="btn" style="background:#fff;color:#111;border-color:#ddd;">Hide list</button>
+      </div>
+      <div id="list" aria-label="Sorted restaurant list"></div>
     </div>
-    <div id="list" aria-label="Sorted restaurant list"></div>
   </div>
 
   <div id="map"></div>
@@ -134,21 +136,11 @@ toggleBtn.addEventListener("click", () => {
 ></script>
 
 <script>
-  // --- Kakao official URL schemes (with mobile web scheme fallbacks) ---
-  // From Kakao Maps SDK URL Scheme docs:
-  // - search: kakaomap://search?q=...&p=lat,lon
-  // - look: kakaomap://look?p=lat,lon
-  // - route: kakaomap://route?sp=lat,lon&ep=lat,lon&by=foot|car|publictransit|bicycle
-  // Mobile web scheme equivalents: http://m.map.kakao.com/scheme/<action>...
-  // (We prefer mobile web scheme in a browser because it’s safer.)
-  // https://apis.map.kakao.com/android_v2/docs/api-guide/urlscheme/
-
   function enc(s) { return encodeURIComponent(s || ""); }
 
-  function kakaoLookWeb(lat, lon) {
-    return `http://m.map.kakao.com/scheme/look?p=${lat},${lon}`;
-  }
-  function kakaoSearchWeb(query, centerLatLon /* "lat,lon" or null */) {
+  // Kakao mobile web scheme (browser-friendly)
+  function kakaoLookWeb(lat, lon) { return `http://m.map.kakao.com/scheme/look?p=${lat},${lon}`; }
+  function kakaoSearchWeb(query, centerLatLon) {
     if (centerLatLon) return `http://m.map.kakao.com/scheme/search?q=${enc(query)}&p=${centerLatLon}`;
     return `http://m.map.kakao.com/scheme/search?q=${enc(query)}`;
   }
@@ -156,29 +148,21 @@ toggleBtn.addEventListener("click", () => {
     return `http://m.map.kakao.com/scheme/route?sp=${spLat},${spLon}&ep=${epLat},${epLon}&by=${enc(by || "foot")}`;
   }
 
-
-  // --- Google Maps URLs ---
-  function googleSearch(query) {
-    return `https://www.google.com/maps/search/?api=1&query=${enc(query)}`;
-  }
-  function googleLook(lat, lon) {
-    return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
-  }
+  // Google Maps
+  function googleSearch(query) { return `https://www.google.com/maps/search/?api=1&query=${enc(query)}`; }
+  function googleLook(lat, lon) { return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`; }
   function googleDirections(spLat, spLon, epLat, epLon, mode) {
-    const travelmode = (mode || "walking");
-    return `https://www.google.com/maps/dir/?api=1&origin=${spLat},${spLon}&destination=${epLat},${epLon}&travelmode=${enc(travelmode)}`;
+    return `https://www.google.com/maps/dir/?api=1&origin=${spLat},${spLon}&destination=${epLat},${epLon}&travelmode=${enc(mode || "walking")}`;
   }
 
-
-  // --- Map ---
-  const map = L.map('map', { zoomControl: true }).setView([37.5665, 126.9780], 12); // Seoul default
-
+  // Map
+  const map = L.map('map', { zoomControl: true }).setView([37.5665, 126.9780], 12);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  let userLoc = null; // {lat, lon}
+  let userLoc = null;
   let userMarker = null;
 
   const locBtn = document.getElementById("locBtn");
@@ -188,6 +172,13 @@ toggleBtn.addEventListener("click", () => {
   const listEl = document.getElementById("list");
   const fitBtn = document.getElementById("fitBtn");
 
+  const listWrap = document.getElementById("listWrap");
+  const toggleListBtn = document.getElementById("toggleList");
+  toggleListBtn.addEventListener("click", () => {
+    listWrap.classList.toggle("collapsed");
+    toggleListBtn.textContent = listWrap.classList.contains("collapsed") ? "Show list" : "Hide list";
+  });
+
   const filters = {
     michelin: document.getElementById("f_michelin"),
     blu: document.getElementById("f_blu"),
@@ -195,63 +186,73 @@ toggleBtn.addEventListener("click", () => {
     m2: document.getElementById("f_m2"),
     m3: document.getElementById("f_m3"),
     bib: document.getElementById("f_bib"),
+    m_sel: document.getElementById("f_sel"),
     r1: document.getElementById("f_r1"),
     r2: document.getElementById("f_r2"),
     r3: document.getElementById("f_r3"),
   };
 
   function michelinTierOk(cat) {
-  cat = (cat || "").toLowerCase();
+    cat = (cat || "").toLowerCase().trim();
+    if (!cat) return false;
 
-  if (cat.includes("three") && cat.includes("star")) return filters.m3.checked;
-  if (cat.includes("two") && cat.includes("star")) return filters.m2.checked;
-  if (cat.includes("one") && cat.includes("star")) return filters.m1.checked;
+    if ((cat.includes("3") && cat.includes("star")) || (cat.includes("three") && cat.includes("star"))) return filters.m3.checked;
+    if ((cat.includes("2") && cat.includes("star")) || (cat.includes("two") && cat.includes("star"))) return filters.m2.checked;
+    if ((cat.includes("1") && cat.includes("star")) || (cat.includes("one") && cat.includes("star"))) return filters.m1.checked;
 
-  if (cat.includes("3") && cat.includes("star")) return filters.m3.checked;
-  if (cat.includes("2") && cat.includes("star")) return filters.m2.checked;
-  if (cat.includes("1") && cat.includes("star")) return filters.m1.checked;
+    if (cat.includes("bib")) return filters.bib.checked;
+    if (cat.includes("selected")) return filters.m_sel.checked;
 
-  if (cat.includes("bib")) return filters.bib.checked;
-
-  // If user has unchecked all award tiers, hide unknown Michelin too.
-const anyTierOn = filters.m1.checked || filters.m2.checked || filters.m3.checked || filters.bib.checked;
-if (!anyTierOn) return false;
-
-// Otherwise keep showing Selected/Other when Michelin is enabled
-return true;
-}
+    return false;
+  }
 
   function ribbonTierOk(cat) {
     cat = (cat || "").toUpperCase();
     if (cat === "RIBBON_THREE") return filters.r3.checked;
     if (cat === "RIBBON_TWO") return filters.r2.checked;
     if (cat === "RIBBON_ONE") return filters.r1.checked;
-    return false; // hide non-ribbon categories by default
+    return false;
   }
 
   function passesFilters(p) {
-  const src = (p.source || "").toLowerCase();
+    const src = (p.source || "").toLowerCase();
 
-  if (src.includes("michelin")) {
-    if (!filters.michelin.checked) return false;
-    return michelinTierOk(p.category);
+    if (src.includes("michelin")) {
+      if (!filters.michelin.checked) return false;
+      return michelinTierOk(p.category);
+    }
+    if (src.includes("blue")) {
+      if (!filters.blu.checked) return false;
+      return ribbonTierOk(p.category);
+    }
+    return false;
   }
-
-  if (src.includes("blue")) { // matches "blueribbon", "blue ribbon", etc.
-    if (!filters.blu.checked) return false;
-    return ribbonTierOk(p.category);
-  }
-
-  return false;
-}
 
   function textMatch(p, q) {
     if (!q) return true;
     q = q.toLowerCase();
-    const hay = [
-      p.name, p.category, p.cuisine, p.address, p.source
-    ].filter(Boolean).join(" ").toLowerCase();
+    const hay = [p.name, p.category, p.cuisine, p.address, p.source].filter(Boolean).join(" ").toLowerCase();
     return hay.includes(q);
+  }
+
+  function escapeHtml(s) {
+    return (s || "")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  function shortGoogleQuery(p) {
+  const name = (p.name || "").trim();
+  // Google tends to resolve the place better with "Name + Seoul"
+  // than with a big English address blob.
+  return name ? `${name} Seoul` : "Seoul";
+}
+
+  function shortKakaoQuery(p) {
+    // Kakao search is VERY sensitive to long English address blobs.
+    // Use name only.
+    return (p.name || "").trim();
   }
 
   function popupHtml(p, lat, lon) {
@@ -262,55 +263,40 @@ return true;
     if (p.cuisine) lines.push(`<div class="popup-line"><b>Cuisine</b>: ${escapeHtml(p.cuisine)}</div>`);
     if (p.address) lines.push(`<div class="popup-line"><b>Address</b>: ${escapeHtml(p.address)}</div>`);
 
-    // Buttons:
-    // - If we have coords: look and route
-    // - Otherwise: search by name + address
-    const q = [p.name, p.address].filter(Boolean).join(" ");
-    const center = userLoc ? `${userLoc.lat},${userLoc.lon}` : null;
-
     const actions = [];
     const target = ' target="_blank" rel="noopener" ';
-    // If build step enriched Kakao place_url, prefer direct place page:
-    if (p.kakao_url) {actions.push(`<a class="linkbtn" href="${escapeAttr(p.kakao_url)}"${target}>Open in KakaoMap (place)</a>`);
-}
 
-
-
-    // Prefer search-by-name (closer to "the restaurant") and offer a "pin" look as fallback.
-    if (lat != null && lon != null) {
-      actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(q, `${lat},${lon}`)}"${target}>Search in KakaoMap</a>`);
+    // Best Kakao option: direct place_url from enrichment
+    if (p.kakao_url) {
+      actions.push(`<a class="linkbtn" href="${escapeAttr(p.kakao_url)}"${target}>Open in KakaoMap (place)</a>`);
+    } else if (lat != null && lon != null) {
+      // fallback: search by NAME ONLY, centered on coords
+      actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(shortKakaoQuery(p), `${lat},${lon}`)}"${target}>Search in KakaoMap</a>`);
       actions.push(`<a class="linkbtn" href="${kakaoLookWeb(lat, lon)}"${target}>Kakao pin</a>`);
+    }
 
-      actions.push(`<a class="linkbtn" href="${googleLook(lat, lon)}"${target}>Open in Google Maps</a>`);
-
-      if (userLoc) {
-        actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'foot')}"${target}>Kakao directions (walk)</a>`);
-        actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'publictransit')}"${target}>Kakao directions (transit)</a>`);
-        actions.push(`<a class="linkbtn" href="${googleDirections(userLoc.lat, userLoc.lon, lat, lon, 'walking')}"${target}>Google directions (walk)</a>`);
-        actions.push(`<a class="linkbtn" href="${googleDirections(userLoc.lat, userLoc.lon, lat, lon, 'transit')}"${target}>Google directions (transit)</a>`);
-      } else {
-        actions.push(`<span class="muted">Tap “Use my location” to enable directions.</span>`);
-      }
+    // Google: offer BOTH search + pin (pin is reliable, search is nicer when it works)
+    if (lat != null && lon != null) {
+      actions.push(`<a class="linkbtn" href="${googleSearch(shortGoogleQuery(p))}"${target}>Search in Google Maps</a>`);
+      actions.push(`<a class="linkbtn" href="${googleLook(lat, lon)}"${target}>Google pin</a>`);
     } else {
-      actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(q, center)}"${target}>Search in KakaoMap</a>`);
-      actions.push(`<a class="linkbtn" href="${googleSearch(q)}"${target}>Search in Google Maps</a>`);
+      actions.push(`<a class="linkbtn" href="${googleSearch(shortGoogleQuery(p))}"${target}>Search in Google Maps</a>`);
     }
 
-    if (p.url) {
-      actions.push(`<a class="linkbtn" href="${escapeAttr(p.url)}" target="_blank" rel="noopener">Source page</a>`);
+    // Directions (only if user location is set + coords exist)
+    if (userLoc && lat != null && lon != null) {
+      actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'foot')}"${target}>Kakao directions (walk)</a>`);
+      actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'publictransit')}"${target}>Kakao directions (transit)</a>`);
+      actions.push(`<a class="linkbtn" href="${googleDirections(userLoc.lat, userLoc.lon, lat, lon, 'walking')}"${target}>Google directions (walk)</a>`);
+      actions.push(`<a class="linkbtn" href="${googleDirections(userLoc.lat, userLoc.lon, lat, lon, 'transit')}"${target}>Google directions (transit)</a>`);
+    } else if (lat != null && lon != null) {
+      actions.push(`<span class="muted">Tap “Use my location” to enable directions.</span>`);
     }
+
+    if (p.url) actions.push(`<a class="linkbtn" href="${escapeAttr(p.url)}"${target}>Source page</a>`);
 
     return title + lines.join("") + `<div class="popup-actions">${actions.join("")}</div>`;
   }
-
-  function escapeHtml(s) {
-    return (s || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
-  }
-  function escapeAttr(s) { return escapeHtml(s); }
-
-  let allFeatures = [];
-  let layer = null;
-
 
   function michelinRank(cat) {
     cat = (cat || "").toLowerCase();
@@ -324,7 +310,6 @@ return true;
     if (cat.includes("selected")) return 10;
     return 0;
   }
-
   function blueRank(cat) {
     cat = (cat || "").toUpperCase();
     if (cat === "RIBBON_THREE") return 30;
@@ -332,14 +317,12 @@ return true;
     if (cat === "RIBBON_ONE") return 10;
     return 0;
   }
-
   function placeRank(p) {
     const src = (p.source || "").toLowerCase();
     if (src.includes("michelin")) return 1000 + michelinRank(p.category);
     if (src.includes("blue")) return 500 + blueRank(p.category);
     return 0;
   }
-
   function badgeText(p) {
     const src = (p.source || "").toLowerCase();
     const cat = (p.category || "");
@@ -353,6 +336,40 @@ return true;
     return "";
   }
 
+  function setUserLocation(lat, lon) {
+    userLoc = { lat, lon };
+    locStatus.textContent = `Location set: ${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+    if (userMarker) userMarker.remove();
+    userMarker = L.marker([lat, lon]).addTo(map).bindPopup("You are here");
+  }
+
+  locBtn.addEventListener("click", () => {
+    if (!navigator.geolocation) { alert("Geolocation not supported."); return; }
+    locBtn.disabled = true;
+    locStatus.textContent = "Getting location…";
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLocation(pos.coords.latitude, pos.coords.longitude);
+        map.setView([pos.coords.latitude, pos.coords.longitude], 14);
+        locBtn.disabled = false;
+        render();
+      },
+      (err) => { locStatus.textContent = `Location failed: ${err.message}`; locBtn.disabled = false; },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }
+    );
+  });
+
+  Object.values(filters).forEach(cb => cb.addEventListener("change", render));
+  qEl.addEventListener("input", render);
+  fitBtn.addEventListener("click", () => {
+    if (!layer) return;
+    const bounds = layer.getBounds && layer.getBounds();
+    if (bounds && bounds.isValid && bounds.isValid()) map.fitBounds(bounds.pad(0.15));
+  });
+
+  let allFeatures = [];
+  let layer = null;
+
   function render() {
     const q = (qEl.value || "").trim();
     const filtered = allFeatures.filter(f => {
@@ -360,7 +377,6 @@ return true;
       return passesFilters(p) && textMatch(p, q);
     });
 
-    // Sort best-first (Michelin stars > Bib > Selected > other; then Blue Ribbon).
     const sorted = filtered.slice().sort((a, b) => {
       const pa = a.properties || {};
       const pb = b.properties || {};
@@ -370,10 +386,7 @@ return true;
       return String(pa.name || "").localeCompare(String(pb.name || ""), undefined, { sensitivity: "base" });
     });
 
-if (layer) {
-      layer.remove();
-      layer = null;
-    }
+    if (layer) { layer.remove(); layer = null; }
 
     layer = L.geoJSON(sorted, {
       pointToLayer: (feature, latlng) => L.circleMarker(latlng, { radius: 7, weight: 2, fillOpacity: 0.6 }),
@@ -386,7 +399,6 @@ if (layer) {
       }
     }).addTo(map);
 
-    // Build clickable sorted list
     listEl.innerHTML = "";
     const itemLayers = [];
     layer.eachLayer(l => itemLayers.push(l));
@@ -419,51 +431,7 @@ if (layer) {
     countEl.textContent = `${sorted.length} places shown`;
   }
 
-  function setUserLocation(lat, lon) {
-    userLoc = { lat, lon };
-    locStatus.textContent = `Location set: ${lat.toFixed(5)}, ${lon.toFixed(5)}`;
-    if (userMarker) userMarker.remove();
-    userMarker = L.marker([lat, lon]).addTo(map).bindPopup("You are here");
-  }
-
-  locBtn.addEventListener("click", () => {
-    if (!navigator.geolocation) {
-      alert("Geolocation not supported on this browser.");
-      return;
-    }
-    locBtn.disabled = true;
-    locStatus.textContent = "Getting location…";
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        setUserLocation(lat, lon);
-        map.setView([lat, lon], 14);
-        locBtn.disabled = false;
-        render(); // re-render so Kakao search uses center and directions enable
-      },
-      (err) => {
-        locStatus.textContent = `Location failed: ${err.message}`;
-        locBtn.disabled = false;
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }
-    );
-  });
-
-  Object.values(filters).forEach(cb => cb.addEventListener("change", render));
-  qEl.addEventListener("input", () => render());
-
-  fitBtn.addEventListener("click", () => {
-    if (!layer) return;
-    const bounds = layer.getBounds && layer.getBounds();
-    if (bounds && bounds.isValid && bounds.isValid()) {
-      map.fitBounds(bounds.pad(0.15));
-    }
-  });
-
-  // Load GeoJSON (expects it in ../out/places.geojson or you can copy into site/)
   async function boot() {
-    // easiest: copy out/places.geojson into site/places.geojson and use "./places.geojson"
     const url = "./places.geojson";
     const r = await fetch(url);
     if (!r.ok) throw new Error(`Failed to load ${url}: ${r.status}`);
@@ -472,10 +440,7 @@ if (layer) {
     render();
   }
 
-  boot().catch(e => {
-    alert(e.message);
-    console.error(e);
-  });
+  boot().catch(e => { alert(e.message); console.error(e); });
 </script>
 </body>
 </html>

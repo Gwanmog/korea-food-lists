@@ -63,41 +63,57 @@ def kakao_rest_key() -> str | None:
         return os.getenv("KAKAO_REST_API_KEY") or None
 
 def kakao_local_keyword_search(
-            s: requests.Session,
-            *,
-            api_key: str,
-            query: str,
-            x: float | None = None,  # longitude
-            y: float | None = None,  # latitude
-            radius_m: int | None = 2000,
-            size: int = 5,
-            sleep_s: float = 0.15,
-    ) -> list[dict]:
-        """
-        Kakao Local Keyword Search:
-        https://dapi.kakao.com/v2/local/search/keyword.json
+    s: requests.Session,
+    *,
+    api_key: str,
+    query: str,
+    x: float | None = None,  # longitude
+    y: float | None = None,  # latitude
+    radius_m: int | None = 2000,
+    size: int = 5,
+    sleep_s: float = 0.15,
+    category_group_code: str | None = "FD6",  # restaurants
+) -> list[dict]:
+    """
+    Kakao Local Keyword Search:
+    https://dapi.kakao.com/v2/local/search/keyword.json
 
-        Returns list of documents (dicts).
-        """
-        if not query.strip():
-            return []
+    Returns list of documents (dicts).
+    Raises for non-HTTP issues, but lets caller handle HTTP errors.
+    """
+    q = (query or "").strip()
+    if not q:
+        return []
 
-        time.sleep(sleep_s)
+    # Kakao can be picky about very long queries; keep it sane.
+    # (Business-name-only queries perform best anyway.)
+    if len(q) > 80:
+        q = q[:80].rstrip()
 
-        url = "https://dapi.kakao.com/v2/local/search/keyword.json"
-        params = {"query": query, "size": size}
+    time.sleep(sleep_s)
 
-        # If we have coordinates, bias results to that area.
-        if x is not None and y is not None:
-            params.update({"x": str(x), "y": str(y)})
-            if radius_m is not None:
-                params["radius"] = str(int(radius_m))
+    url = "https://dapi.kakao.com/v2/local/search/keyword.json"
+    params = {"query": q, "size": int(size)}
 
-        r = s.get(url, params=params, headers={"Authorization": f"KakaoAK {api_key}"}, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        docs = data.get("documents") or []
-        return docs if isinstance(docs, list) else []
+    if category_group_code:
+        params["category_group_code"] = category_group_code
+
+    # If we have coordinates, bias results to that area.
+    if x is not None and y is not None:
+        params.update({"x": str(x), "y": str(y)})
+        if radius_m is not None:
+            r = max(0, min(int(radius_m), 20000))
+            params["radius"] = str(r)
+
+    r = s.get(url, params=params, headers={"Authorization": f"KakaoAK {api_key}"}, timeout=30)
+
+    # Let caller decide what to do on 400/401/429 etc.
+    r.raise_for_status()
+
+    data = r.json()
+    docs = data.get("documents") or []
+    return docs if isinstance(docs, list) else []
+
 
 def choose_best_kakao_doc(docs: list[dict], name: str, address: str | None) -> dict | None:
         """
@@ -140,51 +156,100 @@ def choose_best_kakao_doc(docs: list[dict], name: str, address: str | None) -> d
         return max(docs, key=score)
 
 def enrich_with_kakao(places: list[Place], *, sleep_s: float = 0.15) -> list[Place]:
-        key = kakao_rest_key()
-        if not key:
-            print("[kakao] KAKAO_REST_API_KEY not set; skipping enrichment.")
-            return places
+    key = kakao_rest_key()
+    if not key:
+        print("[kakao] KAKAO_REST_API_KEY not set; skipping enrichment.")
+        return places
 
-        s = requests.Session()
+    def _extract_gu(addr: str | None) -> str | None:
+        if not addr:
+            return None
+        # Works for both Korean "강남구" and English "Gangnam-gu"
+        m = re.search(r"([A-Za-z]+-gu)\b", addr)
+        if m:
+            return m.group(1)
+        m = re.search(r"([가-힣]+구)\b", addr)
+        if m:
+            return m.group(1)
+        return None
 
-        out: list[Place] = []
-        hit = 0
+    def _short_addr(addr: str | None, limit: int = 40) -> str | None:
+        if not addr:
+            return None
+        # Strip punctuation that makes "address blobs"
+        a = re.sub(r"[,()]+", " ", addr)
+        a = re.sub(r"\s+", " ", a).strip()
+        return a[:limit].rstrip() if a else None
 
-        for p in places:
-            # already has kakao
-            if p.kakao_id or p.kakao_url:
-                out.append(p)
-                continue
+    s = requests.Session()
 
-            # build a strong query
-            query = " ".join([x for x in [p.name, p.address] if x]).strip()
+    out: list[Place] = []
+    hit = 0
+    hard_fail = 0
 
-            docs = kakao_local_keyword_search(
-                s,
-                api_key=key,
-                query=query,
-                x=p.longitude,
-                y=p.latitude,
-                radius_m=2500,
-                size=5,
-                sleep_s=sleep_s,
-            )
-            best = choose_best_kakao_doc(docs, p.name, p.address)
+    for p in places:
+        if p.kakao_id or p.kakao_url:
+            out.append(p)
+            continue
 
-            if best:
-                hit += 1
-                out.append(
-                    Place(
-                        **{**asdict(p)},
-                        kakao_id=str(best.get("id") or "") or None,
-                        kakao_url=str(best.get("place_url") or "") or None,
-                    )
+        name = (p.name or "").strip()
+        gu = _extract_gu(p.address)
+        addr_short = _short_addr(p.address)
+
+        # IMPORTANT: do NOT start with name+full address (too long / too address-y).
+        candidates: list[str] = []
+        if name:
+            candidates.append(name)
+        if name and gu:
+            candidates.append(f"{name} {gu}")
+        if name and addr_short:
+            candidates.append(f"{name} {addr_short}")
+
+        best_doc = None
+
+        for q in candidates:
+            try:
+                docs = kakao_local_keyword_search(
+                    s,
+                    api_key=key,
+                    query=q,
+                    x=p.longitude,
+                    y=p.latitude,
+                    radius_m=2500,
+                    size=5,
+                    sleep_s=sleep_s,
+                    category_group_code="FD6",
                 )
-            else:
-                out.append(p)
+            except requests.HTTPError as e:
+                # If Kakao says 400, try the next shorter query instead of crashing.
+                status = getattr(e.response, "status_code", None)
+                if status == 400:
+                    continue
+                # If rate-limited, back off a bit then continue
+                if status in (429,):
+                    time.sleep(1.0)
+                    continue
+                # Any other HTTP error: surface but don't kill the whole run
+                hard_fail += 1
+                break
 
-        print(f"[kakao] enriched {hit}/{len(places)} places with kakao place ids.")
-        return out
+            best_doc = choose_best_kakao_doc(docs, p.name, p.address)
+            if best_doc:
+                break
+
+        if best_doc:
+            hit += 1
+
+            d = asdict(p)  # includes kakao_id/kakao_url already (possibly None)
+            d["kakao_id"] = str(best_doc.get("id") or "") or None
+            d["kakao_url"] = str(best_doc.get("place_url") or "") or None
+
+            out.append(Place(**d))
+        else:
+            out.append(p)
+
+    print(f"[kakao] enriched {hit}/{len(places)} places with kakao place ids. hard_fail={hard_fail}")
+    return out
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -537,9 +602,13 @@ def michelin_extract_geo_address_from_page(soup: BeautifulSoup, html: str) -> tu
 
 def michelin_category_from_next_data(soup: BeautifulSoup) -> str | None:
     """
-    Michelin pages are Next.js. __NEXT_DATA__ often contains an award/selection token
-    even when it isn't visible in plain text. We do a defensive recursive search for
-    known award keywords.
+    Michelin pages are Next.js. __NEXT_DATA__ contains award/selection info, but
+    the exact tokens vary by locale/build.
+
+    We detect, in order:
+    1) Common structured award slugs/codes (most reliable)
+    2) Numeric star fields (keys containing 'star' with value 1/2/3)
+    3) Broad string matching ("1 MICHELIN Star", "oneStar", etc.)
     """
     sc = soup.find("script", id="__NEXT_DATA__")
     raw = (sc.string or "").strip() if sc else ""
@@ -551,13 +620,97 @@ def michelin_category_from_next_data(soup: BeautifulSoup) -> str | None:
     except Exception:
         return None
 
+    # Collect strings + try to interpret structured award objects.
     strings: list[str] = []
+    star_num: int | None = None
+
+    def norm(s: str) -> str:
+        return re.sub(r"\s+", " ", s.strip().lower())
+
+    def award_from_obj(d: dict) -> str | None:
+        """
+        Michelin commonly stores award info in objects like:
+          {"award": {"slug": "1-star-michelin"}}
+          {"award": {"code": "m1"}}
+          {"selection": "SELECTED_RESTAURANTS"}
+        We look at common keys.
+        """
+        candidates = []
+
+        for key in ("award", "awards", "selection", "distinction", "distinctions", "classification"):
+            if key in d:
+                candidates.append(d[key])
+
+        # Flatten candidates into strings
+        flat: list[str] = []
+
+        def collect(x):
+            if isinstance(x, dict):
+                for kk, vv in x.items():
+                    if isinstance(kk, str):
+                        flat.append(kk)
+                    collect(vv)
+            elif isinstance(x, list):
+                for vv in x:
+                    collect(vv)
+            elif isinstance(x, str):
+                flat.append(x)
+
+        for c in candidates:
+            collect(c)
+
+        blob = " ".join(flat).lower()
+
+        # Very common slug/code styles
+        if "bib" in blob and "gourmand" in blob:
+            return "Bib Gourmand"
+        if "3-star" in blob or "three-star" in blob or "3 star" in blob or "threestar" in blob:
+            return "3 Stars"
+        if "2-star" in blob or "two-star" in blob or "2 star" in blob or "twostar" in blob:
+            return "2 Stars"
+        if "1-star" in blob or "one-star" in blob or re.search(r"\b1\s*star\b", blob):
+            return "1 Star"
+
+        if "selected" in blob or "selection" in blob:
+            return "Selected"
+
+        # Sometimes Michelin uses "MICHELIN_STAR_1" / "ONE_STAR" style enums
+        if "three" in blob and "star" in blob:
+            return "3 Stars"
+        if "two" in blob and "star" in blob:
+            return "2 Stars"
+        if "one" in blob and "star" in blob:
+            return "1 Star"
+
+        return None
 
     def walk(x):
+        nonlocal star_num
         if isinstance(x, dict):
+            # Try structured award detection at each dict node (cheap + high hit rate)
+            aw = award_from_obj(x)
+            if aw:
+                strings.append(aw)  # stash result too
+                # Return early? No: we still want to discover highest star_num if present
+                # but we can short-circuit later.
+                # We'll just record it in strings and keep walking.
+
             for k, v in x.items():
+                kl = k.lower() if isinstance(k, str) else ""
                 if isinstance(k, str):
                     strings.append(k)
+
+                # numeric star signals
+                if kl and isinstance(v, (int, float)):
+                    if ("star" in kl or "stars" in kl) and int(v) in (1, 2, 3):
+                        star_num = max(star_num or 0, int(v))
+
+                # string star signals (sometimes "1", "2", "3")
+                if kl and isinstance(v, str):
+                    vv = v.strip()
+                    if ("star" in kl or "stars" in kl) and vv.isdigit() and int(vv) in (1, 2, 3):
+                        star_num = max(star_num or 0, int(vv))
+
                 walk(v)
         elif isinstance(x, list):
             for v in x:
@@ -566,30 +719,42 @@ def michelin_category_from_next_data(soup: BeautifulSoup) -> str | None:
             strings.append(x)
 
     walk(data)
-    blob = " ".join(strings).lower()
 
-    # Stars: lots of builds use "one_star", "one-star", "1-star", "1star", etc.
-    one_star = any(t in blob for t in ["one_star", "one-star", "1-star", "1star", "michelin_one_star"]) or re.search(
-        r"\b(one|1)\s*star", blob)
-    two_star = any(t in blob for t in ["two_star", "two-star", "2-star", "2star", "michelin_two_star"]) or re.search(
-        r"\b(two|2)\s*star", blob)
-    three_star = any(
-        t in blob for t in ["three_star", "three-star", "3-star", "3star", "michelin_three_star"]) or re.search(
-        r"\b(three|3)\s*star", blob)
+    # 1) If we discovered structured awards by inserting into strings, prefer them
+    blob = norm(" ".join(strings))
 
-    if three_star:
+    # If multiple appear, choose the "best"
+    if "3 stars" in blob:
         return "3 Stars"
-    if two_star:
+    if "2 stars" in blob:
         return "2 Stars"
-    if one_star:
+    if "1 star" in blob:
         return "1 Star"
-
-    if "bib" in blob and "gourmand" in blob:
+    if "bib gourmand" in blob:
         return "Bib Gourmand"
-
-    # Michelin often uses "selected" for "Michelin Selected"
     if "selected" in blob:
         return "Selected"
+
+    # 2) If numeric star field was found, trust it
+    if star_num == 3:
+        return "3 Stars"
+    if star_num == 2:
+        return "2 Stars"
+    if star_num == 1:
+        return "1 Star"
+
+    # 3) Broad string matching fallback
+    if re.search(r"\b3\s*michelin\s*star", blob) or "three star" in blob or "three_star" in blob or "3-star" in blob:
+        return "3 Stars"
+    if re.search(r"\b2\s*michelin\s*star", blob) or "two star" in blob or "two_star" in blob or "2-star" in blob:
+        return "2 Stars"
+    if re.search(r"\b1\s*michelin\s*star", blob) or re.search(r"\b1\s*star\b", blob) or "one star" in blob or "one_star" in blob or "1-star" in blob:
+        return "1 Star"
+    if "bib" in blob and "gourmand" in blob:
+        return "Bib Gourmand"
+    if "michelin selected" in blob or re.search(r"\bselected\b", blob):
+        return "Selected"
+
     return None
 
 # --- rewritten method ---
@@ -648,6 +813,10 @@ def michelin_parse_detail(s: requests.Session, url: str, sleep_s: float, capture
 
     # Category (award) — prefer Next.js payload when available, then fall back to text heuristics.
     category = michelin_category_from_next_data(soup)
+    # If Michelin doesn't explicitly say stars/bib in the Next.js blob,
+    # it's very often "Michelin Selected". Avoid showing "(none)".
+    if category is None:
+        category = "Selected"
 
     if not category:
         if "Bib Gourmand" in text:
