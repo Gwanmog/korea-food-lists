@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Korea Restaurant Map (Michelin + Blue Ribbon)</title>
+  <title>Eat my Seoul</title>
 
   <link
     rel="stylesheet"
@@ -73,7 +73,7 @@
       display: grid;
       gap: 8px;
       box-shadow: var(--shadow);
-      z-index: 999; /* keep above map */
+      z-index: 999;
     }
 
     #map { flex: 1; }
@@ -118,9 +118,9 @@
       border: 1px solid var(--border);
       background: var(--panel2);
       user-select: none;
+      white-space: nowrap;
     }
     .title .spark { opacity: .9; }
-    .title .sub { font-weight: 600; opacity: .8; }
 
     /* Search input */
     #q {
@@ -203,19 +203,63 @@
       border: 1px solid var(--border) !important;
     }
     body.dark .leaflet-control-attribution a { color: var(--text) !important; }
+
+    /* ---------- Mobile layout: compact header + collapsible panel ---------- */
+    .panel { display: contents; } /* desktop: panel doesn't change layout */
+    .tip { display: inline; }
+
+    @media (max-width: 640px) {
+      :root { --hdr-h: 64px; }
+
+      #topbar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        padding: 8px 10px;
+      }
+
+      #map {
+        height: calc(100vh - var(--hdr-h));
+        margin-top: var(--hdr-h);
+      }
+
+      .title { font-size: 16px; padding: 6px 10px; }
+      .pill { padding: 4px 8px; }
+      .btn { padding: 7px 10px; border-radius: 10px; }
+      .muted { font-size: 12px; }
+
+      .tip { display: none; }
+      #locStatus { display: none; }
+
+      .panel {
+        display: none;
+        position: fixed;
+        top: var(--hdr-h);
+        left: 0; right: 0;
+        max-height: calc(100vh - var(--hdr-h));
+        overflow-y: auto;
+        padding: 10px;
+        background: var(--panel);
+        border-top: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        z-index: 998;
+      }
+      .panel.open { display: block; }
+
+      .row { gap: 6px; }
+      #q { min-width: 0; }
+    }
   </style>
 </head>
 
 <body class="dark">
 <div id="app">
   <div id="topbar">
+    <!-- Top row: stays compact on mobile -->
     <div class="row" style="justify-content: space-between;">
       <div class="row">
-        <!-- ✅ Cute title (left of location button) -->
-        <div class="title" title="Seoul Food Scout">
-          <span class="spark">🍜</span>
-          <span>Seoul Food Scout</span>
-          <span class="sub muted">v2</span>
+        <div class="title" title="Eat my Seoul">
+          <span class="spark">🥢</span>
+          <span>Eat my Seoul</span>
         </div>
 
         <button id="locBtn" class="btn">Use my location</button>
@@ -223,43 +267,48 @@
       </div>
 
       <div class="row">
-        <!-- ✅ Dark mode toggle -->
         <button id="themeBtn" class="btn secondary" title="Toggle dark mode">🌙 Dark</button>
-        <span class="muted">Tip: “Use my location” enables Kakao/Google directions</span>
+        <button id="panelBtn" class="btn secondary" title="Show/hide filters">☰ Filters</button>
+        <span class="muted tip">Tip: “Use my location” enables Kakao/Google directions</span>
       </div>
     </div>
 
-    <div class="row">
-      <span class="pill"><label><input type="checkbox" id="f_michelin" checked> Michelin</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_blu" checked> Blue Ribbon</label></span>
+    <!-- Collapsible panel (closed on mobile, open on desktop) -->
+    <div id="panel" class="panel open">
 
-      <span class="pill"><label><input type="checkbox" id="f_m1" checked> ⭐</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_m2" checked> ⭐⭐</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_m3" checked> ⭐⭐⭐</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_bib" checked> 🟢 Bib</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_sel" checked> Selected</label></span>
+      <div class="row">
+        <span class="pill"><label><input type="checkbox" id="f_michelin" checked> Michelin</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_blu" checked> Blue Ribbon</label></span>
 
-      <span class="pill"><label><input type="checkbox" id="f_r1" checked> 🔵</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_r2" checked> 🔵🔵</label></span>
-      <span class="pill"><label><input type="checkbox" id="f_r3" checked> 🔵🔵🔵</label></span>
-    </div>
+        <span class="pill"><label><input type="checkbox" id="f_m1" checked> ⭐</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_m2" checked> ⭐⭐</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_m3" checked> ⭐⭐⭐</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_bib" checked> 🟢 Bib</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_sel" checked> Selected</label></span>
 
-    <div class="row">
-      <label for="q" class="visually-hidden">Search restaurants</label>
-      <input id="q" type="search"
-             placeholder="Search name / cuisine / address…"
-             style="flex:1; padding:10px; border-radius:10px;">
-      <span id="count" class="muted"></span>
-      <button id="fitBtn" class="btn secondary">Fit</button>
-    </div>
-
-    <!-- ✅ List hidden by default -->
-    <div id="listWrap" class="collapsed">
-      <div class="row" style="justify-content: space-between;">
-        <span class="muted">Sorted (best first)</span>
-        <button id="toggleList" class="btn secondary">Show list</button>
+        <span class="pill"><label><input type="checkbox" id="f_r1" checked> 🔵</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_r2" checked> 🔵🔵</label></span>
+        <span class="pill"><label><input type="checkbox" id="f_r3" checked> 🔵🔵🔵</label></span>
       </div>
-      <div id="list" aria-label="Sorted restaurant list"></div>
+
+      <div class="row">
+        <label for="q" class="visually-hidden">Search restaurants</label>
+        <input id="q" type="search"
+               placeholder="Search name / cuisine / address…"
+               style="flex:1; padding:10px; border-radius:10px;">
+        <span id="count" class="muted"></span>
+        <button id="fitBtn" class="btn secondary">Fit</button>
+      </div>
+
+      <!-- List hidden by default -->
+      <div id="listWrap" class="collapsed">
+        <div class="row" style="justify-content: space-between;">
+          <span class="muted">Sorted (best first)</span>
+          <button id="toggleList" class="btn secondary">Show list</button>
+        </div>
+        <div id="list" aria-label="Sorted restaurant list"></div>
+      </div>
+
     </div>
   </div>
 
@@ -312,7 +361,7 @@
   const listWrap = document.getElementById("listWrap");
   const toggleListBtn = document.getElementById("toggleList");
 
-  // ✅ Theme toggle (default dark, persisted)
+  // Theme toggle (default dark, persisted)
   const themeBtn = document.getElementById("themeBtn");
   function applyTheme(isDark) {
     document.body.classList.toggle("dark", !!isDark);
@@ -331,10 +380,36 @@
     applyTheme(!isDarkNow);
   });
 
-  // ✅ List toggle (hidden by default via class="collapsed" in HTML)
+  // List toggle (hidden by default via class="collapsed" in HTML)
   toggleListBtn.addEventListener("click", () => {
     listWrap.classList.toggle("collapsed");
     toggleListBtn.textContent = listWrap.classList.contains("collapsed") ? "Show list" : "Hide list";
+  });
+
+  // Mobile panel toggle
+  const panelBtn = document.getElementById("panelBtn");
+  const panel = document.getElementById("panel");
+
+  function isMobile() {
+    return window.matchMedia("(max-width: 640px)").matches;
+  }
+
+  function setPanelOpen(open) {
+    panel.classList.toggle("open", !!open);
+    panelBtn.textContent = panel.classList.contains("open") ? "✕ Close" : "☰ Filters";
+  }
+
+  // default: open on desktop, closed on mobile
+  (function initPanel() {
+    setPanelOpen(!isMobile());
+  })();
+
+  panelBtn.addEventListener("click", () => {
+    setPanelOpen(!panel.classList.contains("open"));
+  });
+
+  window.addEventListener("resize", () => {
+    setPanelOpen(!isMobile());
   });
 
   const filters = {
@@ -402,14 +477,10 @@
 
   function shortGoogleQuery(p) {
     const name = (p.name || "").trim();
-    // Google tends to resolve the place better with "Name + Seoul"
-    // than with a big English address blob.
     return name ? `${name} Seoul` : "Seoul";
   }
 
   function shortKakaoQuery(p) {
-    // Kakao search is VERY sensitive to long English address blobs.
-    // Use name only.
     return (p.name || "").trim();
   }
 
@@ -424,16 +495,13 @@
     const actions = [];
     const target = ' target="_blank" rel="noopener" ';
 
-    // Best Kakao option: direct place_url from enrichment
     if (p.kakao_url) {
       actions.push(`<a class="linkbtn" href="${escapeAttr(p.kakao_url)}"${target}>Open in KakaoMap (place)</a>`);
     } else if (lat != null && lon != null) {
-      // fallback: search by NAME ONLY, centered on coords
       actions.push(`<a class="linkbtn" href="${kakaoSearchWeb(shortKakaoQuery(p), `${lat},${lon}`)}"${target}>Search in KakaoMap</a>`);
       actions.push(`<a class="linkbtn" href="${kakaoLookWeb(lat, lon)}"${target}>Kakao pin</a>`);
     }
 
-    // Google: offer BOTH search + pin (pin is reliable, search is nicer when it works)
     if (lat != null && lon != null) {
       actions.push(`<a class="linkbtn" href="${googleSearch(shortGoogleQuery(p))}"${target}>Search in Google Maps</a>`);
       actions.push(`<a class="linkbtn" href="${googleLook(lat, lon)}"${target}>Google pin</a>`);
@@ -441,7 +509,6 @@
       actions.push(`<a class="linkbtn" href="${googleSearch(shortGoogleQuery(p))}"${target}>Search in Google Maps</a>`);
     }
 
-    // Directions (only if user location is set + coords exist)
     if (userLoc && lat != null && lon != null) {
       actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'foot')}"${target}>Kakao directions (walk)</a>`);
       actions.push(`<a class="linkbtn" href="${kakaoRouteWeb(userLoc.lat, userLoc.lon, lat, lon, 'publictransit')}"${target}>Kakao directions (transit)</a>`);
@@ -517,8 +584,17 @@
     );
   });
 
-  Object.values(filters).forEach(cb => cb.addEventListener("change", render));
+  // Close panel on mobile after changing filters/search (optional but nice)
+  function maybeAutoClosePanel() {
+    if (isMobile() && panel.classList.contains("open")) {
+      // don't auto-close while typing; only on filter changes + fit
+      // (kept minimal—comment out if you dislike)
+    }
+  }
+
+  Object.values(filters).forEach(cb => cb.addEventListener("change", () => { render(); maybeAutoClosePanel(); }));
   qEl.addEventListener("input", render);
+
   fitBtn.addEventListener("click", () => {
     if (!layer) return;
     const bounds = layer.getBounds && layer.getBounds();
@@ -595,7 +671,11 @@
     if (!r.ok) throw new Error(`Failed to load ${url}: ${r.status}`);
     const geo = await r.json();
     allFeatures = geo.features || [];
+
     render();
+
+    // make sure map sizes correctly after fixed header applies on mobile
+    setTimeout(() => map.invalidateSize(), 0);
   }
 
   boot().catch(e => { alert(e.message); console.error(e); });
