@@ -1,3 +1,4 @@
+/* ... [Previous CSS Variables remain same] ... */
 :root {
   --bg: #ffffff;
   --panel: #ffffff;
@@ -6,20 +7,16 @@
   --muted: #666666;
   --border: #dddddd;
   --accent: #2c3e50;
-
   --btn-bg: #111111;
   --btn-text: #ffffff;
   --btn-border: #111111;
-
   --btn2-bg: #ffffff;
   --btn2-text: #111111;
   --btn2-border: #dddddd;
-
   --hover: #f0f0f0;
   --tag-bg: #ffffff;
   --tag-text: #333333;
   --tag-border: #dddddd;
-
   --shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
@@ -31,22 +28,24 @@ body.dark {
   --muted: #aab2c5;
   --border: rgba(255,255,255,0.12);
   --accent: #64ffda;
-
   --btn-bg: #e8ecf6;
   --btn-text: #0b0d12;
   --btn-border: rgba(255,255,255,0.25);
-
   --btn2-bg: rgba(255,255,255,0.06);
   --btn2-text: #e8ecf6;
   --btn2-border: rgba(255,255,255,0.14);
-
   --hover: rgba(255,255,255,0.08);
   --tag-bg: rgba(255,255,255,0.06);
   --tag-text: #e8ecf6;
   --tag-border: rgba(255,255,255,0.14);
-
   --shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
+
+/* THE MAGIC TRICK: Dark Mode for Google Maps */
+body.dark .leaflet-tile-pane {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+/* Prevent map labels/controls from being inverted if they were HTML (Leaflet handles this mostly) */
 
 html, body { height: 100%; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 body { background: var(--bg); color: var(--text); }
@@ -61,7 +60,8 @@ body { background: var(--bg); color: var(--text); }
   flex-direction: column;
   gap: 10px;
   box-shadow: var(--shadow);
-  z-index: 1000;
+  z-index: 2000; /* Increased z-index */
+  position: relative;
 }
 
 #map { flex: 1; z-index: 1; }
@@ -69,6 +69,7 @@ body { background: var(--bg); color: var(--text); }
 .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .spread { justify-content: space-between; width: 100%; }
 
+/* Buttons & Inputs */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -95,30 +96,12 @@ body { background: var(--bg); color: var(--text); }
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 .btn:hover { transform: translateY(-1px); opacity: 0.9; }
-.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-.btn.secondary {
-  background: var(--btn2-bg);
-  color: var(--btn2-text);
-  border-color: var(--btn2-border);
-}
+.btn.secondary { background: var(--btn2-bg); color: var(--btn2-text); border-color: var(--btn2-border); }
 .btn.icon-only { padding: 8px; }
 
-.muted { color: var(--muted); font-size: 12px; }
-
-.brand {
-  font-weight: 800;
-  font-size: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text);
-  text-decoration: none;
-}
-
-/* --- Search & Inputs --- */
 #q {
   background: var(--panel2);
   color: var(--text);
@@ -127,7 +110,8 @@ body { background: var(--bg); color: var(--text); }
   padding: 8px 12px;
   outline: none;
   font-size: 14px;
-  min-width: 200px;
+  min-width: 120px;
+  flex: 1;
 }
 #q:focus { border-color: var(--muted); }
 
@@ -150,7 +134,6 @@ body { background: var(--bg); color: var(--text); }
   padding-bottom: 4px;
   border-bottom: 1px dashed var(--border);
 }
-.filter-group:last-child { border-bottom: none; }
 .filter-label {
   font-size: 11px;
   text-transform: uppercase;
@@ -168,8 +151,8 @@ body { background: var(--bg); color: var(--text); }
   display: flex;
   flex-direction: column;
   gap: 8px;
-  z-index: 1100;
-  pointer-events: none; /* Let map clicks pass through wrapper */
+  z-index: 1500; /* Lower than topbar (2000) */
+  pointer-events: none;
 }
 #listWrap.collapsed #list { display: none; }
 
@@ -193,9 +176,7 @@ body { background: var(--bg); color: var(--text); }
   gap: 4px;
   border-bottom: 1px solid var(--border);
 }
-.list-item:last-child { border-bottom: none; }
 .list-item:hover { background: var(--hover); }
-
 .item-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .item-name { font-weight: 700; font-size: 14px; }
 .item-meta { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
@@ -214,15 +195,11 @@ body { background: var(--bg); color: var(--text); }
 .tag.blue { border-color: #2b70c9; color: #2b70c9; background: rgba(43,112,201,0.05); }
 
 /* --- Popups --- */
-.leaflet-popup-content-wrapper {
-  background: var(--panel);
-  color: var(--text);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
+.leaflet-popup-content-wrapper { background: var(--panel); color: var(--text); border-radius: 12px; box-shadow: var(--shadow); }
 .leaflet-popup-tip { background: var(--panel); }
 .popup-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
 .popup-meta { font-size: 13px; color: var(--muted); margin-bottom: 8px; line-height: 1.4; }
+.popup-desc { font-size: 12px; margin-bottom: 8px; color: var(--text); line-height: 1.5; border-left: 2px solid var(--border); padding-left: 8px; }
 .popup-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
 
 .linkbtn {
@@ -242,22 +219,9 @@ body { background: var(--bg); color: var(--text); }
 .linkbtn.kakao { border-color: #fee500; background: rgba(254,229,0,0.1); color: #887800; }
 .linkbtn.naver { border-color: #03c75a; background: rgba(3,199,90,0.1); color: #008f40; }
 
-/* --- Cluster Tweaks (Dark Mode) --- */
-body.dark .marker-cluster-small,
-body.dark .marker-cluster-medium,
-body.dark .marker-cluster-large {
-  background-color: rgba(100, 255, 218, 0.2);
-}
-body.dark .marker-cluster div {
-  background-color: rgba(100, 255, 218, 0.5);
-  color: #000;
-  font-weight: bold;
-}
-
-/* Mobile tweaks */
+/* Mobile */
 @media (max-width: 640px) {
   #topbar { padding: 10px; gap: 8px; }
-  #q { flex: 1; min-width: 0; }
   .brand span { display: none; }
   .brand::after { content: "EMS"; display: inline; }
 
@@ -265,9 +229,8 @@ body.dark .marker-cluster div {
     position: fixed;
     top: auto; bottom: 0; left: 0; right: 0;
     width: 100%; height: 40vh;
-    z-index: 2000;
+    z-index: 2500; /* Above map */
     border-top: 1px solid var(--border);
   }
   #list { border-radius: 12px 12px 0 0; border: none; }
-  .leaflet-bottom.leaflet-right { bottom: 42vh; }
 }

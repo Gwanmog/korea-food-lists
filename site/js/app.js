@@ -9,23 +9,23 @@ function esc(s) {
 // --- CONFIG & TRANSLATIONS ---
 const I18N = {
   en: {
-    placeholder: "Search name, cuisine...",
+    placeholder: "Search name...",
     filters: "Filters",
     source: "Source",
     award: "Award",
-    showList: "Show List",
+    showList: "List",
     hideList: "Hide List",
     count: "{n} places",
     myLoc: "You",
     searchKakao: "Search Kakao",
   },
   ko: {
-    placeholder: "식당 이름, 요리 검색...",
+    placeholder: "식당 검색...",
     filters: "필터",
     source: "출처",
     award: "등급",
-    showList: "목록 보기",
-    hideList: "목록 숨기기",
+    showList: "목록",
+    hideList: "목록 닫기",
     count: "{n}곳 발견",
     myLoc: "내 위치",
     searchKakao: "카카오맵 검색",
@@ -42,14 +42,12 @@ let userMarker = null;
 let tileLayer = null;
 
 // --- MAP INIT ---
-// Added maxZoom: 20 here ↓
 const map = L.map('map', { zoomControl: false, maxZoom: 20 }).setView([37.5665, 126.9780], 12);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-// Define Tile Layers (Google Maps)
 const tiles = {
-  en: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', // English Labels
-  ko: 'https://mt0.google.com/vt/lyrs=m&hl=ko&x={x}&y={y}&z={z}'  // Korean Labels
+  en: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}',
+  ko: 'https://mt0.google.com/vt/lyrs=m&hl=ko&x={x}&y={y}&z={z}'
 };
 
 function setMapLanguage(lang) {
@@ -71,42 +69,37 @@ map.addLayer(clusterGroup);
 
 
 // --- UI HANDLERS ---
-$('filterToggle').onclick = () => {
-  $('panel').classList.toggle('closed');
-};
+$('filterToggle').onclick = () => $('panel').classList.toggle('closed');
 
 $('listToggle').onclick = () => {
   $('listWrap').classList.toggle('collapsed');
-  updateListButtonText();
+  // Update button text logic if needed, but "List" works for both
 };
 
-function updateListButtonText() {
-  const isCollapsed = $('listWrap').classList.contains('collapsed');
-  $('listToggle').textContent = isCollapsed ? I18N[currentLang].showList : I18N[currentLang].hideList;
-}
+// Theme Toggle
+$('themeBtn').onclick = () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  $('themeBtn').textContent = isDark ? '🌙' : '☀️';
+};
 
-// Language Toggle Handler
+// Language Toggle
 $('langBtn').onclick = () => {
-  // Toggle State
   currentLang = currentLang === 'en' ? 'ko' : 'en';
   $('langBtn').textContent = currentLang === 'en' ? 'KR' : 'EN';
-
-  // 1. Update Map Tiles
   setMapLanguage(currentLang);
 
-  // 2. Update UI Text
   const t = I18N[currentLang];
   $('q').placeholder = t.placeholder;
   $('filterToggle').textContent = t.filters;
+  $('listToggle').textContent = t.showList;
 
-  // Update elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key]) el.textContent = t[key];
   });
 
-  updateListButtonText();
-  render(); // Re-render to update counts and popups
+  render();
 };
 
 $('locBtn').onclick = () => {
@@ -141,14 +134,11 @@ $('q').oninput = render;
 
 // --- FILTER LOGIC ---
 function passes(p) {
-  // 1. Source
   const src = (p.source || "").toLowerCase();
   if (src.includes("michelin") && !filters.michelin.checked) return false;
   if (src.includes("blue") && !filters.blu.checked) return false;
 
-  // 2. Category/Award
   const cat = (p.category || "").toUpperCase();
-
   if (src.includes("michelin")) {
     if (cat.includes("3 STAR") && !filters.m3.checked) return false;
     if (cat.includes("2 STAR") && !filters.m2.checked) return false;
@@ -161,10 +151,9 @@ function passes(p) {
     if (cat.includes("ONE") && !filters.r1.checked) return false;
   }
 
-  // 3. Search Text
   const q = $('q').value.trim().toLowerCase();
   if (q) {
-    const hay = [p.name, p.cuisine, p.address].join(" ").toLowerCase();
+    const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
     if (!hay.includes(q)) return false;
   }
 
@@ -198,36 +187,37 @@ function renderPopup(p) {
   let meta = [];
   if (p.cuisine) meta.push(`🍴 ${esc(p.cuisine)}`);
   if (p.price) meta.push(`💰 ${esc(p.price)}`);
-  if (p.year) meta.push(`📅 ${esc(p.year)}`);
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
   let actions = [];
-
-  // Kakao Button
   if (p.kakao_url) {
     actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
   } else {
     actions.push(`<a class="linkbtn kakao" href="https://map.kakao.com/link/search/${enc(p.name)}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
   }
-
   actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver</a>`);
   actions.push(`<a class="linkbtn" href="${googleSearch}" target="_blank">Google</a>`);
+
+  // NEW: Description logic
+  let descHtml = "";
+  if (p.description) {
+    // Truncate if too long (300 chars)
+    const shortDesc = p.description.length > 300 ? p.description.substring(0, 300) + "..." : p.description;
+    descHtml = `<div class="popup-desc">${esc(shortDesc)}</div>`;
+  }
 
   return `
     <div class="popup-title">${esc(p.name)}</div>
     <div class="popup-meta">
       ${meta.join("<br>")}
-      <br><span style="opacity:0.7; font-size:11px;">${esc(p.address || "")}</span>
     </div>
+    ${descHtml}
     <div class="popup-actions">${actions.join("")}</div>
   `;
 }
 
 function render() {
-  // Filter
   const visible = allFeatures.filter(f => passes(f.properties));
-
-  // Sort
   visible.sort((a, b) => {
     const score = p => {
       let s = 0;
@@ -241,14 +231,11 @@ function render() {
     return score(b.properties) - score(a.properties);
   });
 
-  // Count Text
   const t = I18N[currentLang];
   $('count').textContent = t.count.replace("{n}", visible.length);
 
-  // 1. Clear Clusters
   clusterGroup.clearLayers();
 
-  // 2. Create Leaflet GeoJSON layer
   const geoJsonLayer = L.geoJSON({ type: "FeatureCollection", features: visible }, {
     pointToLayer: (feature, latlng) => {
       const p = feature.properties;
@@ -269,10 +256,8 @@ function render() {
     }
   });
 
-  // 3. Add to Cluster Group
   clusterGroup.addLayer(geoJsonLayer);
 
-  // 4. List View Update
   const listEl = $('list');
   listEl.innerHTML = "";
 
@@ -301,16 +286,14 @@ function render() {
 
       if (window.innerWidth < 640) {
         $('listWrap').classList.add('collapsed');
-        updateListButtonText();
       }
     };
     listEl.appendChild(div);
   });
 }
 
-// --- BOOT ---
 async function init() {
-  setMapLanguage('en'); // Default to English tiles
+  setMapLanguage('en');
   try {
     const res = await fetch('./places.geojson');
     if (!res.ok) throw new Error("Failed to load data");

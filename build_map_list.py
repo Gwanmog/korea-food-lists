@@ -9,7 +9,7 @@ import time
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 from urllib.parse import urlencode, urljoin
 
 import requests
@@ -35,7 +35,7 @@ DIR_SITE = Path("site")
 # -------------------------
 @dataclass
 class Place:
-    source: str  # "michelin" | "blueribbon"
+    source: str
     name: str
     address: str | None
     city: str | None
@@ -46,6 +46,7 @@ class Place:
     phone: str | None
     url: str | None
     year: str | None
+    description: str | None  # New field for "Good for date night", etc.
     latitude: float | None
     longitude: float | None
     captured_at: str
@@ -59,7 +60,7 @@ class Place:
 class KakaoLedger:
     def __init__(self, path: Path):
         self.path = path
-        self.data: Dict[str, Any] = {}
+        self.data: dict[str, Any] = {}
         self.loaded = False
 
     def load(self):
@@ -80,7 +81,6 @@ class KakaoLedger:
         print(f"[ledger] saved {len(self.data)} entries to {self.path}")
 
     def get_key(self, name: str, address: str | None) -> str:
-        # Create a stable key like "mingles__gangnam-gu-1-23"
         n = slugify(name or "unknown", lowercase=True)
         a = slugify(address or "", lowercase=True)
         return f"{n}__{a}"
@@ -90,9 +90,6 @@ class KakaoLedger:
         return self.data.get(self.get_key(name, address))
 
     def update(self, name: str, address: str | None, result: dict | None):
-        """
-        result is the raw kakao doc OR {'found': False}
-        """
         if not self.loaded: self.load()
         key = self.get_key(name, address)
         self.data[key] = result
@@ -105,18 +102,12 @@ def kakao_rest_key() -> str | None:
     return os.getenv("KAKAO_REST_API_KEY")
 
 
-def kakao_local_keyword_search(
-        s: requests.Session,
-        api_key: str,
-        query: str,
-        x: float | None,
-        y: float | None
-) -> list[dict]:
+def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x: float | None, y: float | None) -> list[
+    dict]:
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
-    params = {"query": query[:80], "size": 5, "category_group_code": "FD6"}  # FD6 = food
-
+    params = {"query": query[:80], "size": 3, "category_group_code": "FD6"}
     if x and y:
-        params.update({"x": str(x), "y": str(y), "radius": "2000"})
+        params.update({"x": str(x), "y": str(y), "radius": "1000"})  # Tighter radius for validation
 
     headers = {"Authorization": f"KakaoAK {api_key}"}
     try:
@@ -138,40 +129,26 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     s = requests.Session()
     ledger.load()
 
-    hits = 0
-    misses = 0
-    api_calls = 0
-
+    hits, misses, api_calls = 0, 0, 0
     out: list[Place] = []
 
     for p in places:
-        # 1. Check Ledger
         cached = ledger.get(p.name, p.address)
-
         if cached:
-            # We have a record (either a hit or a confirmed miss)
-            if cached.get("found") is False:
-                pass  # Confirmed miss, do nothing
-            else:
+            if cached.get("found") is not False:
                 hits += 1
                 p.kakao_id = cached.get("id")
                 p.kakao_url = cached.get("place_url")
-                # Backfill coords if missing
-                if not p.latitude and cached.get("y"):
-                    p.latitude = float(cached["y"])
-                if not p.longitude and cached.get("x"):
-                    p.longitude = float(cached["x"])
+                if not p.latitude and cached.get("y"): p.latitude = float(cached["y"])
+                if not p.longitude and cached.get("x"): p.longitude = float(cached["x"])
             out.append(p)
             continue
 
-        # 2. Not in Ledger -> Call API
         api_calls += 1
         misses += 1
 
-        # Prepare queries
         candidates = [p.name]
         if p.address:
-            # simple cleanup
             short_addr = " ".join(p.address.split()[:3])
             candidates.append(f"{p.name} {short_addr}")
 
@@ -179,12 +156,10 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
         for q in candidates:
             docs = kakao_local_keyword_search(s, api_key, q, p.longitude, p.latitude)
             if docs:
-                # Simple heuristic: pick first or best match
                 best_doc = docs[0]
                 break
-            time.sleep(0.1)  # politeness
+            time.sleep(0.1)
 
-        # 3. Update Ledger & Place
         if best_doc:
             ledger.update(p.name, p.address, best_doc)
             p.kakao_id = best_doc.get("id")
@@ -195,7 +170,6 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
             ledger.update(p.name, p.address, {"found": False})
 
         out.append(p)
-
         if api_calls % 10 == 0:
             print(f"[kakao] progress: {api_calls} API calls made...")
             time.sleep(0.5)
@@ -206,7 +180,7 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
 
 
 # -------------------------
-# Scraper: Shared Utils
+# Scrapers
 # -------------------------
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -231,18 +205,16 @@ def make_session_bluer() -> requests.Session:
     return s
 
 
-# -------------------------
-# Scraper: Michelin
-# -------------------------
 def scrape_michelin_run(limit: int = 0) -> list[Place]:
     print("[michelin] Starting scrape...")
     s = make_session_michelin()
     captured_at = utc_now_iso()
     places = []
 
-    # 1. Get List
     page = 1
     detail_urls = set()
+
+    # 1. Collect URLs
     while True:
         url = f"{MICHELIN_SEOUL_LIST}/page/{page}" if page > 1 else MICHELIN_SEOUL_LIST
         print(f"[michelin] listing page {page}...")
@@ -251,14 +223,12 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             if r.status_code == 404: break
             r.raise_for_status()
             soup = BeautifulSoup(r.text, "lxml")
-
             links = soup.select("a[href*='/restaurant/']")
             if not links: break
 
             new_found = 0
             for link in links:
-                href = link['href']
-                full = urljoin(MICHELIN_BASE, href)
+                full = urljoin(MICHELIN_BASE, link['href'])
                 if full not in detail_urls:
                     detail_urls.add(full)
                     new_found += 1
@@ -272,20 +242,34 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
 
     sorted_urls = sorted(list(detail_urls))
     if limit: sorted_urls = sorted_urls[:limit]
-
     print(f"[michelin] found {len(sorted_urls)} details. Fetching...")
 
-    # 2. Get Details
+    # 2. Fetch Details
     for i, u in enumerate(sorted_urls):
         try:
             time.sleep(0.5)
             r = s.get(u, timeout=20)
             soup = BeautifulSoup(r.text, "lxml")
 
-            # --- Parse Logic (Condensed from your original) ---
             name = soup.find("h1").get_text(strip=True) if soup.find("h1") else "Unknown"
 
-            # Geo/Address from JSON-LD
+            # --- Description (Review) extraction ---
+            desc_div = soup.select_one(".data-sheet__description")
+            description = desc_div.get_text(strip=True) if desc_div else None
+
+            # --- Price / Cuisine ---
+            price_cuisine_text = soup.select_one(".data-sheet__block--text")
+            pc_text = price_cuisine_text.get_text(strip=True) if price_cuisine_text else ""
+
+            price, cuisine = None, None
+            if "·" in pc_text:
+                parts = pc_text.split("·")
+                price = parts[0].strip()
+                cuisine = parts[1].strip()
+            else:
+                cuisine = pc_text
+
+            # --- Geo ---
             lat, lon, address = None, None, None
             scripts = soup.find_all("script", {"type": "application/ld+json"})
             for sc in scripts:
@@ -302,13 +286,11 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
                 except:
                     pass
 
-            # Fallback Address
             if not address:
-                body_text = soup.body.get_text()
-                m = re.search(r"([^\n]+,\s*Seoul)", body_text)
+                m = re.search(r"([^\n]+,\s*Seoul)", soup.body.get_text())
                 if m: address = m.group(1).strip()
 
-            # Category
+            # --- Category ---
             category = "Selected"
             text_lower = soup.body.get_text().lower()
             if "3 stars" in text_lower:
@@ -322,7 +304,8 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
 
             p = Place(
                 source="michelin", name=name, address=address, city="Seoul", country="South Korea",
-                category=category, cuisine=None, price=None, phone=None, url=u, year=None,
+                category=category, cuisine=cuisine, price=price, phone=None, url=u, year=None,
+                description=description,  # New
                 latitude=lat, longitude=lon, captured_at=captured_at
             )
             places.append(p)
@@ -334,27 +317,23 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
     return places
 
 
-# -------------------------
-# Scraper: Blue Ribbon
-# -------------------------
 def scrape_bluer_run() -> list[Place]:
     print("[bluer] Starting scrape...")
     s = make_session_bluer()
     captured_at = utc_now_iso()
     places = []
-
     zones = ["서울 강북", "서울 강남"]
 
     for zone in zones:
         print(f"[bluer] probing zone: {zone}")
-        params = {"zone1": zone, "page": 1, "size": 30}  # modest size
+        params = {"zone1": zone, "page": 1, "size": 30}
+        consecutive_empty = 0
 
         while True:
             try:
                 url = f"{BLUER_API}/restaurants?{urlencode(params)}"
                 r = s.get(url, timeout=20)
                 if r.status_code == 429:
-                    print("  Rate limited, sleeping 5s...")
                     time.sleep(5)
                     continue
                 r.raise_for_status()
@@ -367,78 +346,79 @@ def scrape_bluer_run() -> list[Place]:
 
                 if not items: break
 
+                found_on_page = 0
                 for item in items:
                     header = item.get("headerInfo") or {}
                     ribbon = (header.get("ribbonType") or "").upper()
 
-                    # Filter: Winners only (2024/2025 implied by active status usually, but we check ribbon)
                     if ribbon in ["RIBBON_ONE", "RIBBON_TWO", "RIBBON_THREE"]:
+                        found_on_page += 1
                         juso = item.get("juso") or {}
                         gps = item.get("gps") or {}
+
+                        # Description from "comment"
+                        description = item.get("comment") or header.get("nameEN")
 
                         p = Place(
                             source="blueribbon",
                             name=header.get("nameKR") or header.get("nameEN"),
                             address=juso.get("roadAddrPart1"),
-                            city="Seoul",
-                            country="South Korea",
+                            city="Seoul", country="South Korea",
                             category=ribbon,
-                            cuisine=None,
-                            price=None,
+                            cuisine=None, price=None,
                             phone=item.get("defaultInfo", {}).get("phone"),
                             url=None,
                             year=header.get("bookYear"),
+                            description=description,  # New
                             latitude=float(gps["latitude"]) if gps.get("latitude") else None,
                             longitude=float(gps["longitude"]) if gps.get("longitude") else None,
                             captured_at=captured_at
                         )
                         places.append(p)
 
-                # Pagination
-                links = data.get("_links", {})
-                if "next" not in links: break
+                if found_on_page == 0:
+                    consecutive_empty += 1
+                else:
+                    consecutive_empty = 0
 
-                # Parse next page num manually or from href
+                if consecutive_empty >= 5:
+                    print(f"  [bluer] 5 empty pages. Next zone.")
+                    break
+
+                if "next" not in data.get("_links", {}): break
                 params["page"] += 1
                 time.sleep(0.5)
-                print(f"  zone {zone} page {params['page']} done (total so far: {len(places)})")
 
             except Exception as e:
                 print(f"[bluer] error: {e}")
                 break
 
+        save_raw(places, "blueribbon.csv")
     return places
 
 
 # -------------------------
-# File I/O
+# IO
 # -------------------------
 def save_raw(places: list[Place], filename: str):
     path = DIR_RAW / filename
     path.parent.mkdir(parents=True, exist_ok=True)
-
     if not places: return
-
     keys = asdict(places[0]).keys()
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=keys)
         w.writeheader()
-        for p in places:
-            w.writerow(asdict(p))
+        for p in places: w.writerow(asdict(p))
     print(f"[io] saved {len(places)} to {path}")
 
 
 def load_raw(filename: str) -> list[Place]:
     path = DIR_RAW / filename
-    if not path.exists():
-        print(f"[io] warning: {path} not found")
-        return []
-
+    if not path.exists(): return []
     out = []
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # Type conversion
             if row.get("latitude"): row["latitude"] = float(row["latitude"])
             if row.get("longitude"): row["longitude"] = float(row["longitude"])
             out.append(Place(**row))
@@ -448,92 +428,55 @@ def load_raw(filename: str) -> list[Place]:
 def write_geojson(places: list[Place]):
     DIR_SITE.mkdir(exist_ok=True)
     path = DIR_SITE / "places.geojson"
-
     features = []
     for p in places:
         if not p.latitude or not p.longitude: continue
-
         props = asdict(p)
-        # remove internal fields from public geojson if you want
         del props["latitude"]
         del props["longitude"]
         del props["captured_at"]
-
         features.append({
             "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [p.longitude, p.latitude]
-            },
+            "geometry": {"type": "Point", "coordinates": [p.longitude, p.latitude]},
             "properties": props
         })
-
-    fc = {"type": "FeatureCollection", "features": features}
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(fc, f, ensure_ascii=False, indent=2)
+        json.dump({"type": "FeatureCollection", "features": features}, f, ensure_ascii=False, indent=2)
     print(f"[io] wrote {len(features)} features to {path}")
 
 
 # -------------------------
-# Main Controller
+# Main
 # -------------------------
 def main():
-    parser = argparse.ArgumentParser(description="Map Data Manager")
+    parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
-
-    # Command: FETCH
-    p_fetch = subparsers.add_parser("fetch", help="Scrape data from web")
-    p_fetch.add_argument("--test-limit", type=int, default=0, help="Limit items for testing")
-
-    # Command: BUILD
-    p_build = subparsers.add_parser("build", help="Process raw data -> map files")
+    p_fetch = subparsers.add_parser("fetch")
+    p_fetch.add_argument("--test-limit", type=int, default=0)
+    p_build = subparsers.add_parser("build")
 
     args = parser.parse_args()
 
-    # --- EXECUTE FETCH ---
     if args.command == "fetch":
-        print("=== MODE: FETCH ===")
-        # 1. Michelin
-        m_places = scrape_michelin_run(limit=args.test_limit)
-        save_raw(m_places, "michelin.csv")
+        save_raw(scrape_michelin_run(limit=args.test_limit), "michelin.csv")
+        if args.test_limit == 0: save_raw(scrape_bluer_run(), "blueribbon.csv")
 
-        # 2. Blue Ribbon (skip if testing small limit)
-        if args.test_limit > 0 and args.test_limit < 10:
-            print("Skipping Blue Ribbon due to test limit")
-        else:
-            b_places = scrape_bluer_run()
-            save_raw(b_places, "blueribbon.csv")
-
-    # --- EXECUTE BUILD ---
     elif args.command == "build":
-        print("=== MODE: BUILD ===")
+        m = load_raw("michelin.csv")
+        b = load_raw("blueribbon.csv")
+        all_places = m + b
 
-        # 1. Load Raw
-        m_places = load_raw("michelin.csv")
-        b_places = load_raw("blueribbon.csv")
-        all_places = m_places + b_places
-        print(f"Loaded {len(all_places)} raw items.")
-
-        # 2. Deduplicate (Simple Slugify)
         unique = {}
         for p in all_places:
             key = slugify(f"{p.name} {p.address or ''}")
             if key not in unique:
                 unique[key] = p
-            else:
-                # Merge logic: Prefer Michelin if overlap
-                if p.source == "michelin": unique[key] = p
+            elif p.source == "michelin":
+                unique[key] = p
 
         merged = list(unique.values())
-        print(f"Merged to {len(merged)} unique items.")
-
-        # 3. Enrich (Kakao + Ledger)
-        ledger = KakaoLedger(DIR_CACHE / "kakao_ledger.json")
-        enriched = enrich_places_with_ledger(merged, ledger)
-
-        # 4. Export
-        write_geojson(enriched)
-        # (Add write_kml here if needed)
+        enrich_places_with_ledger(merged, KakaoLedger(DIR_CACHE / "kakao_ledger.json"))
+        write_geojson(merged)
 
 
 if __name__ == "__main__":
