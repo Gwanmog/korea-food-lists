@@ -42,7 +42,8 @@ let userMarker = null;
 let tileLayer = null;
 
 // --- MAP INIT ---
-const map = L.map('map', { zoomControl: false }).setView([37.5665, 126.9780], 12);
+// Added maxZoom: 20 here ↓
+const map = L.map('map', { zoomControl: false, maxZoom: 20 }).setView([37.5665, 126.9780], 12);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
 // Define Tile Layers (Google Maps)
