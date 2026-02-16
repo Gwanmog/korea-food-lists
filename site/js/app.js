@@ -6,29 +6,65 @@ function esc(s) {
   return s.toString().replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">");
 }
 
+// --- CONFIG & TRANSLATIONS ---
+const I18N = {
+  en: {
+    placeholder: "Search name, cuisine...",
+    filters: "Filters",
+    source: "Source",
+    award: "Award",
+    showList: "Show List",
+    hideList: "Hide List",
+    count: "{n} places",
+    myLoc: "You",
+    searchKakao: "Search Kakao",
+  },
+  ko: {
+    placeholder: "식당 이름, 요리 검색...",
+    filters: "필터",
+    source: "출처",
+    award: "등급",
+    showList: "목록 보기",
+    hideList: "목록 숨기기",
+    count: "{n}곳 발견",
+    myLoc: "내 위치",
+    searchKakao: "카카오맵 검색",
+  }
+};
+
+let currentLang = 'en';
+
 // --- STATE ---
 let allFeatures = [];
-let clusterGroup = null; // Replaces simple LayerGroup
+let clusterGroup = null;
 let userLoc = null;
 let userMarker = null;
+let tileLayer = null;
 
 // --- MAP INIT ---
 const map = L.map('map', { zoomControl: false }).setView([37.5665, 126.9780], 12);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-// Default Tiles
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© OpenStreetMap, © CartoDB',
-  subdomains: 'abcd',
-  maxZoom: 20
-}).addTo(map);
+// Define Tile Layers (Google Maps)
+const tiles = {
+  en: 'https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', // English Labels
+  ko: 'https://mt0.google.com/vt/lyrs=m&hl=ko&x={x}&y={y}&z={z}'  // Korean Labels
+};
+
+function setMapLanguage(lang) {
+  if (tileLayer) tileLayer.remove();
+  tileLayer = L.tileLayer(tiles[lang], {
+    attribution: 'Map data © Google',
+    maxZoom: 20
+  }).addTo(map);
+}
 
 // Init Cluster Group
 clusterGroup = L.markerClusterGroup({
   showCoverageOnHover: false,
-  maxClusterRadius: 50, // Smaller radius = more clusters
+  maxClusterRadius: 50,
   spiderfyOnMaxZoom: true,
-  disableClusteringAtZoom: 17 // Stop clustering when zoomed in close
+  disableClusteringAtZoom: 17
 });
 map.addLayer(clusterGroup);
 
@@ -40,21 +76,36 @@ $('filterToggle').onclick = () => {
 
 $('listToggle').onclick = () => {
   $('listWrap').classList.toggle('collapsed');
-  $('listToggle').textContent = $('listWrap').classList.contains('collapsed') ? 'Show List' : 'Hide List';
+  updateListButtonText();
 };
 
-$('themeBtn').onclick = () => {
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  $('themeBtn').textContent = isDark ? '🌙' : '☀️';
+function updateListButtonText() {
+  const isCollapsed = $('listWrap').classList.contains('collapsed');
+  $('listToggle').textContent = isCollapsed ? I18N[currentLang].showList : I18N[currentLang].hideList;
+}
 
-  const url = isDark
-    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+// Language Toggle Handler
+$('langBtn').onclick = () => {
+  // Toggle State
+  currentLang = currentLang === 'en' ? 'ko' : 'en';
+  $('langBtn').textContent = currentLang === 'en' ? 'KR' : 'EN';
 
-  map.eachLayer(l => {
-      if (l instanceof L.TileLayer) l.setUrl(url);
+  // 1. Update Map Tiles
+  setMapLanguage(currentLang);
+
+  // 2. Update UI Text
+  const t = I18N[currentLang];
+  $('q').placeholder = t.placeholder;
+  $('filterToggle').textContent = t.filters;
+
+  // Update elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
   });
+
+  updateListButtonText();
+  render(); // Re-render to update counts and popups
 };
 
 $('locBtn').onclick = () => {
@@ -65,7 +116,7 @@ $('locBtn').onclick = () => {
       const { latitude, longitude } = pos.coords;
       userLoc = { lat: latitude, lon: longitude };
       if (userMarker) userMarker.remove();
-      userMarker = L.marker([latitude, longitude]).addTo(map).bindPopup("You");
+      userMarker = L.marker([latitude, longitude]).addTo(map).bindPopup(I18N[currentLang].myLoc);
       map.setView([latitude, longitude], 14);
       $('locBtn').disabled = false;
       render();
@@ -146,19 +197,19 @@ function renderPopup(p) {
   let meta = [];
   if (p.cuisine) meta.push(`🍴 ${esc(p.cuisine)}`);
   if (p.price) meta.push(`💰 ${esc(p.price)}`);
-  // Year is still shown as metadata, but filter is removed
   if (p.year) meta.push(`📅 ${esc(p.year)}`);
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
   let actions = [];
 
+  // Kakao Button
   if (p.kakao_url) {
-    actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao Map</a>`);
+    actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
   } else {
-    actions.push(`<a class="linkbtn kakao" href="https://map.kakao.com/link/search/${enc(p.name)}" target="_blank">Search Kakao</a>`);
+    actions.push(`<a class="linkbtn kakao" href="https://map.kakao.com/link/search/${enc(p.name)}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
   }
 
-  actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver Map</a>`);
+  actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver</a>`);
   actions.push(`<a class="linkbtn" href="${googleSearch}" target="_blank">Google</a>`);
 
   return `
@@ -175,7 +226,7 @@ function render() {
   // Filter
   const visible = allFeatures.filter(f => passes(f.properties));
 
-  // Sort (Best awards first)
+  // Sort
   visible.sort((a, b) => {
     const score = p => {
       let s = 0;
@@ -189,12 +240,14 @@ function render() {
     return score(b.properties) - score(a.properties);
   });
 
-  $('count').textContent = `${visible.length} places`;
+  // Count Text
+  const t = I18N[currentLang];
+  $('count').textContent = t.count.replace("{n}", visible.length);
 
   // 1. Clear Clusters
   clusterGroup.clearLayers();
 
-  // 2. Create Leaflet GeoJSON layer (but don't add to map directly)
+  // 2. Create Leaflet GeoJSON layer
   const geoJsonLayer = L.geoJSON({ type: "FeatureCollection", features: visible }, {
     pointToLayer: (feature, latlng) => {
       const p = feature.properties;
@@ -236,22 +289,19 @@ function render() {
       </div>
     `;
     div.onclick = () => {
-      // Zoom to point
       const lat = f.geometry.coordinates[1];
       const lon = f.geometry.coordinates[0];
-
-      // We must zoom to the marker, then pop it up.
-      // With clusters, we might need to zoom nicely.
       map.setView([lat, lon], 16);
-
-      // Small delay to let cluster expand if needed
       setTimeout(() => {
         clusterGroup.eachLayer(l => {
           if (l.feature === f) l.openPopup();
         });
       }, 300);
 
-      if (window.innerWidth < 640) $('listWrap').classList.add('collapsed');
+      if (window.innerWidth < 640) {
+        $('listWrap').classList.add('collapsed');
+        updateListButtonText();
+      }
     };
     listEl.appendChild(div);
   });
@@ -259,6 +309,7 @@ function render() {
 
 // --- BOOT ---
 async function init() {
+  setMapLanguage('en'); // Default to English tiles
   try {
     const res = await fetch('./places.geojson');
     if (!res.ok) throw new Error("Failed to load data");

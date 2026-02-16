@@ -13,31 +13,30 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="dark">
+<body>
 <div id="app">
   <div id="topbar">
     <div class="row spread">
       <div class="row">
         <div class="brand">🍜 <span>Eat my Seoul</span></div>
-        <button id="locBtn" class="btn secondary icon-only" title="Use my location">📍</button>
+        <button id="locBtn" class="btn secondary icon-only" aria-label="My Location">📍</button>
       </div>
 
       <div class="row">
-        <input id="q" type="search" placeholder="Search name, cuisine..." autocomplete="off" aria-label="Search restaurants">
-        <button id="filterToggle" class="btn secondary">Filters</button>
-        <button id="themeBtn" class="btn secondary icon-only">🌙</button>
-      </div>
+        <input id="q" type="search" placeholder="Search name, cuisine..." autocomplete="off" aria-label="Search">
+        <button id="filterToggle" class="btn secondary" data-i18n="filters">Filters</button>
+        <button id="langBtn" class="btn secondary">KR</button> </div>
     </div>
 
     <div id="panel" class="closed">
       <div class="filter-group">
-        <span class="filter-label">Source</span>
+        <span class="filter-label" data-i18n="source">Source</span>
         <label class="pill"><input type="checkbox" id="f_michelin" checked> Michelin</label>
         <label class="pill"><input type="checkbox" id="f_blu" checked> Blue Ribbon</label>
       </div>
 
       <div class="filter-group">
-        <span class="filter-label">Award</span>
+        <span class="filter-label" data-i18n="award">Award</span>
         <label class="pill"><input type="checkbox" id="f_m3" checked> ⭐⭐⭐</label>
         <label class="pill"><input type="checkbox" id="f_m2" checked> ⭐⭐</label>
         <label class="pill"><input type="checkbox" id="f_m1" checked> ⭐</label>
@@ -49,7 +48,7 @@
 
       <div class="row spread" style="margin-top: 4px;">
         <span id="count" class="muted">Loading...</span>
-        <button id="listToggle" class="btn secondary">Show List</button>
+        <button id="listToggle" class="btn secondary" data-i18n="showList">Show List</button>
       </div>
     </div>
   </div>
