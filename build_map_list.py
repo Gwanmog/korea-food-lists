@@ -104,25 +104,59 @@ def kakao_rest_key() -> str | None:
 
 def kakao_address_search(s: requests.Session, api_key: str, address: str) -> dict | None:
     """
-    Finds coordinates for a specific address string.
+    Smart Address Search that handles English-ordered addresses (Number Road -> Road Number).
     """
     url = "https://dapi.kakao.com/v2/local/search/address.json"
-
-    # Clean: Remove "B1F", "1F", etc.
-    clean_addr = re.sub(r'\b[B]?\d+F\b,?', '', address, flags=re.IGNORECASE).strip()
-    clean_addr = clean_addr.replace(",", " ")
-
     headers = {"Authorization": f"KakaoAK {api_key}"}
-    params = {"query": clean_addr[:80], "analyze_type": "similar"}
 
-    try:
-        r = s.get(url, params=params, headers=headers, timeout=10)
-        r.raise_for_status()
-        docs = r.json().get("documents", [])
-        if docs:
-            return {"x": docs[0]["x"], "y": docs[0]["y"]}
-    except Exception as e:
-        print(f"[kakao] address search error for '{clean_addr}': {e}")
+    # 1. CLEANUP
+    # Remove "B1F", "1F", zip codes, Country, City to isolate the street address
+    clean_addr = re.sub(r'\b[B]?\d+F\b,?', '', address, flags=re.IGNORECASE)  # Floor info
+    clean_addr = re.sub(r'\b\d{5}\b', '', clean_addr)  # Zip codes
+    clean_addr = clean_addr.replace("South Korea", "").replace("Seoul", "").replace(",", " ").strip()
+
+    queries = [clean_addr]
+
+    # 2. FLIP LOGIC (Improved)
+    # Check for "Gu" (District) to split the string
+    gu_match = re.search(r'([a-zA-Z]+-gu)', clean_addr, re.IGNORECASE)
+    if gu_match:
+        gu = gu_match.group(1)
+        # Get everything AFTER the Gu (usually "Number Road" or "Road Number")
+        # e.g. clean_addr = "22-8 Yeonsei-ro 5da-gil Seodaemun-gu" -> rest = "22-8 Yeonsei-ro 5da-gil"
+        # e.g. clean_addr = "Seodaemun-gu 22-8 Yeonsei-ro 5da-gil" -> rest = "22-8 Yeonsei-ro 5da-gil"
+        rest = clean_addr.replace(gu, "").strip()
+
+        # PATTERN: Starts with Number (digits + optional hyphen) followed by Text
+        # ex: "22-8 Yeonsei-ro 5da-gil"
+        number_first_match = re.match(r'^(\d+(?:-\d+)?)\s+(.+)$', rest)
+
+        if number_first_match:
+            number = number_first_match.group(1)
+            road = number_first_match.group(2)
+            # Reconstruct as: Gu Road Number
+            queries.insert(0, f"Seoul {gu} {road} {number}")
+        else:
+            # Maybe it's already correct? Just ensure Gu is first.
+            queries.insert(0, f"Seoul {gu} {rest}")
+
+    # 3. EXECUTE SEARCHES
+    for q in queries:
+        # Collapse multiple spaces
+        q = re.sub(r'\s+', ' ', q).strip()
+        if not q: continue
+
+        try:
+            params = {"query": q, "analyze_type": "similar"}
+            r = s.get(url, params=params, headers=headers, timeout=5)
+            r.raise_for_status()
+            docs = r.json().get("documents", [])
+            if docs:
+                # High confidence hit
+                return {"x": docs[0]["x"], "y": docs[0]["y"]}
+        except Exception as e:
+            print(f"[kakao] address error '{q}': {e}")
+
     return None
 
 
@@ -157,66 +191,86 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     out: list[Place] = []
 
     for p in places:
+        # 0. CHECK IF WE ALREADY HAVE COORDS (Trust Michelin!)
+        has_coords = p.latitude is not None and p.longitude is not None
+
         # 1. Check Ledger
         cached = ledger.get(p.name, p.address)
         if cached:
-            # Only use cache if it was a successful find (or a hard confirm of failure)
             if cached.get("found") is not False:
                 hits += 1
                 p.kakao_id = cached.get("id")
                 p.kakao_url = cached.get("place_url")
-                if not p.latitude and cached.get("y"): p.latitude = float(cached["y"])
-                if not p.longitude and cached.get("x"): p.longitude = float(cached["x"])
+                # ONLY fill coords if we didn't have them
+                if not has_coords and cached.get("y"): p.latitude = float(cached["y"])
+                if not has_coords and cached.get("x"): p.longitude = float(cached["x"])
             out.append(p)
             continue
 
         api_calls += 1
         misses += 1
 
-        # 2. Priority: Address Search
+        # 2. Search Logic
         found_doc = None
 
-        if p.address:
-            # A. Find the Building
+        # Strategy A: If we have coords, search NEAR them (Radius 500m)
+        if has_coords:
+            docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=500)
+            if docs:
+                found_doc = docs[0]
+            else:
+                # We have location, but no Kakao ID. That's fine.
+                # Create a "dummy" doc so we don't keep searching.
+                found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
+
+        # Strategy B: Address Search (if no coords yet)
+        if not found_doc and p.address:
             coords = kakao_address_search(s, api_key, p.address)
             if coords:
-                p.longitude = float(coords["x"])
-                p.latitude = float(coords["y"])
+                # Use these coords to find the ID
+                lat, lon = float(coords["y"]), float(coords["x"])
+                if not has_coords:
+                    p.latitude, p.longitude = lat, lon
 
-                # B. Find the Business inside that Building (Radius=100m)
-                docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=100)
+                docs = kakao_local_keyword_search(s, api_key, p.name, lon, lat, radius=100)
                 if docs:
                     found_doc = docs[0]
                 else:
-                    # Found location, but not the specific business listing.
-                    # We still keep the coordinates!
                     found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
 
-        # 3. Fallback: Keyword Search (if address missing or failed)
-        if not found_doc:
+        # Strategy C: Keyword Fallback (Last Resort)
+        if not found_doc and not has_coords:
             candidates = [p.name]
             if p.address:
                 short_addr = " ".join(p.address.split()[:3])
                 candidates.append(f"{p.name} {short_addr}")
 
             for q in candidates:
-                # Use whatever lat/lon we might have scraped as a hint (radius 2km default)
-                docs = kakao_local_keyword_search(s, api_key, q, p.longitude, p.latitude)
+                docs = kakao_local_keyword_search(s, api_key, q, None, None)
                 if docs:
                     found_doc = docs[0]
                     break
                 time.sleep(0.1)
 
-        # 4. Save result
+        # 3. Save result
         if found_doc:
             ledger.update(p.name, p.address, found_doc)
             p.kakao_id = found_doc.get("id")
             p.kakao_url = found_doc.get("place_url")
-            # Prefer API coords over scraped ones
-            if found_doc.get("y"): p.latitude = float(found_doc["y"])
-            if found_doc.get("x"): p.longitude = float(found_doc["x"])
+
+            # CRITICAL FIX: Only overwrite if we started with nothing
+            if not has_coords:
+                if found_doc.get("y"): p.latitude = float(found_doc["y"])
+                if found_doc.get("x"): p.longitude = float(found_doc["x"])
         else:
-            ledger.update(p.name, p.address, {"found": False})
+            # If we have coords but found nothing in API, record as "found" with no ID
+            # This prevents re-searching next time
+            if has_coords:
+                ledger.update(p.name, p.address,
+                              {"found": True, "x": str(p.longitude), "y": str(p.latitude), "id": None,
+                               "place_url": None})
+            else:
+                ledger.update(p.name, p.address, {"found": False})
 
         out.append(p)
         if api_calls % 10 == 0:
@@ -474,8 +528,8 @@ def write_geojson(places: list[Place]):
     for p in places:
         if not p.latitude or not p.longitude: continue
         props = asdict(p)
-        del props["latitude"]
-        del props["longitude"]
+        del props["latitude"];
+        del props["longitude"];
         del props["captured_at"]
         features.append({
             "type": "Feature",
