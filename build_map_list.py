@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+import math
 import argparse
 import csv
 import json
@@ -168,22 +168,30 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     out: list[Place] = []
 
     for p in places:
-        # 0. TRUST THE SOURCE: Do we have valid coords from Scraper?
         has_coords = isinstance(p.latitude, float) and isinstance(p.longitude, float)
 
         # 1. Check Ledger
         cached = ledger.get(p.name, p.address)
-        if cached:
-            if cached.get("found") is not False:
-                hits += 1
+        if cached and cached.get("found") is not False:
+            hits += 1
+            # SANITY CHECK: If we have source coords, check if cache is too far away
+            if has_coords and cached.get("y") and cached.get("x"):
+                dist = haversine_distance(p.latitude, p.longitude, float(cached["y"]), float(cached["x"]))
+                if dist > 2000:  # If > 2km away, assume cache is wrong (e.g. Incheon vs Seoul)
+                    print(f"[sanity] Rejecting cached ID for {p.name} (Distance {dist:.0f}m)")
+                    # Don't use the ID, but keep our source coords
+                    p.kakao_id = None
+                    p.kakao_url = None
+                else:
+                    p.kakao_id = cached.get("id")
+                    p.kakao_url = cached.get("place_url")
+            else:
+                # No source coords? Trust the cache.
                 p.kakao_id = cached.get("id")
                 p.kakao_url = cached.get("place_url")
+                if not has_coords and cached.get("y"): p.latitude = float(cached["y"])
+                if not has_coords and cached.get("x"): p.longitude = float(cached["x"])
 
-                # CRITICAL: Only overwrite coords if we STARTED with nothing.
-                # If we have coords (from Michelin), ignore the cached location.
-                if not has_coords:
-                    if cached.get("y"): p.latitude = float(cached["y"])
-                    if cached.get("x"): p.longitude = float(cached["x"])
             out.append(p)
             continue
 
@@ -192,42 +200,34 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
 
         found_doc = None
 
-        # 2. Strategy A: We have Coords -> Search NEARBY for Metadata
+        # 2. Search Logic
         if has_coords:
-            # We trust the location, just looking for the Kakao ID
-            docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=200)
+            # Search strictly nearby (500m)
+            docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=500)
             if docs:
                 found_doc = docs[0]
             else:
-                # No ID found? Fine. Keep our coords and create a dummy record.
                 found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
 
-        # 3. Strategy B: Address Search (Only if we didn't have coords)
-        if not found_doc and p.address and not has_coords:
+        elif p.address:
+            # Address Search
             coords = kakao_address_search(s, api_key, p.address)
             if coords:
                 lat, lon = float(coords["y"]), float(coords["x"])
-                # Temporarily set coords for the radius search
                 docs = kakao_local_keyword_search(s, api_key, p.name, lon, lat, radius=100)
                 if docs:
                     found_doc = docs[0]
                 else:
                     found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
 
-        # 4. Strategy C: Keyword Fallback (Last Resort)
         if not found_doc and not has_coords:
-            # Safety: Don't do global search for English names (too risky)
             if p.source == "michelin":
-                print(f"[safety] Skipping keyword search for {p.name}")
                 ledger.update(p.name, p.address, {"found": False})
                 out.append(p)
                 continue
 
             candidates = [p.name]
-            if p.address:
-                short_addr = " ".join(p.address.split()[:3])
-                candidates.append(f"{p.name} {short_addr}")
-
+            if p.address: candidates.append(f"{p.name} {' '.join(p.address.split()[:3])}")
             for q in candidates:
                 docs = kakao_local_keyword_search(s, api_key, q, None, None)
                 if docs:
@@ -235,32 +235,35 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                     break
                 time.sleep(0.1)
 
-        # 5. Save result
+        # 3. Save result
         if found_doc:
+            # SANITY CHECK 2: Verify the new API result isn't crazy far
+            if has_coords:
+                dist = haversine_distance(p.latitude, p.longitude, float(found_doc["y"]), float(found_doc["x"]))
+                if dist > 2000:
+                    print(f"[sanity] Rejecting API result for {p.name} (Distance {dist:.0f}m)")
+                    # Save coords but NO ID
+                    ledger.update(p.name, p.address,
+                                  {"found": True, "x": str(p.longitude), "y": str(p.latitude), "id": None,
+                                   "place_url": None})
+                    out.append(p)
+                    continue
+
             ledger.update(p.name, p.address, found_doc)
             p.kakao_id = found_doc.get("id")
             p.kakao_url = found_doc.get("place_url")
-
-            # FINAL GUARD: Only update coords if we were missing them.
             if not has_coords:
                 if found_doc.get("y"): p.latitude = float(found_doc["y"])
                 if found_doc.get("x"): p.longitude = float(found_doc["x"])
         else:
-            if has_coords:
-                # We have coords but no ID. Save as "found" so we don't retry.
-                ledger.update(p.name, p.address,
-                              {"found": True, "x": str(p.longitude), "y": str(p.latitude), "id": None,
-                               "place_url": None})
-            else:
-                ledger.update(p.name, p.address, {"found": False})
+            ledger.update(p.name, p.address,
+                          {"found": False} if not has_coords else {"found": True, "x": str(p.longitude),
+                                                                   "y": str(p.latitude), "id": None, "place_url": None})
 
         out.append(p)
-        if api_calls % 10 == 0:
-            print(f"[kakao] progress: {api_calls} API calls made...")
-            time.sleep(0.5)
+        if api_calls % 10 == 0: time.sleep(0.5)
 
     ledger.save()
-    print(f"[kakao] Finished. Cache Hits: {hits}, API Calls: {api_calls}")
     return out
 
 
@@ -536,8 +539,8 @@ def write_geojson(places: list[Place]):
     for p in places:
         if not p.latitude or not p.longitude: continue
         props = asdict(p)
-        del props["latitude"];
-        del props["longitude"];
+        del props["latitude"]
+        del props["longitude"]
         del props["captured_at"]
         features.append({
             "type": "Feature",
@@ -548,6 +551,14 @@ def write_geojson(places: list[Place]):
         json.dump({"type": "FeatureCollection", "features": features}, f, ensure_ascii=False, indent=2)
     print(f"[io] wrote {len(features)} features to {path}")
 
+def haversine_distance(lat1, lon1, lat2, lon2):
+    R = 6371000  # Earth radius in meters
+    phi1, phi2 = math.radians(lat1), math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlambda = math.radians(lon2 - lon1)
+    a = math.sin(dphi / 2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return R * c
 
 # -------------------------
 # Main

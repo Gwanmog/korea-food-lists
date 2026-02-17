@@ -190,15 +190,26 @@ function renderPopup(p) {
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
   let actions = [];
-  if (p.kakao_url) {
+
+  // Kakao Button Logic
+  if (p.kakao_url && p.kakao_id) {
+    // We have a specific store ID -> Open the store page
     actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
   } else {
-    actions.push(`<a class="linkbtn kakao" href="https://map.kakao.com/link/search/${enc(p.name)}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
+    // No ID (or ID was rejected), but we have coordinates -> Drop a pin!
+    // Format: map.kakao.com/link/map/Name,Lat,Lon
+    // Note: Lat/Lon must come from p.geometry if available (GeoJSON structure), or properties fallback
+    const lat = p.geometry ? p.geometry.coordinates[1] : p.latitude;
+    const lon = p.geometry ? p.geometry.coordinates[0] : p.longitude;
+    const pinUrl = `https://map.kakao.com/link/map/${enc(p.name)},${lat},${lon}`;
+
+    actions.push(`<a class="linkbtn kakao" href="${pinUrl}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
   }
+
   actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver</a>`);
   actions.push(`<a class="linkbtn" href="${googleSearch}" target="_blank">Google</a>`);
 
-  // NEW: Description logic
+  // Description logic
   let descHtml = "";
   if (p.description) {
     // Truncate if too long (300 chars)
@@ -217,7 +228,21 @@ function renderPopup(p) {
 }
 
 function render() {
-  const visible = allFeatures.filter(f => passes(f.properties));
+  // 1. Get current map bounds
+  const bounds = map.getBounds();
+
+  // 2. Filter: Must be inside map view AND pass other filters
+  const visible = allFeatures.filter(f => {
+    // Check if point is inside current view
+    const lat = f.geometry.coordinates[1];
+    const lon = f.geometry.coordinates[0];
+    const inView = bounds.contains([lat, lon]);
+
+    // Only return true if it's in view AND passes the sidebar filters
+    return inView && passes(f.properties);
+  });
+
+  // Sort (Best awards first)
   visible.sort((a, b) => {
     const score = p => {
       let s = 0;
@@ -291,6 +316,9 @@ function render() {
     listEl.appendChild(div);
   });
 }
+
+// Re-render the list whenever the map moves/zooms
+map.on('moveend', render);
 
 async function init() {
   setMapLanguage('en');
