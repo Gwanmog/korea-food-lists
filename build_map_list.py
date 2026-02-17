@@ -104,59 +104,37 @@ def kakao_rest_key() -> str | None:
 
 def kakao_address_search(s: requests.Session, api_key: str, address: str) -> dict | None:
     """
-    Smart Address Search that handles English-ordered addresses (Number Road -> Road Number).
+    Smart Address Search that handles English-ordered addresses.
     """
     url = "https://dapi.kakao.com/v2/local/search/address.json"
     headers = {"Authorization": f"KakaoAK {api_key}"}
 
-    # 1. CLEANUP
-    # Remove "B1F", "1F", zip codes, Country, City to isolate the street address
-    clean_addr = re.sub(r'\b[B]?\d+F\b,?', '', address, flags=re.IGNORECASE)  # Floor info
-    clean_addr = re.sub(r'\b\d{5}\b', '', clean_addr)  # Zip codes
+    # Clean Address
+    clean_addr = re.sub(r'\b[B]?\d+F\b,?', '', address, flags=re.IGNORECASE)
+    clean_addr = re.sub(r'\b\d{5}\b', '', clean_addr)
     clean_addr = clean_addr.replace("South Korea", "").replace("Seoul", "").replace(",", " ").strip()
 
     queries = [clean_addr]
 
-    # 2. FLIP LOGIC (Improved)
-    # Check for "Gu" (District) to split the string
+    # Flip Logic (Gu Road Number)
     gu_match = re.search(r'([a-zA-Z]+-gu)', clean_addr, re.IGNORECASE)
     if gu_match:
         gu = gu_match.group(1)
-        # Get everything AFTER the Gu (usually "Number Road" or "Road Number")
-        # e.g. clean_addr = "22-8 Yeonsei-ro 5da-gil Seodaemun-gu" -> rest = "22-8 Yeonsei-ro 5da-gil"
-        # e.g. clean_addr = "Seodaemun-gu 22-8 Yeonsei-ro 5da-gil" -> rest = "22-8 Yeonsei-ro 5da-gil"
         rest = clean_addr.replace(gu, "").strip()
+        queries.insert(0, f"Seoul {gu} {rest}")
 
-        # PATTERN: Starts with Number (digits + optional hyphen) followed by Text
-        # ex: "22-8 Yeonsei-ro 5da-gil"
-        number_first_match = re.match(r'^(\d+(?:-\d+)?)\s+(.+)$', rest)
-
-        if number_first_match:
-            number = number_first_match.group(1)
-            road = number_first_match.group(2)
-            # Reconstruct as: Gu Road Number
-            queries.insert(0, f"Seoul {gu} {road} {number}")
-        else:
-            # Maybe it's already correct? Just ensure Gu is first.
-            queries.insert(0, f"Seoul {gu} {rest}")
-
-    # 3. EXECUTE SEARCHES
     for q in queries:
-        # Collapse multiple spaces
         q = re.sub(r'\s+', ' ', q).strip()
         if not q: continue
-
         try:
             params = {"query": q, "analyze_type": "similar"}
             r = s.get(url, params=params, headers=headers, timeout=5)
             r.raise_for_status()
             docs = r.json().get("documents", [])
             if docs:
-                # High confidence hit
                 return {"x": docs[0]["x"], "y": docs[0]["y"]}
-        except Exception as e:
-            print(f"[kakao] address error '{q}': {e}")
-
+        except:
+            pass
     return None
 
 
@@ -165,7 +143,6 @@ def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x:
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     params = {"query": query[:80], "size": 3, "category_group_code": "FD6"}
     if x and y:
-        # Search NEAR the coordinates
         params.update({"x": str(x), "y": str(y), "radius": str(radius), "sort": "distance"})
 
     headers = {"Authorization": f"KakaoAK {api_key}"}
@@ -191,7 +168,7 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     out: list[Place] = []
 
     for p in places:
-        # 0. CHECK IF WE ALREADY HAVE VALID COORDS
+        # 0. TRUST THE SOURCE: Do we have valid coords from Scraper?
         has_coords = isinstance(p.latitude, float) and isinstance(p.longitude, float)
 
         # 1. Check Ledger
@@ -202,8 +179,8 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 p.kakao_id = cached.get("id")
                 p.kakao_url = cached.get("place_url")
 
-                # Only fill coords if we didn't have them
-                # SAFETY: Check if cached value exists and is not empty before converting
+                # CRITICAL: Only overwrite coords if we STARTED with nothing.
+                # If we have coords (from Michelin), ignore the cached location.
                 if not has_coords:
                     if cached.get("y"): p.latitude = float(cached["y"])
                     if cached.get("x"): p.longitude = float(cached["x"])
@@ -213,33 +190,39 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
         api_calls += 1
         misses += 1
 
-        # 2. Search Logic
         found_doc = None
 
-        # Strategy A: If we have coords, search NEAR them (Radius 500m)
+        # 2. Strategy A: We have Coords -> Search NEARBY for Metadata
         if has_coords:
-            docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=500)
+            # We trust the location, just looking for the Kakao ID
+            docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=200)
             if docs:
                 found_doc = docs[0]
             else:
+                # No ID found? Fine. Keep our coords and create a dummy record.
                 found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
 
-        # Strategy B: Address Search (if no coords yet)
-        if not found_doc and p.address:
+        # 3. Strategy B: Address Search (Only if we didn't have coords)
+        if not found_doc and p.address and not has_coords:
             coords = kakao_address_search(s, api_key, p.address)
             if coords:
                 lat, lon = float(coords["y"]), float(coords["x"])
-                if not has_coords:
-                    p.latitude, p.longitude = lat, lon
-
+                # Temporarily set coords for the radius search
                 docs = kakao_local_keyword_search(s, api_key, p.name, lon, lat, radius=100)
                 if docs:
                     found_doc = docs[0]
                 else:
                     found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
 
-        # Strategy C: Keyword Fallback
+        # 4. Strategy C: Keyword Fallback (Last Resort)
         if not found_doc and not has_coords:
+            # Safety: Don't do global search for English names (too risky)
+            if p.source == "michelin":
+                print(f"[safety] Skipping keyword search for {p.name}")
+                ledger.update(p.name, p.address, {"found": False})
+                out.append(p)
+                continue
+
             candidates = [p.name]
             if p.address:
                 short_addr = " ".join(p.address.split()[:3])
@@ -252,17 +235,19 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                     break
                 time.sleep(0.1)
 
-        # 3. Save result
+        # 5. Save result
         if found_doc:
             ledger.update(p.name, p.address, found_doc)
             p.kakao_id = found_doc.get("id")
             p.kakao_url = found_doc.get("place_url")
 
+            # FINAL GUARD: Only update coords if we were missing them.
             if not has_coords:
                 if found_doc.get("y"): p.latitude = float(found_doc["y"])
                 if found_doc.get("x"): p.longitude = float(found_doc["x"])
         else:
             if has_coords:
+                # We have coords but no ID. Save as "found" so we don't retry.
                 ledger.update(p.name, p.address,
                               {"found": True, "x": str(p.longitude), "y": str(p.latitude), "id": None,
                                "place_url": None})
@@ -351,6 +336,7 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
 
             name = soup.find("h1").get_text(strip=True) if soup.find("h1") else "Unknown"
 
+            # --- Description & Metadata ---
             desc_div = soup.select_one(".data-sheet__description")
             description = desc_div.get_text(strip=True) if desc_div else None
 
@@ -365,22 +351,43 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             else:
                 cuisine = pc_text
 
+            # --- ROBUST GEO SCRAPING ---
             lat, lon, address = None, None, None
+
+            # 1. Try ALL JSON-LD blocks
             scripts = soup.find_all("script", {"type": "application/ld+json"})
             for sc in scripts:
                 try:
                     data = json.loads(sc.string)
-                    if isinstance(data, list): data = data[0]
-                    if data.get("@type") in ("Restaurant", "FoodEstablishment"):
-                        geo = data.get("geo", {})
-                        lat = float(geo.get("latitude")) if geo.get("latitude") else None
-                        lon = float(geo.get("longitude")) if geo.get("longitude") else None
-                        addr_obj = data.get("address", {})
-                        if isinstance(addr_obj, dict):
-                            address = f"{addr_obj.get('streetAddress', '')}, {addr_obj.get('addressLocality', '')}"
+                    # Normalize to list to handle both single dict and list of dicts
+                    if not isinstance(data, list): data = [data]
+
+                    for item in data:
+                        # Extract Address
+                        if not address and item.get("address"):
+                            addr_obj = item.get("address")
+                            if isinstance(addr_obj, dict):
+                                address = f"{addr_obj.get('streetAddress', '')}, {addr_obj.get('addressLocality', '')}"
+
+                        # Extract Geo (Prioritize Restaurant type)
+                        if item.get("@type") in ("Restaurant", "FoodEstablishment"):
+                            geo = item.get("geo", {})
+                            if geo.get("latitude") and geo.get("longitude"):
+                                lat = float(geo.get("latitude"))
+                                lon = float(geo.get("longitude"))
                 except:
                     pass
 
+            # 2. Regex Fallback (If JSON failed)
+            if lat is None or lon is None:
+                # Look for patterns like "latitude": 37.123 or data-lat="37.123"
+                lat_match = re.search(r'["\']?latitude["\']?\s*[:=]\s*["\']?([0-9.]+)["\']?', str(soup))
+                lon_match = re.search(r'["\']?longitude["\']?\s*[:=]\s*["\']?([0-9.]+)["\']?', str(soup))
+                if lat_match and lon_match:
+                    lat = float(lat_match.group(1))
+                    lon = float(lon_match.group(1))
+
+            # 3. Address Fallback
             if not address:
                 m = re.search(r"([^\n]+,\s*Seoul)", soup.body.get_text())
                 if m: address = m.group(1).strip()
@@ -403,7 +410,7 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
                 latitude=lat, longitude=lon, captured_at=captured_at
             )
             places.append(p)
-            print(f"  [{i + 1}/{len(sorted_urls)}] {name}")
+            print(f"  [{i + 1}/{len(sorted_urls)}] {name} (Coords: {lat}, {lon})")
 
         except Exception as e:
             print(f"  [{i + 1}] Failed {u}: {e}")
@@ -512,13 +519,12 @@ def load_raw(filename: str) -> list[Place]:
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # CRITICAL FIX: Convert empty strings to None explicitly
-            row["latitude"] = float(row["latitude"]) if row.get("latitude") and row["latitude"].strip() else None
-            row["longitude"] = float(row["longitude"]) if row.get("longitude") and row["longitude"].strip() else None
+            # FIX: Handle empty strings properly!
+            row["latitude"] = float(row["latitude"]) if row.get("latitude") and str(row["latitude"]).strip() else None
+            row["longitude"] = float(row["longitude"]) if row.get("longitude") and str(
+                row["longitude"]).strip() else None
 
-            # Optional: Clean up other fields to be None if empty
             if not row.get("description"): row["description"] = None
-
             out.append(Place(**row))
     return out
 

@@ -6,8 +6,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.054310555502,
-          37.5224033901739
+          127.01155,
+          37.49135
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "3rd Samgyetang",
+        "address": "56-3 Banpo-daero 28-gil, Seocho-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "56-3 Banpo-daero 28-gil, Seocho-gu, Seoul, 06646, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/3rd-samgyetang",
+        "year": "",
+        "description": "Now in its third generation after opening in 1973, 3rd Samgyetang is well-regarded among Seocho locals for its restorative soup. The signature samgyetang features a rich broth of over 40 ingredients, topped with mung bean and pine nut purées, and mugwort paste. The grains give the broth a satisfying body, and the meat from young chickens falls effortlessly off the bone. Spoon some glutinous rice into the broth, add a pinch of glasswort salt, and enjoy the bowl of cosy porridge. Arrive early to avoid long lines during peak hours.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.05429,
+          37.52237
         ]
       },
       "properties": {
@@ -32,8 +58,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.037421700469,
-          37.5233469914616
+          126.98404,
+          37.57535
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "A Flower Blossom on the Rice",
+        "address": "3-6 Insadong 16-gil, Jongno-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "3-6 Insadong 16-gil, Jongno-gu, Seoul, 03146, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/a-flower-blossom-on-the-rice",
+        "year": "",
+        "description": "Located in a quiet alley away from the touristy bustle of Insa-dong, A Flower Blossom on the Rice is a restaurant that caters to the health-conscious diner, serving wholesome home-cooked fare using only certified organic ingredients sourced straight from the farm. The signature dish at this restaurant is the Bojagi Bibimbap — a log of cooked rice topped with five different sautéed vegetables in their multi-colored glory, encased in a crépe-thin egg omelet resembling a gift, tied with a seaweed ribbon and presented with a single flower on top.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0374241,
+          37.5233164
         ]
       },
       "properties": {
@@ -58,8 +110,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.0260266212748,
-          37.51353812649945
+          127.01029,
+          37.53479
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "A L'AISE",
+        "address": "89 Dokseodang-ro, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "89 Dokseodang-ro, Yongsan-gu, Seoul, 04419, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/al-aise",
+        "year": "",
+        "description": "A L'AISE embodies the effortless elegance of European ambience. An inviting dining space and casual, soft furnishings create a comfortable atmosphere for diners to relax. The course meals feature a delicate balance of ingredients and sauces, bringing out intriguing flavours. Another distinct culinary delight is the classic French sauces infused with Korean influences, giving each dish a unique touch. Each plate is a mix of simplicity and creativity, where tradition meets modernity.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.02602,
+          37.51346
         ]
       },
       "properties": {
@@ -84,8 +162,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.994474310497,
-          37.5324538104
+          126.99446,
+          37.53245
         ]
       },
       "properties": {
@@ -110,8 +188,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98442235041564,
-          37.57943903405731
+          126.98446,
+          37.57939
         ]
       },
       "properties": {
@@ -136,8 +214,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.3124823832033,
-          33.23566011965459
+          126.96969,
+          37.58143
         ]
       },
       "properties": {
@@ -153,8 +231,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/andeok",
         "year": "",
         "description": "Andeok is known for its beef naengguksu and mandutguk. The mulguksu here is similar to Pyongyang-style naengmyeon, though the noodles are softer and springier thanks to the higher buckwheat content. The clean, mild broth is complemented by lightly seasoned beef, delivering a deep, savoury flavour with each bite. Fried peppers are also popular; the meat-and-vegetable filling, encased in a crisp batter, is unexpectedly flavourful. Arriving at opening time is recommended to avoid long queues at lunchtime.",
-        "kakao_id": "11996067",
-        "kakao_url": "http://place.map.kakao.com/11996067"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -162,8 +240,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.026062141278,
-          37.5506143178854
+          127.0073647,
+          37.5311165
         ]
       },
       "properties": {
@@ -179,8 +257,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/au-bouillon",
         "year": "",
         "description": "Step into Au Bouillon, and you are transported to a small restaurant tucked in a narrow alleyway in France. The restaurant feels warm and cozy, much like dining in someone’s home. The menu features classic French dishes, all masterfully executed. The pâté de campagne made with duck shoulder and pistachio, pairs wonderfuly with toasted baguette and fig jam, washed down with a sip of wine. Taste the coq au vin, bouillabaisse, and ratatouille—each prepared in the traditional way—and discover a seamless harmony between cuisine and setting.",
-        "kakao_id": "1715937835",
-        "kakao_url": "http://place.map.kakao.com/1715937835"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -188,8 +266,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.949101987901,
-          37.5396266487439
+          127.01374,
+          37.48115
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Baek Nyun Ok",
+        "address": "2407 Nambusunhwan-ro, Seocho-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2407 Nambusunhwan-ro, Seocho-gu, Seoul, 06719, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/baecnyunok",
+        "year": "",
+        "description": "Located across the main road from Seoul Arts Center, Baek Nyun Ok has been attracting loyal patrons, including local performers and musicians in droves, since 1992. This humble institution specializes in fresh homemade bean curd, which is the central ingredient in a variety of dishes offered. These include plain soft bean curd and soft bean curd stew with nutty perilla seeds. The interior is simply decorated and offers both table and floor seating.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.94908,
+          37.53958
         ]
       },
       "properties": {
@@ -214,8 +318,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.10255219456239,
-          37.512605382354366
+          127.10253,
+          37.5126
         ]
       },
       "properties": {
@@ -240,8 +344,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.041242298379,
-          37.5260775580607
+          127.04126,
+          37.52602
         ]
       },
       "properties": {
@@ -266,8 +370,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.054313953122,
-          37.5224087946203
+          127.05439,
+          37.52239
         ]
       },
       "properties": {
@@ -292,8 +396,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.703932693255,
-          36.7450654570901
+          127.0424,
+          37.51598
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Bongmilga",
+        "address": "664 Seolleung-ro, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "664 Seolleung-ro, Gangnam-gu, Seoul, 06088, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bongmilga",
+        "year": "",
+        "description": "Run by a chef with a deep passion for buckwheat noodles, Bongmilga embraces meticulous preparations and strict standards for ingredients. The house-made pear vinegar, mustard sauce, daily-prepared radish kimchi, and slightly thick hand-cut buckwheat noodles set it apart from typical naengmyeon shops. The clear broth, simmered for about five hours with Korean beef and medicinal herbs, offers a clean, consommé-like flavour. Guests can enhance their experience by adding pear vinegar and mustard to the noodles and enjoying them with boiled pork. The menu offers a wider range of choices, including also Pyongyang-style noodles with minari and a comforting gomtang.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01242,
+          37.48336
         ]
       },
       "properties": {
@@ -309,8 +439,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bongsanok",
         "year": "",
         "description": "Mandutguk, or Korean dumpling soup, is a dish that is deeply rooted in the day-to-day lives of Koreans. Owner Yoon Young-sook became acquainted with Hwanghaedo-style dumpling soup through her mother-in-law, a native of Sariwon, which is north of the border. To emulate the pure taste of the original dumpling filling, Yoon says she follows her recipe to the tee and feels very proud when she hears customers say her dumplings remind them of their own grandmother's.",
-        "kakao_id": "8494431",
-        "kakao_url": "http://place.map.kakao.com/8494431"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -318,8 +448,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.001959680678,
-          37.5370409185445
+          127.056611,
+          37.509328
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Boreumsae",
+        "address": "36 Teheran-ro 81-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "36 Teheran-ro 81-gil, Gangnam-gu, Seoul, 06167, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/boreumsae",
+        "year": "",
+        "description": "Boreumsae is the only place in Seoul that serves heukwoo, or native Jeju black cattle raised on a farm the restaurant runs on the island. Heukwoo is much firmer in texture, as it is leaner and nuttier in flavor. The robust, savory flavor fills the palate with only a simple sprinkling of salt. The restaurant takes exceptional pride in the quality of their meat, which is flown in fresh directly from Jeju. Boeumsae is the place to visit if you seek lean, clean flavored beef in Seoul.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.00187,
+          37.53687
         ]
       },
       "properties": {
@@ -344,8 +500,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.044520102066,
-          37.5668051246026
+          127.04468,
+          37.56697
         ]
       },
       "properties": {
@@ -370,8 +526,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.126184140413,
-          37.5100191449277
+          126.99991,
+          37.57034
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Buchon Yukhoe",
+        "address": "200-12 Jong-ro, Jongno-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "200-12 Jong-ro, Jongno-gu, Seoul, 03195, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/buchon-yukhoe",
+        "year": "",
+        "description": "Occupying a corner of the well-established raw beef alley of Gwangjang Market, Buchon Yukhoe has been in business since 1965, originally started as Buchon Sikdang selling short rib soup. The founding matriarch’s original Jeollado Province-style raw beef, seasoned with red chili paste, gave way to the more popular Seoul-style in the 1980s, seasoned with sesame oil and eaten with matchstick pears. Try the raw beef bibimbap for a more substantial meal. Locally sourced beef is delivered to the restaurant each morning.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03118,
+          37.48907
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Budnamujip",
+        "address": "434 Hyoryeong-ro, Seocho-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "434 Hyoryeong-ro, Seocho-gu, Seoul, 06729, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/budnamujip",
+        "year": "",
+        "description": "Since 1977, this family-style restaurant has garnered an appreciative following of barbecue lovers, often seeing three generations of loyal patrons from one family frequenting the shop. A popular locality for residents south of the river, it specializes in various cuts of meat exclusively from the cow including ribs, sirloin and tripe. The rich flavors of the exceptionally tender meat is enhanced simply with quality bay salt.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.12619,
+          37.51007
         ]
       },
       "properties": {
@@ -396,8 +604,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.9873957045339,
-          37.53634468976835
+          127.03376,
+          37.50274
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Chaconne",
+        "address": "1F, Building 102, Yeoksam Hills, 23 Nonhyeon-ro 97-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "1F, Building 102, Yeoksam Hills, 23 Nonhyeon-ro 97-gil, Gangnam-gu, Seoul, 06131, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/chaconne",
+        "year": "",
+        "description": "Tucked away in a quiet location, Chaconne feels like a hidden retreat. The food, made with seasonal Korean ingredients, is rooted in French cuisine and accented with Japanese flavours, which reflects the chef’s varied culinary journey. The chef's speciality is using different fruits to add acidity and sweetness to his dishes. The contemporary, relaxed dining space creates a pleasant atmosphere, and the staff’s thoughtful explanations make each course easy to appreciate.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98734,
+          37.53634
         ]
       },
       "properties": {
@@ -422,8 +656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.99384463269085,
-          37.54008435314553
+          126.99404,
+          37.54015
         ]
       },
       "properties": {
@@ -448,8 +682,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00416198681948,
-          37.50520212214794
+          127.03099,
+          37.51619
         ]
       },
       "properties": {
@@ -465,8 +699,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/collage",
         "year": "",
         "description": "Just like the visual art technique of collage, Chef Jin-sung Noh draws upon his extensive understanding of ingredients to create dishes that balance various flavours. His refined culinary skills are richly expressed through the harmonious blend of ingredients' inherent flavours and dense sauces. By incorporating seasonal local ingredients with fermentation techniques, he gives traditional French cuisine a modern, diverse touch. Enjoy his distinctively stylish dishes in a charming dining space.",
-        "kakao_id": "847555300",
-        "kakao_url": "http://place.map.kakao.com/847555300"
+        "kakao_id": "245774987",
+        "kakao_url": "http://place.map.kakao.com/245774987"
       }
     },
     {
@@ -474,8 +708,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98771133209878,
-          37.54351668314239
+          126.9877,
+          37.54344
         ]
       },
       "properties": {
@@ -500,8 +734,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.0051743265238,
-          37.55603388052197
+          127.00517,
+          37.5558213
         ]
       },
       "properties": {
@@ -526,8 +760,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.96474726486505,
-          37.52978982320233
+          126.981212,
+          37.564311
         ]
       },
       "properties": {
@@ -543,8 +777,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/crystal-jade",
         "year": "",
         "description": "Crystal Jade has been serving various styles of Chinese cuisine in many cities around the Asian Pacific region, and there are 15 establishments peppered across Korea. This particular branch is a Chinese restaurant run by the global Chinese cuisine brand Crystal Jade. It serves a wide array of Asian dishes including traditional Cantonese and Hong Kong cuisine, and Singaporean food. It is the place to go to enjoy Chinese food with Crystal Jade's high standards. The selection of intensely umami barbecue and seafood dishes might just be the perfect place for a fun gathering.",
-        "kakao_id": "1667431464",
-        "kakao_url": "http://place.map.kakao.com/1667431464"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -552,8 +786,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00815726784,
-          37.5322184966431
+          126.96091,
+          37.57269
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Daesungjip",
+        "address": "5 Sajik-ro, Jongno-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "5 Sajik-ro, Jongno-gu, Seoul, 03029, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/daesungjip",
+        "year": "",
+        "description": "At Daesungjip, a rich, milky broth comes brimming with tender beef knee cartilage (dogani), tendon (suji), and shank (satae), all served with a dose of old-school hospitality. There’s no trace of gaminess—just a clean, subtly sweet broth with a luxuriously silky mouthfeel from well-emulsified fat. The steaming soup, springy dogani, and fluffy rice form a perfect trio, elevated by sharp kimchi, crisp kkakdugi, and bold gochujang garlic on the side. Owner Lee Chun-hee, still behind the ladle daily, may just be the key to the unwavering quality of this beloved doganitang.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.91512,
+          37.55448
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Damtaek",
+        "address": "51 Donggyo-ro 12an-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "51 Donggyo-ro 12an-gil, Mapo-gu, Seoul, 04029, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/damtaek",
+        "year": "",
+        "description": "Damtaek is a cozy little ramen haven nestled in a quiet alley near Hapjeong Station. Chef Jo Won-hyeon has purposefully adorned this quaint space with vintage artifacts. The restaurant’s shio ramen, and associated variations that use the same soup base, are in stark contrast to its homey, down-to-earth vibe. The refined and clean flavors of the soups are singular and inspire lingering addiction. With a passion for creating tastes unbound by culinary convention, the chef has persistently dedicated his craft toward perfecting the art of shio ramen, creating ramen that can delight any palate.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0081086,
+          37.532213
         ]
       },
       "properties": {
@@ -578,8 +864,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.96352143235272,
-          37.53795972706649
+          126.96352,
+          37.53795
         ]
       },
       "properties": {
@@ -604,8 +890,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.977790429504,
-          37.5721489269731
+          126.99333,
+          37.49379
         ]
       },
       "properties": {
@@ -621,8 +907,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/doughroom",
         "year": "",
         "description": "Dedicated to making artisanal pasta from scratch, Doughroom is a keeper for all Italian food lovers. The dough room itself, where all the pastas are made fresh daily, is undoubtedly the heart of the restaurant. While offering authentic flavors of Italy, it also serves fusion dishes using ingredients familiar to the local palate — for example, their buckwheat cannelloni. Asking for the action-packed dough room table when making a reservation is highly recommended.",
-        "kakao_id": "741962073",
-        "kakao_url": "http://place.map.kakao.com/741962073"
+        "kakao_id": "461157691",
+        "kakao_url": "http://place.map.kakao.com/461157691"
       }
     },
     {
@@ -630,8 +916,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04118315776,
-          37.5028641154494
+          127.04158,
+          37.50304
         ]
       },
       "properties": {
@@ -656,8 +942,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04660681759634,
-          37.522349918227675
+          126.984447,
+          37.545342
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Egg & Flour",
+        "address": "2F, 35 Shinheung-ro 26-gil, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "2F, 35 Shinheung-ro 26-gil, Yongsan-gu, Seoul, 04337, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/egg-flour",
+        "year": "",
+        "description": "Eggs and flour are the main ingredients for making fresh pasta, and fresh pasta is what Egg & Flour does best. Freshly made pastas including capellini, reginetti, tagliatelle, rigatoni, and pappardelle are carefully paired with the perfect sauces to create uniquely flavorful dishes. Dining at a window seat with an open view of Namsan Haebangchon at sunset makes an unforgettable experience. The first floor is a private space while the second floor is the dining hall; it is equally suitable for a close knit group and a large party.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.04659,
+          37.52237
         ]
       },
       "properties": {
@@ -682,8 +994,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.11138452429,
-          35.1446225226738
+          127.04254,
+          37.52187
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Épanoui",
+        "address": "3F, 33 Seolleung-ro 146-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "3F, 33 Seolleung-ro 146-gil, Gangnam-gu, Seoul, 06064, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/epanoui",
+        "year": "",
+        "description": "Épanoui adorns its walls with novel artists’ paintings every three months, thereby imbuing this back alley establishment in Cheongdam-dong with a gallery-like ambience befitting its beautifully crafted French cuisine. The kitchen team's signature dishes include lobster ravioli in a mellow champagne-vanilla sauce and foie gras marbré surrounded by crunchy bread crumbs. Perhaps as a nod to the restaurant’s artwork, the presentations are also delicate and vibrant. Chef Ji-hun Kwon’s pursuit of balanced flavours and elevated plating will delight your eyes and your palate.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01046,
+          37.53517
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Escondido",
+        "address": "B1F, 61-7 Hannam-daero 20-gil, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "B1F, 61-7 Hannam-daero 20-gil, Yongsan-gu, Seoul, 04419, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/escondido",
+        "year": "",
+        "description": "Escondido is a space replete with Chef Jin Woo-bum’s passion for Mexican food. His infatuation with the cuisine led him to Mexico, where he steadily learned and improved his culinary skills while engrossed in Mexican culture. The restaurant offers bona fide Mexican cuisine with the chef’s unique twists. He conjures up finely nuanced flavors by making particularly nuanced use of tortilla and mole, the staples of Mexican cuisine. One last tip: pairing your dish with tequila, mezcal or a cocktail will take your gourmet experience at Escondido to a whole new level.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01336,
+          37.48179
         ]
       },
       "properties": {
@@ -699,8 +1063,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/essence-1207862",
         "year": "",
         "description": "After a series of twists and turns, Chef Kim Yeong-seon wrapped up his famed career as a classic French chef at Restaurant Soleil and opened Essence to offer his very own version of French cuisine. Here, the chef provides bistro-style French fare that is cozier and lighter, and therefore more accessible, than the fare at his previous restaurant. Although the winds of change are sweeping through the dining industry, he is steadfastly committed to the classic style, delivering deep flavors through precisely baked and cooked ingredients and carefully crafted sauces. In this era of contemporary cuisine that appeals to diners with a wide range of novel culinary styles, Essence’s unpretentious meals highlighting genuine authenticity remind us, once again, of the core of French cuisine.",
-        "kakao_id": "1394878342",
-        "kakao_url": "http://place.map.kakao.com/1394878342"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -708,8 +1072,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.03623390719173,
-          37.52338340192846
+          127.0362,
+          37.52334
         ]
       },
       "properties": {
@@ -734,8 +1098,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.049687423504,
-          37.5210322974382
+          127.04969,
+          37.5211374
         ]
       },
       "properties": {
@@ -760,8 +1124,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.044768296392,
-          37.4821261304299
+          127.04473,
+          37.48207
         ]
       },
       "properties": {
@@ -786,8 +1150,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.985392432243,
-          37.5742836683493
+          126.98539,
+          37.57423
         ]
       },
       "properties": {
@@ -812,8 +1176,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.01167974212188,
-          37.55705875134064
+          127.04523,
+          37.52451
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "GAGGEN by Choi Junho",
+        "address": "2F, 19-1 Apgujeong-ro 80-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 19-1 Apgujeong-ro 80-gil, Gangnam-gu, Seoul, 06015, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gaggen",
+        "year": "",
+        "description": "The chef couple Hyeon-Ah Choi and Jin-hee Won, both trained at renowned Japanese restaurants, create cuisine that elegantly expresses Japanese seasonality with uncommon preparations such as hand‑pulled somen, freshly ground sesame, and bracken‑starch warabi‑mochi. Dinner begins promptly at 7 p.m. for all guests, with each course presented directly in front of them for a deeply immersive experience that highlights the chefs’ craftsmanship. Thoughtful explanations from the chefs and warm, attentive hospitality further elevate the overall dining journey.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03942,
+          37.51727
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Gebangsikdang",
+        "address": "17 Seolleung-ro 131-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "17 Seolleung-ro 131-gil, Gangnam-gu, Seoul, 06060, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gebang-sikdang",
+        "year": "",
+        "description": "Soy sauce-marinated crab and stylish décor don’t always go hand in hand, but at Gebangsikdang, they do. A collaboration between fashion marketer Bang Geon-hyuk and his parents, veterans of the soy sauce marinated crab restaurant business, Gebangsikdang caters to a trend-conscious crowd with its polished interior and its wide selection of raw crab dishes. For those who find it bothersome to eat crab on the shell, there are options that come with just the crab flesh and crab roe on a mound of hot rice.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01165,
+          37.55705
         ]
       },
       "properties": {
@@ -838,8 +1254,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.97812314290947,
-          37.55697621252758
+          127.0188926,
+          37.5166307
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Ggupdang",
+        "address": "615 Gangnam-daero, Seocho-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "615 Gangnam-daero, Seocho-gu, Seoul, 06524, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/ggupdang",
+        "year": "",
+        "description": "Situated right near Sinsa station, this restaurant specializes in grilled pork butt cured for 15 days before being quickly grilled on a specially made aluminum grate over Binchotan charcoal. Thanks to this method of cooking, the meat is fatty, tender, and juicy. As in the case of sushi, when it is eaten with rice (prepared with a recipe conceived by a Japanese consultant chef) and Korean horseradish, the meat juice is absorbed by the rice, making it even softer. The side orders are not to be missed.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.97809,
+          37.55696
         ]
       },
       "properties": {
@@ -864,8 +1306,164 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04652592617343,
-          37.52506917542535
+          127.02893,
+          37.52107
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "GiwaKang",
+        "address": "4F, 9 Nonhyeon-ro 152-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "4F, 9 Nonhyeon-ro 152-gil, Gangnam-gu, Seoul, 06025, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/giwakang",
+        "year": "",
+        "description": "At Giwakang, Chef Min-chul Kang—known for his distinctive French culinary style—presents a bold approach rooted in Korean cuisine. Melding classic Korean flavours with refined French techniques, Chef Kang creatively masters complex flavour pairings that might otherwise seem improbable. Dishes like dongchimi with caviar, ganjang gejang rice with truffle, and squid mandu are both daring and harmonious. The spotless open kitchen and elegant, modern space set a polished tone for the restaurant, while warm, attentive service rounds out a dining experience that feels both inventive and deeply satisfying.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.05885,
+          37.51485
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Gom Ba Wie",
+        "address": "10 Yeongdong-daero 115-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "10 Yeongdong-daero 115-gil, Gangnam-gu, Seoul, 06087, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gom-ba-wie",
+        "year": "",
+        "description": "Grilled tripe and large intestines reign supreme at Gom Ba Wie, which has seen three decades of customers hooked on their buttery, pleasantly chewy goodness. The original location and the new location stand back to back, offering a glimpse of the restaurant’s past and present. If beef intestines aren't your cup of tea, the restaurant also offers other cuts like ribeye, short ribs and brisket. All meats are grilled over wood charcoal.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.05971,
+          37.50859
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Gomtang Lab",
+        "address": "10F, Hyundai Department Store, 517 Teheran-ro, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "10F, Hyundai Department Store, 517 Teheran-ro, Gangnam-gu, Seoul, 06164, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gomtang-lab",
+        "year": "",
+        "description": "Gomtang Lab, newly reopened on the 10th floor of Hyundai Department Store, is Chef Jeong-sik Lim’s secret base for exploring gomtang and other broth-based dishes. The signature collagen gomtang is simmered for over 10 hours with beef bones, tendons, shank, and tail, resulting in a rich, gelatinous depth of flavour. The menu is broad, ranging from tripe gomtang and clam gomtang to Pyongyang-style cold noodles and beef ramen. Ordering the set brings an array of sides, such as tofu with pollack roe, kimchi pancakes, and dumplings. The slow-cooked beef pairs well with traditional Korean liquors.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.97318,
+          37.54501
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Goobok Mandu",
+        "address": "7 Duteopbawi-ro, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "7 Duteopbawi-ro, Yongsan-gu, Seoul, 04335, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/goobok-mandu",
+        "year": "",
+        "description": "This small, family-run spot is operated by a Korean husband and his Chinese wife, blending a humble setting with a gentle touch of Chinese warmth. The menu is simple, offering just four kinds of dim sum, with the signature gubok kimchi dumplings drawing the most attention. Pan-fried to achieve a crisp exterior and pleasantly chewy wrapper, the dumplings are filled with pork and house-made kimchi, delivering a refreshing acidity and subtle heat. Diners who enjoy bolder flavours can enhance them with the chilli flakes and vinegar provided at the table.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03478,
+          37.52298
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Goryori Ken",
+        "address": "2F, 15-3 Eonju-ro 152-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 15-3 Eonju-ro 152-gil, Gangnam-gu, Seoul, 06021, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/goryori-ken",
+        "year": "",
+        "description": "This intimate setting, with the main bar seating only eight, allows patrons to watch the chef's every movement. While preserving its unassuming façade on the second floor of the premises, Chef Kim Geon showcases highly seasonal ingredients in creations inspired by the freshness of the produce and his own creative intuition. Consistency and care are things Kim takes very seriously when serving his customers. The drinks menu features an impressive variety of sake produced by small Japanese breweries.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.02001,
+          37.56626
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Gosari Express",
+        "address": "12-10, Toegye-ro 85-gil, Jung-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "12-10, Toegye-ro 85-gil, Jung-gu, Seoul, 04576, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gosari-express",
+        "year": "",
+        "description": "Tucked beneath a red awning in Sindang-dong Jungang Market, Gosari Express stands out among the neighbourhood’s long-established eateries. With the motto 'Vegetarian every day', it takes a playful approach to plant-based dining. Every dish features the restaurant’s signature gosari oil sauce, from spicy bibim noodles to Taiwanese pancakes topped with sweet and tangy gosari chilli sauce. This inventive spot demonstrates the boundless potential of gosari.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0413985,
+          37.5192193
         ]
       },
       "properties": {
@@ -881,8 +1479,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gucci-osteria-da-massimo-bottura-1203402",
         "year": "",
         "description": "Relocated in 2025 to Gangnam’s commercial district, this restaurant now occupies a stylish space defined by calming green tones, European tableware, and artful furnishings. Its vision is rooted in Italian gastronomy while deliberately moving beyond tradition. The Korean head chef, who trained in Italy for two years, skillfully integrates local and seasonal Korean ingredients into the menu, creating a modern Italian cuisine that reflects dynamic seasonal shifts. Offered as both à la carte and tasting menus, the meticulously crafted pastas are the undeniable highlight.",
-        "kakao_id": "623581617",
-        "kakao_url": "http://place.map.kakao.com/623581617"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -890,8 +1488,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.975391668232,
-          37.5689589279236
+          126.97541,
+          37.5689
         ]
       },
       "properties": {
@@ -916,8 +1514,112 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.057583103138,
-          35.1582241900753
+          126.99994,
+          37.53592
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Kyoyang Siksa",
+        "address": "238 Itaewon-ro, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "238 Itaewon-ro, Yongsan-gu, Seoul, 04400, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gyoyang-siksa",
+        "year": "",
+        "description": "Sapporo-style lamb barbecue is the name of the game at Kyoyang Siksa, which specializes in tender young lamb less than 10 months old. Flown in from Australia, this meat is juicy and tender and the menu offers three cuts: French rack, ribs, and loin steak. These may be grilled tableside by the staff. Other solid dishes include soup curry with grilled vegetables and aromatic garlic rice served with small sheets of laver to wrap it in. Seating is limited, so be sure to book ahead.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98501,
+          37.56439
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Hadongkwan",
+        "address": "12 Myeongdong 9-gil, Jung-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "12 Myeongdong 9-gil, Jung-gu, Seoul, 04538, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hadongkwan",
+        "year": "",
+        "description": "Established in 1939, Hadongkwan is a Myeong-dong institution renowned for its consistently delicious flavours. Its signature gomtang features a clean yet deeply savoury broth, generously filled with brisket, offal, and tripe. Served with rice warmed in the clear beef broth and topped with plenty of chopped scallions, it becomes a hearty meal best enjoyed alongside Seoul-style kkakdugi. This old-fashioned eatery opens early in the morning and closes when its soup vats run dry. Lines are expected during busy hours.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.00195,
+          37.49862
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Haenam Cheonilgwan",
+        "address": "36-1 Banpo-daero 39-gil, Seocho-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "36-1 Banpo-daero 39-gil, Seocho-gu, Seoul, 06578, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/haenam-cheonilgwan",
+        "year": "",
+        "description": "Haenam Cheonilgwan has steadfastly preserved the rich traditions of Namdo cuisine. It carries forward the legacy of the historic Cheonil Sikdang under the leadership of CEO Hwa‑young Lee, a member of the founding family. The asset that distinguishes Lee’s establishment is its tried-and-true menus and recipes accumulated through the everyday life she shares with her family. Dishes like banji kimchi and grilled short rib patties retain the traditional Namdo flavours unchanged by modern trends.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03227,
+          37.52414
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Hakusi",
+        "address": "2F, 8-4 Eonju-ro 157-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 8-4 Eonju-ro 157-gil, Gangnam-gu, Seoul, 06024, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hakusi",
+        "year": "",
+        "description": "Hakusi opens a new chapter in Cheongdam after its success in Sinsa and Hannam. Situated on the first floor of a white, canvas-like building, the restaurant has the feel of a still life painting. Its bold, open layout allows diners to watch the kitchen at work. The food matches the modern space and showcases the chef’s creativity. The signature unagi is served first with sansho, then once again wrapped in a delicate pancake with basil and paired with basil vinegar—each preparation distinct yet balanced. Dishes are served à la carte after 8 p.m., and the restaurant also offers a tasting menu consisting of past signature dishes.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.9715631,
+          37.5755506
         ]
       },
       "properties": {
@@ -933,8 +1635,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/halmaejip",
         "year": "",
         "description": "Tucked away at the end of a quiet alley, the small, shoe-off restaurant retains a cosy charm. Founded in Naejadong in 1975 and relocated to its current site in 2006, it is known for a clean, aromatic heat that eliminates any gaminess. Its gamjatang is distinctive for using only bean sprouts and chives to create a refreshingly sharp broth. The jokbal is simmered for hours in a fragrant blend of spices and house broth, resulting in tender meat free of any off-flavours and deeply flavourful, chewy skin. Guests can choose between the richer hind leg or the softer foreleg, and the generous portions make it ideal for sharing.",
-        "kakao_id": "11260858",
-        "kakao_url": "http://place.map.kakao.com/11260858"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -942,8 +1644,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.034907802556,
-          37.5276365316183
+          127.0348773,
+          37.5275808
         ]
       },
       "properties": {
@@ -968,8 +1670,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.002248895826,
-          37.5601452228938
+          127.0024232,
+          37.5599583
         ]
       },
       "properties": {
@@ -994,8 +1696,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.0414490041614,
-          37.50300097532274
+          126.91037,
+          37.54944
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Hapjeongok",
+        "address": "2F, 21 Yanghwa-ro 1-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "2F, 21 Yanghwa-ro 1-gil, Mapo-gu, Seoul, 04026, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hapjeongok",
+        "year": "",
+        "description": "Hapjeongok is a restaurant born of nostalgia. As they were reminiscing one day on the father-in-law’s beef bone soup and boiled beef slices, the latter suggested to his daughter-in-law that they should open a beef bone soup restaurant. The establishment stays true to the inspiration — deeply flavorful beef broth, rice rendered soft and sweet in the piping hot soup, tender slices of beef, and a generous serving of boiled offal. The restaurant’s cabbage soybean paste soup is also a must try. Only around 100 portions of soup are served daily, so go early.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.9797,
+          37.56441
         ]
       },
       "properties": {
@@ -1011,8 +1739,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hong-yuan",
         "year": "",
         "description": "Instantly memorable with its crimson décor, this high-end restaurant at The Westin Chosun Seoul, specializes in Cantonese cuisine. The elegant space offers a taste of the best in Chinese-style formal dining, with its classic yet innovative dishes. Hong Yuan’s commitment to using the freshest ingredients to make healthy and tasty food is unparalleled, as seen in its heavy use of seafood, tofu and vegetables. Live music during dinner service.",
-        "kakao_id": "2051195894",
-        "kakao_url": "http://place.map.kakao.com/2051195894"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -1020,8 +1748,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.971115709089,
-          37.5793815674708
+          126.9711,
+          37.57938
         ]
       },
       "properties": {
@@ -1046,8 +1774,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98064098689737,
-          37.58006016029821
+          126.91706,
+          37.52689
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Hwa Hae Dang",
+        "address": "15 Gukhoe-daero 62-gil, Yeongdeungpo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "15 Gukhoe-daero 62-gil, Yeongdeungpo-gu, Seoul, 07236, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hwa-hae-dang",
+        "year": "",
+        "description": "This is the first Seoul branch of the acclaimed Taean County restaurant, located on the west coast of Korea. The name of the restaurant, which translates into “Flower crab house” specializes in soy sauce marinated blue crab, prized for its sweet flesh. Each spring, when local crabs are in season, they are caught and flash frozen to be used throughout the year. The crabs are prepared in Taean and sent to Seoul. The seafood side dishes are also good.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.9567,
+          37.5509
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Hwanggeum Kongbat",
+        "address": "9 Mapo-daero 16-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "9 Mapo-daero 16-gil, Mapo-gu, Seoul, 04205, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hwanggeum-kongbat",
+        "year": "",
+        "description": "Hwanggeum Kongbat focuses on nourishing, comforting Korean cuisine, using domestically grown soybeans to craft their house-made tofu. Seasoning is kept light to highlight the natural flavors of each ingredient, resulting in dishes that are gentle yet flavorful. Standouts include jjabak dubu, dubu jorim, dubu jeongol, dubu jeon, and dubu duruchigi, all beautifully paired with house-brewed takju made from just rice, nuruk, and water. While tofu is the star, the menu also features pork bossam, yuk jeon, and various seafood options, offering a well-rounded, soulful dining experience.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98065,
+          37.58003
         ]
       },
       "properties": {
@@ -1072,8 +1852,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.919158667489,
-          37.5506507881727
+          127.02429,
+          37.51698
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Hyun Udon",
+        "address": "53 Nonhyeon-ro 149-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "53 Nonhyeon-ro 149-gil, Gangnam-gu, Seoul, 06039, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hyun-udon",
+        "year": "",
+        "description": "Chef Park Sang-hyeon is a well-respected master of the udon craft. At his Nonhyeon-dong location, Park continues to serve up bowls of thick, silky-smooth, home-made udon noodles with their characteristic firmness and elasticity. If you're unsure of what to order, go for his signature tempura bukkake udon. The plump bouncy noodles and the freshly fried light crispy tempura make for a delicious mouthful when dipped in the umami-rich tsuyu sauce.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.91913,
+          37.55061
         ]
       },
       "properties": {
@@ -1098,8 +1904,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.89470235864977,
-          37.57637747278064
+          126.89462,
+          37.5763
         ]
       },
       "properties": {
@@ -1124,8 +1930,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.01930758314055,
-          37.52114839011912
+          127.019274,
+          37.521151
         ]
       },
       "properties": {
@@ -1150,8 +1956,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.983907557385,
-          37.5727337640939
+          126.98388,
+          37.57272
         ]
       },
       "properties": {
@@ -1176,8 +1982,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          128.6005775151,
-          35.871758894883
+          126.96603,
+          37.59309
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Jaha Son Mandu",
+        "address": "12 Baekseokdong-gil, Jongno-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "12 Baekseokdong-gil, Jongno-gu, Seoul, 03020, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jaha-son-mandu",
+        "year": "",
+        "description": "For over two decades, this restaurant has been attracting diners with a rustic dumpling recipe passed down from the owner’s mother and her grandmother. Although humble by nature, dumpling dishes are always elegantly presented. Their signature dish is mandutguk: plump pork, bean curd and vegetable dumplings nestled in a delicate beef broth, seasoned with homemade soy sauce. The main dining room offers a spectacular view of nearby Inwangsan Mountain.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.06866,
+          37.54551
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Jeongmyeon",
+        "address": "88 Neungdong-ro 13-gil, Gwangjin-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "88 Neungdong-ro 13-gil, Gwangjin-gu, Seoul, 05012, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jeongmyeon",
+        "year": "",
+        "description": "Jeongmyeon, which translates as ‘noodles infused with meaning’, features an open kitchen and a seven-seat stainless steel counter. This one-chef operation serves meat-based noodle soups, with white and red noodle soups as the sole offerings, each boasting rich, layered flavours. The broths, made from seafood, pork, and chicken, reveal a deep, harmonious taste. Toppings—including thin slices of tender pork, onion, and red pepper—add texture and visual appeal. The red noodle soup can be customised to different spice levels and is served with a bowl of rice for added heartiness.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.91324,
+          37.55777
         ]
       },
       "properties": {
@@ -1193,8 +2051,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jin-jin",
         "year": "",
         "description": "For over 40 years, Chef Wang Yuk-sung has been committed to popularizing Chinese cuisine in Korea. Unlike most generic Korean-style Chinese restaurants ubiquitous to Seoul, Chef Wang offers a limited menu of just ten dishes to ensure that the quality of the food he serves is consistently high. Some of the most requested dishes include shrimp toast, stir-fried crab meat with egg white, mapo tofu and stir-fried beef with gai lan.",
-        "kakao_id": "1326109541",
-        "kakao_url": "http://place.map.kakao.com/1326109541"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -1202,8 +2060,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.95579734486303,
-          37.550608920427024
+          127.036202,
+          37.516114
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Jinmi Pyeongyang Naengmyeon",
+        "address": "305-3 Hakdong-ro, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "305-3 Hakdong-ro, Gangnam-gu, Seoul, 06061, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jinmi-pyungyang-naengmyeon",
+        "year": "",
+        "description": "According to owner and chef Yim Se-kwon, long time experience in the kitchens of one of the most iconic Pyeongyang cold buckwheat noodle restaurants is the secret to the success of this place. The menu here is what you would expect to see in a typical cold buckwheat noodle restaurant. Other than the noodles, it offers staples such as boiled pork and beef slices, bulgogi, dumplings and Pyeongyang-style beef hot pot.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.95577,
+          37.55055
         ]
       },
       "properties": {
@@ -1228,8 +2112,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.012808148468,
-          37.53747272043
+          127.01277,
+          37.53744
         ]
       },
       "properties": {
@@ -1254,8 +2138,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.99998869183422,
-          37.49471898913005
+          127.00008,
+          37.49475
         ]
       },
       "properties": {
@@ -1280,8 +2164,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04107121829333,
-          37.52561179957907
+          126.92167,
+          37.5307
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Jungin Myeonok",
+        "address": "10 Gukhoe-daero 76-gil, Yeongdeungpo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "10 Gukhoe-daero 76-gil, Yeongdeungpo-gu, Seoul, 07238, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jungin-myeonok",
+        "year": "",
+        "description": "It is always a delight to find a restaurant with consistent quality. Jungin Myeonok is one such place; it has quietly maintained the flavors of its dishes across generations in rapidly changing times. Jungin Myeonok exclusively uses three-year-old natural sea salt and Korean beef to maintain the flavor of the broth for their signature Pyongyang naengmyeon. The subtly flavored noodles made only from buckwheat are another key feature of this restaurant. The hanu foreshank suyuk and mandu pair perfectly with the cold noodles. Expect a long wait during lunch hours as it is located in Yeouido.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.041069,
+          37.525584
         ]
       },
       "properties": {
@@ -1306,8 +2216,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04368978396164,
-          37.5250053864687
+          127.04365,
+          37.5249
         ]
       },
       "properties": {
@@ -1332,8 +2242,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.02821134749,
-          37.5180606633837
+          127.02822,
+          37.51808
         ]
       },
       "properties": {
@@ -1358,8 +2268,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04569461138873,
-          37.48267088609656
+          127.05519,
+          37.52083
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Kojacha",
+        "address": "17 Hakdong-ro 97-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "17 Hakdong-ro 97-gil, Gangnam-gu, Seoul, 06072, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kojacha",
+        "year": "",
+        "description": "Kojacha—named to reflect the convergence of Japanese cuisine crafted by a Korean chef (KO), Japanese technique (JA), and Chinese influences (CHA)—offers a dining experience that deliberately defies convention. The courses alternate seamlessly between Japanese and Chinese dishes, from abalone salad presented in an imperial-era soap dish to Osaka-style hassun. Chefs personally present each course at the table, adding narrative and theatrical flair, while the restaurant’s all–private-room layout ensures an intimate and immersive experience throughout.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.04566,
+          37.48268
         ]
       },
       "properties": {
@@ -1384,8 +2320,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04357628821981,
-          37.52437202380092
+          127.04355,
+          37.52437
         ]
       },
       "properties": {
@@ -1410,8 +2346,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.97947145701266,
-          37.55967313924252
+          127.04762,
+          37.53952
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Kyewol",
+        "address": "8 Seongdeokjeong 3-gil, Seongdong-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "8 Seongdeokjeong 3-gil, Seongdong-gu, Seoul, 04774, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kyewol-gomtang",
+        "year": "",
+        "description": "Located near hip Seongsu, this restaurant specializes in Korean-style chicken gomtang and has become especially popular with younger diners. Gently cooked chicken breast is served over warm rice with blanched young napa cabbage, then finished with a clear, refined broth for a clean yet deeply savory flavor. At lunch, diners can enjoy reasonably priced side dishes such as spicy chicken salad and torch-grilled chicken with doenjang, while cold noodles are available in the summer.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.91317,
+          37.54681
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Kyodaiya",
+        "address": "39 Seongji-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "39 Seongji-gil, Mapo-gu, Seoul, 04083, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kyodaiya",
+        "year": "",
+        "description": "When one can hear the dull tap of a blade against a wooden board every time a customer places an order, it’s a telltale sign that the chefs are serious about their craft. At Kyodaiya, that craft is Sanuki udon. The thick noodles are always cut to order to preserve their characteristic elasticity and smoothness until the very last minute. In addition to the classic kake udon, flavored with dried and smoked sardines and seasoned with light soy sauce, the chef brothers also offer classics like tempura udon and chilled bukkake udon.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.97949,
+          37.55983
         ]
       },
       "properties": {
@@ -1436,8 +2424,86 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.02409245500093,
-          37.52062312730503
+          127.04455,
+          37.52591
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "L'Amitié",
+        "address": "2F, 30 Dosan-daero 67-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 30 Dosan-daero 67-gil, Gangnam-gu, Seoul, 06015, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-amitie",
+        "year": "",
+        "description": "Chef Jang Myoung-sik has been welcoming diners with his confidently prepared French cuisine since 2006. The bright and airy second-floor room provides an intimate and comfortable environment, while the well -choreographed serving team ensure everyone is well looked after. The set menu offers a balanced array of seasonally pertinent dishes, all bursting with color and attractively presented. Korean beef tenderloin with dauphinoise and cauliflower purée is just one example of the clean, crisp cooking where the natural flavors of the ingredients are given room to shine.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.92521,
+          37.56018
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "L'Impasse 81",
+        "address": "17-1 Donggyo-ro 30-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "17-1 Donggyo-ro 30-gil, Mapo-gu, Seoul, 03985, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-empasse-81",
+        "year": "",
+        "description": "Nestled in a quiet alley of Yeonnam-dong, L'Impasse 81 is a dining bar dedicated to the art of charcuterie, embracing the 'nose-to-tail' philosophy to utilize every part of the animal. Charcuterie, a staple of French cuisine, encompasses a variety of cured meats and sausages. Some products, such as those requiring salting and drying, undergo a meticulous aging process of six months to a year, resulting in an intense, umami-rich flavor. Adding to its charm, the restaurant is adorned with vintage furniture sourced directly from Jeju Island, enhancing its unique and sophisticated ambiance.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.04227,
+          37.5245
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "L'Espoir du Hibou",
+        "address": "16 Dosan-daero 59-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "16 Dosan-daero 59-gil, Gangnam-gu, Seoul, 06016, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-espoir-du-hibou",
+        "year": "",
+        "description": "All of the elements at this bistro — from the food to the décor to the outdoor patio — fall into place to create an ambience that is immediately charming and oh so French! Consistency has been key to L’Espoir du Hibou’s longevity, not least when it comes to food. Chef Lim Ki-hak makes traditional French charcuterie like terrines and pâtés from scratch. The onion soup is outstanding, as is the classic duck confit. Terrace dining is a must during the warmer months.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.02409,
+          37.52062
         ]
       },
       "properties": {
@@ -1462,8 +2528,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.005169790093,
-          37.5558969290908
+          127.00517,
+          37.555813
         ]
       },
       "properties": {
@@ -1488,8 +2554,86 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.006177503419,
-          37.5340972039923
+          126.9431187,
+          37.5396777
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Lee Buk Bang",
+        "address": "2F, 16 Mapo-daero 1-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 16 Mapo-daero 1-gil, Mapo-gu, Seoul, 04165, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/lee-buk-bang",
+        "year": "",
+        "description": "At Lee Buk Bang, North Korean cuisine is reinterpreted with a modern touch, offering a distinctive dining experience. The signatures are blood sausage dishes prepared according to the chef’s family recipes. His creativity is evident across the menu, from traditional preparations to dishes that incorporate inventive new ingredients. He also aims to create food that feels both familiar and refined, blending family heritage with his own culinary experience. Worktops made from reclaimed crossbeams and doors from century-old hanoks add to the restaurant’s nostalgic atmosphere.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01932,
+          37.51938
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Légume",
+        "address": "2F, Sinsa Square, 652 Gangnam-daero, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, Sinsa Square, 652 Gangnam-daero, Gangnam-gu, Seoul, 06027, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/legume",
+        "year": "",
+        "description": "Creating elegant, compelling cuisine using only plant-based ingredients is no easy task, yet Chef Si-woo Sung achieves it with confidence at Légume. His deep understanding of vegetarian cooking, combined with a distinctive personal vision, has shaped a menu with a clear identity. In pursuing a fully vegan approach, the restaurant refines contemporary cuisine while highlighting the breadth of Korean vegetarian traditions. The chef’s assured technique brings clarity and depth to each dish, and the imaginative flavours appeal not only to vegetarians but to diners with a wide range of tastes.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.02988,
+          37.48458
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Limbyungjoo Sandong Kalguksu",
+        "address": "65 Gangnam-daero 37-gil, Seocho-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "65 Gangnam-daero 37-gil, Seocho-gu, Seoul, 06734, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/limbyungjoo-sandong-kalguksu",
+        "year": "",
+        "description": "Since 1988, this restaurant has been proving that a humble bowl of noodle soup can be truly memorable when done right. The pleasant texture of their hand-cut noodles, prepared daily from scratch, and immensely comforting broth, served piping hot and packed with flavor from the clams in all their naturally sweet glory, are stellar. Other favorites include Pyeongyang jumbo sized dumplings and noodles in cold soybean soup. Simple but warm service.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.00613,
+          37.53411
         ]
       },
       "properties": {
@@ -1514,8 +2658,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.976013798412,
-          37.5632575533142
+          127.03898,
+          37.52785
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Mandujip",
+        "address": "338 Apgujeong-ro, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "338 Apgujeong-ro, Gangnam-gu, Seoul, 06018, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mandujip",
+        "year": "",
+        "description": "In the midst of Cheongdam’s upscale dining scene, this modest restaurant has sustained a 30-year legacy with its handmade mandu. The owner continues his late mother’s recipe, serving delicate dumplings in a clean, savory brisket broth, with the option to omit the spicy seasoning. Popular with locals and quickly filled after opening, it also offers simple but well-loved sides like mung bean–skin pancakes and chili jeon. A small menu, honest flavors, and quiet sincerity define this enduring favorite.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.97598,
+          37.56324
         ]
       },
       "properties": {
@@ -1540,8 +2710,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.94333796293756,
-          37.53988170968319
+          126.94332,
+          37.53983
         ]
       },
       "properties": {
@@ -1566,8 +2736,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.034647850457,
-          37.5232847675923
+          127.03464,
+          37.52337
         ]
       },
       "properties": {
@@ -1592,8 +2762,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.050648024845,
-          37.5380617190641
+          127.05065,
+          37.53808
         ]
       },
       "properties": {
@@ -1618,8 +2788,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          128.70352194496348,
-          35.152027688084765
+          126.97985,
+          37.5708
         ]
       },
       "properties": {
@@ -1635,8 +2805,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mijin",
         "year": "",
         "description": "Located in the heart of Gwanghwamun, Mijin has been serving Korean-style cold buckwheat noodles since 1952. The restaurant operates a factory in the basement where the dipping sauce and buckwheat noodles are prepared fresh daily. One portion comes with two stacked tray baskets of noodles, a large kettle of chilled sauce and basic side dishes. Dress your dipping sauce to your desire with grated daikon, light wasabi, crispy seasoned laver and chopped green onions that have already been laid out on the table for you.",
-        "kakao_id": "11518952",
-        "kakao_url": "http://place.map.kakao.com/11518952"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -1644,8 +2814,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.040904262328,
-          35.3557219131584
+          127.02108,
+          37.52003
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Mimi Myeonga",
+        "address": "29 Gangnam-daero 160-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "29 Gangnam-daero 160-gil, Gangnam-gu, Seoul, 06028, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mimi-myeonga",
+        "year": "",
+        "description": "Mimi Myeonga is best known for its noodle dishes topped with playful garnishes and served in a generous helping of broth. Diners can choose hot or cold soba dishes depending on the season.  In winter, warm up with a brimming bowl of noodles with broth, crowned with shrimp, conger eel, fried eggplant, and grilled mackerel. In summer, try the refreshing and nutty option topped with sea urchin and sweet marinated tomato. Mimi Myeonga infuses its delightfully springy noodles with distinctive seasonal flavors.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0181,
+          37.4933
         ]
       },
       "properties": {
@@ -1661,8 +2857,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/minami",
         "year": "",
         "description": "The star of the show at Minami is Japanese-style soba noodles. Trained at the prestigious Tsuji Culinary Institute in Osaka, Japan, Chef Nam Chang-soo is no stranger to the world of Japanese cuisine, but he professes that soba is his one true love. While respecting the time-honored traditions of Japanese-style buckwheat noodles, Nam adds his own spin to the soba dishes he serves. Customer favorites include soba noodle soup topped with soy sauce-braised and grilled conger eel as well as another variety with soy sauce-braised herring imported from Kyoto.",
-        "kakao_id": "15730171",
-        "kakao_url": "http://place.map.kakao.com/15730171"
+        "kakao_id": "18253256",
+        "kakao_url": "http://place.map.kakao.com/18253256"
       }
     },
     {
@@ -1670,8 +2866,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04410633651611,
-          37.52541969265465
+          127.04426,
+          37.52535
         ]
       },
       "properties": {
@@ -1696,8 +2892,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04504557668946,
-          37.52211896630903
+          126.91419,
+          37.54658
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Mipildam",
+        "address": "22 Seongji 3-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "22 Seongji 3-gil, Mapo-gu, Seoul, 04083, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mipildam",
+        "year": "",
+        "description": "Situated in Hapjeong-dong, Mipildam is an unpretentious little spot specialising in handmade mandutguk in North Korean style. This light-flavoured dish is made according to the young owner couple's family recipe. Diners cannot easily resist the perfect combination of plump, juicy dumplings and the delicate broth. In addition to the signature soup, the menu offers seasonally updated traditional dishes, which reflect the owners' passion for serving good food.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.04502,
+          37.52206
         ]
       },
       "properties": {
@@ -1722,8 +2944,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.971877946182,
-          37.5814963839514
+          126.9718836,
+          37.5814682
         ]
       },
       "properties": {
@@ -1748,8 +2970,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.055693313392,
-          35.1565584919865
+          126.9874,
+          37.53858
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Mr. Ahn's Craft Makgeolli",
+        "address": "3 Hoenamu-ro, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "3 Hoenamu-ro, Yongsan-gu, Seoul, 04343, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mr-ahn-s-craft-makgeolli-1192580",
+        "year": "",
+        "description": "Mr. Ahn's Craft Makgeolli reimagines Korean banju culture through a contemporary lens, offering a wide selection of makgeolli paired with dishes designed to complement it. Signatures include house-made tofu served with saeujeot kimchi, pork belly, and pollock roe—a menu that highlights contrasting textures and layered flavours. Refined with modern technique, the menu features seasonal small plates and course options alongside a rotating selection of aged Korean liquors, making the venue suitable for both relaxed meals and convivial gatherings.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.981,
+          37.56533
         ]
       },
       "properties": {
@@ -1765,8 +3013,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mugunghwa",
         "year": "",
         "description": "Mugunghwa at Lotte Hotel offers a refined take on classic Korean cuisine, paired with sweeping city views from its top-floor location. Embracing the philosophy that 'food is medicine', the restaurant crafts dishes using seasonal ingredients to deliver flavours that are both comforting and complex. Highlights include burdock gangjeong with coastal hog fennel sauce, imjasutang in an autumn olive and sesame broth, and haesamjeung with sea cucumber and black garlic sauce. With a focus on traditional ingredients, natural seasonings, and fermented elements, Mugunghwa presents a distinctly Korean, health-conscious dining experience.",
-        "kakao_id": "21309418",
-        "kakao_url": "http://place.map.kakao.com/21309418"
+        "kakao_id": "8349008",
+        "kakao_url": "http://place.map.kakao.com/8349008"
       }
     },
     {
@@ -1774,8 +3022,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.000520641703,
-          37.5618075822526
+          127.00053,
+          37.56181
         ]
       },
       "properties": {
@@ -1800,8 +3048,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.915747045829,
-          37.5493473616969
+          127.04545,
+          37.52291
         ]
       },
       "properties": {
@@ -1817,8 +3065,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/muni",
         "year": "",
         "description": "Muni is a refined Japanese restaurant defined by its understated entrance and minimalist design centred around a long counter. Behind the open kitchen, shelves display the chef’s carefully collected ceramics, adding a personal and curated touch to the space. Chef Dong-wook Kim doesn’t strictly adhere to traditional kaiseki, yet he naturally incorporates its sensibilities through his seasonal ingredients and elegant presentation. His omakase focuses on seasonality and simplicity, using top-quality Japanese and Korean products to express the essence of each season. As a certified kikisakeshi, the chef can recommend pairings that elevate the meal, offering an even richer dining experience.",
-        "kakao_id": "1468816223",
-        "kakao_url": "http://place.map.kakao.com/1468816223"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -1826,8 +3074,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04223838500221,
-          37.519029563585256
+          127.04222,
+          37.51896
         ]
       },
       "properties": {
@@ -1852,8 +3100,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.88887572966871,
-          37.58016531530425
+          127.03906,
+          37.52416
         ]
       },
       "properties": {
@@ -1869,8 +3117,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/myeon-seoul",
         "year": "",
         "description": "Myeon Seoul is Chef Do-yun Kim's second restaurant following the success of YUN. The inspiration came from a stream of customer requests at the original spot for a separate offering of its housemade noodles, which are made exclusively with whole wheat, mung bean, dried pollack, and without chemical additives. For a perfect flavour composition, the chef blends whole wheat varieties sourced from Korea, France, and Turkey. Highlights include perilla oil noodles imbued with fresh, nutty flavours; spicy noodles glazed with a piquant sauce; and bracken whole wheat noodles flavoured with bracken and perilla seeds.",
-        "kakao_id": "966895529",
-        "kakao_url": "http://place.map.kakao.com/966895529"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -1878,8 +3126,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.986083137398,
-          37.5611814714638
+          126.984552,
+          37.56347
         ]
       },
       "properties": {
@@ -1895,8 +3143,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/myeongdong-kyoja",
         "year": "",
         "description": "Myeongdong Kyoja is a family-owned place in operation since 1966. The restaurant, which offers only four items on the menu, specializes in dumplings and noodle soup. An impressive number of patrons flock here daily, largely because all the dishes, including its signature garlic-laden kimchi, are made in-house. Simple décor and service come with hefty portions at affordable prices.",
-        "kakao_id": "1479300828",
-        "kakao_url": "http://place.map.kakao.com/1479300828"
+        "kakao_id": "10332413",
+        "kakao_url": "http://place.map.kakao.com/10332413"
       }
     },
     {
@@ -1904,8 +3152,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04149008121,
-          37.5261324323941
+          127.041513,
+          37.52635
         ]
       },
       "properties": {
@@ -1930,8 +3178,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.981753597164,
-          37.5671652991647
+          126.981609,
+          37.567269
         ]
       },
       "properties": {
@@ -1956,8 +3204,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98611119582282,
-          37.56855522765132
+          126.97078,
+          37.53008
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Neungdong Minari",
+        "address": "28 Hangang-daero 40-gil, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "28 Hangang-daero 40-gil, Yongsan-gu, Seoul, 04386, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/neungdong-minari",
+        "year": "",
+        "description": "The gomtang at Neungdong Minari is topped with a pile of minari so tall that at a glance, it doesn’t look like a tang at all. The clear, clean broth is made from fresh hanwoo beef that was slaughtered on the day, which is topped with piquant minari that was grown in clear freshwater for added freshness. You should expect a wait, but you will think it is well worth it once you take your first bite.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98612,
+          37.56854
         ]
       },
       "properties": {
@@ -1982,8 +3256,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.053901906685,
-          37.5110148935604
+          126.92526,
+          37.56337
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Nishimuramen",
+        "address": "4F, 265 Donggyo-ro, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "4F, 265 Donggyo-ro, Mapo-gu, Seoul, 03983, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/nishimuramen",
+        "year": "",
+        "description": "This Fukuoka restaurant, known for its unique combination of Japanese ramen and French cooking, has now opened in Seoul. Created by Chef Takahito Nishimura as an expression of his deep passion for ramen, the restaurant showcases his personal style through layered flavours built from carefully balanced toppings, sauces, and oils. While remaining true to ramen tradition, the kitchen thoughtfully localises its dishes with elements such as laver oil, Cheongyang chilli pepper, and tsukemono inspired by white kimchi. A standout dish of freshly cooked pot rice mixed with cheese and ramen broth further underscores the restaurant’s inventive approach.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.05388,
+          37.51097
         ]
       },
       "properties": {
@@ -2008,8 +3308,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.914521071507,
-          37.5526765694055
+          126.97473,
+          37.53254
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Oilje",
+        "address": "29 Hangang-daero 62da-gil, Yongsan-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "29 Hangang-daero 62da-gil, Yongsan-gu, Seoul, 04382, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/oilje",
+        "year": "",
+        "description": "The regulars at Oilje return for one dish: the perilla seed miyeok-guk. The clean broth and nutty perilla seeds pair perfectly to create a flavourful soup. Simple banchan—such as soy sauce for dipping miyeok, nakji-jeotgal, and gat kimchi—round out a well-balanced meal alongside freshly cooked rice. Diners can view the soup and rice being cooked in the gamasot in the spotless open kitchen. The restaurant offers special birthday meals every Friday to guests celebrating their special days.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.12408,
+          37.50153
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Okdol Heyonok",
+        "address": "26-1 Ogeum-ro  36-gil, Songpa-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "26-1 Ogeum-ro  36-gil, Songpa-gu, Seoul, 05700, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/okdol-heyonok",
+        "year": "",
+        "description": "Taste the deeply savory broth and the nutty flavor of the noodles made from 100% buckwheat that intensifies the more you chew at Okdol Hyeonok. The restaurant is fairly new, but it has gained a solid following among Pyongyang naengmyeon connoisseurs. Some of their most popular dishes are mandu with a nuttiness that comes from plenty of tofu in the filling, eobok jaengban, and gajami shikhye. You can also have your favorite wine with your meal for a corkage fee. Enjoy the mild flavors with incredible depth.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.91449,
+          37.55261
         ]
       },
       "properties": {
@@ -2034,8 +3386,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.64910190164234,
-          37.65167390059464
+          127.04266,
+          37.52451
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Olh Eum",
+        "address": "3F, 37 Seolleung-ro 152-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "3F, 37 Seolleung-ro 152-gil, Gangnam-gu, Seoul, 06016, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/olh-eum",
+        "year": "",
+        "description": "Cooking honest food that respects the integrity of ingredients is the motto of Chef Seo Ho-young, who cooks with the freshest produce sent to him by his farmer parents. Transporting familiar flavors to new territories is his game. Take, for example, his shrimp and sea urchin capellini in a silky smooth bisque-like sauce made with freshwater shrimp heads, fermented fish sauce and doenjang, or his smoked striploin carpaccio served with a mushroom and soy sauce consommé.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.04938,
+          37.52192
         ]
       },
       "properties": {
@@ -2051,8 +3429,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/on565623",
         "year": "",
         "description": "ON offers warm, comforting cuisine that reflects the chef’s gentle, thoughtful approach. The intimate space—designed with guests’ privacy in mind—accommodates only a few tables and operates strictly by reservation. The menu centres on seasonal ingredients, with a signature vegetable dish that combines two types of slow-dried tomatoes with ruby grapefruit for a bright, elegant balance. Throughout the meal, the chef personally visits each table to explain the intent behind every dish, creating a warm and engaging dining experience.",
-        "kakao_id": "100335392",
-        "kakao_url": "http://place.map.kakao.com/100335392"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -2060,8 +3438,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.03744666258042,
-          37.516705690339634
+          127.037424,
+          37.516773
         ]
       },
       "properties": {
@@ -2086,8 +3464,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.97339071212892,
-          37.580494739542516
+          126.97345,
+          37.58048
         ]
       },
       "properties": {
@@ -2112,8 +3490,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.045718271749,
-          37.5251929281367
+          127.0457,
+          37.52515
         ]
       },
       "properties": {
@@ -2138,8 +3516,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.031018121292,
-          37.5188924866535
+          127.03105,
+          37.51844
         ]
       },
       "properties": {
@@ -2164,8 +3542,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98455881787119,
-          37.576456761203985
+          126.91781,
+          37.54725
         ]
       },
       "properties": {
@@ -2181,8 +3559,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/oreno-ramen",
         "year": "",
         "description": "Oreno Ramen blends its broth just before serving, creating a frothy soup that pleasantly coats the palate. The paitan, made by boiling a whole chicken, is a milky broth with a nutty flavour and creamy texture. House-made noodles, melt-in-your-mouth chicken, kelp, and egg complete an exceptional bowl. For an extra kick, opt for the spicy broth, and take advantage of complimentary refills of noodles, rice, and broth. Though the restaurant often has a long queue, turnover is quick, so waits are usually short. A side of chilli peppers is also recommended and provided free of charge.",
-        "kakao_id": "1179567185",
-        "kakao_url": "http://place.map.kakao.com/1179567185"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -2190,8 +3568,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.040719110319,
-          37.5250983502594
+          127.04071,
+          37.52509
         ]
       },
       "properties": {
@@ -2216,8 +3594,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00949263719748,
-          37.53488535979127
+          127.00946,
+          37.53486
         ]
       },
       "properties": {
@@ -2242,8 +3620,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.97953708475447,
-          37.55973351743263
+          126.97949,
+          37.55983
         ]
       },
       "properties": {
@@ -2268,8 +3646,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.049472816828,
-          37.5112420827286
+          127.04949,
+          37.51126
         ]
       },
       "properties": {
@@ -2294,8 +3672,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.980957195279,
-          37.5653451615156
+          126.98103,
+          37.56529
         ]
       },
       "properties": {
@@ -2320,8 +3698,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.99693958989,
-          37.5603983847784
+          126.99689,
+          37.56035
         ]
       },
       "properties": {
@@ -2346,8 +3724,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00669603395768,
-          37.56324808702588
+          127.00664,
+          37.56325
         ]
       },
       "properties": {
@@ -2372,8 +3750,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04165283886103,
-          37.50347843657701
+          127.0418,
+          37.5036
         ]
       },
       "properties": {
@@ -2398,8 +3776,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.97006318267,
-          37.5729202740695
+          126.96991,
+          37.57276
         ]
       },
       "properties": {
@@ -2424,8 +3802,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04326282119,
-          37.5222277531013
+          127.04329,
+          37.522219
         ]
       },
       "properties": {
@@ -2450,8 +3828,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00085874941644,
-          37.5348433911478
+          127.04655,
+          37.52318
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Rialto",
+        "address": "2F, 13 Samseong-ro 149-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 13 Samseong-ro 149-gil, Gangnam-gu, Seoul, 06063, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/rialto",
+        "year": "",
+        "description": "Over the past few years, a streamlined selection of antipasti paired with a stronger focus on primi has become a clear trend in Seoul’s Italian dining scene. In keeping with this shift, the restaurant presents a concise menu that stays true to its northern Italian roots as well as the chef’s personal philosophy, sensibility, and style. Standout dishes include tajarin and cacio e pepe, richly flavoured and marked by a beguiling harmony of butter and cheese. The kitchen’s other pasta dishes show the same fine balance of sauces and seasonings. The pickled ponytail radish is another highlight, offering a nostalgic note that lingers on the palate.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.00085,
+          37.53483
         ]
       },
       "properties": {
@@ -2476,8 +3880,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98197124938,
-          37.5845977743306
+          127.03599,
+          37.52291
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Ryunique",
+        "address": "8-1 Dosan-daero 45-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "8-1 Dosan-daero 45-gil, Gangnam-gu, Seoul, 06021, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/ryunique",
+        "year": "",
+        "description": "Since opening in 2011, Ryunique has continually redefined its cuisine through Chef Tae-hwan Ryu’s independent research and creative interpretation of ingredients. The menu evolves with the seasons and solar terms, highlighting fresh produce selected for peak quality. The chef's ability to translate boundless culinary ideas into refined dishes defines the restaurant’s identity. The tidy, modern space houses both the chef’s research centre on the first floor and the dining room above. Altogether, Ryunique offers a distinctive experience that feels both charming and inventive.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.89189,
+          37.58449
         ]
       },
       "properties": {
@@ -2493,8 +3923,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/samcheongdong-sujebi",
         "year": "",
         "description": "This local haunt has been an integral part of Samcheong-dong’s history since 1982. The signature dish here is sujebi — rustic hand-pulled dough soup served in a savory anchovy broth. The restaurant is also known for its potato pancakes, made with grated potatoes that are pan-fried until crispy on the outside and pleasantly chewy on the inside. Avoid the lunch rush if you don’t want to stand in line, but be warned — the restaurant is always busy.",
-        "kakao_id": "13559837",
-        "kakao_url": "http://place.map.kakao.com/13559837"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -2502,8 +3932,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.03264282010882,
-          37.52482605288599
+          127.03297,
+          37.52499
         ]
       },
       "properties": {
@@ -2528,8 +3958,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.033920717797,
-          37.5263564954611
+          127.03391,
+          37.52631
         ]
       },
       "properties": {
@@ -2554,8 +3984,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.922705882899,
-          37.5610362571878
+          127.04978,
+          37.52417
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Sanro",
+        "address": "2F, 518 Dosan-daero, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "2F, 518 Dosan-daero, Gangnam-gu, Seoul, 06070, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sanro",
+        "year": "",
+        "description": "Chef Sung-yup Yoo’s dedication to washoku cuisine shines through at Sanro. The nuanced, chic objets d’art that adorn the space are in harmony with the chef’s sensibilities expressed through both his menu and the dining environment. When seasonal ingredients meet his refined technique and passion for culinary craft, a succession of subtle flavours unfolds, gently pleasing the palate throughout the meal. To complete the experience, the service is as polished as the clean, elegant flavours that define his washoku cuisine.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.92267,
+          37.56103
         ]
       },
       "properties": {
@@ -2580,8 +4036,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.10404194500789,
-          37.51349967725439
+          126.91231,
+          37.55359
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Seokyonanmyunbang",
+        "address": "16 Donggyo-ro 12-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "16 Donggyo-ro 12-gil, Mapo-gu, Seoul, 04029, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/seokyonanmyunbang",
+        "year": "",
+        "description": "Chef Nak-young Kim, an expert on Italian cuisine, offers his unique take on noodle dishes at Seokyonanmyunbang. His nanmyeon is a unique, creative fusion of Korean and Italian culinary traditions. The chef delicately balances these two distinctive traditions to highlight the texture of noodles and the delectable flavours of broth. Signature dishes include gueomdak nanmyeon made from a Jeju breed of chicken and seokyo nanmyeon featuring a broth made from chicken and Hanwoo beef. The chef creates seasonal noodle dishes, making it worthwhile to make multiple visits for new experiences.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.97546,
+          37.55857
         ]
       },
       "properties": {
@@ -2597,8 +4079,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/seoryung",
         "year": "",
         "description": "Seoryung began its journey in Hongcheon, moved via Ganghwa, and finally settled in Namdaemun, Seoul. The restaurant has drawn noodle lovers wherever it relocated and continued to expand its connection with diners by preparing authentic noodles and broths with dedication. All of its noodles are made purely from buckwheat sourced and prepared by Chef Jong-moon Jeong. This is the secret to the fragrant buckwheat flavour that shines through in all its noodle dishes. The mandu and jeyuk, made from the most tender part of the pork shoulder, provide an even more satisfying experience.",
-        "kakao_id": "496321556",
-        "kakao_url": "http://place.map.kakao.com/496321556"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -2606,8 +4088,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.01189973264361,
-          37.53840444978492
+          127.00359,
+          37.55919
         ]
       },
       "properties": {
@@ -2623,8 +4105,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/seoul-dining",
         "year": "",
         "description": "Guided by the vision of presenting a culinary journey that captures the essence of Seoul, the establishment combines seasonal ingredients with boundless creativity to bring brilliant, one-of-a-kind dishes to the table. The use of ingredients and sauces that deliver a wide variety of flavours adds to its appeal, reflecting the co-existence of diverse food cultures in Seoul. The contemporary and vibrant dining space also creates a sense of harmony worthy of its buoyant dishes.",
-        "kakao_id": "150255905",
-        "kakao_url": "http://place.map.kakao.com/150255905"
+        "kakao_id": "1236048651",
+        "kakao_url": "http://place.map.kakao.com/1236048651"
       }
     },
     {
@@ -2632,8 +4114,112 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.03400526007886,
-          37.515714726279604
+          127.0391949,
+          37.5205428
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "SIIO",
+        "address": "33 Dosan-daero 54-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "33 Dosan-daero 54-gil, Gangnam-gu, Seoul, 06056, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/siio",
+        "year": "",
+        "description": "At SIIO, the head chef’s experience is seen in imaginative dishes featuring seasonal Korean ingredients, ready to delight diners with sumptuous flavors. SIIO’s fare breaks free from the mold and embraces freedom of expression. At this fine diner, novel dishes represent a melting pot of culinary cultures and techniques. Yet, under the veneer of this freewheeling, fresh take on food lies the careful selection of ingredients that reflect Korea’s four distinct seasons. Meticulous rules dictate the perfect balance of subtle flavors.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.94629,
+          37.54126
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Sobajuu",
+        "address": "B1 #22, 75 Keunumul-ro, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "B1 #22, 75 Keunumul-ro, Mapo-gu, Seoul, 04158, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sobajuu",
+        "year": "",
+        "description": "Sobajuu is a place that offers creative Japanese dishes using buckwheat as the main ingredient. It was initially run by two brothers, but now the younger sibling is in charge. By employing various cooking techniques, each course showcases different textures and flavors of buckwheat. For example, they offer self-made soba rolls with tuna and seaweed sauce, along with French-style buckwheat pancakes called galettes and grilled fish. The modern yet cozy space, combined with the clean presentation of the dishes, reflects the chef's dedication and attention to detail.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01243,
+          37.55949
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Sobakeeri Suzu",
+        "address": "98 Dongho-ro 12-gil, Jung-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "98 Dongho-ro 12-gil, Jung-gu, Seoul, 04608, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sobakeeri-suzu",
+        "year": "",
+        "description": "After honing his culinary skills in Japan, the owner-chef returned to reinterpret the beloved soba tradition using Korean buckwheat. Instead of following the typical buckwheat-to-flour ratios such as juwari or nihachi, the chef opted for sotoichi. The soba features a gentle grain aroma and a pleasantly chewy texture. You can enjoy classic zaru soba along with tasty braised dishes and crispy tempura, all great choices to pair with sake.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01903,
+          37.51933
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Soigné",
+        "address": "#201, 2F, Sinsa square, 652 Gangnam-daero, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "#201, 2F, Sinsa square, 652 Gangnam-daero, Gangnam-gu, Seoul, 06027, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/soigne",
+        "year": "",
+        "description": "Soigné is celebrated for a tasting menu that reflects the changing seasons and brings each ingredient to life. Owner-chef Jun Lee blends Korean sensibilities with contemporary techniques, creating dishes articulated entirely in his own voice. His signature ‘Episode’ menus unfold like a classical narrative, from introduction to conclusion, as a paced culinary performance. In a minimalist, white-toned space centred on the kitchen, with elegant plating and attentive service, the dining experience is one to remember.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03378,
+          37.516
         ]
       },
       "properties": {
@@ -2658,8 +4244,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.03704984554204,
-          37.52629338614902
+          127.03704,
+          37.52628
         ]
       },
       "properties": {
@@ -2684,8 +4270,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00913061266702,
-          37.5351376685516
+          127.01539,
+          37.5935
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Sooksoodoga",
+        "address": "28 Dongsomun-ro 17-gil, Seongbuk-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "28 Dongsomun-ro 17-gil, Seongbuk-gu, Seoul, 02830, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sooksoodoga",
+        "year": "",
+        "description": "Sooksoodoga carefully selects the finest premium hanwoo beef, which is matured using proprietary methods for anywhere from 46 to 720 hours; the aim is to offer only the very best in aged meat.  The tasting menu offers diners a choice from three different cuts, accompanied by small Korean dishes. À la carte options are also available. The reasonable pricing, designed to make aged beef more accessible, is reason enough to visit.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03766,
+          37.56344
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Joo052",
+        "address": "26 Gosanja-ro 14-gil, Seongdong-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "26 Gosanja-ro 14-gil, Seongdong-gu, Seoul, 04750, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sool052",
+        "year": "",
+        "description": "Joo052 is a portmanteau of 'Joo' (alcohol) and '052', the area code of the region the chefs live in. It is a Korean gastropub brimming with culinary ideas as playful as the restaurant’s name. Employing diverse fermented pastes and fermentation techniques, the basis of Korean cuisine, the chef duo offers unique dishes prepared with exceptional care and attention to detail to bring out unforgettable flavours. Additionally, the varied menu selections tend to go well together, making it easy to enjoy multiple items at once. These charms make Joo052 a perfect place to experience the exquisite harmony between Korean food and Korean alcohol.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.00914,
+          37.53528
         ]
       },
       "properties": {
@@ -2710,8 +4348,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.213467086441,
-          35.1861786279065
+          126.9634,
+          37.55294
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Sosuheon",
+        "address": "8 Mallijae-ro 21-gil, Jung-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "8 Mallijae-ro 21-gil, Jung-gu, Seoul, 04500, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sosuheon",
+        "year": "",
+        "description": "Juxtaposed with Seoul’s contemporary skyline, a traditional hanok is home to Chef  Kyung-jae Park’s Sosuheon. The serene setting offers an elegant retreat from the city. From the eight-seat counter, diners can watch the confident chef at work as he prepares nigiri with quiet concentration. Prior to the nigiri course, a range of well-executed dishes is served, from cod roe with hairy crab to steamed tilefish and grilled hairtail. Highlights include gizzard shad and creamy cuttlefish, and a bowl of matcha brings the memorable evening to a close.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98443,
+          37.54533
         ]
       },
       "properties": {
@@ -2727,8 +4391,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/soul-dining",
         "year": "",
         "description": "Located in a quaint part of Seoul, this operation is Chef Dae-hyun Yoon’s bold experiment in stylish fine dining. Here, the diverse culinary traditions and ingredients one may encounter in modern-day Korea converge with the familiar tastes found in everyday life to form unique fusion creations. Among the many connotations of the establishment’s name is the chef’s desire to serve food with soul, and this is palpable in every dish. Along with his wife, Chef Hee-eun Kim, this husband-and-wife duo have partitioned their establishment into several distinct sections, creating suitable dining spaces for disparate cuisines.",
-        "kakao_id": "21087555",
-        "kakao_url": "http://place.map.kakao.com/21087555"
+        "kakao_id": "404432674",
+        "kakao_url": "http://place.map.kakao.com/404432674"
       }
     },
     {
@@ -2736,8 +4400,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.858018226444,
-          37.4904710202976
+          127.10258,
+          37.51271
         ]
       },
       "properties": {
@@ -2753,8 +4417,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/stay",
         "year": "",
         "description": "Located on the 81st floor, STAY offers a modern, luxurious dining experience in an elegant and comfortable setting. The menu, rooted in French technique, remains restrained rather than ornate, balancing meticulous detail with approachability. Some dishes are finished tableside, creating a natural sense of interaction, and the service is notably warm and attentive. The meal concludes with a delightful ritual at the central French Pastry Library, where guests may choose their preferred petits fours. A daytime visit is especially recommended—the expansive windows provide sweeping, refreshing views of the cityscape.",
-        "kakao_id": "1101282590",
-        "kakao_url": "http://place.map.kakao.com/1101282590"
+        "kakao_id": "26239641",
+        "kakao_url": "http://place.map.kakao.com/26239641"
       }
     },
     {
@@ -2762,8 +4426,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.986127574349,
-          37.4923827642292
+          126.98611,
+          37.49234
         ]
       },
       "properties": {
@@ -2788,8 +4452,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.00523847177902,
-          37.534660374914516
+          127.04573,
+          37.52535
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Sushi Matsumoto",
+        "address": "24 Dosan-daero 75-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "24 Dosan-daero 75-gil, Gangnam-gu, Seoul, 06015, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sushi-matsumoto-1195338",
+        "year": "",
+        "description": "Chef Matsumoto Mizuho is renowned for replicating authenticity in local settings. Rather than chasing after gastronomic trends, this sushiya strives to faithfully reproduce the authentic sushi of mainland Japan amidst the Korean milieu. Such efforts are unmistakable—from the composition and arrangement of shari (rice) and neta (fish topping) to the knowledgeable service provided. The impressive line of tsumami (appetizers) and the progression of nigiri sushi —reflecting the natural cadence of flavors — remain the main culinary appeal.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.00523,
+          37.53468
         ]
       },
       "properties": {
@@ -2814,8 +4504,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.434517503875,
-          37.4666266970242
+          126.93576,
+          37.55665
         ]
       },
       "properties": {
@@ -2831,8 +4521,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tasty-cube",
         "year": "",
         "description": "It is specialized in noodle dishes, with the signature being the hongtang and baektang noodles made from beef bone and meat. Another popular choice is kkaebusumyeon, a soupless tantanmen served with nutty zmajing sauce made from ground peanuts and sesame seeds. It offers Choyuringi, a chicken dish with a vinegar sauce, in small portions to accompany the noodles. Extra noodles are available free of charge, and the counter seating is ideal for solo diners.",
-        "kakao_id": "714597685",
-        "kakao_url": "http://place.map.kakao.com/714597685"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -2840,8 +4530,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.054308300871,
-          37.5224142032418
+          127.05429,
+          37.52237
         ]
       },
       "properties": {
@@ -2866,8 +4556,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.99754467073737,
-          37.53921051798946
+          126.9971,
+          37.53929
         ]
       },
       "properties": {
@@ -2892,8 +4582,86 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.05432412573423,
-          37.52239707691486
+          126.98829,
+          37.57781
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "The Green Table",
+        "address": "5F Arario Space, 83 Yulgok-ro, Jongno-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "5F Arario Space, 83 Yulgok-ro, Jongno-gu, Seoul, 03058, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/the-green-table",
+        "year": "",
+        "description": "Chef Kim Eun-hee applies French culinary precision to vegetables and grains, thoughtfully pairing them with traditional jangajji. Her risotto-style composition—built on barley, black rice, and oats—highlights root vegetables, bound together by a delicately expressive vegetable stock sauce, patiently simmered to reveal quiet depth. The ever-changing view of Changgyeonggung Palace lends a sense of place and serenity, while attentive yet unobtrusive service subtly elevates the overall dining experience.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.97969,
+          37.5644
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "The Ninth Gate",
+        "address": "1F The Westin Chosun Hotel, 106 Sogong-ro, Jung-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "1F The Westin Chosun Hotel, 106 Sogong-ro, Jung-gu, Seoul, 04533, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/the-ninth-gate",
+        "year": "",
+        "description": "It would be challenging to discuss the evolution of French dining in Seoul without mentioning The Ninth Gate. Keeping up with Seoul’s ever-transforming restaurant scene, a newer and better The Ninth Gate reopened its doors to the delight of fans both old and new. While the food is still reflective of the classic French style from the days before its facelift, there is also greater sophistication that makes the restaurant more relevant than ever before. Wine-tasting programs are offered at the bar counter after 10 pm.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0567982,
+          37.5115769
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Tim Ho Wan",
+        "address": "30 Bongeunsa-ro 86-gil, Gangnam-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "30 Bongeunsa-ro 86-gil, Gangnam-gu, Seoul, 06165, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tim-ho-wan",
+        "year": "",
+        "description": "Tim Ho Wan has played a major role in making Hong Kong-style dim sum popular in many countries worldwide. The main force behind such growing popularity has been its policy of maintaining the traditional form of Hong Kong dim sum dishes and making them available at affordable prices. This management philosophy has been upheld in its branches in Seoul, making them as authentic as the original. The franchise’s capacious Samseong outpost, which is also the main location in Seoul, can serve up to 110 customers at one time and offers ample parking spaces. It is the perfect place to indulge in a wide variety of traditional dim sum.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.05429,
+          37.52237
         ]
       },
       "properties": {
@@ -2918,8 +4686,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.980961724646,
-          37.5653379542771
+          126.981,
+          37.56531
         ]
       },
       "properties": {
@@ -2944,8 +4712,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.994533023467,
-          37.5340855260102
+          126.99451,
+          37.53404
         ]
       },
       "properties": {
@@ -2970,8 +4738,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.0416883763941,
-          37.526706300862216
+          127.0416702,
+          37.5267383
         ]
       },
       "properties": {
@@ -2996,8 +4764,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.066679967219,
-          37.5496478133953
+          127.0666,
+          37.54969
         ]
       },
       "properties": {
@@ -3022,8 +4790,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.04497942299255,
-          37.524984179317826
+          127.04496,
+          37.52496
         ]
       },
       "properties": {
@@ -3048,8 +4816,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.0381150018025,
-          37.518596682644
+          127.03814,
+          37.51866
         ]
       },
       "properties": {
@@ -3074,8 +4842,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.82045644989168,
-          37.31136697274176
+          126.99866,
+          37.56815
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Woo Lae Oak",
+        "address": "62-29 Changgyeonggung-ro, Jung-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "62-29 Changgyeonggung-ro, Jung-gu, Seoul, 04546, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/woo-lae-oak",
+        "year": "",
+        "description": "Woo Lae Oak is one of the best-known Pyongyang naengmyeon restaurants in Seoul, and its traditions have been upheld since its opening in 1946. The broth is what sets this spot apart from other competitors. It is made by boiling Hanwoo foreshank for hours and seasoned with nothing more than salt and soy sauce to create the clean savoury flavour that can only be tasted here. The bulgogi, another popular dish, pairs well with the cold noodles. The restaurant has maintained consistent flavours  and has exclusively used local ingredients through its many years of service, which makes it packed with diners around the clock.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03734,
+          37.52432
         ]
       },
       "properties": {
@@ -3091,8 +4885,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/wooga",
         "year": "",
         "description": "Wooga was originally born in Hoengseong, the beef capital of Korea. The restaurant is known for preparing the choicest quality local beef in its unique style: dry aged and well done. Chef Heo Se-byeong has been experimenting tirelessly with beef under the slogan meat science to maximize the characteristics of this meat such as tenderness, juiciness and flavor. Don’t miss out on another perennial favorite: a stew made with soybean paste fermented over long stages by the chef’s own mom.",
-        "kakao_id": "11361540",
-        "kakao_url": "http://place.map.kakao.com/11361540"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -3100,8 +4894,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.0355497850799,
-          37.52636502636806
+          127.03556,
+          37.5263
         ]
       },
       "properties": {
@@ -3126,8 +4920,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.92458444562307,
-          37.56465767525135
+          126.95149,
+          37.54059
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Yakitori Kiyu",
+        "address": "31 Dohwa 4-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "31 Dohwa 4-gil, Mapo-gu, Seoul, 04169, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yakitori-kiyu",
+        "year": "",
+        "description": "The experienced chefs’ busy hands deftly grill the chicken as the enticing aroma of Korean tojongdak yakitori fills the entire space. Yakitori Kiyu's goal is to take the flavours of yakitori to the next level. The restaurant uses chickens naturally raised on various medicinal herbs to provide diners with healthy, high-quality cuts of chicken. The menu features unlaid chicken eggs, which can only be obtained when a laying hen is slaughtered, highlighting the freshness of the ingredients.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.92449,
+          37.56461
         ]
       },
       "properties": {
@@ -3152,8 +4972,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          128.59019890980085,
-          38.137597996807266
+          126.98826,
+          37.49247
         ]
       },
       "properties": {
@@ -3169,8 +4989,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yangyang-memil-makguksu",
         "year": "",
         "description": "The not-so-secret secret to the longevity and success of Yangyang Memil Makguksu is that its noodles are made with 100% buckwheat and that they are made to order every time. The proprietor of the restaurant began his business many years ago for one reason only - buckwheat noodles were his favorite food. Although the restaurant specializes in the Gangwon-do Province-style cold buckwheat noodles, it also makes a fine bowl of spicy noodles composed with homemade kimchi. The basic spread is simple, but it’s rustic food at its best, made with love.",
-        "kakao_id": "7985087",
-        "kakao_url": "http://place.map.kakao.com/7985087"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -3178,8 +4998,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.98050836570161,
-          37.56766244982672
+          126.97088,
+          37.57972
         ]
       },
       "properties": {
@@ -3195,8 +5015,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yonggeumok",
         "year": "",
         "description": "Since 1932, Yonggeumok has been offering piping hot bowls of loach soup, a popular local dish believed to boost energy, especially during the summer months. This restaurant serves two different versions of the hearty and comforting soup: the chunkier Seoul style with whole loach, and the smoother Jeolla province style with ground loach. Everything on the menu as well as the complimentary side dishes are prepared daily by the longtime owner and chef Han Jeong-ja.",
-        "kakao_id": "10703052",
-        "kakao_url": "http://place.map.kakao.com/10703052"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -3204,8 +5024,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.03516732688114,
-          37.660940873275166
+          127.00108,
+          37.53482
         ]
       },
       "properties": {
@@ -3221,8 +5041,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/youhan",
         "year": "",
         "description": "Yuhan is a small, chic Thai bistro. It can be difficult to find for first-time visitors, as it is hidden deep in the alleys of Hannam-dong. Established by Chef Kim Yu-han, who attended culinary school in Thailand, the restaurant offers familiar dishes with a creative twist. Diners can experience diverse flavors, including Thai sausages, seasonal sashimi, and dishes topped with various Thai curries . The restaurant also offers natural wine recommendations that perfectly pair with the dishes.",
-        "kakao_id": "1087092101",
-        "kakao_url": "http://place.map.kakao.com/1087092101"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -3230,8 +5050,60 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.92107583683999,
-          37.53119950286013
+          126.97545,
+          37.57049
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Yu Yuan",
+        "address": "11F Four Seasons Hotel, 97 Saemunan-ro, Jongno-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "11F Four Seasons Hotel, 97 Saemunan-ro, Jongno-gu, Seoul, 03183, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yu-yuan",
+        "year": "",
+        "description": "On your way to your table, you’ll walk past a cabinet of Peking duck that’s a favorite order of many of the guests here at this handsome and comfortable Chinese restaurant at the Four Seasons hotel. While the menu leans towards Cantonese cuisine–lunchtime dim sum is always popular and the choice is extensive–the kitchen also offers specialities from a number of Chinese regions. Wok-fried Hoengseong Hanwood beef with ginger is a dish to look out for.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.947,
+          37.566
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Yukjeon Hoekwan",
+        "address": "47 Tojeong-ro 37-gil, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Bib Gourmand",
+        "cuisine": "47 Tojeong-ro 37-gil, Mapo-gu, Seoul, 04155, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yukjeon-hoekwan",
+        "year": "",
+        "description": "Three generations spanning five decades have kept this restaurant in business since its opening in 1962. At the time, their iconic crispy thin-sliced bulgogi, grilled over open flames, was all that was offered on the menu. The dish became so popular that the name bassak bulgogi was patented. Today, the restaurant stands four stories high, still serving the same dish that has fed generations. Their coagulated beef blood soup with a clear broth is another stunner.",
+        "kakao_id": null,
+        "kakao_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03906,
+          37.52416
         ]
       },
       "properties": {
@@ -3247,8 +5119,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yun",
         "year": "",
         "description": "Chef-Owner Kim Do-yun is someone clearly passionate about ingredients, and he holds a particular fascination for noodles. The counter allows those lucky enough to have secured reservations a front-row seat to witness the dishes’ creation and hear the detailed explanations of the aging, fermenting and drying techniques that are used to add such depth of flavor and contrasting textures to the fish and meats that make up the multi-course set menu. This is cooking from a chef who never stops learning or developing his skills.",
-        "kakao_id": "1787593821",
-        "kakao_url": "http://place.map.kakao.com/1787593821"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -3256,8 +5128,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          127.791333836777,
-          35.4662614106939
+          126.9761,
+          37.56419
         ]
       },
       "properties": {
@@ -3273,8 +5145,8 @@
         "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yurimmyeon",
         "year": "",
         "description": "For over 50 years, this family-run eatery has been serving bowls of noodles to those seeking comforting nourishment. The fresh buckwheat noodles, one of its bestsellers, are made from scratch, daily, using premium salt from Bigeumdo Island in Sinan County, and buckwheat flour from Bongpyeong. Topped with seasoned vegetables, thin strips of egg garnish, and a dollop of sweet and spicy sauce, a bowl of these noodles makes for a satisfying meal. Garak-guksu, wheat noodles in piping hot broth, comes with a generous serving of fishcake.",
-        "kakao_id": "991986445",
-        "kakao_url": "http://place.map.kakao.com/991986445"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -3282,8 +5154,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          126.992854141857,
-          37.52084341108
+          126.99285,
+          37.52079
         ]
       },
       "properties": {
@@ -3301,6 +5173,32 @@
         "description": "Zero Complex has consistently presented innovative interpretations of the ingredients since its opening. Despite relocating twice, the flavours and creativity of the dishes have never wavered. The restaurant showcases the delightfully bouncy texture and rich, smoky flavour of sea mustard through one of their signature dishes—Pacific geoduck served with sides of chewy barley, sea spaghetti, and sea mustard mouse. Although the restaurant, located in a quiet residential area, might be a challenge to find, tasting the dishes while admiring the quiet garden will make it worth your while.",
         "kakao_id": "1327613685",
         "kakao_url": "http://place.map.kakao.com/1327613685"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.92335,
+          37.56068
+        ]
+      },
+      "properties": {
+        "source": "michelin",
+        "name": "Zhonghuafuchun Salon",
+        "address": "10 Yeonnam-ro, Mapo-gu, Seoul",
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "Selected",
+        "cuisine": "10 Yeonnam-ro, Mapo-gu, Seoul, 03989, South Korea",
+        "price": "",
+        "phone": "",
+        "url": "https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/zhonghuafuchun-salon",
+        "year": "",
+        "description": "Zhonghuafuchun Salon is a fascinating establishment where traditional Chinese recipes, combined with local twists, translate into a richly flavourful feast. A cuisine that transforms and responds to changing times must be founded on the chef's clear and accurate understanding of the culinary tradition. Chef Bok-chun Nam’s dedication to reforming Chinese cuisine is unmistakable in his culinary creations. To promote a gradual evolution in his native cuisine, he pays particular attention to selecting quality ingredients while engaging in active exchanges with chefs in Mainland China.",
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -4365,8 +6263,8 @@
         "url": "",
         "year": "2026",
         "description": null,
-        "kakao_id": "10217085",
-        "kakao_url": "http://place.map.kakao.com/10217085"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -5951,8 +7849,8 @@
         "url": "",
         "year": "2026",
         "description": null,
-        "kakao_id": "261929556",
-        "kakao_url": "http://place.map.kakao.com/261929556"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -8369,8 +10267,8 @@
         "url": "",
         "year": "2026",
         "description": null,
-        "kakao_id": "8552691",
-        "kakao_url": "http://place.map.kakao.com/8552691"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -8681,8 +10579,8 @@
         "url": "",
         "year": "2026",
         "description": "arouz",
-        "kakao_id": "1943333016",
-        "kakao_url": "http://place.map.kakao.com/1943333016"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -9253,8 +11151,8 @@
         "url": "",
         "year": "2026",
         "description": null,
-        "kakao_id": "7897983",
-        "kakao_url": "http://place.map.kakao.com/7897983"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -17677,8 +19575,8 @@
         "url": "",
         "year": "2026",
         "description": null,
-        "kakao_id": "2140623859",
-        "kakao_url": "http://place.map.kakao.com/2140623859"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -18405,8 +20303,8 @@
         "url": "",
         "year": "2026",
         "description": "stay",
-        "kakao_id": "26239641",
-        "kakao_url": "http://place.map.kakao.com/26239641"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -18769,8 +20667,8 @@
         "url": "",
         "year": "2026",
         "description": "BICENA",
-        "kakao_id": "18313843",
-        "kakao_url": "http://place.map.kakao.com/18313843"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -20875,8 +22773,8 @@
         "url": "",
         "year": "2026",
         "description": "GORDON RAMSAY burger",
-        "kakao_id": "356763550",
-        "kakao_url": "http://place.map.kakao.com/356763550"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -22097,8 +23995,8 @@
         "url": "",
         "year": "2026",
         "description": null,
-        "kakao_id": "8568141",
-        "kakao_url": "http://place.map.kakao.com/8568141"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
@@ -25659,8 +27557,8 @@
         "url": "",
         "year": "2026",
         "description": "bar81",
-        "kakao_id": "259303601",
-        "kakao_url": "http://place.map.kakao.com/259303601"
+        "kakao_id": null,
+        "kakao_url": null
       }
     },
     {
