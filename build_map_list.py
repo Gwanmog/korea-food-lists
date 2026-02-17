@@ -52,7 +52,9 @@ class Place:
     captured_at: str
     kakao_id: str | None = None
     kakao_url: str | None = None
-    korean_query: str | None = None  # NEW: The search-friendly address string
+    korean_query: str | None = None
+    name_ko: str | None = None  # NEW: Official Korean Name (e.g. 정육면체)
+    address_ko: str | None = None  # NEW: Official Korean Address
 
 
 # -------------------------
@@ -97,42 +99,22 @@ class KakaoLedger:
 
 
 # -------------------------
-# Address Translator (The Algorithm)
+# Address Translator
 # -------------------------
 def generate_korean_query(address: str) -> str | None:
-    """
-    Flips '22-8 Road, Gu' -> 'Seoul Gu Road 22-8'
-    """
     if not address: return None
-
-    # 1. Clean up "Seoul", "South Korea", and zip codes
     clean = re.sub(r'South Korea|Seoul|,|\b\d{5}\b', ' ', address).strip()
-
-    # 2. Find the 'Gu' (District)
-    # This splits the string into: [Before Gu] [Gu] [After Gu]
     gu_match = re.search(r'([a-zA-Z]+-gu)', clean, re.IGNORECASE)
-
-    if not gu_match:
-        # If no Gu found, just return cleaned address
-        return f"Seoul {clean}"
-
+    if not gu_match: return f"Seoul {clean}"
     gu = gu_match.group(1)
-    # Remove Gu from string to find the rest
     rest = clean.replace(gu, "").strip()
-
-    # 3. Flip Logic: Check if it starts with a Number
-    # Pattern: "22-8 Yeonsei-ro" -> Starts with digit
     if re.match(r'^\d', rest):
-        # Find the Road name (starts with letter)
         road_match = re.search(r'([a-zA-Z]+(-[a-zA-Z0-9]+)*)', rest)
         if road_match:
             road_start = road_match.start()
             number = rest[:road_start].strip()
             road_part = rest[road_start:].strip()
-            # Reassemble: Gu Road Number
             return f"Seoul {gu} {road_part} {number}"
-
-    # Default reassembly
     return f"Seoul {gu} {rest}"
 
 
@@ -146,11 +128,8 @@ def kakao_rest_key() -> str | None:
 def kakao_address_search(s: requests.Session, api_key: str, address: str) -> dict | None:
     url = "https://dapi.kakao.com/v2/local/search/address.json"
     headers = {"Authorization": f"KakaoAK {api_key}"}
-
-    # Use our new algorithmic translator for the search query
     q = generate_korean_query(address)
     if not q: return None
-
     try:
         params = {"query": q, "analyze_type": "similar"}
         r = s.get(url, params=params, headers=headers, timeout=5)
@@ -169,7 +148,6 @@ def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x:
     params = {"query": query[:80], "size": 3, "category_group_code": "FD6"}
     if x and y:
         params.update({"x": str(x), "y": str(y), "radius": str(radius), "sort": "distance"})
-
     headers = {"Authorization": f"KakaoAK {api_key}"}
     try:
         r = s.get(url, params=params, headers=headers, timeout=10)
@@ -194,8 +172,8 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
 
     for p in places:
         has_coords = isinstance(p.latitude, float) and isinstance(p.longitude, float)
-
         cached = ledger.get(p.name, p.address)
+
         if cached and cached.get("found") is not False:
             hits += 1
             if has_coords and cached.get("y") and cached.get("x"):
@@ -219,22 +197,29 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
         misses += 1
         found_doc = None
 
+        # PRIORITY: Try searching with the Official Korean Name if we found it
+        search_terms = []
+        if p.name_ko: search_terms.append(p.name_ko)
+        search_terms.append(p.name)
+
         if has_coords:
-            docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=500)
-            if docs:
-                found_doc = docs[0]
-            else:
-                found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
+            for term in search_terms:
+                docs = kakao_local_keyword_search(s, api_key, term, p.longitude, p.latitude, radius=500)
+                if docs: found_doc = docs[0]; break
+            if not found_doc: found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
 
         elif p.address:
+            # Try searching address using Korean Address if available
+            addr_to_use = p.address_ko if p.address_ko else p.address
+            # If it's Korean, address search works better without my English-flipper logic
+            # But the existing logic handles English well. Let's try English address first.
             coords = kakao_address_search(s, api_key, p.address)
             if coords:
                 lat, lon = float(coords["y"]), float(coords["x"])
-                docs = kakao_local_keyword_search(s, api_key, p.name, lon, lat, radius=100)
-                if docs:
-                    found_doc = docs[0]
-                else:
-                    found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
+                for term in search_terms:
+                    docs = kakao_local_keyword_search(s, api_key, term, lon, lat, radius=100)
+                    if docs: found_doc = docs[0]; break
+                if not found_doc: found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
 
         if not found_doc and not has_coords:
             if p.source == "michelin":
@@ -242,14 +227,13 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 out.append(p)
                 continue
 
+            # Fallback for Blue Ribbon
             candidates = [p.name]
             if p.address: candidates.append(generate_korean_query(p.address))
             for q in candidates:
                 if not q: continue
                 docs = kakao_local_keyword_search(s, api_key, q, None, None)
-                if docs:
-                    found_doc = docs[0];
-                    break
+                if docs: found_doc = docs[0]; break
                 time.sleep(0.1)
 
         if found_doc:
@@ -308,6 +292,7 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
     page = 1
     detail_urls = set()
 
+    # 1. Gather URLs
     while True:
         url = f"{MICHELIN_SEOUL_LIST}/page/{page}" if page > 1 else MICHELIN_SEOUL_LIST
         print(f"[michelin] listing page {page}...")
@@ -335,14 +320,19 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
     if limit: sorted_urls = sorted_urls[:limit]
     print(f"[michelin] found {len(sorted_urls)} details. Fetching...")
 
+    # 2. Fetch Details (English + Korean)
     for i, u in enumerate(sorted_urls):
         try:
             time.sleep(0.5)
+            # A. Fetch English
             r = s.get(u, timeout=20)
             soup = BeautifulSoup(r.text, "lxml")
             name = soup.find("h1").get_text(strip=True) if soup.find("h1") else "Unknown"
+
+            # Description etc
             desc_div = soup.select_one(".data-sheet__description")
             description = desc_div.get_text(strip=True) if desc_div else None
+
             price_cuisine_text = soup.select_one(".data-sheet__block--text")
             pc_text = price_cuisine_text.get_text(strip=True) if price_cuisine_text else ""
             price, cuisine = None, None
@@ -353,6 +343,7 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             else:
                 cuisine = pc_text
 
+            # Geo
             lat, lon, address = None, None, None
             scripts = soup.find_all("script", {"type": "application/ld+json"})
             for sc in scripts:
@@ -366,22 +357,51 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
                                 address = f"{addr_obj.get('streetAddress', '')}, {addr_obj.get('addressLocality', '')}"
                         if item.get("@type") in ("Restaurant", "FoodEstablishment"):
                             geo = item.get("geo", {})
-                            if geo.get("latitude") and geo.get("longitude"):
-                                lat = float(geo.get("latitude"))
-                                lon = float(geo.get("longitude"))
+                            if geo.get("latitude"): lat = float(geo.get("latitude"))
+                            if geo.get("longitude"): lon = float(geo.get("longitude"))
                 except:
                     pass
 
-            if lat is None or lon is None:
+            if lat is None:
                 lat_match = re.search(r'["\']?latitude["\']?\s*[:=]\s*["\']?([0-9.]+)["\']?', str(soup))
+                if lat_match: lat = float(lat_match.group(1))
+            if lon is None:
                 lon_match = re.search(r'["\']?longitude["\']?\s*[:=]\s*["\']?([0-9.]+)["\']?', str(soup))
-                if lat_match and lon_match:
-                    lat = float(lat_match.group(1));
-                    lon = float(lon_match.group(1))
+                if lon_match: lon = float(lon_match.group(1))
+
             if not address:
                 m = re.search(r"([^\n]+,\s*Seoul)", soup.body.get_text())
                 if m: address = m.group(1).strip()
 
+            # B. THE DOUBLE DIP: Fetch Korean Version
+            name_ko, address_ko = None, None
+            try:
+                # Replace /us/en/ with /kr/ko/
+                url_ko = u.replace("/us/en/", "/kr/ko/")
+                r_ko = s.get(url_ko, timeout=10)
+                if r_ko.status_code == 200:
+                    soup_ko = BeautifulSoup(r_ko.text, "lxml")
+                    # Scrape Korean Name
+                    h1_ko = soup_ko.find("h1")
+                    if h1_ko: name_ko = h1_ko.get_text(strip=True)
+
+                    # Scrape Korean Address (from LD-JSON or body)
+                    scripts_ko = soup_ko.find_all("script", {"type": "application/ld+json"})
+                    for sc in scripts_ko:
+                        try:
+                            d_ko = json.loads(sc.string)
+                            if not isinstance(d_ko, list): d_ko = [d_ko]
+                            for it in d_ko:
+                                if it.get("address"):
+                                    ao = it.get("address")
+                                    if isinstance(ao, dict):
+                                        address_ko = f"{ao.get('streetAddress', '')}, {ao.get('addressLocality', '')}"
+                        except:
+                            pass
+            except Exception as e:
+                print(f"    [ko-fetch] failed: {e}")
+
+            # Categories
             category = "Selected"
             text_lower = soup.body.get_text().lower()
             if "3 stars" in text_lower:
@@ -396,12 +416,15 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             p = Place(
                 source="michelin", name=name, address=address, city="Seoul", country="South Korea",
                 category=category, cuisine=cuisine, price=price, phone=None, url=u, year=None,
-                description=description, latitude=lat, longitude=lon, captured_at=captured_at
+                description=description, latitude=lat, longitude=lon, captured_at=captured_at,
+                name_ko=name_ko, address_ko=address_ko  # Save Korean info
             )
             places.append(p)
-            print(f"  [{i + 1}/{len(sorted_urls)}] {name}")
+            print(f"  [{i + 1}/{len(sorted_urls)}] {name} -> {name_ko if name_ko else 'No Korean Name'}")
+
         except Exception as e:
             print(f"  [{i + 1}] Failed {u}: {e}")
+
     return places
 
 
@@ -436,14 +459,21 @@ def scrape_bluer_run() -> list[Place]:
                         juso = item.get("juso") or {}
                         gps = item.get("gps") or {}
                         description = item.get("comment") or header.get("nameEN")
+
+                        # Blue Ribbon has native Korean name already
+                        name_kr = header.get("nameKR")
+                        name_en = header.get("nameEN") or name_kr
+
                         p = Place(
-                            source="blueribbon", name=header.get("nameKR") or header.get("nameEN"),
+                            source="blueribbon", name=name_en,
                             address=juso.get("roadAddrPart1"), city="Seoul", country="South Korea",
                             category=ribbon, cuisine=None, price=None, phone=item.get("defaultInfo", {}).get("phone"),
                             url=None, year=header.get("bookYear"), description=description,
                             latitude=float(gps["latitude"]) if gps.get("latitude") else None,
                             longitude=float(gps["longitude"]) if gps.get("longitude") else None,
-                            captured_at=captured_at
+                            captured_at=captured_at,
+                            name_ko=name_kr,  # Map nameKR -> name_ko
+                            address_ko=juso.get("roadAddrPart1")
                         )
                         places.append(p)
                 if found_on_page == 0:
@@ -452,7 +482,7 @@ def scrape_bluer_run() -> list[Place]:
                     consecutive_empty = 0
                 if consecutive_empty >= 5: print(f"  [bluer] 5 empty pages. Next zone."); break
                 if "next" not in data.get("_links", {}): break
-                params["page"] += 1;
+                params["page"] += 1
                 time.sleep(0.5)
             except Exception as e:
                 print(f"[bluer] error: {e}"); break
@@ -484,14 +514,14 @@ def load_raw(filename: str) -> list[Place]:
                 row["longitude"]).strip() else None
             if not row.get("description"): row["description"] = None
 
-            # --- ALGORITHMIC ADDRESS TRANSLATOR (Run on load) ---
-            # If we don't have a Korean query yet, generate it from the English address
+            # --- Address Translator ---
             if row.get("address") and not row.get("korean_query"):
                 row["korean_query"] = generate_korean_query(row["address"])
 
-            # Handle CSV differences (if column missing in old file)
-            if "korean_query" not in row:
-                row["korean_query"] = generate_korean_query(row.get("address"))
+            # Fix missing fields for older CSVs
+            if "name_ko" not in row: row["name_ko"] = None
+            if "address_ko" not in row: row["address_ko"] = None
+            if "korean_query" not in row: row["korean_query"] = None
 
             out.append(Place(**row))
     return out
@@ -504,8 +534,8 @@ def write_geojson(places: list[Place]):
     for p in places:
         if not p.latitude or not p.longitude: continue
         props = asdict(p)
-        del props["latitude"];
-        del props["longitude"];
+        del props["latitude"]
+        del props["longitude"]
         del props["captured_at"]
         features.append({
             "type": "Feature",
