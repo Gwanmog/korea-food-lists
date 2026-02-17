@@ -344,5 +344,126 @@ async function init() {
     alert("Error loading map data: " + e.message);
   }
 }
-
 init();
+// --- CHATBOT LOGIC ---
+const chatWindow = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSend');
+const chatToggleBtn = document.getElementById('chatToggle');
+const chatCloseBtn = document.getElementById('chatClose');
+
+// 1. Toggle Chat Window
+if (chatToggleBtn) {
+  chatToggleBtn.onclick = () => {
+    chatWindow.classList.toggle('hidden');
+    if (!chatWindow.classList.contains('hidden')) {
+      chatInput.focus();
+    }
+  };
+}
+
+if (chatCloseBtn) {
+  chatCloseBtn.onclick = () => {
+    chatWindow.classList.add('hidden');
+  };
+}
+
+// 2. Send Message Function
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  // A. Add User Message to UI
+  addMessage(text, 'user');
+  chatInput.value = '';
+  chatInput.disabled = true;
+  chatSendBtn.disabled = true;
+
+  // B. Gather Visible Restaurants
+  const bounds = map.getBounds();
+  const visibleRestaurants = allFeatures
+    .filter(f => {
+      const lat = f.geometry.coordinates[1];
+      const lon = f.geometry.coordinates[0];
+      return bounds.contains([lat, lon]);
+    })
+    .map(f => ({
+      name: f.properties.name,
+      cuisine: f.properties.cuisine,
+      price: f.properties.price,
+      award: f.properties.category,
+      desc: f.properties.description ? f.properties.description.substring(0, 100) : ""
+    }))
+    .slice(0, 50); // Limit context size
+
+  if (visibleRestaurants.length === 0) {
+    addMessage("I don't see any restaurants on your screen! Move the map to an area with food first.", 'ai');
+    chatInput.disabled = false;
+    chatSendBtn.disabled = false;
+    return;
+  }
+
+  // C. Talk to Local API
+  try {
+    // Create temporary loading bubble
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'message ai loading';
+    loadingDiv.textContent = 'Thinking...';
+    chatMessages.appendChild(loadingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    const response = await fetch('http://localhost:3000/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userQuery: text,
+        language: currentLang, // uses the global 'currentLang' variable from your app.js
+        restaurants: visibleRestaurants
+      })
+    });
+
+    const data = await response.json();
+
+    // Remove loading bubble
+    loadingDiv.remove();
+
+    if (data.reply) {
+      addMessage(data.reply, 'ai');
+    } else {
+      addMessage("Sorry, I got confused. Try again.", 'ai');
+    }
+
+  } catch (err) {
+    // Remove loading bubble if it exists
+    const loader = document.querySelector('.message.loading');
+    if (loader) loader.remove();
+
+    addMessage("Error connecting to AI. Is your local server running?", 'ai');
+    console.error(err);
+  }
+
+  chatInput.disabled = false;
+  chatSendBtn.disabled = false;
+  chatInput.focus();
+}
+
+// 3. UI Helpers
+function addMessage(text, sender) {
+  const div = document.createElement('div');
+  div.className = `message ${sender}`;
+  // Convert newlines to breaks for AI formatting
+  div.innerHTML = text.replace(/\n/g, '<br>');
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// 4. Event Listeners
+if (chatSendBtn) {
+  chatSendBtn.onclick = sendMessage;
+}
+if (chatInput) {
+  chatInput.onkeypress = (e) => {
+    if (e.key === 'Enter') sendMessage();
+  };
+}

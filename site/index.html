@@ -27,6 +27,7 @@
         <button id="listToggle" class="btn secondary" data-i18n="showList">List</button>
         <button id="langBtn" class="btn secondary">KR</button>
         <button id="themeBtn" class="btn secondary icon-only">🌙</button>
+        <button id="chatToggle" class="btn secondary">🤖 Chat</button>
       </div>
     </div>
 
@@ -60,7 +61,21 @@
 
   <div id="map"></div>
 </div>
-
+<div id="chatWindow" class="chat-window hidden">
+  <div class="chat-header">
+    <span id="chatTitle">AI Concierge</span>
+    <button id="chatClose">×</button>
+  </div>
+  <div id="chatMessages" class="chat-messages">
+    <div class="message ai">
+      Hello! I see the restaurants on your screen. What are you looking for?
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Cheap noodles, romantic date..." aria-label="Chat input" />
+    <button id="chatSend">➤</button>
+  </div>
+</div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
