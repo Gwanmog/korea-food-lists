@@ -46,7 +46,7 @@ class Place:
     phone: str | None
     url: str | None
     year: str | None
-    description: str | None  # New field for "Good for date night", etc.
+    description: str | None
     latitude: float | None
     longitude: float | None
     captured_at: str
@@ -102,12 +102,37 @@ def kakao_rest_key() -> str | None:
     return os.getenv("KAKAO_REST_API_KEY")
 
 
-def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x: float | None, y: float | None) -> list[
-    dict]:
+def kakao_address_search(s: requests.Session, api_key: str, address: str) -> dict | None:
+    """
+    Finds coordinates for a specific address string.
+    """
+    url = "https://dapi.kakao.com/v2/local/search/address.json"
+
+    # Clean: Remove "B1F", "1F", etc.
+    clean_addr = re.sub(r'\b[B]?\d+F\b,?', '', address, flags=re.IGNORECASE).strip()
+    clean_addr = clean_addr.replace(",", " ")
+
+    headers = {"Authorization": f"KakaoAK {api_key}"}
+    params = {"query": clean_addr[:80], "analyze_type": "similar"}
+
+    try:
+        r = s.get(url, params=params, headers=headers, timeout=10)
+        r.raise_for_status()
+        docs = r.json().get("documents", [])
+        if docs:
+            return {"x": docs[0]["x"], "y": docs[0]["y"]}
+    except Exception as e:
+        print(f"[kakao] address search error for '{clean_addr}': {e}")
+    return None
+
+
+def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x: float | None, y: float | None,
+                               radius: int = 2000) -> list[dict]:
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     params = {"query": query[:80], "size": 3, "category_group_code": "FD6"}
     if x and y:
-        params.update({"x": str(x), "y": str(y), "radius": "1000"})  # Tighter radius for validation
+        # Search NEAR the coordinates
+        params.update({"x": str(x), "y": str(y), "radius": str(radius), "sort": "distance"})
 
     headers = {"Authorization": f"KakaoAK {api_key}"}
     try:
@@ -115,8 +140,7 @@ def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x:
         if r.status_code == 400: return []
         r.raise_for_status()
         return r.json().get("documents", [])
-    except requests.RequestException as e:
-        print(f"[kakao] error searching '{query}': {e}")
+    except requests.RequestException:
         return []
 
 
@@ -133,8 +157,10 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     out: list[Place] = []
 
     for p in places:
+        # 1. Check Ledger
         cached = ledger.get(p.name, p.address)
         if cached:
+            # Only use cache if it was a successful find (or a hard confirm of failure)
             if cached.get("found") is not False:
                 hits += 1
                 p.kakao_id = cached.get("id")
@@ -147,25 +173,48 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
         api_calls += 1
         misses += 1
 
-        candidates = [p.name]
+        # 2. Priority: Address Search
+        found_doc = None
+
         if p.address:
-            short_addr = " ".join(p.address.split()[:3])
-            candidates.append(f"{p.name} {short_addr}")
+            # A. Find the Building
+            coords = kakao_address_search(s, api_key, p.address)
+            if coords:
+                p.longitude = float(coords["x"])
+                p.latitude = float(coords["y"])
 
-        best_doc = None
-        for q in candidates:
-            docs = kakao_local_keyword_search(s, api_key, q, p.longitude, p.latitude)
-            if docs:
-                best_doc = docs[0]
-                break
-            time.sleep(0.1)
+                # B. Find the Business inside that Building (Radius=100m)
+                docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=100)
+                if docs:
+                    found_doc = docs[0]
+                else:
+                    # Found location, but not the specific business listing.
+                    # We still keep the coordinates!
+                    found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
 
-        if best_doc:
-            ledger.update(p.name, p.address, best_doc)
-            p.kakao_id = best_doc.get("id")
-            p.kakao_url = best_doc.get("place_url")
-            if not p.latitude: p.latitude = float(best_doc["y"])
-            if not p.longitude: p.longitude = float(best_doc["x"])
+        # 3. Fallback: Keyword Search (if address missing or failed)
+        if not found_doc:
+            candidates = [p.name]
+            if p.address:
+                short_addr = " ".join(p.address.split()[:3])
+                candidates.append(f"{p.name} {short_addr}")
+
+            for q in candidates:
+                # Use whatever lat/lon we might have scraped as a hint (radius 2km default)
+                docs = kakao_local_keyword_search(s, api_key, q, p.longitude, p.latitude)
+                if docs:
+                    found_doc = docs[0]
+                    break
+                time.sleep(0.1)
+
+        # 4. Save result
+        if found_doc:
+            ledger.update(p.name, p.address, found_doc)
+            p.kakao_id = found_doc.get("id")
+            p.kakao_url = found_doc.get("place_url")
+            # Prefer API coords over scraped ones
+            if found_doc.get("y"): p.latitude = float(found_doc["y"])
+            if found_doc.get("x"): p.longitude = float(found_doc["x"])
         else:
             ledger.update(p.name, p.address, {"found": False})
 
@@ -214,7 +263,6 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
     page = 1
     detail_urls = set()
 
-    # 1. Collect URLs
     while True:
         url = f"{MICHELIN_SEOUL_LIST}/page/{page}" if page > 1 else MICHELIN_SEOUL_LIST
         print(f"[michelin] listing page {page}...")
@@ -244,7 +292,6 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
     if limit: sorted_urls = sorted_urls[:limit]
     print(f"[michelin] found {len(sorted_urls)} details. Fetching...")
 
-    # 2. Fetch Details
     for i, u in enumerate(sorted_urls):
         try:
             time.sleep(0.5)
@@ -253,11 +300,9 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
 
             name = soup.find("h1").get_text(strip=True) if soup.find("h1") else "Unknown"
 
-            # --- Description (Review) extraction ---
             desc_div = soup.select_one(".data-sheet__description")
             description = desc_div.get_text(strip=True) if desc_div else None
 
-            # --- Price / Cuisine ---
             price_cuisine_text = soup.select_one(".data-sheet__block--text")
             pc_text = price_cuisine_text.get_text(strip=True) if price_cuisine_text else ""
 
@@ -269,7 +314,6 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             else:
                 cuisine = pc_text
 
-            # --- Geo ---
             lat, lon, address = None, None, None
             scripts = soup.find_all("script", {"type": "application/ld+json"})
             for sc in scripts:
@@ -290,7 +334,6 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
                 m = re.search(r"([^\n]+,\s*Seoul)", soup.body.get_text())
                 if m: address = m.group(1).strip()
 
-            # --- Category ---
             category = "Selected"
             text_lower = soup.body.get_text().lower()
             if "3 stars" in text_lower:
@@ -305,7 +348,7 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             p = Place(
                 source="michelin", name=name, address=address, city="Seoul", country="South Korea",
                 category=category, cuisine=cuisine, price=price, phone=None, url=u, year=None,
-                description=description,  # New
+                description=description,
                 latitude=lat, longitude=lon, captured_at=captured_at
             )
             places.append(p)
@@ -356,7 +399,6 @@ def scrape_bluer_run() -> list[Place]:
                         juso = item.get("juso") or {}
                         gps = item.get("gps") or {}
 
-                        # Description from "comment"
                         description = item.get("comment") or header.get("nameEN")
 
                         p = Place(
@@ -369,7 +411,7 @@ def scrape_bluer_run() -> list[Place]:
                             phone=item.get("defaultInfo", {}).get("phone"),
                             url=None,
                             year=header.get("bookYear"),
-                            description=description,  # New
+                            description=description,
                             latitude=float(gps["latitude"]) if gps.get("latitude") else None,
                             longitude=float(gps["longitude"]) if gps.get("longitude") else None,
                             captured_at=captured_at
