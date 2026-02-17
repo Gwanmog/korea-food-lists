@@ -191,8 +191,8 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     out: list[Place] = []
 
     for p in places:
-        # 0. CHECK IF WE ALREADY HAVE COORDS (Trust Michelin!)
-        has_coords = p.latitude is not None and p.longitude is not None
+        # 0. CHECK IF WE ALREADY HAVE VALID COORDS
+        has_coords = isinstance(p.latitude, float) and isinstance(p.longitude, float)
 
         # 1. Check Ledger
         cached = ledger.get(p.name, p.address)
@@ -201,9 +201,12 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 hits += 1
                 p.kakao_id = cached.get("id")
                 p.kakao_url = cached.get("place_url")
-                # ONLY fill coords if we didn't have them
-                if not has_coords and cached.get("y"): p.latitude = float(cached["y"])
-                if not has_coords and cached.get("x"): p.longitude = float(cached["x"])
+
+                # Only fill coords if we didn't have them
+                # SAFETY: Check if cached value exists and is not empty before converting
+                if not has_coords:
+                    if cached.get("y"): p.latitude = float(cached["y"])
+                    if cached.get("x"): p.longitude = float(cached["x"])
             out.append(p)
             continue
 
@@ -219,15 +222,12 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
             if docs:
                 found_doc = docs[0]
             else:
-                # We have location, but no Kakao ID. That's fine.
-                # Create a "dummy" doc so we don't keep searching.
                 found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
 
         # Strategy B: Address Search (if no coords yet)
         if not found_doc and p.address:
             coords = kakao_address_search(s, api_key, p.address)
             if coords:
-                # Use these coords to find the ID
                 lat, lon = float(coords["y"]), float(coords["x"])
                 if not has_coords:
                     p.latitude, p.longitude = lat, lon
@@ -238,7 +238,7 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 else:
                     found_doc = {"id": None, "place_url": None, "x": coords["x"], "y": coords["y"]}
 
-        # Strategy C: Keyword Fallback (Last Resort)
+        # Strategy C: Keyword Fallback
         if not found_doc and not has_coords:
             candidates = [p.name]
             if p.address:
@@ -258,13 +258,10 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
             p.kakao_id = found_doc.get("id")
             p.kakao_url = found_doc.get("place_url")
 
-            # CRITICAL FIX: Only overwrite if we started with nothing
             if not has_coords:
                 if found_doc.get("y"): p.latitude = float(found_doc["y"])
                 if found_doc.get("x"): p.longitude = float(found_doc["x"])
         else:
-            # If we have coords but found nothing in API, record as "found" with no ID
-            # This prevents re-searching next time
             if has_coords:
                 ledger.update(p.name, p.address,
                               {"found": True, "x": str(p.longitude), "y": str(p.latitude), "id": None,
@@ -515,8 +512,13 @@ def load_raw(filename: str) -> list[Place]:
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row.get("latitude"): row["latitude"] = float(row["latitude"])
-            if row.get("longitude"): row["longitude"] = float(row["longitude"])
+            # CRITICAL FIX: Convert empty strings to None explicitly
+            row["latitude"] = float(row["latitude"]) if row.get("latitude") and row["latitude"].strip() else None
+            row["longitude"] = float(row["longitude"]) if row.get("longitude") and row["longitude"].strip() else None
+
+            # Optional: Clean up other fields to be None if empty
+            if not row.get("description"): row["description"] = None
+
             out.append(Place(**row))
     return out
 
