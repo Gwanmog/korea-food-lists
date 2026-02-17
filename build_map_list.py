@@ -52,6 +52,7 @@ class Place:
     captured_at: str
     kakao_id: str | None = None
     kakao_url: str | None = None
+    korean_query: str | None = None  # NEW: The search-friendly address string
 
 
 # -------------------------
@@ -96,6 +97,46 @@ class KakaoLedger:
 
 
 # -------------------------
+# Address Translator (The Algorithm)
+# -------------------------
+def generate_korean_query(address: str) -> str | None:
+    """
+    Flips '22-8 Road, Gu' -> 'Seoul Gu Road 22-8'
+    """
+    if not address: return None
+
+    # 1. Clean up "Seoul", "South Korea", and zip codes
+    clean = re.sub(r'South Korea|Seoul|,|\b\d{5}\b', ' ', address).strip()
+
+    # 2. Find the 'Gu' (District)
+    # This splits the string into: [Before Gu] [Gu] [After Gu]
+    gu_match = re.search(r'([a-zA-Z]+-gu)', clean, re.IGNORECASE)
+
+    if not gu_match:
+        # If no Gu found, just return cleaned address
+        return f"Seoul {clean}"
+
+    gu = gu_match.group(1)
+    # Remove Gu from string to find the rest
+    rest = clean.replace(gu, "").strip()
+
+    # 3. Flip Logic: Check if it starts with a Number
+    # Pattern: "22-8 Yeonsei-ro" -> Starts with digit
+    if re.match(r'^\d', rest):
+        # Find the Road name (starts with letter)
+        road_match = re.search(r'([a-zA-Z]+(-[a-zA-Z0-9]+)*)', rest)
+        if road_match:
+            road_start = road_match.start()
+            number = rest[:road_start].strip()
+            road_part = rest[road_start:].strip()
+            # Reassemble: Gu Road Number
+            return f"Seoul {gu} {road_part} {number}"
+
+    # Default reassembly
+    return f"Seoul {gu} {rest}"
+
+
+# -------------------------
 # Kakao Logic
 # -------------------------
 def kakao_rest_key() -> str | None:
@@ -103,38 +144,22 @@ def kakao_rest_key() -> str | None:
 
 
 def kakao_address_search(s: requests.Session, api_key: str, address: str) -> dict | None:
-    """
-    Smart Address Search that handles English-ordered addresses.
-    """
     url = "https://dapi.kakao.com/v2/local/search/address.json"
     headers = {"Authorization": f"KakaoAK {api_key}"}
 
-    # Clean Address
-    clean_addr = re.sub(r'\b[B]?\d+F\b,?', '', address, flags=re.IGNORECASE)
-    clean_addr = re.sub(r'\b\d{5}\b', '', clean_addr)
-    clean_addr = clean_addr.replace("South Korea", "").replace("Seoul", "").replace(",", " ").strip()
+    # Use our new algorithmic translator for the search query
+    q = generate_korean_query(address)
+    if not q: return None
 
-    queries = [clean_addr]
-
-    # Flip Logic (Gu Road Number)
-    gu_match = re.search(r'([a-zA-Z]+-gu)', clean_addr, re.IGNORECASE)
-    if gu_match:
-        gu = gu_match.group(1)
-        rest = clean_addr.replace(gu, "").strip()
-        queries.insert(0, f"Seoul {gu} {rest}")
-
-    for q in queries:
-        q = re.sub(r'\s+', ' ', q).strip()
-        if not q: continue
-        try:
-            params = {"query": q, "analyze_type": "similar"}
-            r = s.get(url, params=params, headers=headers, timeout=5)
-            r.raise_for_status()
-            docs = r.json().get("documents", [])
-            if docs:
-                return {"x": docs[0]["x"], "y": docs[0]["y"]}
-        except:
-            pass
+    try:
+        params = {"query": q, "analyze_type": "similar"}
+        r = s.get(url, params=params, headers=headers, timeout=5)
+        r.raise_for_status()
+        docs = r.json().get("documents", [])
+        if docs:
+            return {"x": docs[0]["x"], "y": docs[0]["y"]}
+    except:
+        pass
     return None
 
 
@@ -170,39 +195,31 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
     for p in places:
         has_coords = isinstance(p.latitude, float) and isinstance(p.longitude, float)
 
-        # 1. Check Ledger
         cached = ledger.get(p.name, p.address)
         if cached and cached.get("found") is not False:
             hits += 1
-            # SANITY CHECK: If we have source coords, check if cache is too far away
             if has_coords and cached.get("y") and cached.get("x"):
                 dist = haversine_distance(p.latitude, p.longitude, float(cached["y"]), float(cached["x"]))
-                if dist > 2000:  # If > 2km away, assume cache is wrong (e.g. Incheon vs Seoul)
+                if dist > 2000:
                     print(f"[sanity] Rejecting cached ID for {p.name} (Distance {dist:.0f}m)")
-                    # Don't use the ID, but keep our source coords
                     p.kakao_id = None
                     p.kakao_url = None
                 else:
                     p.kakao_id = cached.get("id")
                     p.kakao_url = cached.get("place_url")
             else:
-                # No source coords? Trust the cache.
                 p.kakao_id = cached.get("id")
                 p.kakao_url = cached.get("place_url")
                 if not has_coords and cached.get("y"): p.latitude = float(cached["y"])
                 if not has_coords and cached.get("x"): p.longitude = float(cached["x"])
-
             out.append(p)
             continue
 
         api_calls += 1
         misses += 1
-
         found_doc = None
 
-        # 2. Search Logic
         if has_coords:
-            # Search strictly nearby (500m)
             docs = kakao_local_keyword_search(s, api_key, p.name, p.longitude, p.latitude, radius=500)
             if docs:
                 found_doc = docs[0]
@@ -210,7 +227,6 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 found_doc = {"id": None, "place_url": None, "x": str(p.longitude), "y": str(p.latitude)}
 
         elif p.address:
-            # Address Search
             coords = kakao_address_search(s, api_key, p.address)
             if coords:
                 lat, lon = float(coords["y"]), float(coords["x"])
@@ -227,22 +243,20 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 continue
 
             candidates = [p.name]
-            if p.address: candidates.append(f"{p.name} {' '.join(p.address.split()[:3])}")
+            if p.address: candidates.append(generate_korean_query(p.address))
             for q in candidates:
+                if not q: continue
                 docs = kakao_local_keyword_search(s, api_key, q, None, None)
                 if docs:
-                    found_doc = docs[0]
+                    found_doc = docs[0];
                     break
                 time.sleep(0.1)
 
-        # 3. Save result
         if found_doc:
-            # SANITY CHECK 2: Verify the new API result isn't crazy far
             if has_coords:
                 dist = haversine_distance(p.latitude, p.longitude, float(found_doc["y"]), float(found_doc["x"]))
                 if dist > 2000:
                     print(f"[sanity] Rejecting API result for {p.name} (Distance {dist:.0f}m)")
-                    # Save coords but NO ID
                     ledger.update(p.name, p.address,
                                   {"found": True, "x": str(p.longitude), "y": str(p.latitude), "id": None,
                                    "place_url": None})
@@ -268,7 +282,7 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
 
 
 # -------------------------
-# Scrapers
+# Scrapers & IO
 # -------------------------
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -276,20 +290,13 @@ def utc_now_iso() -> str:
 
 def make_session_michelin() -> requests.Session:
     s = requests.Session()
-    s.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept-Language": "en-US,en;q=0.9",
-    })
+    s.headers.update({"User-Agent": "Mozilla/5.0", "Accept-Language": "en-US,en;q=0.9"})
     return s
 
 
 def make_session_bluer() -> requests.Session:
     s = requests.Session()
-    s.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": f"{BLUER_BASE}/search",
-        "Origin": BLUER_BASE,
-    })
+    s.headers.update({"User-Agent": "Mozilla/5.0", "Referer": f"{BLUER_BASE}/search", "Origin": BLUER_BASE})
     return s
 
 
@@ -298,7 +305,6 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
     s = make_session_michelin()
     captured_at = utc_now_iso()
     places = []
-
     page = 1
     detail_urls = set()
 
@@ -312,14 +318,12 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             soup = BeautifulSoup(r.text, "lxml")
             links = soup.select("a[href*='/restaurant/']")
             if not links: break
-
             new_found = 0
             for link in links:
                 full = urljoin(MICHELIN_BASE, link['href'])
                 if full not in detail_urls:
                     detail_urls.add(full)
                     new_found += 1
-
             if new_found == 0: break
             page += 1
             time.sleep(1)
@@ -336,16 +340,11 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             time.sleep(0.5)
             r = s.get(u, timeout=20)
             soup = BeautifulSoup(r.text, "lxml")
-
             name = soup.find("h1").get_text(strip=True) if soup.find("h1") else "Unknown"
-
-            # --- Description & Metadata ---
             desc_div = soup.select_one(".data-sheet__description")
             description = desc_div.get_text(strip=True) if desc_div else None
-
             price_cuisine_text = soup.select_one(".data-sheet__block--text")
             pc_text = price_cuisine_text.get_text(strip=True) if price_cuisine_text else ""
-
             price, cuisine = None, None
             if "·" in pc_text:
                 parts = pc_text.split("·")
@@ -354,25 +353,17 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             else:
                 cuisine = pc_text
 
-            # --- ROBUST GEO SCRAPING ---
             lat, lon, address = None, None, None
-
-            # 1. Try ALL JSON-LD blocks
             scripts = soup.find_all("script", {"type": "application/ld+json"})
             for sc in scripts:
                 try:
                     data = json.loads(sc.string)
-                    # Normalize to list to handle both single dict and list of dicts
                     if not isinstance(data, list): data = [data]
-
                     for item in data:
-                        # Extract Address
                         if not address and item.get("address"):
                             addr_obj = item.get("address")
                             if isinstance(addr_obj, dict):
                                 address = f"{addr_obj.get('streetAddress', '')}, {addr_obj.get('addressLocality', '')}"
-
-                        # Extract Geo (Prioritize Restaurant type)
                         if item.get("@type") in ("Restaurant", "FoodEstablishment"):
                             geo = item.get("geo", {})
                             if geo.get("latitude") and geo.get("longitude"):
@@ -381,16 +372,12 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
                 except:
                     pass
 
-            # 2. Regex Fallback (If JSON failed)
             if lat is None or lon is None:
-                # Look for patterns like "latitude": 37.123 or data-lat="37.123"
                 lat_match = re.search(r'["\']?latitude["\']?\s*[:=]\s*["\']?([0-9.]+)["\']?', str(soup))
                 lon_match = re.search(r'["\']?longitude["\']?\s*[:=]\s*["\']?([0-9.]+)["\']?', str(soup))
                 if lat_match and lon_match:
-                    lat = float(lat_match.group(1))
+                    lat = float(lat_match.group(1));
                     lon = float(lon_match.group(1))
-
-            # 3. Address Fallback
             if not address:
                 m = re.search(r"([^\n]+,\s*Seoul)", soup.body.get_text())
                 if m: address = m.group(1).strip()
@@ -409,15 +396,12 @@ def scrape_michelin_run(limit: int = 0) -> list[Place]:
             p = Place(
                 source="michelin", name=name, address=address, city="Seoul", country="South Korea",
                 category=category, cuisine=cuisine, price=price, phone=None, url=u, year=None,
-                description=description,
-                latitude=lat, longitude=lon, captured_at=captured_at
+                description=description, latitude=lat, longitude=lon, captured_at=captured_at
             )
             places.append(p)
-            print(f"  [{i + 1}/{len(sorted_urls)}] {name} (Coords: {lat}, {lon})")
-
+            print(f"  [{i + 1}/{len(sorted_urls)}] {name}")
         except Exception as e:
             print(f"  [{i + 1}] Failed {u}: {e}")
-
     return places
 
 
@@ -427,82 +411,55 @@ def scrape_bluer_run() -> list[Place]:
     captured_at = utc_now_iso()
     places = []
     zones = ["서울 강북", "서울 강남"]
-
     for zone in zones:
         print(f"[bluer] probing zone: {zone}")
         params = {"zone1": zone, "page": 1, "size": 30}
         consecutive_empty = 0
-
         while True:
             try:
                 url = f"{BLUER_API}/restaurants?{urlencode(params)}"
                 r = s.get(url, timeout=20)
-                if r.status_code == 429:
-                    time.sleep(5)
-                    continue
+                if r.status_code == 429: time.sleep(5); continue
                 r.raise_for_status()
                 data = r.json()
-
                 embedded = data.get("_embedded", {})
                 items = []
                 for k, v in embedded.items():
                     if isinstance(v, list): items.extend(v)
-
                 if not items: break
-
                 found_on_page = 0
                 for item in items:
                     header = item.get("headerInfo") or {}
                     ribbon = (header.get("ribbonType") or "").upper()
-
                     if ribbon in ["RIBBON_ONE", "RIBBON_TWO", "RIBBON_THREE"]:
                         found_on_page += 1
                         juso = item.get("juso") or {}
                         gps = item.get("gps") or {}
-
                         description = item.get("comment") or header.get("nameEN")
-
                         p = Place(
-                            source="blueribbon",
-                            name=header.get("nameKR") or header.get("nameEN"),
-                            address=juso.get("roadAddrPart1"),
-                            city="Seoul", country="South Korea",
-                            category=ribbon,
-                            cuisine=None, price=None,
-                            phone=item.get("defaultInfo", {}).get("phone"),
-                            url=None,
-                            year=header.get("bookYear"),
-                            description=description,
+                            source="blueribbon", name=header.get("nameKR") or header.get("nameEN"),
+                            address=juso.get("roadAddrPart1"), city="Seoul", country="South Korea",
+                            category=ribbon, cuisine=None, price=None, phone=item.get("defaultInfo", {}).get("phone"),
+                            url=None, year=header.get("bookYear"), description=description,
                             latitude=float(gps["latitude"]) if gps.get("latitude") else None,
                             longitude=float(gps["longitude"]) if gps.get("longitude") else None,
                             captured_at=captured_at
                         )
                         places.append(p)
-
                 if found_on_page == 0:
                     consecutive_empty += 1
                 else:
                     consecutive_empty = 0
-
-                if consecutive_empty >= 5:
-                    print(f"  [bluer] 5 empty pages. Next zone.")
-                    break
-
+                if consecutive_empty >= 5: print(f"  [bluer] 5 empty pages. Next zone."); break
                 if "next" not in data.get("_links", {}): break
-                params["page"] += 1
+                params["page"] += 1;
                 time.sleep(0.5)
-
             except Exception as e:
-                print(f"[bluer] error: {e}")
-                break
-
+                print(f"[bluer] error: {e}"); break
         save_raw(places, "blueribbon.csv")
     return places
 
 
-# -------------------------
-# IO
-# -------------------------
 def save_raw(places: list[Place], filename: str):
     path = DIR_RAW / filename
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -522,12 +479,20 @@ def load_raw(filename: str) -> list[Place]:
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # FIX: Handle empty strings properly!
             row["latitude"] = float(row["latitude"]) if row.get("latitude") and str(row["latitude"]).strip() else None
             row["longitude"] = float(row["longitude"]) if row.get("longitude") and str(
                 row["longitude"]).strip() else None
-
             if not row.get("description"): row["description"] = None
+
+            # --- ALGORITHMIC ADDRESS TRANSLATOR (Run on load) ---
+            # If we don't have a Korean query yet, generate it from the English address
+            if row.get("address") and not row.get("korean_query"):
+                row["korean_query"] = generate_korean_query(row["address"])
+
+            # Handle CSV differences (if column missing in old file)
+            if "korean_query" not in row:
+                row["korean_query"] = generate_korean_query(row.get("address"))
+
             out.append(Place(**row))
     return out
 
@@ -539,8 +504,8 @@ def write_geojson(places: list[Place]):
     for p in places:
         if not p.latitude or not p.longitude: continue
         props = asdict(p)
-        del props["latitude"]
-        del props["longitude"]
+        del props["latitude"];
+        del props["longitude"];
         del props["captured_at"]
         features.append({
             "type": "Feature",
@@ -551,25 +516,23 @@ def write_geojson(places: list[Place]):
         json.dump({"type": "FeatureCollection", "features": features}, f, ensure_ascii=False, indent=2)
     print(f"[io] wrote {len(features)} features to {path}")
 
+
 def haversine_distance(lat1, lon1, lat2, lon2):
-    R = 6371000  # Earth radius in meters
+    R = 6371000
     phi1, phi2 = math.radians(lat1), math.radians(lat2)
     dphi = math.radians(lat2 - lat1)
     dlambda = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2)**2
+    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return R * c
 
-# -------------------------
-# Main
-# -------------------------
+
 def main():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
     p_fetch = subparsers.add_parser("fetch")
     p_fetch.add_argument("--test-limit", type=int, default=0)
     p_build = subparsers.add_parser("build")
-
     args = parser.parse_args()
 
     if args.command == "fetch":
@@ -580,7 +543,6 @@ def main():
         m = load_raw("michelin.csv")
         b = load_raw("blueribbon.csv")
         all_places = m + b
-
         unique = {}
         for p in all_places:
             key = slugify(f"{p.name} {p.address or ''}")
@@ -588,7 +550,6 @@ def main():
                 unique[key] = p
             elif p.source == "michelin":
                 unique[key] = p
-
         merged = list(unique.values())
         enrich_places_with_ledger(merged, KakaoLedger(DIR_CACHE / "kakao_ledger.json"))
         write_geojson(merged)

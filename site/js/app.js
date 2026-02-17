@@ -73,17 +73,14 @@ $('filterToggle').onclick = () => $('panel').classList.toggle('closed');
 
 $('listToggle').onclick = () => {
   $('listWrap').classList.toggle('collapsed');
-  // Update button text logic if needed, but "List" works for both
 };
 
-// Theme Toggle
 $('themeBtn').onclick = () => {
   document.body.classList.toggle('dark');
   const isDark = document.body.classList.contains('dark');
   $('themeBtn').textContent = isDark ? '🌙' : '☀️';
 };
 
-// Language Toggle
 $('langBtn').onclick = () => {
   currentLang = currentLang === 'en' ? 'ko' : 'en';
   $('langBtn').textContent = currentLang === 'en' ? 'KR' : 'EN';
@@ -132,7 +129,6 @@ const filters = {
 Object.values(filters).forEach(el => el.onchange = render);
 $('q').oninput = render;
 
-// --- FILTER LOGIC ---
 function passes(p) {
   const src = (p.source || "").toLowerCase();
   if (src.includes("michelin") && !filters.michelin.checked) return false;
@@ -156,11 +152,9 @@ function passes(p) {
     const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
     if (!hay.includes(q)) return false;
   }
-
   return true;
 }
 
-// --- RENDERING ---
 function getBadge(p) {
   const s = (p.source || "").toLowerCase();
   const c = (p.category || "").toUpperCase();
@@ -181,7 +175,11 @@ function getBadge(p) {
 }
 
 function renderPopup(p) {
-  const naverSearch = `https://m.map.naver.com/search2/search.naver?query=${enc(p.name)}`;
+  // --- SMART SEARCH LINKS ---
+  // Use the "Algorithmic Korean Address" if available, otherwise name
+  const searchQuery = p.korean_query || p.name;
+
+  const naverSearch = `https://map.naver.com/p/search/${enc(searchQuery)}`;
   const googleSearch = `https://www.google.com/maps/search/?api=1&query=${enc(p.name + " Seoul")}`;
 
   let meta = [];
@@ -191,28 +189,23 @@ function renderPopup(p) {
 
   let actions = [];
 
-  // Kakao Button Logic
   if (p.kakao_url && p.kakao_id) {
-    // We have a specific store ID -> Open the store page
+    // Valid ID -> Store Page
     actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
   } else {
-    // No ID (or ID was rejected), but we have coordinates -> Drop a pin!
-    // Format: map.kakao.com/link/map/Name,Lat,Lon
-    // Note: Lat/Lon must come from p.geometry if available (GeoJSON structure), or properties fallback
+    // No ID -> Pin Drop
     const lat = p.geometry ? p.geometry.coordinates[1] : p.latitude;
     const lon = p.geometry ? p.geometry.coordinates[0] : p.longitude;
+    // We use "link/to/Name,Lat,Lon" for directions/marker
     const pinUrl = `https://map.kakao.com/link/map/${enc(p.name)},${lat},${lon}`;
-
     actions.push(`<a class="linkbtn kakao" href="${pinUrl}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
   }
 
   actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver</a>`);
   actions.push(`<a class="linkbtn" href="${googleSearch}" target="_blank">Google</a>`);
 
-  // Description logic
   let descHtml = "";
   if (p.description) {
-    // Truncate if too long (300 chars)
     const shortDesc = p.description.length > 300 ? p.description.substring(0, 300) + "..." : p.description;
     descHtml = `<div class="popup-desc">${esc(shortDesc)}</div>`;
   }
@@ -228,21 +221,15 @@ function renderPopup(p) {
 }
 
 function render() {
-  // 1. Get current map bounds
   const bounds = map.getBounds();
 
-  // 2. Filter: Must be inside map view AND pass other filters
   const visible = allFeatures.filter(f => {
-    // Check if point is inside current view
     const lat = f.geometry.coordinates[1];
     const lon = f.geometry.coordinates[0];
     const inView = bounds.contains([lat, lon]);
-
-    // Only return true if it's in view AND passes the sidebar filters
     return inView && passes(f.properties);
   });
 
-  // Sort (Best awards first)
   visible.sort((a, b) => {
     const score = p => {
       let s = 0;
@@ -261,13 +248,16 @@ function render() {
 
   clusterGroup.clearLayers();
 
+  // 1. Create Layers & Store References
+  const layerMap = new Map(); // Link Feature -> Leaflet Layer
+
   const geoJsonLayer = L.geoJSON({ type: "FeatureCollection", features: visible }, {
     pointToLayer: (feature, latlng) => {
       const p = feature.properties;
       const isMich = (p.source || "").includes("michelin");
       const color = isMich ? "#bd2333" : "#2b70c9";
 
-      return L.circleMarker(latlng, {
+      const marker = L.circleMarker(latlng, {
         radius: 6,
         fillColor: color,
         color: "#fff",
@@ -275,6 +265,10 @@ function render() {
         opacity: 1,
         fillOpacity: 0.8
       });
+
+      // Save reference for hover effect
+      feature.layer = marker;
+      return marker;
     },
     onEachFeature: (feature, layer) => {
       layer.bindPopup(renderPopup(feature.properties));
@@ -283,6 +277,7 @@ function render() {
 
   clusterGroup.addLayer(geoJsonLayer);
 
+  // 2. Build List with Hover Logic
   const listEl = $('list');
   listEl.innerHTML = "";
 
@@ -299,6 +294,21 @@ function render() {
         ${p.cuisine ? `<span>${esc(p.cuisine)}</span>` : ''}
       </div>
     `;
+
+    // --- HOVER EFFECT ---
+    div.onmouseenter = () => {
+      if (f.layer) {
+        f.layer.setStyle({ radius: 12, color: '#ffff00', weight: 3, fillOpacity: 1 });
+        f.layer.bringToFront();
+      }
+    };
+    div.onmouseleave = () => {
+      if (f.layer) {
+        f.layer.setStyle({ radius: 6, color: '#fff', weight: 1, fillOpacity: 0.8 });
+      }
+    };
+    // --------------------
+
     div.onclick = () => {
       const lat = f.geometry.coordinates[1];
       const lon = f.geometry.coordinates[0];
@@ -317,7 +327,6 @@ function render() {
   });
 }
 
-// Re-render the list whenever the map moves/zooms
 map.on('moveend', render);
 
 async function init() {
