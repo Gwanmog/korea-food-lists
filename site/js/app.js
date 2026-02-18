@@ -46,6 +46,7 @@ const map = L.map('map', {
   zoomControl: false,
   tap: false,
   closePopupOnClick: false
+  maxZoom: 20
 }).setView([37.5665, 126.9780], 11);
 
 L.control.zoom({ position: 'bottomright' }).addTo(map);
@@ -201,8 +202,7 @@ function renderPopup(p) {
   const searchQuery = p.name_ko || p.korean_query || p.name;
 
   const naverSearch = `https://map.naver.com/p/search/${enc(searchQuery)}`;
-  // FIXED: Corrected the Google Search link format
-  const googleSearch = `https://www.google.com/maps/search/?api=1&query=${enc(p.name + " Seoul")}`;
+  const googleSearch = `https://www.google.com/maps/search/${enc(p.name + " Seoul")}`;
 
   let meta = [];
   if (p.cuisine) meta.push(`🍴 ${esc(p.cuisine)}`);
