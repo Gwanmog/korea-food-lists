@@ -368,3 +368,29 @@ body.dark .chat-input-area input {
   background: #ccc;
   cursor: default;
 }
+/* Clickable links inside AI messages */
+.chat-link {
+  color: #2b70c9;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  background: rgba(43, 112, 201, 0.1);
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.chat-link:hover {
+  background: rgba(43, 112, 201, 0.2);
+  color: #1a4a8a;
+}
+
+/* Dark mode adjustment */
+body.dark .chat-link {
+  color: #6ea8fe;
+  background: rgba(110, 168, 254, 0.15);
+}
+body.dark .chat-link:hover {
+  color: #9ec5fe;
+  background: rgba(110, 168, 254, 0.25);
+}

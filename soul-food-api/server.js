@@ -39,6 +39,10 @@ app.post('/chat', async (req, res) => {
 
       **IMPORTANT:** You must reply in **${targetLang}**.
 
+      **CRITICAL INSTRUCTION:**
+      When you recommend a restaurant from the list, you MUST wrap its exact name in double brackets like this: [[Restaurant Name]].
+      Example: "I recommend [[Oreno Ramen]] because..."
+
       User's Request: "${userQuery}"
 
       Here is a list of restaurants currently visible on their map:

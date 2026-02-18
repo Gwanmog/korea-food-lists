@@ -452,11 +452,45 @@ async function sendMessage() {
 function addMessage(text, sender) {
   const div = document.createElement('div');
   div.className = `message ${sender}`;
-  // Convert newlines to breaks for AI formatting
-  div.innerHTML = text.replace(/\n/g, '<br>');
+
+  // 1. Convert newlines to breaks
+  let formatted = text.replace(/\n/g, '<br>');
+
+  // 2. Convert [[Name]] to clickable links
+  // We use a regex to find anything between [[ and ]]
+  formatted = formatted.replace(/\[\[(.*?)\]\]/g, (match, name) => {
+    // Create a special span that looks like a link
+    return `<span class="chat-link" onclick="openRestaurantPopup('${esc(name)}')">${name}</span>`;
+  });
+
+  div.innerHTML = formatted;
   chatMessages.appendChild(div);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+// Global helper to open popup from chat
+window.openRestaurantPopup = (name) => {
+  // Find the feature in allFeatures
+  const target = allFeatures.find(f => f.properties.name === name);
+
+  if (target) {
+    // Zoom to it
+    const lat = target.geometry.coordinates[1];
+    const lon = target.geometry.coordinates[0];
+    map.setView([lat, lon], 16);
+
+    // Open the popup (using the cluster group logic)
+    setTimeout(() => {
+      clusterGroup.eachLayer(l => {
+        if (l.feature === target) {
+          l.openPopup();
+        }
+      });
+    }, 300); // Small delay to allow zoom to finish
+  } else {
+    alert("Could not find " + name + " on the map.");
+  }
+};
 
 // 4. Event Listeners
 if (chatSendBtn) {
