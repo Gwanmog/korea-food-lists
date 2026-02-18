@@ -16,11 +16,13 @@ if (!apiKey) {
   process.exit(1);
 }
 
-// We explicitly tell it to use "v1" instead of letting it default to "v1beta"
 const genAI = new GoogleGenerativeAI(apiKey);
+
+// We use 'gemini-1.5-flash-latest' and remove the explicit v1 override
+// to let the 0.21.0 library handle the routing naturally.
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash"
-}, { apiVersion: 'v1' });
+  model: "gemini-1.5-flash-latest"
+});
 
 app.post('/chat', async (req, res) => {
   try {
