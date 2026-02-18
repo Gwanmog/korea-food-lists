@@ -394,3 +394,30 @@ body.dark .chat-link:hover {
   color: #9ec5fe;
   background: rgba(110, 168, 254, 0.25);
 }
+/* Make the Popup "X" close button bigger and easier to hit on mobile */
+.leaflet-popup-close-button {
+  width: 36px !important;    /* Bigger touch target */
+  height: 36px !important;   /* Bigger touch target */
+  font-size: 24px !important; /* Bigger X icon */
+  color: #555 !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Ensure the X is visible in Dark Mode too */
+body.dark .leaflet-popup-close-button {
+  color: #ccc !important;
+}
+
+/* Optional: Make the chat window slightly transparent on mobile so you can see map moving behind it */
+@media (max-width: 600px) {
+  .chat-window {
+    width: 90%;          /* Don't take full width, leave margins */
+    left: 5%;            /* Center it */
+    bottom: 5%;
+    height: 60vh;        /* Only take 60% of vertical height */
+  }
+}

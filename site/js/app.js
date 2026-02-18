@@ -42,7 +42,12 @@ let userMarker = null;
 let tileLayer = null;
 
 // --- MAP INIT ---
-const map = L.map('map', { zoomControl: false, maxZoom: 20 }).setView([37.5665, 126.9780], 12);
+// Initialize map with "Sticky" popups
+const map = L.map('map', {
+  zoomControl: false,
+  tap: false, // Fixes some touch issues on iOS
+  closePopupOnClick: false // <--- THIS IS THE MAGIC LINE
+}).setView([37.5665, 126.9780], 11);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 
 const tiles = {
@@ -470,23 +475,27 @@ function addMessage(text, sender) {
 
 // Global helper to open popup from chat
 window.openRestaurantPopup = (name) => {
-  // Find the feature in allFeatures
+  // 1. Hide the chat window immediately so user can see the map
+  const chatWindow = document.getElementById('chatWindow');
+  if (chatWindow) chatWindow.classList.add('hidden'); // <--- ADD THIS LINE
+
+  // 2. Find the feature
   const target = allFeatures.find(f => f.properties.name === name);
 
   if (target) {
-    // Zoom to it
     const lat = target.geometry.coordinates[1];
     const lon = target.geometry.coordinates[0];
-    map.setView([lat, lon], 16);
 
-    // Open the popup (using the cluster group logic)
+    // Zoom in a bit closer for mobile
+    map.setView([lat, lon], 18); // Changed 16 to 18 for better mobile view
+
     setTimeout(() => {
       clusterGroup.eachLayer(l => {
         if (l.feature === target) {
           l.openPopup();
         }
       });
-    }, 300); // Small delay to allow zoom to finish
+    }, 300);
   } else {
     alert("Could not find " + name + " on the map.");
   }
