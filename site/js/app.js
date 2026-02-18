@@ -187,3 +187,315 @@ function getBadge(p) {
     if (c.includes("1")) return "⭐ 1";
     if (c.includes("BIB")) return "😊 Bib";
     return "Mic";
+  }
+  if (s.includes("blue")) {
+    if (c.includes("THREE")) return "🎀 3";
+    if (c.includes("TWO")) return "🎀 2";
+    if (c.includes("ONE")) return "🎀 1";
+    return "Blu";
+  }
+  return "";
+}
+
+function renderPopup(p) {
+  const searchQuery = p.name_ko || p.korean_query || p.name;
+
+  const naverSearch = `https://map.naver.com/p/search/${enc(searchQuery)}`;
+  // FIXED: Corrected the Google Search link format
+  const googleSearch = `https://www.google.com/maps/search/?api=1&query=${enc(p.name + " Seoul")}`;
+
+  let meta = [];
+  if (p.cuisine) meta.push(`🍴 ${esc(p.cuisine)}`);
+  if (p.price) meta.push(`💰 ${esc(p.price)}`);
+  if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
+
+  let actions = [];
+
+  if (p.kakao_url && p.kakao_id) {
+    actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
+  } else {
+    const searchUrl = `https://map.kakao.com/link/search/${enc(searchQuery)}`;
+    actions.push(`<a class="linkbtn kakao" href="${searchUrl}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
+  }
+
+  actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver</a>`);
+  actions.push(`<a class="linkbtn" href="${googleSearch}" target="_blank">Google</a>`);
+
+  let descHtml = "";
+  if (p.description) {
+    const shortDesc = p.description.length > 300 ? p.description.substring(0, 300) + "..." : p.description;
+    descHtml = `<div class="popup-desc">${esc(shortDesc)}</div>`;
+  }
+
+  let titleHtml = `<div class="popup-title">${esc(p.name)}</div>`;
+  if (p.name_ko && p.name_ko !== p.name) {
+    titleHtml += `<div style="font-size:12px; color:#888; margin-top:-4px; margin-bottom:6px;">${esc(p.name_ko)}</div>`;
+  }
+
+  return `
+    ${titleHtml}
+    <div class="popup-meta">
+      ${meta.join("<br>")}
+    </div>
+    ${descHtml}
+    <div class="popup-actions">${actions.join("")}</div>
+  `;
+}
+
+// --- MAIN RENDER LOOP ---
+function render() {
+  const bounds = map.getBounds();
+
+  const visible = allFeatures.filter(f => {
+    const lat = f.geometry.coordinates[1];
+    const lon = f.geometry.coordinates[0];
+    const inView = bounds.contains([lat, lon]);
+    return inView && passes(f.properties);
+  });
+
+  visible.sort((a, b) => {
+    const score = p => {
+      let s = 0;
+      const c = (p.category || "").toUpperCase();
+      if (c.includes("3 STAR") || c.includes("RIBBON_THREE")) s += 30;
+      if (c.includes("2 STAR") || c.includes("RIBBON_TWO")) s += 20;
+      if (c.includes("1 STAR") || c.includes("RIBBON_ONE")) s += 10;
+      if (c.includes("BIB")) s += 5;
+      return s;
+    };
+    return score(b.properties) - score(a.properties);
+  });
+
+  const t = I18N[currentLang];
+  const countEl = $('count');
+  if (countEl) countEl.textContent = t.count.replace("{n}", visible.length);
+
+  clusterGroup.clearLayers();
+
+  const geoJsonLayer = L.geoJSON({ type: "FeatureCollection", features: visible }, {
+    pointToLayer: (feature, latlng) => {
+      const p = feature.properties;
+      const isMich = (p.source || "").includes("michelin");
+      const color = isMich ? "#bd2333" : "#2b70c9";
+
+      const marker = L.circleMarker(latlng, {
+        radius: 6,
+        fillColor: color,
+        color: "#fff",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      });
+      feature.layer = marker;
+      return marker;
+    },
+    onEachFeature: (feature, layer) => {
+      layer.bindPopup(renderPopup(feature.properties));
+    }
+  });
+
+  clusterGroup.addLayer(geoJsonLayer);
+
+  const listEl = $('list');
+  if (listEl) {
+    listEl.innerHTML = "";
+
+    visible.slice(0, 100).forEach(f => {
+      const p = f.properties;
+      const div = document.createElement('div');
+      div.className = 'list-item';
+      div.innerHTML = `
+        <div class="item-header">
+          <span class="item-name">${esc(p.name)}</span>
+          <span class="tag ${p.source.includes('michelin') ? 'michelin' : 'blue'}">${getBadge(p)}</span>
+        </div>
+        <div class="item-meta">
+          ${p.cuisine ? `<span>${esc(p.cuisine)}</span>` : ''}
+        </div>
+      `;
+
+      div.onmouseenter = () => {
+        if (f.layer) {
+          f.layer.setStyle({ radius: 12, color: '#ffff00', weight: 3, fillOpacity: 1 });
+          f.layer.bringToFront();
+        }
+      };
+      div.onmouseleave = () => {
+        if (f.layer) {
+          f.layer.setStyle({ radius: 6, color: '#fff', weight: 1, fillOpacity: 0.8 });
+        }
+      };
+
+      // CLICK HANDLER
+      div.onclick = () => {
+        window.openRestaurantPopup(p.name);
+        if (window.innerWidth < 640 && $('listWrap')) {
+          $('listWrap').classList.add('collapsed');
+        }
+      };
+
+      listEl.appendChild(div);
+    });
+  }
+}
+
+map.on('moveend', render);
+
+// --- INIT ---
+async function init() {
+  setMapLanguage('en');
+  try {
+    const res = await fetch('./places.geojson');
+    if (!res.ok) throw new Error("Failed to load data");
+    const data = await res.json();
+    allFeatures = data.features || [];
+    render();
+  } catch (e) {
+    console.error(e);
+    alert("Error loading map data: " + e.message);
+  }
+}
+init();
+
+// --- CHATBOT LOGIC ---
+const chatWindow = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSend');
+const chatToggleBtn = document.getElementById('chatToggle');
+const chatCloseBtn = document.getElementById('chatClose');
+
+if (chatToggleBtn) {
+  chatToggleBtn.onclick = () => {
+    if (chatWindow) {
+      chatWindow.classList.toggle('hidden');
+      if (!chatWindow.classList.contains('hidden') && chatInput) {
+        chatInput.focus();
+      }
+    }
+  };
+}
+
+if (chatCloseBtn) {
+  chatCloseBtn.onclick = () => {
+    if (chatWindow) chatWindow.classList.add('hidden');
+  };
+}
+
+async function sendMessage() {
+  if (!chatInput) return;
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, 'user');
+  chatInput.value = '';
+  chatInput.disabled = true;
+  if (chatSendBtn) chatSendBtn.disabled = true;
+
+  const bounds = map.getBounds();
+  const visibleRestaurants = allFeatures
+    .filter(f => {
+      const lat = f.geometry.coordinates[1];
+      const lon = f.geometry.coordinates[0];
+      return bounds.contains([lat, lon]);
+    })
+    .map(f => ({
+      name: f.properties.name,
+      cuisine: f.properties.cuisine,
+      price: f.properties.price,
+      award: f.properties.category,
+      desc: f.properties.description ? f.properties.description.substring(0, 100) : ""
+    }))
+    .slice(0, 50);
+
+  if (visibleRestaurants.length === 0) {
+    addMessage("I don't see any restaurants on your screen! Move the map to an area with food first.", 'ai');
+    chatInput.disabled = false;
+    if (chatSendBtn) chatSendBtn.disabled = false;
+    return;
+  }
+
+  try {
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'message ai loading';
+    loadingDiv.textContent = 'Thinking...';
+    chatMessages.appendChild(loadingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    const response = await fetch('https://eatmyseoul.onrender.com/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userQuery: text,
+        language: currentLang,
+        restaurants: visibleRestaurants
+      })
+    });
+
+    const data = await response.json();
+    loadingDiv.remove();
+
+    if (data.reply) {
+      addMessage(data.reply, 'ai');
+    } else {
+      addMessage("Sorry, I got confused. Try again.", 'ai');
+    }
+
+  } catch (err) {
+    const loader = document.querySelector('.message.loading');
+    if (loader) loader.remove();
+    addMessage("Error connecting to AI. Is your local server running?", 'ai');
+    console.error(err);
+  }
+
+  chatInput.disabled = false;
+  if (chatSendBtn) chatSendBtn.disabled = false;
+  chatInput.focus();
+}
+
+function addMessage(text, sender) {
+  if (!chatMessages) return;
+  const div = document.createElement('div');
+  div.className = `message ${sender}`;
+
+  let formatted = text.replace(/\n/g, '<br>');
+  formatted = formatted.replace(/\[\[(.*?)\]\]/g, (match, name) => {
+    return `<span class="chat-link" onclick="openRestaurantPopup('${esc(name)}')">${name}</span>`;
+  });
+
+  div.innerHTML = formatted;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Global helper to open popup from chat/list
+window.openRestaurantPopup = (name) => {
+  if (chatWindow) chatWindow.classList.add('hidden');
+
+  const target = allFeatures.find(f => f.properties.name === name);
+
+  if (target) {
+    const lat = target.geometry.coordinates[1];
+    const lon = target.geometry.coordinates[0];
+    map.setView([lat, lon], 18);
+
+    setTimeout(() => {
+      clusterGroup.eachLayer(l => {
+        if (l.feature === target) {
+          l.openPopup();
+        }
+      });
+    }, 300);
+  } else {
+    console.warn("Could not find " + name);
+  }
+};
+
+if (chatSendBtn) {
+  chatSendBtn.onclick = sendMessage;
+}
+if (chatInput) {
+  chatInput.onkeypress = (e) => {
+    if (e.key === 'Enter') sendMessage();
+  };
+}
