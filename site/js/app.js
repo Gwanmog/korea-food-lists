@@ -413,7 +413,7 @@ async function sendMessage() {
     chatMessages.appendChild(loadingDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    const response = await fetch('https://eatmyseoul.onrender.com', {
+    const response = await fetch('https://eatmyseoul.onrender.com/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
