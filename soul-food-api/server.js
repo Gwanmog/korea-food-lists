@@ -17,11 +17,8 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-
-// We use 'gemini-1.5-flash-latest' and remove the explicit v1 override
-// to let the 0.21.0 library handle the routing naturally.
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash-latest"
+  model: "gemini-1.5-flash-flash"
 });
 
 app.post('/chat', async (req, res) => {
