@@ -18,7 +18,7 @@ if (!apiKey) {
 
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash-flash"
+  model: "gemini-1.5-flash"
 });
 
 app.post('/chat', async (req, res) => {
