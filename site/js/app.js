@@ -315,20 +315,19 @@ function render() {
       }
     };
 
+    // --- UPDATED CLICK LOGIC ---
     div.onclick = () => {
-      const lat = f.geometry.coordinates[1];
-      const lon = f.geometry.coordinates[0];
-      map.setView([lat, lon], 16);
-      setTimeout(() => {
-        clusterGroup.eachLayer(l => {
-          if (l.feature === f) l.openPopup();
-        });
-      }, 300);
-      
+      // 1. Use the unified function to Zoom & Open Popup
+      window.openRestaurantPopup(p.name);
+
+      // 2. Only close the list on mobile (screens smaller than 640px)
+      // On desktop, the list will stay open!
       if (window.innerWidth < 640) {
         $('listWrap').classList.add('collapsed');
       }
     };
+    // ---------------------------
+
     listEl.appendChild(div);
   });
 }
