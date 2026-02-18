@@ -16,8 +16,11 @@ if (!apiKey) {
   process.exit(1);
 }
 
+// We explicitly tell it to use "v1" instead of letting it default to "v1beta"
 const genAI = new GoogleGenerativeAI(apiKey);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash"
+}, { apiVersion: 'v1' });
 
 app.post('/chat', async (req, res) => {
   try {
