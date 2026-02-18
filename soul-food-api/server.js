@@ -18,11 +18,9 @@ if (!apiKey) {
 
 const genAI = new GoogleGenerativeAI(apiKey);
 
-// FIX: Use the specific "001" version and force the stable "v1" API
+// UPDATED: Use the current standard model (Gemini 2.5 Flash)
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash-001"
-}, {
-  apiVersion: "v1"
+  model: "gemini-2.5-flash"
 });
 
 app.post('/chat', async (req, res) => {
