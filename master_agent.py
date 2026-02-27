@@ -1,58 +1,72 @@
 import os
 import requests
 import time
+import random  # NEW: For human camouflage
 import csv
 from dotenv import load_dotenv
 
-# Import our agent tools
 from naver_agent import search_naver_blogs, scrape_naver_blog_text
 from critic_agent import evaluate_restaurant
 
-load_dotenv()
+# Pathing setup
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, 'soul-food-api', '.env')
+load_dotenv(dotenv_path=env_path)
+
 KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 
 # ==========================================
-# ⚙️ BATCH CONFIGURATION QUEUE
+# ⚙️ THE SEOUL MASTER QUEUE
+# Add your curated neighborhoods here!
 # ==========================================
-NEIGHBORHOODS = ["홍대", "연남동"]
+NEIGHBORHOODS = ["홍대", "연남동", "합정", "망원동"]
 KEYWORDS = ["치킨", "치맥"]
-MAX_PLACES_PER_SEARCH = 5
+MAX_PLACES_PER_SEARCH = 15  # Cranked up for the sweep!
+CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
 
 
 # ==========================================
 
 def discover_restaurants(keyword, location, max_results):
-    """The Discovery Agent: Uses Kakao Maps to find raw restaurant data."""
     print(f"\n🗺️ Discovery Agent: Searching Kakao for '{location} {keyword}'...")
-
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     headers = {"Authorization": f"KakaoAK {KAKAO_API_KEY}"}
-    params = {
-        "query": f"{location} {keyword}",
-        "size": max_results
-    }
+    params = {"query": f"{location} {keyword}", "size": max_results}
 
-    response = requests.get(url, headers=headers, params=params)
-
-    if response.status_code == 200:
-        places = response.json().get('documents', [])
-        print(f"✅ Kakao returned {len(places)} results.")
-        return places
-    else:
-        print(f"❌ Kakao API Error: {response.status_code}")
+    try:
+        response = requests.get(url, headers=headers, params=params, timeout=10)
+        if response.status_code == 200:
+            return response.json().get('documents', [])
+        else:
+            print(f"❌ Kakao API Error: {response.status_code}")
+            return []
+    except requests.exceptions.RequestException as e:
+        print(f"⚠️ Network error connecting to Kakao: {e}")
         return []
 
 
-def run_staging_pipeline():
-    """Runs the AI pipeline and saves results to a CSV for human review."""
+def append_to_csv(row_dict):
+    """LIVE CHECKPOINTING: Saves one row to the CSV immediately."""
+    headers = ["Neighborhood", "Keyword", "Restaurant Name", "Score", "Award Level", "AI Justification", "English Desc",
+               "Korean Desc", "Kakao URL", "Lat", "Lon"]
 
-    # We will store our rows of data here before saving
-    staging_data = []
+    # Check if file exists so we know whether to write the header row
+    file_exists = os.path.isfile(CSV_FILENAME)
+
+    with open(CSV_FILENAME, 'a', newline='', encoding='utf-8-sig') as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row_dict)
+
+
+def run_massive_pipeline():
+    # Deduplication memory
     seen_place_ids = set()
 
     for neighborhood in NEIGHBORHOODS:
         print(f"\n" + "=" * 50)
-        print(f"📍 INITIATING SCAN: {neighborhood}")
+        print(f"📍 INITIATING SECTOR SCAN: {neighborhood}")
         print(f"=" * 50)
 
         for keyword in KEYWORDS:
@@ -69,7 +83,7 @@ def run_staging_pipeline():
                 seen_place_ids.add(place_id)
                 print(f"\n🕵️ Investigating: {restaurant_name} ({neighborhood} / {keyword})")
 
-                # A. Get Naver Blogs
+                # --- A. Get Naver Blogs ---
                 blog_results = search_naver_blogs(restaurant_name, neighborhood)
                 if not blog_results:
                     continue
@@ -80,21 +94,23 @@ def run_staging_pipeline():
                     text = scrape_naver_blog_text(url)
                     if text:
                         scraped_texts.append(text)
-                    time.sleep(1)
+
+                    # RANDOMIZED JITTER: Sleep between 1.5 and 3.2 seconds
+                    sleep_time = random.uniform(1.5, 3.2)
+                    time.sleep(sleep_time)
 
                 if not scraped_texts:
                     print("⚠️ Not enough readable data. Skipping.")
                     continue
 
-                # B. Send to Gemini for Scoring
+                # --- B. Send to Gemini for Scoring ---
                 evaluation = evaluate_restaurant(restaurant_name, scraped_texts, keyword)
 
-                # C. Save EVERYTHING to the Staging Queue (Even low scores, so you can see why it failed)
+                # --- C. Live Save to Staging Queue ---
                 if evaluation:
                     score = evaluation.get('score', 0)
                     print(f"🎯 AI Scored {restaurant_name}: {score}/100")
 
-                    # Create a dictionary for our CSV row
                     row = {
                         "Neighborhood": neighborhood,
                         "Keyword": keyword,
@@ -108,29 +124,17 @@ def run_staging_pipeline():
                         "Lat": place.get('y', ''),
                         "Lon": place.get('x', '')
                     }
-                    staging_data.append(row)
+
+                    # Save instantly! If the script crashes on the next loop, this data is safe.
+                    append_to_csv(row)
                 else:
                     print(f"❌ AI failed to evaluate {restaurant_name}.")
 
-                time.sleep(3)
+                # Big rest between restaurants to let APIs cool down
+                time.sleep(random.uniform(4.0, 7.0))
 
-    # 4. Save to CSV for Excel/Google Sheets Review
-    if staging_data:
-        csv_filename = 'neon_guide_review_queue.csv'
-        headers = ["Neighborhood", "Keyword", "Restaurant Name", "Score", "Award Level", "AI Justification",
-                   "English Desc", "Korean Desc", "Kakao URL", "Lat", "Lon"]
-
-        # We use 'utf-8-sig' so Excel reads the Korean characters perfectly without scrambling them
-        with open(csv_filename, 'w', newline='', encoding='utf-8-sig') as f:
-            writer = csv.DictWriter(f, fieldnames=headers)
-            writer.writeheader()
-            writer.writerows(staging_data)
-
-        print(
-            f"\n🏁 Complete! Open '{csv_filename}' in Excel or Google Sheets to review the {len(staging_data)} processed spots.")
-    else:
-        print("\n🏁 Complete, but no data was successfully processed.")
+    print(f"\n🏁 Massive Sweep Complete! Data safely secured in {CSV_FILENAME}.")
 
 
 if __name__ == "__main__":
-    run_staging_pipeline()
+    run_massive_pipeline()
