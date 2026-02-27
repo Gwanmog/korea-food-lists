@@ -19,9 +19,9 @@ KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 # ⚙️ THE SEOUL MASTER QUEUE
 # Add your curated neighborhoods here!
 # ==========================================
-NEIGHBORHOODS = ["홍대", "연남동", "합정", "망원동"]
+NEIGHBORHOODS = ["홍대"]
 KEYWORDS = ["치킨", "치맥"]
-MAX_PLACES_PER_SEARCH = 15  # Cranked up for the sweep!
+MAX_PLACES_PER_SEARCH = 5  # "The Dial"
 CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
 
 
@@ -59,10 +59,22 @@ def append_to_csv(row_dict):
             writer.writeheader()
         writer.writerow(row_dict)
 
+def load_existing_restaurants():
+    """Reads the CSV to memorize places we've already scored across multiple runs."""
+    seen_names = set()
+    if os.path.isfile(CSV_FILENAME):
+        with open(CSV_FILENAME, 'r', encoding='utf-8-sig') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # Memorize the restaurant name so we don't scrape it again
+                seen_names.add(row.get("Restaurant Name"))
+    return seen_names
+
 
 def run_massive_pipeline():
-    # Deduplication memory
-    seen_place_ids = set()
+    # Load permanent memory from the CSV!
+    seen_places = load_existing_restaurants()
+    print(f"🧠 Memory loaded: Skippping {len(seen_places)} previously scored spots.")
 
     for neighborhood in NEIGHBORHOODS:
         print(f"\n" + "=" * 50)
@@ -73,15 +85,15 @@ def run_massive_pipeline():
             places_to_investigate = discover_restaurants(keyword, neighborhood, MAX_PLACES_PER_SEARCH)
 
             for place in places_to_investigate:
-                place_id = place['id']
                 restaurant_name = place['place_name']
 
-                if place_id in seen_place_ids:
-                    print(f"⏭️ Skipping {restaurant_name} (Duplicate).")
+                # Check permanent memory instead of just ID
+                if restaurant_name in seen_places:
+                    print(f"⏭️ Skipping {restaurant_name} (Already in CSV).")
                     continue
 
-                seen_place_ids.add(place_id)
-                print(f"\n🕵️ Investigating: {restaurant_name} ({neighborhood} / {keyword})")
+                # Add to memory so we don't hit it again on the next keyword loop
+                seen_places.add(restaurant_name)
 
                 # --- A. Get Naver Blogs ---
                 blog_results = search_naver_blogs(restaurant_name, neighborhood)

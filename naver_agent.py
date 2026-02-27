@@ -30,7 +30,7 @@ def search_naver_blogs(restaurant_name, location="서울"):
 
     query = f"{location} {restaurant_name}"
     encoded_query = urllib.parse.quote(query)
-    url = f"https://openapi.naver.com/v1/search/blog.json?query={encoded_query}&display=3&sort=sim"
+    url = f"https://openapi.naver.com/v1/search/blog.json?query={encoded_query}&display=10&sort=sim"
 
     auth_headers = {
         "X-Naver-Client-Id": CLIENT_ID,
