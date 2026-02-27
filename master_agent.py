@@ -87,7 +87,7 @@ def run_staging_pipeline():
                     continue
 
                 # B. Send to Gemini for Scoring
-                evaluation = evaluate_restaurant(restaurant_name, scraped_texts)
+                evaluation = evaluate_restaurant(restaurant_name, scraped_texts, keyword)
 
                 # C. Save EVERYTHING to the Staging Queue (Even low scores, so you can see why it failed)
                 if evaluation:
