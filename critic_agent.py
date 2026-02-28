@@ -15,6 +15,44 @@ if not API_KEY:
 
 client = genai.Client(api_key=API_KEY)
 
+def get_kakao_categories(keyword):
+    """
+    Acts as a Pre-Flight Coordinator.
+    Translates a human keyword into official Kakao Map categories.
+    """
+    print(f"🧠 Coordinator: Translating '{keyword}' into Kakao categories...")
+
+    instruction = """
+    You are an expert in South Korean food culture and the Kakao Map API database structure.
+    The user is going to provide a food or restaurant keyword.
+
+    Your job is to provide 3 to 5 official Kakao Map category tags or highly relevant terms 
+    that a restaurant serving this food would be registered under.
+
+    Rules:
+    - Keep all categories strictly in Korean.
+    - Return ONLY a valid JSON array of strings. No markdown, no explanations.
+
+    Example for '빈대떡':
+    ["전,부침개", "막걸리", "한식"]
+    """
+
+    try:
+        response = client.models.generate_content(
+            model='gemini-2.5-flash-lite',  # Fast and cheap for simple translation
+            contents=f"Keyword: {keyword}",
+            config=types.GenerateContentConfig(
+                system_instruction=instruction,
+                response_mime_type="application/json",
+                temperature=0.1
+            )
+        )
+        categories = json.loads(response.text)
+        print(f"✅ Categories locked in: {categories}")
+        return categories
+    except Exception as e:
+        print(f"⚠️ Coordinator Error: {e}. Defaulting to keyword only.")
+        return [keyword]
 
 def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
     print(f"\n🧠 Junior Analyst: Verifying '{search_keyword}' and extracting Michelin criteria...")
