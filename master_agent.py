@@ -19,65 +19,43 @@ KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 # ⚙️ THE SEOUL MASTER QUEUE (ALL 25 DISTRICTS)
 # ==========================================
 NEIGHBORHOODS = [
-    # --- Mapo / Seodaemun (The Indie & University Belt) ---
-    "서교동",  # Hongdae (Official address for the main strip)
-    "창천동",  # Sinchon (Official address)
-    "대현동",  # Edae
-    "연남동",  # Yeonnam
-    "망원동",  # Mangwon
-    "합정동",  # Hapjeong
-    "상수동",  # Sangsu
-    "공덕동",  # Gongdeok
-    "상암동",  # Digital Media City (DMC)
-
-    # --- Yongsan (The International & Craft Beer Hub) ---
-    "이태원동",  # Itaewon
-    "용산동2가",  # Haebangchon (Official address)
-
-    # --- Jongno / Jung-gu (Historical & Downtown) ---
-    "익선동",  # Ikseondong
-    "삼청동",  # Samcheong
-    "을지로",  # Euljiro
-    "명동",  # Myeongdong
-    "신당동",  # Sindang
-    "창신동",  # Changsin
-
-    # ⚠️ High-Density Downtown Splintering
-    "종로3가",  # Jongno 3-ga
-    "돈의동",  # Jongno 3-ga (Alleyways often register here)
-    "낙원동",  # Jongno 3-ga (Northern edge)
-    "충무로",  # Chungmuro
-    "필동",  # Chungmuro (Many spots register under this address)
-    "광희동",  # Dongdaemun
-    "을지로6가",  # Dongdaemun (DDP area)
-
-    # --- Gangnam / Seongdong (Trendy & Commercial) ---
-    "역삼동",  # Gangnam (East of the station)
-    "서초동",  # Gangnam (West of the station)
-    "압구정동",  # Apgujeong
-    "신사동",  # Sinsa
-    "성수동",  # Seongsu
-    "마장동",  # Majang
-
-    # --- Yeongdeungpo / Seongbuk ---
-    "문래동",  # Mullae
-    "정릉동"  # Jeongneung
+    "서교동", "창천동", "대현동", "연남동", "망원동", "합정동", "상수동", "공덕동", "상암동",
+    "이태원동", "용산동2가",
+    "권농동", "익선동", "삼청동", "을지로", "명동", "신당동", "창신동",
+    "종로3가", "돈의동", "낙원동", "충무로", "필동", "광희동", "을지로6가",
+    "역삼동", "서초동", "압구정동", "신사동", "성수동", "마장동",
+    "문래동", "정릉동"
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    # The Beer Core
-    "수제맥주": ("수제맥주", False),
-    "크래프트비어": ("수제맥주", False),
-    "크래프트": ("수제맥주", False),
-    "탭하우스": ("수제맥주", False),
-    "에일": ("수제맥주", False),
-    "IPA": ("수제맥주", False),
+    # The Fried Chicken Essentials
+    "치킨": ("치킨", False),
+    "닭강정": ("치킨", False),
+    "양념치킨": ("치킨", False),
 
-    # The Mixed/Traditional Core
-    "양조장": ("양조장", False),
-    "막걸리": ("막걸리", False),
-    "전통주": ("막걸리", False)
+    # The Casual Street Food & Market Snacking
+    "떡볶이": ("분식", False),
+    "김밥": ("분식", False),
+    "튀김": ("분식", False),
+    "호떡": ("디저트", False),
+    "빈대떡": ("전", False),
+    "오뎅": ("분식", False),
+
+    # Hangover & Soul Food (The Working-Class Heroes)
+    "국밥": ("국밥", False),
+    "감자탕": ("감자탕", False),
+    "제육볶음": ("백반", False),
+
+    # The Spring Seasonal Exclusive
+    "쭈꾸미": ("해산물", False),
+
+    # Soju Tents & Late Night
+    "곱창": ("곱창", False),
+    "육회": ("육회", False),
+
+    # Trendy Desserts
+    "두바이 초콜릿": ("디저트", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45
@@ -152,30 +130,18 @@ def load_existing_restaurants():
 
 def is_strong_hit(place, keyword, valid_categories, expected_neighborhood):
     """
-    Agile pre-filter powered by the AI Coordinator and Geographic bounds.
+    Agile pre-filter powered ONLY by Geographic bounds.
+    Trusts the Naver Fast-Pass to filter generic bars,
+    and the AI Lie Detector to penalize corporate franchises.
     """
-    name = place.get('place_name', '')
-    category = place.get('category_name', '')
     address = place.get('address_name', '')
 
-    # 🚨 THE GEOGRAPHIC BOUNCER
-    # If the district we searched for isn't in the official address, Kakao is bleeding over.
+    # 🚨 THE GEOGRAPHIC BOUNCER (The only rule we need here!)
     if expected_neighborhood not in address:
         return False
 
-    # 1. Direct hit in the restaurant's name
-    if keyword in name:
-        return True
-
-    # 2. Direct hit in Kakao's default category
-    if keyword in category:
-        return True
-
-    # 3. Dynamic check against the AI's allowed categories
-    if any(valid_cat in category for valid_cat in valid_categories):
-        return True
-
-    return False
+    # If it is physically inside the neighborhood, let the AI pipeline judge it!
+    return True
 
 
 def run_massive_pipeline():

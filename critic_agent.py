@@ -105,10 +105,10 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
         The target food/vibe is: {search_keyword}.
 
         TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. 
-        - If the target is '수제맥주', act as a strict beer critic. Check the tap list. Reject places that only serve mass-market domestic beer. 
-        - If the target is '막걸리', look for high-quality, house-brewed, or regionally curated traditional rice wine.
-        - If the target is '양조장', they MUST brew their own alcohol on-site (either 수제맥주 or 막걸리). Reject generic pubs.
-        - If they fail this standard, flag 'serves_target_food' as false.
+        - If the target is '치킨', prioritize reviews that mention the crispiness of the batter and the freshness of the oil. 
+        - If the target is '국밥' or '감자탕', look for mentions of deep, rich broth boiled in-house. 
+        - If the target is a market snack like '떡볶이' or '빈대떡', verify the stall has high turnover and fresh ingredients. 
+        - Reject generic convenience store quality.
 
         TASK 2: THE IMAGE & TEXT LIE DETECTOR (협찬 필터)
         - Text Check: Scan the text for mandatory disclosure phrases ('소정의 원고료', '제품을 제공받아', '협찬', '지원받아').
@@ -150,19 +150,27 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
 
     try:
         analyst_response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',  # Or gemini-2.5-flash if you want stronger image reading
+            model='gemini-2.5-flash-lite',
             contents=payload_contents,
             config=analyst_config
         )
+
+        # 1. Load the JSON data
         analyst_data = json.loads(analyst_response.text)
 
+        # 🛡️ 2. THE BULLETPROOF JSON PARSER
+        # If Gemini accidentally wraps the dictionary in a list, extract the dictionary!
+        if isinstance(analyst_data, list):
+            analyst_data = analyst_data[0] if len(analyst_data) > 0 else {}
+
+        # 3. Proceed as normal!
         if not analyst_data.get("serves_target_food", False):
             print(f"🛑 REJECTED: Does not focus on {search_keyword}.")
             return {"score": 0, "award_level": "None", "justification": f"Does not specialize in {search_keyword}."}
 
         extracted_facts = analyst_data.get("extracted_facts_ko", "")
-        print(f"✅ Facts extracted. Sponsorship Ratio flagged as: {analyst_data.get('sponsored_ratio', 'Unknown')}. Handing to Head Critic.")
-
+        print(
+            f"✅ Facts extracted. Sponsorship Ratio flagged as: {analyst_data.get('sponsored_ratio', 'Unknown')}. Handing to Head Critic.")
     except Exception as e:
         print(f"❌ Junior Analyst Error: {e}")
         return None
@@ -223,7 +231,16 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
             contents=critic_prompt,
             config=critic_config
         )
-        return json.loads(critic_response.text)
+
+        # 1. Parse the JSON into a variable first
+        critic_data = json.loads(critic_response.text)
+
+        # 2. THE BULLETPROOF CHECK: If Gemini wrapped it in a list, unwrap it!
+        if isinstance(critic_data, list):
+            critic_data = critic_data[0] if len(critic_data) > 0 else {}
+
+        # 3. Now return the safe dictionary
+        return critic_data
 
     except Exception as e:
         print(f"❌ Head Critic Error: {e}")
