@@ -15,31 +15,39 @@ if not API_KEY:
 
 client = genai.Client(api_key=API_KEY)
 
-def get_kakao_categories(keyword):
+def get_kakao_categories(keyword, strict_mode=False):
     """
     Acts as a Pre-Flight Coordinator.
-    Translates a human keyword into official Kakao Map categories.
+    If strict_mode is True, bypasses the AI and forces an exact keyword match.
     """
+    if strict_mode:
+        print(f"🔒 STRICT MODE ON: Bypassing AI. Locking target strictly to '{keyword}'.")
+        return [keyword]
+
     print(f"🧠 Coordinator: Translating '{keyword}' into Kakao categories...")
 
     instruction = """
-    You are an expert in South Korean food culture and the Kakao Map API database structure.
-    The user is going to provide a food or restaurant keyword.
+        You are an expert in South Korean food culture and the Kakao Map API database structure.
+        The user is going to provide a food or restaurant keyword.
 
-    Your job is to provide 3 to 5 official Kakao Map category tags or highly relevant terms 
-    that a restaurant serving this food would be registered under.
+        Your job is to provide a MAXIMUM of 3 official Kakao Map category tags or highly relevant terms 
+        that a restaurant serving this food would be registered under.
 
-    Rules:
-    - Keep all categories strictly in Korean.
-    - Return ONLY a valid JSON array of strings. No markdown, no explanations.
+        Rules:
+        - Keep all categories strictly in Korean (Hangul). Do not romanize anything.
+        - NEVER return the top-level broad category "음식점". You must be specific.
+        - Return ONLY a valid JSON array of strings. No markdown, no explanations.
 
-    Example for '빈대떡':
-    ["전,부침개", "막걸리", "한식"]
-    """
+        Example for '빈대떡':
+        ["전,부침개", "막걸리", "한식"]
+
+        Example for '술집':
+        ["요리주점", "호프", "포장마차", "이자카야", "맥주", "전통주"]
+        """
 
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',  # Fast and cheap for simple translation
+            model='gemini-2.5-flash-lite',
             contents=f"Keyword: {keyword}",
             config=types.GenerateContentConfig(
                 system_instruction=instruction,
@@ -48,6 +56,8 @@ def get_kakao_categories(keyword):
             )
         )
         categories = json.loads(response.text)
+        # Final safety net just in case the LLM ignores the prompt
+        categories = categories[:3]
         print(f"✅ Categories locked in: {categories}")
         return categories
     except Exception as e:
@@ -63,24 +73,28 @@ def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
     # PHASE 1: The Junior Analyst (Fact Extractor)
     # ==========================================
     analyst_instruction = f"""
-    You are a meticulous data analyst reviewing Korean blog posts. 
-    The target food is: {search_keyword}.
+        You are a meticulous data analyst reviewing Korean blog posts. 
+        The target vibe/food is: {search_keyword}.
 
-    TASK 1: Verify if the restaurant focuses on {search_keyword}. If not, flag 'serves_target_food' as false.
+        TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. 
+        - If the target is '수제맥주' (Craft Beer), act as a strict beer critic. Check the tap list mentioned in the blogs.
+        - If they primarily serve mass-market domestic beer (카스/Cass, 테라/Terra, 켈리/Kelly, 생맥주) and only have 1 or 2 generic craft beers, REJECT THEM. 
+        - They must have a dedicated craft beer lineup, brew their own beer (양조장), or have a highly curated guest tap list.
+        - If they fail this standard, flag 'serves_target_food' as false.
 
-    TASK 2: Extract objective facts based strictly on these 5 criteria:
-    1. Quality of ingredients (식재료의 품질 - e.g., fresh meat, clean oil).
-    2. Mastery of technique (맛과 조리 기술 - e.g., batter crispiness, sauce balance).
-    3. Personality of the chef (사장의 개성 - e.g., unique recipes, signature style vs. generic).
-    4. Value for money (가성비 - price vs. quality/portion).
-    5. Consistency (일관성 - e.g., mentions of being a long-time favorite, returning customers).
+        TASK 2: Extract objective facts based strictly on these 5 criteria:
+        1. Quality of ingredients (식재료의 품질 - e.g., fresh meat, clean oil, freshness of the beer kegs).
+        2. Mastery of technique (맛과 조리 기술 - e.g., brewing techniques, food pairings, batter crispiness).
+        3. Personality of the chef/brewer (사장의 개성 - e.g., unique recipes, experimental brews vs. generic).
+        4. Value for money (가성비 - price vs. quality/portion).
+        5. Consistency (일관성 - e.g., mentions of being a long-time favorite, returning customers).
 
-    Output strictly in JSON format:
-    {{
-        "serves_target_food": (boolean),
-        "extracted_facts_ko": (A detailed summary of the facts categorized by the 5 criteria in Korean)
-    }}
-    """
+        Output strictly in JSON format:
+        {{
+            "serves_target_food": (boolean),
+            "extracted_facts_ko": (A detailed summary of the facts categorized by the 5 criteria in Korean)
+        }}
+        """
 
     analyst_config = types.GenerateContentConfig(
         system_instruction=analyst_instruction,

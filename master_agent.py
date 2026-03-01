@@ -16,13 +16,30 @@ load_dotenv(dotenv_path=env_path)
 KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 
 # ==========================================
-# ⚙️ THE SEOUL MASTER QUEUE
+# ⚙️ THE SEOUL MASTER QUEUE (ALL 25 DISTRICTS)
 # ==========================================
-NEIGHBORHOODS = ["홍대"]
-KEYWORDS = ["치킨"]  # Try swapping this to 곱창, 비빔밥, 빈대떡, or 육회 later!
-MAX_PLACES_PER_SEARCH = 10 # "The Dial"
-CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
+NEIGHBORHOODS = [
+    "강남구", "강동구", "강북구", "강서구", "관악구",
+    "광진구", "구로구", "금천구", "노원구", "도봉구",
+    "동대문구", "동작구", "마포구", "서대문구", "서초구",
+    "성동구", "성북구", "송파구", "양천구", "영등포구",
+    "용산구", "은평구", "종로구", "중구", "중랑구"
+]
+# 🎯 THE TARGET DICTIONARY
+# Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
+KEYWORDS = {
+    # The Craft Beer Sweep (Loose category, strict AI grading)
+    "수제맥주": ("수제맥주", False),
+    "브루어리": ("수제맥주", False),
+    "양조장": ("수제맥주", False),
+    "에일": ("수제맥주", False),
 
+    # Future Example: A highly specific food where we ONLY want exact matches
+    # "평양냉면": ("평양냉면", True)
+}
+
+MAX_PLACES_PER_SEARCH = 15
+CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
 
 # ==========================================
 
@@ -93,28 +110,26 @@ def is_strong_hit(place, keyword, valid_categories):
 
 def run_massive_pipeline():
     seen_places = load_existing_restaurants()
-    if seen_places:
-        print(f"🧠 Memory loaded: Skipping {len(seen_places)} previously scored spots.")
 
-    for keyword in KEYWORDS:
+    # 🔄 Unpack all three variables!
+    for search_bait, (master_target, is_strict) in KEYWORDS.items():
         print(f"\n" + "*" * 50)
-        print(f"🎯 NEW TARGET: {keyword}")
+        print(f"🎯 BAIT: {search_bait} | TARGET: {master_target} | STRICT: {is_strict}")
         print(f"*" * 50)
 
-        # 1. Ask Gemini for the rules of engagement for this specific food
-        valid_categories = get_kakao_categories(keyword)
+        # Pass the strict flag to the Coordinator
+        valid_categories = get_kakao_categories(search_bait, strict_mode=is_strict)
 
         for neighborhood in NEIGHBORHOODS:
-            print(f"\n📍 INITIATING SECTOR SCAN: {neighborhood} ({keyword})")
+            print(f"\n📍 INITIATING SECTOR SCAN: {neighborhood} ({search_bait})")
 
-            places_to_investigate = discover_restaurants(keyword, neighborhood, MAX_PLACES_PER_SEARCH)
+            # Use SEARCH BAIT for Kakao
+            places_to_investigate = discover_restaurants(search_bait, neighborhood, MAX_PLACES_PER_SEARCH)
 
             for place in places_to_investigate:
                 restaurant_name = place['place_name']
 
-                # 2. Hand the AI's valid_categories to the Bouncer
-                if not is_strong_hit(place, keyword, valid_categories):
-                    print(f"⏭️ Bouncing {restaurant_name} (Category mismatch: {place.get('category_name')}).")
+                if not is_strong_hit(place, search_bait, valid_categories):
                     continue
 
                 if restaurant_name in seen_places:
@@ -122,12 +137,35 @@ def run_massive_pipeline():
                     continue
 
                 seen_places.add(restaurant_name)
-                print(f"\n🕵️ Investigating: {restaurant_name} ({neighborhood} / {keyword})")
+                # FIX 1: Use search_bait instead of keyword in the print statement
+                print(f"\n🕵️ Investigating: {restaurant_name} ({neighborhood} / {search_bait})")
 
                 # --- A. Get Naver Blogs ---
                 blog_results = search_naver_blogs(restaurant_name, neighborhood)
                 if not blog_results:
                     continue
+
+                # 🚀 THE FAST-PASS FILTER 🚀
+                # Check if the target vibe is even mentioned in the blog titles/snippets
+                # If we are looking for craft beer, we look for key terms.
+                fast_pass_terms = ["수제맥주", "크래프트", "브루어리", "양조장", "에일", "IPA"]
+
+                passed_fast_pass = False
+                for blog in blog_results:
+                    title = blog.get('title', '')
+                    snippet = blog.get('description', '')
+
+                    if any(term in title or term in snippet for term in fast_pass_terms):
+                        passed_fast_pass = True
+                        break  # We found proof! Stop checking snippets.
+
+                if not passed_fast_pass:
+                    print(
+                        f"⏭️ Fast-Pass Failed: {restaurant_name}. No mention of target keywords in top 10 blog titles. Skipping AI.")
+                    continue
+                # 🚀 ------------------------ 🚀
+
+                print(f"✅ Fast-Pass Passed! Scraping full blogs for {restaurant_name}...")
 
                 scraped_texts = []
                 for blog in blog_results:
@@ -144,7 +182,7 @@ def run_massive_pipeline():
                     continue
 
                 # --- B. Send to Gemini for Scoring ---
-                evaluation = evaluate_restaurant(restaurant_name, scraped_texts, keyword)
+                evaluation = evaluate_restaurant(restaurant_name, scraped_texts, master_target)
 
                 # --- C. Live Save to Staging Queue ---
                 if evaluation:
@@ -153,7 +191,8 @@ def run_massive_pipeline():
 
                     row = {
                         "Neighborhood": neighborhood,
-                        "Keyword": keyword,
+                        # FIX 2: Save it under the master_target so your lists stay clean!
+                        "Keyword": master_target,
                         "Restaurant Name": restaurant_name,
                         "Score": score,
                         "Award Level": evaluation.get('award_level', 'None'),
