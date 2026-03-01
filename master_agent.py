@@ -39,27 +39,49 @@ KEYWORDS = {
     # "평양냉면": ("평양냉면", True)
 }
 
-MAX_PLACES_PER_SEARCH = 15
+MAX_PLACES_PER_SEARCH = 45
 CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
 
 # ==========================================
 
 def discover_restaurants(keyword, location, max_results):
-    print(f"\n🗺️ Discovery Agent: Searching Kakao for '{location} {keyword}'...")
+    """
+    Paginated Discovery Agent: Sweeps up to 3 pages (45 results)
+    to prevent true hotspots from being buried by Kakao's SEO keyword ranking.
+    """
+    print(f"\n🗺️ Discovery Agent: Deep-sweeping Kakao for '{location} {keyword}'...")
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
     headers = {"Authorization": f"KakaoAK {KAKAO_API_KEY}"}
-    params = {"query": f"{location} {keyword}", "size": max_results}
 
-    try:
-        response = requests.get(url, headers=headers, params=params, timeout=10)
-        if response.status_code == 200:
-            return response.json().get('documents', [])
-        else:
-            print(f"❌ Kakao API Error: {response.status_code}")
-            return []
-    except requests.exceptions.RequestException as e:
-        print(f"⚠️ Network error connecting to Kakao: {e}")
-        return []
+    all_places = []
+
+    # Sweep Page 1, Page 2, and Page 3 (15 items per page)
+    for page in range(1, 4):
+        params = {
+            "query": f"{location} {keyword}",
+            "size": 15, # Kakao's strict limit per page
+            "page": page
+        }
+
+        try:
+            response = requests.get(url, headers=headers, params=params, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                documents = data.get('documents', [])
+                all_places.extend(documents)
+
+                # If we hit the end of Kakao's database before page 3, break early
+                if data.get('meta', {}).get('is_end', True):
+                    break
+            else:
+                print(f"❌ Kakao API Error on page {page}: {response.status_code}")
+                break
+        except requests.exceptions.RequestException as e:
+            print(f"⚠️ Network error connecting to Kakao: {e}")
+            break
+
+    print(f"✅ Recovered {len(all_places)} spots from the Kakao depths.")
+    return all_places[:max_results]
 
 
 def append_to_csv(row_dict):
@@ -87,12 +109,18 @@ def load_existing_restaurants():
     return seen_names
 
 
-def is_strong_hit(place, keyword, valid_categories):
+def is_strong_hit(place, keyword, valid_categories, expected_neighborhood):
     """
-    Agile pre-filter powered by the AI Coordinator's category list.
+    Agile pre-filter powered by the AI Coordinator and Geographic bounds.
     """
     name = place.get('place_name', '')
     category = place.get('category_name', '')
+    address = place.get('address_name', '')
+
+    # 🚨 THE GEOGRAPHIC BOUNCER
+    # If the district we searched for isn't in the official address, Kakao is bleeding over.
+    if expected_neighborhood not in address:
+        return False
 
     # 1. Direct hit in the restaurant's name
     if keyword in name:
@@ -130,7 +158,9 @@ def run_massive_pipeline():
             for place in places_to_investigate:
                 restaurant_name = place['place_name']
 
-                if not is_strong_hit(place, search_bait, valid_categories):
+                # 🚀 Pass 'neighborhood' to the Bouncer and print the result!
+                if not is_strong_hit(place, search_bait, valid_categories, neighborhood):
+                    print(f"⏭️ Bouncing {restaurant_name} (Category or Geography mismatch).")
                     continue
 
                 if restaurant_name in seen_places:
