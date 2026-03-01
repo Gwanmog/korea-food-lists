@@ -74,25 +74,31 @@ def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
     # ==========================================
     analyst_instruction = f"""
         You are a meticulous data analyst reviewing Korean blog posts. 
-        The target vibe/food is: {search_keyword}.
+        The target food/vibe is: {search_keyword}.
 
         TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. 
-        - If the target is '수제맥주' (Craft Beer), act as a strict beer critic. Check the tap list mentioned in the blogs.
-        - If they primarily serve mass-market domestic beer (카스/Cass, 테라/Terra, 켈리/Kelly, 생맥주) and only have 1 or 2 generic craft beers, REJECT THEM. 
-        - They must have a dedicated craft beer lineup, brew their own beer (양조장), or have a highly curated guest tap list.
+        - If the target is '수제맥주', act as a strict beer critic. Check the tap list mentioned in the blogs.
+        - If they primarily serve mass-market domestic beer (카스, 테라, 켈리, 생맥주) and only have 1 or 2 generic craft beers, REJECT THEM. 
         - If they fail this standard, flag 'serves_target_food' as false.
 
-        TASK 2: Extract objective facts based strictly on these 5 criteria:
-        1. Quality of ingredients (식재료의 품질 - e.g., fresh meat, clean oil, freshness of the beer kegs).
-        2. Mastery of technique (맛과 조리 기술 - e.g., brewing techniques, food pairings, batter crispiness).
-        3. Personality of the chef/brewer (사장의 개성 - e.g., unique recipes, experimental brews vs. generic).
+        TASK 2: The Sponsored Post Ratio (협찬 비율)
+        Scan the bottom of every review for mandatory disclosure phrases indicating the blogger received free food or money (e.g., '소정의 원고료', '제품을 제공받아', '협찬', '지원받아').
+        Calculate the ratio of sponsored posts vs. organic posts (e.g., "7/10 sponsored").
+
+        TASK 3: Extract objective facts based strictly on these 5 criteria:
+        1. Quality of ingredients (식재료의 품질 - e.g., fresh meat, clean oil).
+        2. Mastery of technique (맛과 조리 기술 - e.g., batter crispiness, sauce balance).
+        3. Personality of the chef (사장의 개성 - e.g., unique recipes, signature style vs. generic).
         4. Value for money (가성비 - price vs. quality/portion).
         5. Consistency (일관성 - e.g., mentions of being a long-time favorite, returning customers).
+
+        CRITICAL INSTRUCTION FOR TASK 3: If the sponsored ratio is high (e.g., over 50%), you MUST aggressively filter out hyperbolic marketing adjectives ("환상적인", "최고의"). Extract ONLY verifiable, cold facts (e.g., "They age the dough for 24 hours," "The tap list features 8 local IPAs").
 
         Output strictly in JSON format:
         {{
             "serves_target_food": (boolean),
-            "extracted_facts_ko": (A detailed summary of the facts categorized by the 5 criteria in Korean)
+            "sponsored_ratio": (string, e.g., "4/10 sponsored"),
+            "extracted_facts_ko": (A detailed summary of the facts categorized by the 5 criteria in Korean. Explicitly mention the sponsored ratio at the very beginning of this summary.)
         }}
         """
 
@@ -129,31 +135,41 @@ def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
     print(f"👑 Head Critic: Scoring rigorously...")
 
     critic_instruction = f"""
-    You are the Head Critic for the 'Neon Guide', evaluating restaurants for: {search_keyword}.
-    You apply the rigorous standards of fine dining to everyday food.
+        You are the Head Critic for the 'Neon Guide', evaluating restaurants for: {search_keyword}.
+        You apply the rigorous standards of fine dining to everyday food.
 
-    Score the restaurant out of 100, awarding up to 20 points for each of the following:
-    1. Quality of the ingredients (20 pts)
-    2. Mastery of flavor and cooking techniques (20 pts)
-    3. Personality of the chef / Uniqueness (20 pts)
-    4. Value for money (20 pts)
-    5. Consistency over time (20 pts)
+        The Junior Analyst has provided a summary of facts, including a "Sponsored Ratio" (협찬 비율). 
 
-    Award Levels:
-    - 95+: "3 Neon Hearts" (Flawless execution, destination-worthy)
-    - 88-94: "2 Neon Hearts" (Exceptional neighborhood staple)
-    - 80-87: "1 Neon Heart" (Great, but has minor flaws in 1 or 2 criteria)
-    - <80: "None" (Average, tourist trap, or lacks consistency)
+        SCORING RULES:
+        Score the restaurant out of 100, awarding up to 20 points for each of the following:
+        1. Quality of the ingredients (20 pts)
+        2. Mastery of flavor and cooking techniques (20 pts)
+        3. Personality of the chef / Uniqueness (20 pts)
+        4. Value for money (20 pts)
+        5. Consistency over time (20 pts)
 
-    Return ONLY a valid JSON object:
-    {{
-        "score": (integer 0-100),
-        "award_level": (string),
-        "description_en": (A punchy, honest 2-sentence English description reflecting the criteria),
-        "description_ko": (A natural, 2-sentence Korean description),
-        "justification": (1 sentence explaining the score breakdown, specifically noting where points were lost)
-    }}
-    """
+        THE SPONSORSHIP WEIGHTING RULE:
+        - If the sponsored ratio is low (mostly organic reviews): Score normally. Praise genuine consistency.
+        - If the sponsored ratio is high (mostly paid reviews): You must act with extreme culinary skepticism. 
+          * Deduct heavily from "Consistency" (paid reviews do not prove long-term consistency).
+          * Deduct from "Value for money" (reviewers who ate for free cannot accurately judge value).
+          * Cap the maximum possible score at 89 unless there is undeniable, verifiable proof of world-class culinary technique. 
+
+        Award Levels:
+        - 95+: "3 Neon Hearts" (Flawless execution, destination-worthy)
+        - 88-94: "2 Neon Hearts" (Exceptional neighborhood staple)
+        - 80-87: "1 Neon Heart" (Great, but has minor flaws in 1 or 2 criteria)
+        - <80: "None" (Average, tourist trap, or lacks consistency)
+
+        Return ONLY a valid JSON object:
+        {{
+            "score": (integer 0-100),
+            "award_level": (string),
+            "description_en": (A punchy, honest 2-sentence English description reflecting the criteria),
+            "description_ko": (A natural, 2-sentence Korean description),
+            "justification": (1 sentence explaining the score breakdown. If the score was penalized due to a high sponsored ratio, explicitly state that here.)
+        }}
+        """
 
     critic_config = types.GenerateContentConfig(
         system_instruction=critic_instruction,

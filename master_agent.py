@@ -33,6 +33,7 @@ KEYWORDS = {
     "브루어리": ("수제맥주", False),
     "양조장": ("수제맥주", False),
     "에일": ("수제맥주", False),
+    "IPA": ("수제맥주", False)
 
     # Future Example: A highly specific food where we ONLY want exact matches
     # "평양냉면": ("평양냉면", True)
