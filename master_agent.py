@@ -19,24 +19,65 @@ KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 # ⚙️ THE SEOUL MASTER QUEUE (ALL 25 DISTRICTS)
 # ==========================================
 NEIGHBORHOODS = [
-    "강남구", "강동구", "강북구", "강서구", "관악구",
-    "광진구", "구로구", "금천구", "노원구", "도봉구",
-    "동대문구", "동작구", "마포구", "서대문구", "서초구",
-    "성동구", "성북구", "송파구", "양천구", "영등포구",
-    "용산구", "은평구", "종로구", "중구", "중랑구"
+    # --- Mapo / Seodaemun (The Indie & University Belt) ---
+    "서교동",  # Hongdae (Official address for the main strip)
+    "창천동",  # Sinchon (Official address)
+    "대현동",  # Edae
+    "연남동",  # Yeonnam
+    "망원동",  # Mangwon
+    "합정동",  # Hapjeong
+    "상수동",  # Sangsu
+    "공덕동",  # Gongdeok
+    "상암동",  # Digital Media City (DMC)
+
+    # --- Yongsan (The International & Craft Beer Hub) ---
+    "이태원동",  # Itaewon
+    "용산동2가",  # Haebangchon (Official address)
+
+    # --- Jongno / Jung-gu (Historical & Downtown) ---
+    "익선동",  # Ikseondong
+    "삼청동",  # Samcheong
+    "을지로",  # Euljiro
+    "명동",  # Myeongdong
+    "신당동",  # Sindang
+    "창신동",  # Changsin
+
+    # ⚠️ High-Density Downtown Splintering
+    "종로3가",  # Jongno 3-ga
+    "돈의동",  # Jongno 3-ga (Alleyways often register here)
+    "낙원동",  # Jongno 3-ga (Northern edge)
+    "충무로",  # Chungmuro
+    "필동",  # Chungmuro (Many spots register under this address)
+    "광희동",  # Dongdaemun
+    "을지로6가",  # Dongdaemun (DDP area)
+
+    # --- Gangnam / Seongdong (Trendy & Commercial) ---
+    "역삼동",  # Gangnam (East of the station)
+    "서초동",  # Gangnam (West of the station)
+    "압구정동",  # Apgujeong
+    "신사동",  # Sinsa
+    "성수동",  # Seongsu
+    "마장동",  # Majang
+
+    # --- Yeongdeungpo / Seongbuk ---
+    "문래동",  # Mullae
+    "정릉동"  # Jeongneung
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    # The Craft Beer Sweep (Loose category, strict AI grading)
+    # The Beer Core
     "수제맥주": ("수제맥주", False),
-    "브루어리": ("수제맥주", False),
-    "양조장": ("수제맥주", False),
+    "크래프트비어": ("수제맥주", False),
+    "크래프트": ("수제맥주", False),
+    "탭하우스": ("수제맥주", False),
     "에일": ("수제맥주", False),
-    "IPA": ("수제맥주", False)
+    "IPA": ("수제맥주", False),
 
-    # Future Example: A highly specific food where we ONLY want exact matches
-    # "평양냉면": ("평양냉면", True)
+    # The Mixed/Traditional Core
+    "양조장": ("양조장", False),
+    "막걸리": ("막걸리", False),
+    "전통주": ("막걸리", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45

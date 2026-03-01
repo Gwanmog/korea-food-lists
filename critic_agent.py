@@ -1,5 +1,6 @@
 import os
 import json
+import requests
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -64,10 +65,37 @@ def get_kakao_categories(keyword, strict_mode=False):
         print(f"⚠️ Coordinator Error: {e}. Defaulting to keyword only.")
         return [keyword]
 
-def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
+def get_image_bytes(image_url):
+    """Fetches the raw bytes of an image to feed to Gemini."""
+    if not image_url:
+        return None
+    try:
+        # Naver requires a Referer header to download images successfully
+        headers = {"Referer": "https://blog.naver.com"}
+        response = requests.get(image_url, headers=headers, timeout=5)
+        if response.status_code == 200:
+            return response.content
+    except Exception as e:
+        print(f"⚠️ Failed to fetch image for lie detector: {e}")
+    return None
+
+def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
+    # NOTE: scraped_blog_data is now a list of dictionaries: [{"text": "...", "bottom_images": [...]}]
+
     print(f"\n🧠 Junior Analyst: Verifying '{search_keyword}' and extracting Michelin criteria...")
 
-    combined_text = "\n\n--- NEXT REVIEW ---\n\n".join(scraped_blog_texts)
+    # 1. Combine all the text from the dictionaries
+    combined_text = "\n\n--- NEXT REVIEW ---\n\n".join([item["text"] for item in scraped_blog_data])
+
+    # 2. Grab ONE test image from the bottom of the blogs to test for sponsorship
+    image_bytes = None
+    for item in scraped_blog_data:
+        for img_url in item.get("bottom_images", []):
+            image_bytes = get_image_bytes(img_url)
+            if image_bytes:
+                break  # We just need one working image to catch a corporate banner
+        if image_bytes:
+            break
 
     # ==========================================
     # PHASE 1: The Junior Analyst (Fact Extractor)
@@ -77,13 +105,15 @@ def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
         The target food/vibe is: {search_keyword}.
 
         TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. 
-        - If the target is '수제맥주', act as a strict beer critic. Check the tap list mentioned in the blogs.
-        - If they primarily serve mass-market domestic beer (카스, 테라, 켈리, 생맥주) and only have 1 or 2 generic craft beers, REJECT THEM. 
+        - If the target is '수제맥주', act as a strict beer critic. Check the tap list. Reject places that only serve mass-market domestic beer. 
+        - If the target is '막걸리', look for high-quality, house-brewed, or regionally curated traditional rice wine.
+        - If the target is '양조장', they MUST brew their own alcohol on-site (either 수제맥주 or 막걸리). Reject generic pubs.
         - If they fail this standard, flag 'serves_target_food' as false.
 
-        TASK 2: The Sponsored Post Ratio (협찬 비율)
-        Scan the bottom of every review for mandatory disclosure phrases indicating the blogger received free food or money (e.g., '소정의 원고료', '제품을 제공받아', '협찬', '지원받아').
-        Calculate the ratio of sponsored posts vs. organic posts (e.g., "7/10 sponsored").
+        TASK 2: THE IMAGE & TEXT LIE DETECTOR (협찬 필터)
+        - Text Check: Scan the text for mandatory disclosure phrases ('소정의 원고료', '제품을 제공받아', '협찬', '지원받아').
+        - Image Check: I have attached an image found at the very bottom of the blog post. Read the Korean text inside this image. If it says '협찬' (Sponsored) or '제공받아' (Provided), this is a sponsored post.
+        - Calculate the total ratio of sponsored posts vs. organic posts (e.g., "7/10 sponsored").
 
         TASK 3: Extract objective facts based strictly on these 5 criteria:
         1. Quality of ingredients (식재료의 품질 - e.g., fresh meat, clean oil).
@@ -108,12 +138,20 @@ def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
         temperature=0.2
     )
 
-    analyst_prompt = f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"
+    # 3. Build the Multimodal Payload
+    payload_contents: list = [f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"]
+
+    # If we found a bottom image, attach it for the Lie Detector!
+    if image_bytes:
+        print("📸 Image banner detected. Running multimodal Lie Detector...")
+        payload_contents.append(
+            types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg")
+        )
 
     try:
         analyst_response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
-            contents=analyst_prompt,
+            model='gemini-2.5-flash-lite',  # Or gemini-2.5-flash if you want stronger image reading
+            contents=payload_contents,
             config=analyst_config
         )
         analyst_data = json.loads(analyst_response.text)
@@ -123,7 +161,7 @@ def evaluate_restaurant(restaurant_name, scraped_blog_texts, search_keyword):
             return {"score": 0, "award_level": "None", "justification": f"Does not specialize in {search_keyword}."}
 
         extracted_facts = analyst_data.get("extracted_facts_ko", "")
-        print("✅ Facts extracted based on the 5 criteria. Handing to Head Critic.")
+        print(f"✅ Facts extracted. Sponsorship Ratio flagged as: {analyst_data.get('sponsored_ratio', 'Unknown')}. Handing to Head Critic.")
 
     except Exception as e:
         print(f"❌ Junior Analyst Error: {e}")

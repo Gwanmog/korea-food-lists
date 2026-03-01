@@ -47,36 +47,71 @@ def search_naver_blogs(restaurant_name, location="서울"):
 
 
 def scrape_naver_blog_text(blog_url):
-    """Bypasses Naver's iframe trap to extract the actual Korean text."""
+    """
+    Scrapes the text from a Naver blog post and captures the bottom images
+    to detect sponsorship banners (e.g., '소정의 원고료', '협찬').
+    """
     try:
-        # 1. Fetch the main blog page
-        response = requests.get(blog_url, headers=HEADERS)
+        # 1. First request to the provided blog URL
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(blog_url, headers=headers, timeout=10)
+        if response.status_code != 200:
+            return None
+
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # 2. Find the hidden iframe that holds the real content
+        # 2. Naver blogs hide content inside an iframe. Find the iframe src.
         iframe = soup.find('iframe', id='mainFrame')
         if not iframe:
             return None
 
-        # 3. Construct the true URL of the post
-        real_url = "https://blog.naver.com" + iframe['src']
+        iframe_src = iframe.get('src')
+        if not iframe_src:
+            return None
 
-        # 4. Fetch the TRUE page
-        real_response = requests.get(real_url, headers=HEADERS)
+        # 3. Construct the real URL and fetch the actual content
+        real_url = f"https://blog.naver.com{iframe_src}"
+        real_response = requests.get(real_url, headers=headers, timeout=10)
+        if real_response.status_code != 200:
+            return None
+
         real_soup = BeautifulSoup(real_response.text, 'html.parser')
 
-        # 5. Extract the text. Naver's modern editor puts content in 'se-main-container'
-        content_div = real_soup.find('div', class_='se-main-container')
+        # 4. Target ONLY the main content area (avoids sidebars/footers)
+        content_area = real_soup.find('div', class_='se-main-container')
+        if not content_area:
+            # Fallback for older Naver blog formats
+            content_area = real_soup.find('div', id='postViewArea')
+            if not content_area:
+                return None
 
-        if content_div:
-            # Extract all text, strip out weird spacing, and return it
-            raw_text = content_div.get_text(separator=' ', strip=True)
-            return raw_text
+        # 5. Extract Text
+        # Get all text blocks and join them cleanly
+        text_blocks = content_area.find_all(['p', 'span', 'div'], class_=lambda c: c and 'se-text' in c)
+        if text_blocks:
+            final_text = "\n".join([block.get_text(strip=True) for block in text_blocks if block.get_text(strip=True)])
         else:
-            return "Could not find the main text container."
+            # Fallback text extraction
+            final_text = content_area.get_text('\n', True)
+
+        # --- 6. THE BULLETPROOF IMAGE SNIFFER ---
+        last_images = []
+
+        # Find all legitimate post images within the content container
+        images = content_area.find_all('img', class_=lambda c: c and ('se-image' in c or 'se-sticker' in c))
+
+        # Grab the last 2 images to ensure we don't miss a banner followed by a map
+        for img in images[-2:]:
+            if 'src' in img.attrs:
+                last_images.append(img['src'])
+
+        # 7. Return both the text and the image array
+        return {"text": final_text, "bottom_images": last_images}
 
     except Exception as e:
-        print(f"❌ Scraping failed for {blog_url}: {e}")
+        print(f"⚠️ Error scraping Naver blog {blog_url}: {e}")
         return None
 
 
@@ -103,7 +138,7 @@ if __name__ == "__main__":
             print("\n🎉 SUCCESS! Here is a preview of the extracted text:\n")
             print("-" * 50)
             # Print just the first 500 characters so we don't flood the terminal
-            print(blog_text[:500] + "...\n[CONTINUED]")
+            print(blog_text["text"][:500] + "...\n[CONTINUED]")
             print("-" * 50)
         else:
             print("\n❌ Failed to extract text. The blog layout might be unsupported.")
