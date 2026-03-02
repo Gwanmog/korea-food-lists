@@ -104,7 +104,11 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
         You are a meticulous data analyst reviewing Korean blog posts. 
         The target food/vibe is: {search_keyword}.
 
-        TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. 
+        TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. You are hunting for ELEVATED executions of common comfort foods. 
+        - If the target is '제육볶음', do not accept generic diners; look for mentions of high-quality domestic pork or beef (한돈 / 한우) and authentic smoky fire flavor (불맛). 
+        - If the target is '국밥' or '순대국', verify the broth is boiled in-house for hours and lacks any gamey smell (잡내). 
+        - If the target is '곱창' or '육회', prioritize extreme freshness and expert preparation. 
+        - Reject places where the only praise is 'cheap and large portions' (가성비).
         - If the target is '치킨', prioritize reviews that mention the crispiness of the batter and the freshness of the oil. 
         - If the target is '국밥' or '감자탕', look for mentions of deep, rich broth boiled in-house. 
         - If the target is a market snack like '떡볶이' or '빈대떡', verify the stall has high turnover and fresh ingredients. 

@@ -23,39 +23,18 @@ NEIGHBORHOODS = [
     "이태원동", "용산동2가",
     "권농동", "익선동", "삼청동", "을지로", "명동", "신당동", "창신동",
     "종로3가", "돈의동", "낙원동", "충무로", "필동", "광희동", "을지로6가",
+    "산림동", "인현동", "초동", "입정동", "예지동",
     "역삼동", "서초동", "압구정동", "신사동", "성수동", "마장동",
     "문래동", "정릉동"
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    # The Fried Chicken Essentials
-    "치킨": ("치킨", False),
-    "닭강정": ("치킨", False),
-    "양념치킨": ("치킨", False),
-
-    # The Casual Street Food & Market Snacking
-    "떡볶이": ("분식", False),
-    "김밥": ("분식", False),
-    "튀김": ("분식", False),
-    "호떡": ("디저트", False),
-    "빈대떡": ("전", False),
-    "오뎅": ("분식", False),
-
-    # Hangover & Soul Food (The Working-Class Heroes)
+    # The 24-Hour Soups (1:1 Matching)
     "국밥": ("국밥", False),
-    "감자탕": ("감자탕", False),
-    "제육볶음": ("백반", False),
-
-    # The Spring Seasonal Exclusive
-    "쭈꾸미": ("해산물", False),
-
-    # Soju Tents & Late Night
-    "곱창": ("곱창", False),
-    "육회": ("육회", False),
-
-    # Trendy Desserts
-    "두바이 초콜릿": ("디저트", False)
+    "순대국": ("순대국", False),
+    "돼지국밥": ("돼지국밥", False),
+    "감자탕": ("감자탕", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45
