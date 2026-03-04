@@ -4,6 +4,7 @@ import requests
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+from typing import Any
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 env_path = os.path.join(script_dir, 'soul-food-api', '.env')
@@ -16,10 +17,13 @@ if not API_KEY:
 
 client = genai.Client(api_key=API_KEY)
 
+# Define your local model here so it's easy to change later
+LOCAL_MODEL = "qwen2.5:3b"
+
 def get_kakao_categories(keyword, strict_mode=False):
     """
     Acts as a Pre-Flight Coordinator.
-    If strict_mode is True, bypasses the AI and forces an exact keyword match.
+    Tries Local Qwen first, falls back to Gemini.
     """
     if strict_mode:
         print(f"🔒 STRICT MODE ON: Bypassing AI. Locking target strictly to '{keyword}'.")
@@ -27,50 +31,68 @@ def get_kakao_categories(keyword, strict_mode=False):
 
     print(f"🧠 Coordinator: Translating '{keyword}' into Kakao categories...")
 
-    instruction = """
-        You are an expert in South Korean food culture and the Kakao Map API database structure.
-        The user is going to provide a food or restaurant keyword.
+    instruction = f"""
+    You understand common category labels used in Kakao Map restaurant listings.
 
-        Your job is to provide a MAXIMUM of 3 official Kakao Map category tags or highly relevant terms 
-        that a restaurant serving this food would be registered under.
+    The user will provide a food or restaurant keyword.
 
-        Rules:
-        - Keep all categories strictly in Korean (Hangul). Do not romanize anything.
-        - NEVER return the top-level broad category "음식점". You must be specific.
-        - Return ONLY a valid JSON array of strings. No markdown, no explanations.
+    Your task:
+    Return a MAXIMUM of 3 specific Kakao Map-style category labels 
+    that restaurants serving this keyword would most likely be registered under.
 
-        Example for '빈대떡':
-        ["전,부침개", "막걸리", "한식"]
+    Rules:
+    - All output must be in Korean (Hangul only).
+    - NEVER return the broad top-level category "음식점".
+    - Be specific (e.g., "전,부침개", "요리주점", "감자탕").
+    - Do NOT return menu items unless they are commonly used as a Kakao listing category.
+    - If the keyword is broad (e.g., 분위기, 데이트, 지역명), return the most likely establishment types instead.
+    - Return ONLY a valid JSON array of strings.
+    - Maximum 3 items.
 
-        Example for '술집':
-        ["요리주점", "호프", "포장마차", "이자카야", "맥주", "전통주"]
-        """
+    Keyword: {keyword}
+    """
 
     try:
-        response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
-            contents=f"Keyword: {keyword}",
-            config=types.GenerateContentConfig(
-                system_instruction=instruction,
-                response_mime_type="application/json",
-                temperature=0.1
-            )
+        print(f"   [Coordinator] Asking Local {LOCAL_MODEL}...")
+        response = requests.post(
+            'http://localhost:11434/api/generate',
+            json={"model": LOCAL_MODEL, "prompt": instruction, "stream": False, "format": "json"},
+            timeout=30
         )
-        categories = json.loads(response.text)
-        # Final safety net just in case the LLM ignores the prompt
-        categories = categories[:3]
-        print(f"✅ Categories locked in: {categories}")
-        return categories
+        response.raise_for_status()
+        categories = json.loads(response.json()['response'])
+
+        if isinstance(categories, list):
+            categories = categories[:3]
+            print(f"   ✅ Categories locked in by Local AI: {categories}")
+            return categories
+        else:
+            raise ValueError("Local AI did not return a JSON list.")
+
     except Exception as e:
-        print(f"⚠️ Coordinator Error: {e}. Defaulting to keyword only.")
-        return [keyword]
+        print(f"   ⚠️ Local AI failed ({e}). Gracefully degrading to Gemini...")
+        try:
+            gemini_response = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                contents=f"Keyword: {keyword}",
+                config=types.GenerateContentConfig(
+                    system_instruction=instruction,
+                    response_mime_type="application/json",
+                    temperature=0.1
+                )
+            )
+            categories = json.loads(gemini_response.text)[:3]
+            print(f"   ✅ Categories locked in by Gemini: {categories}")
+            return categories
+        except Exception as gemini_e:
+            print(f"   ❌ Both AI systems failed: {gemini_e}. Defaulting to keyword only.")
+            return [keyword]
 
 def get_image_bytes(image_url):
-    """Fetches the raw bytes of an image to feed to Gemini."""
+    """Fetches the raw bytes of an image to feed to the AIs."""
     if not image_url:
         return None
     try:
-        # Naver requires a Referer header to download images successfully
         headers = {"Referer": "https://blog.naver.com"}
         response = requests.get(image_url, headers=headers, timeout=5)
         if response.status_code == 200:
@@ -79,21 +101,18 @@ def get_image_bytes(image_url):
         print(f"⚠️ Failed to fetch image for lie detector: {e}")
     return None
 
-def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
-    # NOTE: scraped_blog_data is now a list of dictionaries: [{"text": "...", "bottom_images": [...]}]
 
+def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     print(f"\n🧠 Junior Analyst: Verifying '{search_keyword}' and extracting Michelin criteria...")
 
-    # 1. Combine all the text from the dictionaries
     combined_text = "\n\n--- NEXT REVIEW ---\n\n".join([item["text"] for item in scraped_blog_data])
 
-    # 2. Grab ONE test image from the bottom of the blogs to test for sponsorship
     image_bytes = None
     for item in scraped_blog_data:
         for img_url in item.get("bottom_images", []):
             image_bytes = get_image_bytes(img_url)
             if image_bytes:
-                break  # We just need one working image to catch a corporate banner
+                break
         if image_bytes:
             break
 
@@ -101,83 +120,115 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     # PHASE 1: The Junior Analyst (Fact Extractor)
     # ==========================================
     analyst_instruction = f"""
-        You are a meticulous data analyst reviewing Korean blog posts. 
-        The target food/vibe is: {search_keyword}.
+    <role>
+    You are a rigorous, skeptical data analyst reviewing Korean blog posts.
+    Your mission is NOT to summarize praise. Your mission is to extract verifiable signals of quality.
+    </role>
 
-        TASK 1: Verify if the restaurant genuinely focuses on {search_keyword}. You are hunting for ELEVATED executions of common comfort foods. 
-        - If the target is '제육볶음', do not accept generic diners; look for mentions of high-quality domestic pork or beef (한돈 / 한우) and authentic smoky fire flavor (불맛). 
-        - If the target is '국밥' or '순대국', verify the broth is boiled in-house for hours and lacks any gamey smell (잡내). 
-        - If the target is '곱창' or '육회', prioritize extreme freshness and expert preparation. 
-        - Reject places where the only praise is 'cheap and large portions' (가성비).
-        - If the target is '치킨', prioritize reviews that mention the crispiness of the batter and the freshness of the oil. 
-        - If the target is '국밥' or '감자탕', look for mentions of deep, rich broth boiled in-house. 
-        - If the target is a market snack like '떡볶이' or '빈대떡', verify the stall has high turnover and fresh ingredients. 
-        - Reject generic convenience store quality.
+    <target>
+    The target food/vibe is: {search_keyword}.
+    </target>
 
-        TASK 2: THE IMAGE & TEXT LIE DETECTOR (협찬 필터)
-        - Text Check: Scan the text for mandatory disclosure phrases ('소정의 원고료', '제품을 제공받아', '협찬', '지원받아').
-        - Image Check: I have attached an image found at the very bottom of the blog post. Read the Korean text inside this image. If it says '협찬' (Sponsored) or '제공받아' (Provided), this is a sponsored post.
-        - Calculate the total ratio of sponsored posts vs. organic posts (e.g., "7/10 sponsored").
+    <task_1_authenticity_filter>
+    Determine whether the restaurant genuinely specializes in {search_keyword} and executes it at a high level. You are hunting for ELEVATED executions of common comfort foods.
 
-        TASK 3: Extract objective facts based strictly on these 5 criteria:
-        1. Quality of ingredients (식재료의 품질 - e.g., fresh meat, clean oil).
-        2. Mastery of technique (맛과 조리 기술 - e.g., batter crispiness, sauce balance).
-        3. Personality of the chef (사장의 개성 - e.g., unique recipes, signature style vs. generic).
-        4. Value for money (가성비 - price vs. quality/portion).
-        5. Consistency (일관성 - e.g., mentions of being a long-time favorite, returning customers).
+    General Rules:
+    - Reject generic diners.
+    - Reject places praised only for "cheap and large portions" (가성비).
+    - Reject convenience-store-tier quality.
+    - The target must be a core focus, not a side menu item.
 
-        CRITICAL INSTRUCTION FOR TASK 3: If the sponsored ratio is high (e.g., over 50%), you MUST aggressively filter out hyperbolic marketing adjectives ("환상적인", "최고의"). Extract ONLY verifiable, cold facts (e.g., "They age the dough for 24 hours," "The tap list features 8 local IPAs").
+    Dish-Specific Evaluation Rules:
+    You MUST evaluate the target food using criteria appropriate to that dish type.
+    - Soups/stews → broth depth, long boiling time, absence of off-odors (잡내)
+    - Grilled/stir-fried meats → flame control (불맛), caramelization, ingredient sourcing (한돈/한우)
+    - Fried foods → oil freshness, crisp texture retention
+    - Raw dishes → freshness, trimming precision, temperature control
+    - Craft beer → brewing quality, tap freshness, beer-focused identity
 
-        Output strictly in JSON format:
-        {{
-            "serves_target_food": (boolean),
-            "sponsored_ratio": (string, e.g., "4/10 sponsored"),
-            "extracted_facts_ko": (A detailed summary of the facts categorized by the 5 criteria in Korean. Explicitly mention the sponsored ratio at the very beginning of this summary.)
-        }}
-        """
+    Focus ONLY on signals that indicate technical mastery of the specific dish.
+    </task_1_authenticity_filter>
 
-    analyst_config = types.GenerateContentConfig(
-        system_instruction=analyst_instruction,
-        response_mime_type="application/json",
-        temperature=0.2
-    )
+    <task_2_sponsorship_detector>
+    Identify sponsored content signals to calculate the true ratio of paid vs. organic reviews.
 
-    # 3. Build the Multimodal Payload
-    payload_contents: list = [f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"]
+    - Text Check: Scan for mandatory disclosure phrases ('소정의 원고료', '제품을 제공받아', '협찬', '지원받아').
+    - Image Check (if image is attached): If the bottom-of-post image contains '협찬' or '제공받아', count it as sponsored.
+    - Output Format: Return as a string (e.g., "X/Y sponsored").
+    </task_2_sponsorship_detector>
 
-    # If we found a bottom image, attach it for the Lie Detector!
-    if image_bytes:
-        print("📸 Image banner detected. Running multimodal Lie Detector...")
-        payload_contents.append(
-            types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg")
-        )
+    <task_3_fact_extraction>
+    Extract objective facts strictly under these 5 criteria:
+    1. Quality of ingredients (식재료의 품질)
+    2. Mastery of technique (맛과 조리 기술)
+    3. Personality of the chef (사장의 개성)
+    4. Value for money (가성비)
+    5. Consistency (일관성)
 
+    CRITICAL FILTERING RULE:
+    If the sponsored ratio exceeds 50%, aggressively remove hyperbolic adjectives ("환상적인", "최고의", "인생맛집"), emotional language, and marketing tone. Extract ONLY cold, verifiable statements. If something cannot be objectively supported, exclude it.
+    </task_3_fact_extraction>
+
+    <output_format>
+Respond ONLY with a valid JSON object. Do not include markdown code blocks. 
+Use the exact structure below:
+
+{{
+    "validation_checklist": {{
+        "is_primary_menu_item": (boolean),
+        "has_sponsorship_disclosure": (boolean),
+        "is_generic_franchise_or_diner": (boolean)
+    }},
+    "serves_target_food": (boolean, must be false if is_generic_franchise_or_diner is true),
+    "sponsored_ratio": "string (e.g., '4/10 sponsored')",
+    "extracted_facts_ko": "Korean summary organized by the 5 criteria. The FIRST line must explicitly state the sponsored ratio."
+}}
+    </output_format>
+    """
+
+    full_analyst_prompt = f"{analyst_instruction}\n\nAnalyze these reviews for {restaurant_name}:\n\n{combined_text}"
+    analyst_data = None
+
+    # 🚨 Gemini goes first for the massive blog posts
     try:
-        analyst_response = client.models.generate_content(
+        print(f"   [Junior Analyst] Asking Cloud Gemini first...")
+        payload_contents: list[Any] = [f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"]
+        if image_bytes:
+            print("   📸 Attaching image to Gemini payload...")
+            payload_contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"))
+
+        gemini_response = client.models.generate_content(
             model='gemini-2.5-flash-lite',
             contents=payload_contents,
-            config=analyst_config
+            config=types.GenerateContentConfig(
+                system_instruction=analyst_instruction,
+                response_mime_type="application/json",
+                temperature=0.2
+            )
         )
+        analyst_data = json.loads(gemini_response.text)
+        print("   ✅ Gemini successfully extracted facts!")
 
-        # 1. Load the JSON data
-        analyst_data = json.loads(analyst_response.text)
-
-        # 🛡️ 2. THE BULLETPROOF JSON PARSER
-        # If Gemini accidentally wraps the dictionary in a list, extract the dictionary!
-        if isinstance(analyst_data, list):
-            analyst_data = analyst_data[0] if len(analyst_data) > 0 else {}
-
-        # 3. Proceed as normal!
-        if not analyst_data.get("serves_target_food", False):
-            print(f"🛑 REJECTED: Does not focus on {search_keyword}.")
-            return {"score": 0, "award_level": "None", "justification": f"Does not specialize in {search_keyword}."}
-
-        extracted_facts = analyst_data.get("extracted_facts_ko", "")
-        print(
-            f"✅ Facts extracted. Sponsorship Ratio flagged as: {analyst_data.get('sponsored_ratio', 'Unknown')}. Handing to Head Critic.")
     except Exception as e:
-        print(f"❌ Junior Analyst Error: {e}")
-        return None
+        print(f"   ⚠️ Gemini failed ({e}). Falling back to Local {LOCAL_MODEL}...")
+        try:
+            # 🚨 Qwen gets text ONLY. No image attached to prevent Ollama crashes.
+            payload = {"model": LOCAL_MODEL, "prompt": full_analyst_prompt, "stream": False, "format": "json"}
+            response = requests.post('http://localhost:11434/api/generate', json=payload, timeout=90)
+            response.raise_for_status()
+            analyst_data = json.loads(response.json()['response'])
+            print("   ✅ Local AI successfully extracted facts!")
+        except Exception as local_e:
+            print(f"   ❌ Both AI systems failed Junior Analyst stage: {local_e}")
+            return None
+
+    if not analyst_data.get("serves_target_food", False):
+        print(f"   🛑 REJECTED: Does not focus on {search_keyword}.")
+        return {"score": 0, "award_level": "None", "justification": f"Does not specialize in {search_keyword}."}
+
+    extracted_facts = analyst_data.get("extracted_facts_ko", "")
+    print(
+        f"   ✅ Facts extracted. Sponsorship: {analyst_data.get('sponsored_ratio', 'Unknown')}. Handing to Head Critic.")
 
     # ==========================================
     # PHASE 2: The Head Critic (The Michelin Judge)
@@ -185,67 +236,90 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     print(f"👑 Head Critic: Scoring rigorously...")
 
     critic_instruction = f"""
+        <role>
         You are the Head Critic for the 'Neon Guide', evaluating restaurants for: {search_keyword}.
-        You apply the rigorous standards of fine dining to everyday food.
+        You apply the rigorous standards of fine dining to everyday comfort food. Be exceptionally strict and mathematically precise.
+        </role>
 
-        The Junior Analyst has provided a summary of facts, including a "Sponsored Ratio" (협찬 비율). 
+        <input_data>
+        The Junior Analyst has provided a summary of objective facts, including a "Sponsored Ratio" (협찬 비율).
+        </input_data>
 
-        SCORING RULES:
-        Score the restaurant out of 100, awarding up to 20 points for each of the following:
-        1. Quality of the ingredients (20 pts)
-        2. Mastery of flavor and cooking techniques (20 pts)
-        3. Personality of the chef / Uniqueness (20 pts)
-        4. Value for money (20 pts)
-        5. Consistency over time (20 pts)
+        <scoring_rules>
+        Score the restaurant out of 100. You MUST build the final score by assigning up to 20 points in each of these 5 categories:
+        1. ingredients (Quality and sourcing of raw materials)
+        2. technique (Mastery of flavor, cooking execution, temperature control)
+        3. personality (Uniqueness of the chef, signature identity vs. generic)
+        4. value (Price relative to quality/portion)
+        5. consistency (Evidence of long-term reputation and repeat local customers)
+        </scoring_rules>
 
-        THE SPONSORSHIP WEIGHTING RULE:
-        - If the sponsored ratio is low (mostly organic reviews): Score normally. Praise genuine consistency.
-        - If the sponsored ratio is high (mostly paid reviews): You must act with extreme culinary skepticism. 
-          * Deduct heavily from "Consistency" (paid reviews do not prove long-term consistency).
-          * Deduct from "Value for money" (reviewers who ate for free cannot accurately judge value).
-          * Cap the maximum possible score at 89 unless there is undeniable, verifiable proof of world-class culinary technique. 
+        <sponsorship_weighting_rule>
+        Read the Sponsored Ratio carefully. 
+        - If the sponsored ratio is > 50%: You MUST set "sponsorship_penalty_applied" to true. You must heavily deduct points from the "consistency" and "value" categories. The final calculated total score MUST NOT exceed 89. No exceptions.
+        - If the sponsored ratio is <= 50%: Set "sponsorship_penalty_applied" to false. Score normally based purely on the culinary facts.
+        </sponsorship_weighting_rule>
 
-        Award Levels:
-        - 95+: "3 Neon Hearts" (Flawless execution, destination-worthy)
+        <award_levels>
+        - 95-100: "3 Neon Hearts" (Flawless execution, destination-worthy)
         - 88-94: "2 Neon Hearts" (Exceptional neighborhood staple)
         - 80-87: "1 Neon Heart" (Great, but has minor flaws in 1 or 2 criteria)
         - <80: "None" (Average, tourist trap, or lacks consistency)
+        </award_levels>
 
-        Return ONLY a valid JSON object:
+        <output_format>
+        Respond ONLY with a valid JSON object. Do not include markdown code blocks.
+        Use the exact structure below:
+
         {{
-            "score": (integer 0-100),
-            "award_level": (string),
-            "description_en": (A punchy, honest 2-sentence English description reflecting the criteria),
-            "description_ko": (A natural, 2-sentence Korean description),
-            "justification": (1 sentence explaining the score breakdown. If the score was penalized due to a high sponsored ratio, explicitly state that here.)
+            "score_breakdown": {{
+                "ingredients": (int 0-20),
+                "technique": (int 0-20),
+                "personality": (int 0-20),
+                "value": (int 0-20),
+                "consistency": (int 0-20),
+                "sponsorship_penalty_applied": (boolean)
+            }},
+            "score": (integer, MUST equal the exact sum of the 5 categories above),
+            "award_level": "string (e.g., '2 Neon Hearts' or 'None')",
+            "description_en": "A punchy, honest 2-sentence English description reflecting the criteria.",
+            "description_ko": "A natural, 2-sentence Korean description.",
+            "justification": "1 sentence explaining the score breakdown. If a sponsorship penalty was applied, explicitly state that here."
         }}
-        """
+        </output_format>
+    """
 
-    critic_config = types.GenerateContentConfig(
-        system_instruction=critic_instruction,
-        response_mime_type="application/json",
-        temperature=0.4
-    )
+    full_critic_prompt = f"{critic_instruction}\n\nCritique this summary for {restaurant_name}:\n\n{extracted_facts}"
 
-    critic_prompt = f"Critique this summary for {restaurant_name}:\n\n{extracted_facts}"
-
+    # 🚨 FIX 3: Gemini scores first, Qwen backs up
     try:
-        critic_response = client.models.generate_content(
+        print(f"   [Head Critic] Asking Cloud Gemini first...")
+        gemini_response = client.models.generate_content(
             model='gemini-2.5-flash',
-            contents=critic_prompt,
-            config=critic_config
+            contents=f"Critique this summary for {restaurant_name}:\n\n{extracted_facts}",
+            config=types.GenerateContentConfig(
+                system_instruction=critic_instruction,
+                response_mime_type="application/json",
+                temperature=0.4
+            )
         )
-
-        # 1. Parse the JSON into a variable first
-        critic_data = json.loads(critic_response.text)
-
-        # 2. THE BULLETPROOF CHECK: If Gemini wrapped it in a list, unwrap it!
-        if isinstance(critic_data, list):
-            critic_data = critic_data[0] if len(critic_data) > 0 else {}
-
-        # 3. Now return the safe dictionary
+        critic_data = json.loads(gemini_response.text)
+        print("   ✅ Gemini successfully scored the restaurant!")
         return critic_data
 
-    except Exception as e:
-        print(f"❌ Head Critic Error: {e}")
-        return None
+    except Exception as gemini_e:
+        print(f"   ⚠️ Gemini failed ({gemini_e}). Gracefully degrading to Local {LOCAL_MODEL}...")
+        try:
+            response = requests.post(
+                'http://localhost:11434/api/generate',
+                json={"model": LOCAL_MODEL, "prompt": full_critic_prompt, "stream": False, "format": "json"},
+                timeout=45
+            )
+            response.raise_for_status()
+            critic_data = json.loads(response.json()['response'])
+            print("   ✅ Local AI successfully scored the restaurant!")
+            return critic_data
+
+        except Exception as local_e:
+            print(f"   ❌ Both AI systems failed Head Critic stage: {local_e}")
+            return None

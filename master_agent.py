@@ -3,6 +3,7 @@ import requests
 import time
 import random
 import csv
+import subprocess
 from dotenv import load_dotenv
 
 from naver_agent import search_naver_blogs, scrape_naver_blog_text
@@ -25,16 +26,23 @@ NEIGHBORHOODS = [
     "종로3가", "돈의동", "낙원동", "충무로", "필동", "광희동", "을지로6가",
     "산림동", "인현동", "초동", "입정동", "예지동",
     "역삼동", "서초동", "압구정동", "신사동", "성수동", "마장동",
-    "문래동", "정릉동"
+    "문래동", "정릉동", "용강동"
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    # The 24-Hour Soups (1:1 Matching)
-    "국밥": ("국밥", False),
-    "순대국": ("순대국", False),
-    "돼지국밥": ("돼지국밥", False),
-    "감자탕": ("감자탕", False)
+    "미스터리브루잉": ("수제맥주", False),
+    # 🥩 The Intestines & Tartare (Extreme Freshness)
+    "육회": ("육회", False),
+
+    # 🥞 The Pancakes & Seasonal (Crispy & Flavorful)
+    "해물파전": ("해물파전", False),
+    "빈대떡": ("빈대떡", False),
+    "쭈꾸미": ("쭈꾸미", False),
+
+    # 🍚 The Comfort Food Kings (Smoky Fire Flavor & Premium Pork)
+    "제육볶음": ("제육볶음", False),
+    "기사식당": ("기사식당", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45
@@ -84,17 +92,24 @@ def discover_restaurants(keyword, location, max_results):
 
 def append_to_csv(row_dict):
     """LIVE CHECKPOINTING: Saves one row to the CSV immediately."""
-    headers = ["Neighborhood", "Keyword", "Restaurant Name", "Score", "Award Level", "AI Justification", "English Desc",
-               "Korean Desc", "Kakao URL", "Lat", "Lon"]
+
+    # 🚨 THE FIX: Added the 4 new Auditor columns to the master list
+    headers = [
+        "Neighborhood", "Keyword", "Restaurant Name", "Score", "Award Level",
+        "AI Justification", "English Desc", "Korean Desc", "Kakao URL", "Lat", "Lon",
+        "Auditor Comments", "Rating Justified", "Auditor Reason", "Needs Manual Review", "Upgrade Recommended"
+    ]
 
     file_exists = os.path.isfile(CSV_FILENAME)
 
     with open(CSV_FILENAME, 'a', newline='', encoding='utf-8-sig') as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
+        # 🚨 THE FIX: added extrasaction='ignore' just in case of dict mismatches
+        writer = csv.DictWriter(f, fieldnames=headers, extrasaction='ignore')
         if not file_exists:
             writer.writeheader()
-        writer.writerow(row_dict)
 
+        # Write the row. The dictionary won't have the 4 new keys, so DictWriter will automatically leave those CSV cells blank!
+        writer.writerow(row_dict)
 
 def load_existing_restaurants():
     """Reads the CSV to memorize places we've already scored across multiple runs."""
@@ -163,9 +178,9 @@ def run_massive_pipeline():
                     continue
 
                 # 🚀 THE FAST-PASS FILTER 🚀
-                # Check if the target vibe is even mentioned in the blog titles/snippets
-                # If we are looking for craft beer, we look for key terms.
-                fast_pass_terms = ["수제맥주", "크래프트", "브루어리", "양조장", "에일", "IPA"]
+                # Dynamically look for the actual food we are searching for!
+                # Replace 'search_keyword' and 'target_keyword' with whatever variables your loop uses.
+                fast_pass_terms = [search_bait, master_target]
 
                 passed_fast_pass = False
                 for blog in blog_results:
@@ -178,7 +193,7 @@ def run_massive_pipeline():
 
                 if not passed_fast_pass:
                     print(
-                        f"⏭️ Fast-Pass Failed: {restaurant_name}. No mention of target keywords in top 10 blog titles. Skipping AI.")
+                        f"⏭️ Fast-Pass Failed: {restaurant_name}. No mention of '{search_bait}' or '{master_target}'. Skipping AI.")
                     continue
                 # 🚀 ------------------------ 🚀
 
@@ -196,6 +211,11 @@ def run_massive_pipeline():
 
                 if not scraped_texts:
                     print("⚠️ Not enough readable data. Skipping.")
+                    continue
+
+                if len(scraped_texts) < 4:
+                    print(
+                        f"⚠️ Only {len(scraped_texts)} blogs found. Not enough data to avoid sponsored bias. Skipping.")
                     continue
 
                 # --- B. Send to Gemini for Scoring ---
@@ -231,4 +251,19 @@ def run_massive_pipeline():
 
 
 if __name__ == "__main__":
+    # 1. Run the massive Kakao/Naver discovery and Gemini scoring sweep
     run_massive_pipeline()
+
+    # 2. Trigger the Supreme Court Auditor
+    print("\n" + "=" * 50)
+    print("🚀 PHASE 1 COMPLETE: Handing over to the Supreme Court Auditor...")
+    print("=" * 50 + "\n")
+
+    try:
+        # This acts exactly as if you typed 'python receipt_auditor.py' into the terminal yourself
+        subprocess.run(["python", "receipt_auditor.py"], check=True)
+        print("\n🏆 ENTIRE PIPELINE FINISHED SUCCESSFULLY!")
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ The Auditor encountered a fatal error and stopped: {e}")
+    except FileNotFoundError:
+        print("\n❌ Could not find 'receipt_auditor.py'. Make sure it is in the exact same folder as master_agent.py.")
