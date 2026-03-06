@@ -78,15 +78,25 @@ app.post('/chat', async (req, res) => {
 
     console.log(`[AI Request] Lang: ${targetLang} | User asked: "${userQuery}"`);
 
+    // 1. THE RAG RETRIEVAL: Ask FAISS for the best matches!
     const vectorIds = await searchFAISS(userQuery);
 
+    // Cast FAISS numbers to strings so JavaScript doesn't panic on strict equality
+    const safeVectorIds = vectorIds.map(id => String(id));
+
+    // 2. THE JOIN: Grab the rich metadata for those exact IDs
     const bestMatches = placesData.features
-        .filter(feature => vectorIds.includes(feature.properties.vector_id))
+        .filter(feature => {
+            // Safely check if the ID exists and matches
+            if (!feature.properties.vector_id) return false;
+            return safeVectorIds.includes(String(feature.properties.vector_id));
+        })
         .map(f => ({
             name: f.properties.name,
             cuisine: f.properties.cuisine,
             award: f.properties.category,
-            desc: f.properties.description ? f.properties.description.substring(0, 150) : ""
+            // Increased to 300 chars so Gemini can actually read the menu/vibe details!
+            desc: f.properties.description ? f.properties.description.substring(0, 300) : ""
         }));
 
     const prompt = `
