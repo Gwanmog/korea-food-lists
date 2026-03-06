@@ -3,10 +3,17 @@ import json
 import os
 import faiss
 import numpy as np
+from pathlib import Path
 
-# Pathing setup
-script_dir = os.path.dirname(os.path.abspath(__file__))
-FAISS_INDEX_PATH = os.path.join(script_dir, 'data', 'restaurant_vectors.index')
+# --- DOCKER-SAFE PATHING ---
+# This finds the directory where THIS script lives, then looks for data/
+BASE_DIR = Path(__file__).resolve().parent
+FAISS_INDEX_PATH = str(BASE_DIR / "data" / "restaurant_vectors.index")
+
+# --- SILENCE WARNINGS ---
+# Stop library warnings from leaking into the JSON output Node is reading
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+sys.stderr = open(os.devnull, 'w')
 
 
 def search():
@@ -20,17 +27,24 @@ def search():
         vector_np = np.array([vector], dtype=np.float32)
 
         # 2. Load FAISS and search
-        index = faiss.read_index(FAISS_INDEX_PATH)
+        # Check if file exists first to avoid a hard crash
+        if not os.path.exists(FAISS_INDEX_PATH):
+            print(json.dumps([]))
+            return
+
+        index = faiss.read_index(FAISS_INDEX_PATH)  # Fixed the variable name!
         distances, indices = index.search(vector_np, 5)
 
-        # 3. Print ONLY the IDs as a JSON string so Node.js can read it
-        result_ids = [int(id) for id in indices[0] if id != -1]
-        print(json.dumps(result_ids))
+        # 3. Print ONLY the IDs as a JSON string
+        # This is the only thing that should go to stdout
+        result_ids = [int(idx) for idx in indices[0] if idx != -1]
 
-    except Exception as e:
-        # Print errors to stderr so they don't corrupt the JSON payload Node is expecting
-        print(f"FAISS Error: {e}", file=sys.stderr)
-        print(json.dumps([]))
+        # We write directly to the original stdout to ensure it's clean
+        sys.__stdout__.write(json.dumps(result_ids))
+
+    except Exception:
+        # If anything goes wrong, return empty list so the server doesn't crash
+        sys.__stdout__.write(json.dumps([]))
 
 
 if __name__ == "__main__":
