@@ -13,6 +13,7 @@
 
 <body class="dark">
 <div id="app">
+
   <div id="topbar">
     <div class="row spread">
       <div class="row">
@@ -54,30 +55,29 @@
         <span id="count" class="muted">Loading...</span>
       </div>
     </div>
-  </div>
+  </div> <div id="map-container">
 
-  <div id="listWrap" class="collapsed">
-    <div id="list"></div>
-  </div>
-
-  <div id="omnibox">
-    <div class="omni-input-row">
-      <span class="omni-icon">✨</span>
-      <input type="text" id="omniInput" aria-label="Search or chat input" placeholder="Search a keyword or ask the AI..." autocomplete="off">
-      <button id="omniSend" class="icon-only">➤</button>
-      <button id="omniClose" class="icon-only hidden">×</button>
-    </div>
-    <div id="omniChat" class="omni-chat-area hidden">
-      <div id="omniMessages" class="chat-messages">
-        <div class="message ai">Hi! Type a quick keyword to filter the map, or ask me a full question to find the perfect spot.</div>
+    <div id="omnibox">
+      <div class="omni-input-row">
+        <span class="omni-icon">✨</span>
+        <input type="text" id="omniInput" aria-label="Search or chat input" placeholder="Search a keyword or ask the AI..." autocomplete="off">
+        <button id="omniSend" class="icon-only">➤</button>
+        <button id="omniClose" class="icon-only hidden">×</button>
+      </div>
+      <div id="omniChat" class="omni-chat-area hidden">
+        <div id="omniMessages" class="chat-messages">
+          <div class="message ai">Hi! Type a quick keyword to filter the map, or ask me a full question to find the perfect spot.</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="map"></div>
-</div>
+    <div id="listWrap" class="collapsed">
+      <div id="list"></div>
+    </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <div id="map"></div>
+
+  </div> </div> <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 <script src="js/app.js"></script>
 </body>

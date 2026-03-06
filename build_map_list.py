@@ -527,9 +527,13 @@ def load_raw(filename: str) -> list[Place]:
 
 
 def load_neon_guide(filename: str) -> list[Place]:
-    path = DIR_RAW / filename
+    # Check the root folder first, then fallback to data/raw
+    path = Path(filename)
     if not path.exists():
-        print(f"⚠️ Could not find {path}. Make sure it is in the data/raw folder!")
+        path = DIR_RAW / filename
+
+    if not path.exists():
+        print(f"⚠️ Could not find {filename}. Skipping Neon Guide.")
         return []
 
     out = []
@@ -549,61 +553,41 @@ def load_neon_guide(filename: str) -> list[Place]:
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # 1. Safely parse the score
             score_str = str(row.get("Score", "0")).strip()
             try:
                 score = int(float(score_str))
             except ValueError:
                 score = 0
 
-            # Skip places the Supreme Court completely rejected
-            if score < 70:
-                continue
+            # Skip places the Supreme Court rejected
+            if score < 70: continue
 
-            # 2. Extract Coordinates safely
             lat_str = str(row.get("Latitude", "")).strip()
             lon_str = str(row.get("Longitude", "")).strip()
             lat = float(lat_str) if lat_str and lat_str.lower() != "nan" else None
             lon = float(lon_str) if lon_str and lon_str.lower() != "nan" else None
 
-            # 3. Extract Kakao ID directly from the URL if it exists
             kakao_url = row.get("Kakao URL")
             kakao_id = None
             if kakao_url:
                 m = re.search(r'kakao\.com/(\d+)', kakao_url)
                 if m: kakao_id = m.group(1)
 
-            # 4. Format the abstracted rich-text description
             desc_en = row.get("Description EN", "")
             justification = row.get("Justification", "")
-
-            # Translate the raw score into a qualitative phrase
             tier_phrase = get_excellence_tier(score)
-
-            # Combine them without exposing the raw numbers or award names
             full_desc = f"{tier_phrase}\n\n{desc_en}\n\nInspector Notes: {justification}"
 
-            # 5. Map the row to your Place dataclass
             p = Place(
-                source="neon_guide",
+                source="neon",  # Changed to "neon" to match your app.js logic for yellow circles
                 name=row.get("Restaurant Name", "Unknown"),
                 name_ko=row.get("Restaurant Name"),
-                address=None,
-                address_ko=None,
-                city="Seoul",
-                country="South Korea",
-                category=row.get("Category"),
-                cuisine=row.get("Category"),
-                price=None,
-                phone=None,
-                url=None,
-                year="2026",
-                description=full_desc,
-                latitude=lat,
-                longitude=lon,
-                captured_at=captured_at,
-                kakao_id=kakao_id,
-                kakao_url=kakao_url
+                address=None, address_ko=None, city="Seoul", country="South Korea",
+                category=row.get("Award Level", "Neon Approved"),
+                cuisine=row.get("Category", "Craft Beer / Dining"),
+                price=None, phone=None, url=None, year="2026",
+                description=full_desc, latitude=lat, longitude=lon,
+                captured_at=captured_at, kakao_id=kakao_id, kakao_url=kakao_url
             )
             out.append(p)
 
@@ -654,18 +638,14 @@ def main():
 
     elif args.command == "build":
         m = load_raw("michelin.csv")
-        # 🚨 THE INTEGRATION TWEAK
-        # If the AI has ghostwritten the descriptions, use the enriched file!
-        # Otherwise, fall back to the raw one.
         enriched_path = DIR_RAW / "blueribbon_enriched.csv"
         if enriched_path.exists():
             print("🌟 Found AI-Enriched Blue Ribbon data! Using that instead.")
             b = load_raw("blueribbon_enriched.csv")
         else:
             b = load_raw("blueribbon.csv")
-        # (Optional: If you eventually want to add your Neon Guide spots to the map,
-        # you would load them here exactly the same way!)
-        all_places = m + b
+        n = load_neon_guide("neon_guide_audited_final.csv")
+        all_places = m + b + n
         unique = {}
         for p in all_places:
             key = slugify(f"{p.name} {p.address or ''}")

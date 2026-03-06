@@ -59,7 +59,15 @@ body { background: var(--bg); color: var(--text); }
   gap: 10px;
   box-shadow: var(--shadow);
   z-index: 2000;
-  position: relative;
+  /* Removed position: relative; the app wrapper handles it now */
+}
+
+/* --- THE UI FIX: A wrapper to hold the map and the search bar together --- */
+#map-container {
+  position: relative; /* Allows the omnibox to float over the map */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 #map { flex: 1; z-index: 1; }
@@ -102,8 +110,9 @@ body { background: var(--bg); color: var(--text); }
 
 /* --- OMNIBOX --- */
 #omnibox {
+  /* CHANGED: Now relative to the map container, so it just sits at the top of the map */
   position: absolute;
-  top: 70px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 92%;
@@ -122,7 +131,7 @@ body { background: var(--bg); color: var(--text); }
 #omnibox.expanded {
   height: 50vh;
   border-radius: 16px;
-  top: 70px;
+  /* Top stays the same when expanded */
 }
 
 .omni-input-row {
@@ -215,10 +224,13 @@ body.dark .omni-chat-area {
 
 /* --- List View --- */
 #listWrap {
+  /* CHANGED: Anchor it strictly below the topbar */
   position: absolute;
-  top: 70px; right: 10px;
+  top: 20px;
+  right: 10px;
   width: 320px;
-  max-height: calc(100% - 90px);
+  /* CHANGED: Make sure it doesn't overflow the screen */
+  max-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   gap: 8px;
