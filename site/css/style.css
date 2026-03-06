@@ -110,14 +110,18 @@ body { background: var(--bg); color: var(--text); }
 
 /* --- OMNIBOX --- */
 #omnibox {
-  /* CHANGED: Now relative to the map container, so it just sits at the top of the map */
-  position: absolute;
+  position: absolute; /* Keep it absolute within the map-container */
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 92%;
-  max-width: 450px;
-  background: var(--panel);
+  width: 90%; /* Slightly narrower on mobile */
+  max-width: 400px; /* Smaller max-width for desktop */
+
+  /* Make it slightly transparent and blur the background behind it (glassmorphism) */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   border-radius: 24px;
   box-shadow: var(--shadow);
   z-index: 2500;
@@ -128,13 +132,20 @@ body { background: var(--bg); color: var(--text); }
   border: 1px solid var(--border);
 }
 
-#omnibox.expanded {
-  height: 50vh;
-  border-radius: 16px;
-  /* Top stays the same when expanded */
+body.dark #omnibox {
+  /* Dark mode transparency */
+  background: rgba(16, 21, 34, 0.85);
 }
 
+#omnibox.expanded {
+  height: 40vh; /* Don't take up as much height */
+  max-height: 400px; /* Cap the height */
+  border-radius: 16px;
+}
+
+/* Ensure the input row is also transparent so the blur shows through */
 .omni-input-row {
+  background: transparent;
   display: flex;
   align-items: center;
   padding: 8px 12px;
