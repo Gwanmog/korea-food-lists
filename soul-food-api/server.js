@@ -127,7 +127,10 @@ if (!fs.existsSync(geojsonPath)) {
     process.exit(1);
 }
 
-let placesData = JSON.parse(fs.readFileSync(geojsonPath, 'utf8'));
+const path = require("path");
+
+const geoPath = path.join(__dirname, "site", "places.geojson");
+const geoData = fs.readFileSync(geoPath);
 
 // 🔍 The Semantic Search Endpoint
 app.get('/api/search', (req, res) => {
