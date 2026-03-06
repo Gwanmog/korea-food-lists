@@ -430,7 +430,9 @@ function addOmniMessage(text, type) {
   // Parse links
   let formatted = text.replace(/\n/g, '<br>');
   formatted = formatted.replace(/\[\[(.*?)\]\]/g, (match, name) => {
-    return `<span class="chat-link" onclick="openRestaurantPopup('${esc(name)}')">${name}</span>`;
+    // Escaping the name is crucial so names like "O'reilly" don't break the JS string
+    const safeName = name.replace(/'/g, "\\'");
+    return `<span class="chat-link" onclick="window.openRestaurantPopup('${safeName}')">${name}</span>`;
   });
 
   div.innerHTML = formatted;
@@ -491,3 +493,41 @@ omniSend.addEventListener('click', handleOmniSubmit);
 omniInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') handleOmniSubmit();
 });
+window.openRestaurantPopup = function(name) {
+    if (!name) return;
+
+    // 1. Search through all features to find the one matching the name
+    const feature = allFeatures.find(f =>
+        f.properties.name === name ||
+        f.properties.name_ko === name
+    );
+
+    if (feature) {
+        const [lon, lat] = feature.geometry.coordinates;
+
+        // 2. Center the map with a nice zoom
+        map.flyTo([lat, lon], 17, {
+            animate: true,
+            duration: 1.5
+        });
+
+        // 3. Since we use Marker Clustering, we must find the marker inside the cluster
+        // and manually trigger the popup.
+        clusterGroup.eachLayer(layer => {
+            if (layer.feature && (layer.feature.properties.name === name || layer.feature.properties.name_ko === name)) {
+                // Ensure the cluster is expanded so the marker is visible
+                clusterGroup.zoomToShowLayer(layer, () => {
+                    layer.openPopup();
+                });
+            }
+        });
+
+        // 4. On mobile, collapse the chat/list so the user can see the map
+        if (window.innerWidth < 640) {
+            if ($('omnibox')) $('omnibox').classList.remove('expanded');
+            if ($('listWrap')) $('listWrap').classList.add('collapsed');
+        }
+    } else {
+        console.warn(`Could not find restaurant: ${name}`);
+    }
+};
