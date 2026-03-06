@@ -3,6 +3,7 @@ import requests
 import time
 import random
 import csv
+import sys
 import subprocess
 from dotenv import load_dotenv
 
@@ -31,18 +32,8 @@ NEIGHBORHOODS = [
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    "미스터리브루잉": ("수제맥주", False),
-    # 🥩 The Intestines & Tartare (Extreme Freshness)
-    "육회": ("육회", False),
-
-    # 🥞 The Pancakes & Seasonal (Crispy & Flavorful)
-    "해물파전": ("해물파전", False),
-    "빈대떡": ("빈대떡", False),
-    "쭈꾸미": ("쭈꾸미", False),
-
-    # 🍚 The Comfort Food Kings (Smoky Fire Flavor & Premium Pork)
-    "제육볶음": ("제육볶음", False),
-    "기사식당": ("기사식당", False)
+    "미스터리브루잉": ("브루어리", False),
+    "치맥":("치맥", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45
@@ -124,13 +115,25 @@ def load_existing_restaurants():
 
 def is_strong_hit(place, keyword, valid_categories, expected_neighborhood):
     """
-    Agile pre-filter powered ONLY by Geographic bounds.
-    Trusts the Naver Fast-Pass to filter generic bars,
-    and the AI Lie Detector to penalize corporate franchises.
+    Agile pre-filter powered by Geographic bounds and Direct Name Matching.
     """
+    restaurant_name = place.get('place_name', '')
     address = place.get('address_name', '')
 
-    # 🚨 THE GEOGRAPHIC BOUNCER (The only rule we need here!)
+    # ==========================================
+    # 🚨 THE DIRECT HIT LOOPHOLE
+    # ==========================================
+    # Remove spaces to ensure "미스터리 브루잉" matches "미스터리브루잉컴퍼니"
+    search_clean = keyword.replace(" ", "")
+    name_clean = restaurant_name.replace(" ", "")
+
+    if search_clean in name_clean:
+        # We don't care about the address. The name matches! Let it through.
+        return True
+    # ==========================================
+
+    # 🚨 THE GEOGRAPHIC BOUNCER
+    # If the name wasn't a direct match, it MUST be in the correct neighborhood.
     if expected_neighborhood not in address:
         return False
 
@@ -260,10 +263,20 @@ if __name__ == "__main__":
     print("=" * 50 + "\n")
 
     try:
-        # This acts exactly as if you typed 'python receipt_auditor.py' into the terminal yourself
-        subprocess.run(["python", "receipt_auditor.py"], check=True)
-        print("\n🏆 ENTIRE PIPELINE FINISHED SUCCESSFULLY!")
+        # Forces the subprocess to stay inside the PyCharm virtual environment
+        subprocess.run([sys.executable, "receipt_auditor.py"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"\n❌ The Auditor encountered a fatal error and stopped: {e}")
     except FileNotFoundError:
         print("\n❌ Could not find 'receipt_auditor.py'. Make sure it is in the exact same folder as master_agent.py.")
+
+    # 3. Trigger the Final Verdict Cleanup
+    print("\n" + "=" * 50)
+    print("🧹 PHASE 3: Running Final Verdict Audit...")
+    print("=" * 50 + "\n")
+
+    try:
+        subprocess.run([sys.executable, "final_verdict.py"], check=True)
+        print("\n🏆 ENTIRE PIPELINE FINISHED SUCCESSFULLY!")
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ The Final Verdict encountered an error: {e}")

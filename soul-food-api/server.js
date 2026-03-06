@@ -17,48 +17,92 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-
+const embeddingModel = genAI.getGenerativeModel({ model: "gemini-embedding-001" });
 // UPDATED: Use the current standard model (Gemini 2.5 Flash)
 const model = genAI.getGenerativeModel({
   model: "gemini-2.5-flash"
 });
 
+async function searchFAISS(query) {
+    try {
+        // 1. Let Node.js handle the network request to Gemini!
+        // This is much faster than waiting for Python to boot up and do it.
+        const result = await embeddingModel.embedContent(query);
+        const vector = result.embedding.values;
+
+        return new Promise((resolve) => {
+            const pythonScript = path.join(__dirname, '../search_vectors.py');
+
+            // Spawn the trimmed Python script (No arguments needed anymore)
+            const pythonProcess = spawn('python', [pythonScript]);
+
+            // 2. Stream the vector data securely into Python's stdin
+            pythonProcess.stdin.write(JSON.stringify(vector));
+            pythonProcess.stdin.end();
+
+            let outputData = '';
+            pythonProcess.stdout.on('data', (data) => outputData += data.toString());
+
+            // Print out any Python errors to the Node console for easy debugging
+            pythonProcess.stderr.on('data', (data) => console.error(`[Python stderr]: ${data}`));
+
+            pythonProcess.on('close', () => {
+                try {
+                    const vectorIds = JSON.parse(outputData.trim());
+                    resolve(vectorIds);
+                } catch (error) {
+                    console.error("❌ Failed to parse FAISS results:", error);
+                    resolve([]);
+                }
+            });
+        });
+    } catch (error) {
+        console.error("❌ Failed to generate embedding in Node:", error);
+        return []; // Fail gracefully so the chat still works
+    }
+}
 app.post('/chat', async (req, res) => {
   try {
-    // We now expect 'language' in the request body
-    const { userQuery, restaurants, language } = req.body;
-
-    // Default to English if not provided
+    const { userQuery, language } = req.body;
     const targetLang = language === 'ko' ? 'Korean' : 'English';
 
     console.log(`[AI Request] Lang: ${targetLang} | User asked: "${userQuery}"`);
 
+    // 1. THE RAG RETRIEVAL: Ask FAISS for the best matches!
+    const vectorIds = await searchFAISS(userQuery);
+
+    // 2. THE JOIN: Grab the rich metadata for those exact IDs
+    const bestMatches = placesData.features
+        .filter(feature => vectorIds.includes(feature.properties.vector_id))
+        .map(f => ({
+            name: f.properties.name,
+            cuisine: f.properties.cuisine,
+            award: f.properties.category,
+            desc: f.properties.description ? f.properties.description.substring(0, 150) : ""
+        }));
+
+    // 3. THE GENERATION: Hand the perfect data to Gemini
     const prompt = `
       You are a local foodie expert in Seoul.
       The user is looking for a recommendation.
 
       **IMPORTANT:** You must reply in **${targetLang}**.
-
-      **CRITICAL INSTRUCTION:**
-      When you recommend a restaurant from the list, you MUST wrap its exact name in double brackets like this: [[Restaurant Name]].
-      Example: "I recommend [[Oreno Ramen]] because..."
+      **CRITICAL INSTRUCTION:** When you recommend a restaurant from the list, you MUST wrap its exact name in double brackets like this: [[Restaurant Name]].
 
       User's Request: "${userQuery}"
 
-      Here is a list of restaurants currently visible on their map:
-      ${JSON.stringify(restaurants)}
+      Here are the absolute best mathematical matches from our database:
+      ${JSON.stringify(bestMatches)}
 
       Based ONLY on the list above, recommend the top 1-3 best matches.
-      For each recommendation, explain WHY it fits their request.
-      If nothing fits well, say "I don't see a perfect match in this area, but..." and pick the closest option.
-      Keep it brief and friendly.
+      Explain WHY it fits their request based on the description provided.
+      Keep it brief, highly accurate, and friendly.
     `;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const text = response.text();
 
-    res.json({ reply: text });
+    res.json({ reply: response.text() });
 
   } catch (error) {
     console.error("Error generating AI response:", error);

@@ -73,11 +73,7 @@ clusterGroup = L.markerClusterGroup({
 });
 map.addLayer(clusterGroup);
 
-
-// --- UI HANDLERS (SAFETY CHECKED) ---
-// We check if the element exists (e && ...) before adding listeners
-// This prevents the "Frozen" crash if you haven't updated your HTML yet.
-
+// --- UI HANDLERS ---
 const filterToggle = $('filterToggle');
 if (filterToggle) filterToggle.onclick = () => $('panel').classList.toggle('closed');
 
@@ -133,29 +129,27 @@ if (locBtn) locBtn.onclick = () => {
 
 // --- FILTERS ---
 const filters = {
-  michelin: $('f_michelin'),
-  blu: $('f_blu'),
+  michelin: $('f_michelin'), blu: $('f_blu'), neon: $('f_neon'),
   m3: $('f_m3'), m2: $('f_m2'), m1: $('f_m1'), bib: $('f_bib'),
   r3: $('f_r3'), r2: $('f_r2'), r1: $('f_r1'),
+  n_exc: $('f_n_exc'), n_high: $('f_n_high'), n_worth: $('f_n_worth')
 };
 
-// Safe attach: Only add listener if the checkbox actually exists
 Object.values(filters).forEach(el => {
   if (el) el.onchange = render;
 });
-
-const searchInput = $('q');
-if (searchInput) searchInput.oninput = render;
 
 // --- FILTER LOGIC ---
 function passes(p) {
   const src = (p.source || "").toLowerCase();
 
-  // Safety: If filter checkbox doesn't exist, assume we shouldn't filter by it
   if (filters.michelin && src.includes("michelin") && !filters.michelin.checked) return false;
   if (filters.blu && src.includes("blue") && !filters.blu.checked) return false;
+  if (filters.neon && src.includes("neon") && !filters.neon.checked) return false;
 
   const cat = (p.category || "").toUpperCase();
+  const desc = (p.description || "");
+
   if (src.includes("michelin")) {
     if (filters.m3 && cat.includes("3 STAR") && !filters.m3.checked) return false;
     if (filters.m2 && cat.includes("2 STAR") && !filters.m2.checked) return false;
@@ -167,13 +161,16 @@ function passes(p) {
     if (filters.r2 && cat.includes("TWO") && !filters.r2.checked) return false;
     if (filters.r1 && cat.includes("ONE") && !filters.r1.checked) return false;
   }
+  else if (src.includes("neon")) {
+    if (filters.n_exc && desc.includes("✨") && !filters.n_exc.checked) return false;
+    if (filters.n_high && desc.includes("🌟") && !filters.n_high.checked) return false;
+    if (filters.n_worth && desc.includes("👍") && !filters.n_worth.checked) return false;
+  }
 
-  if (searchInput) {
-    const q = searchInput.value.trim().toLowerCase();
-    if (q) {
-      const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
-      if (!hay.includes(q)) return false;
-    }
+  // Use the global state from the Omnibox instead of the old DOM element!
+  if (window.currentSearchQuery) {
+    const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
+    if (!hay.includes(window.currentSearchQuery)) return false;
   }
   return true;
 }
@@ -182,6 +179,8 @@ function passes(p) {
 function getBadge(p) {
   const s = (p.source || "").toLowerCase();
   const c = (p.category || "").toUpperCase();
+  const d = (p.description || "");
+
   if (s.includes("michelin")) {
     if (c.includes("3")) return "⭐ 3";
     if (c.includes("2")) return "⭐ 2";
@@ -195,12 +194,17 @@ function getBadge(p) {
     if (c.includes("ONE")) return "🎀 1";
     return "Blu";
   }
+  if (s.includes("neon")) {
+    if (d.includes("✨")) return "✨ Neon";
+    if (d.includes("🌟")) return "🌟 Neon";
+    if (d.includes("👍")) return "👍 Neon";
+    return "Neon";
+  }
   return "";
 }
 
 function renderPopup(p) {
   const searchQuery = p.name_ko || p.korean_query || p.name;
-
   const naverSearch = `https://map.naver.com/p/search/${enc(searchQuery)}`;
   const googleSearch = `https://www.google.com/maps/search/${enc(p.name + " Seoul")}`;
 
@@ -210,14 +214,12 @@ function renderPopup(p) {
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
   let actions = [];
-
   if (p.kakao_url && p.kakao_id) {
     actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
   } else {
     const searchUrl = `https://map.kakao.com/link/search/${enc(searchQuery)}`;
     actions.push(`<a class="linkbtn kakao" href="${searchUrl}" target="_blank">${I18N[currentLang].searchKakao}</a>`);
   }
-
   actions.push(`<a class="linkbtn naver" href="${naverSearch}" target="_blank">Naver</a>`);
   actions.push(`<a class="linkbtn" href="${googleSearch}" target="_blank">Google</a>`);
 
@@ -244,6 +246,9 @@ function renderPopup(p) {
 
 // --- MAIN RENDER LOOP ---
 function render() {
+  // 🚨 Prevent the auto-pan from destroying the open popup!
+  if (document.querySelector('.leaflet-popup')) return;
+
   const bounds = map.getBounds();
 
   const visible = allFeatures.filter(f => {
@@ -257,9 +262,10 @@ function render() {
     const score = p => {
       let s = 0;
       const c = (p.category || "").toUpperCase();
-      if (c.includes("3 STAR") || c.includes("RIBBON_THREE")) s += 30;
-      if (c.includes("2 STAR") || c.includes("RIBBON_TWO")) s += 20;
-      if (c.includes("1 STAR") || c.includes("RIBBON_ONE")) s += 10;
+      const d = (p.description || "");
+      if (c.includes("3 STAR") || c.includes("RIBBON_THREE") || d.includes("✨")) s += 30;
+      if (c.includes("2 STAR") || c.includes("RIBBON_TWO") || d.includes("🌟")) s += 20;
+      if (c.includes("1 STAR") || c.includes("RIBBON_ONE") || d.includes("👍")) s += 10;
       if (c.includes("BIB")) s += 5;
       return s;
     };
@@ -276,15 +282,20 @@ function render() {
     pointToLayer: (feature, latlng) => {
       const p = feature.properties;
       const isMich = (p.source || "").includes("michelin");
-      const color = isMich ? "#bd2333" : "#2b70c9";
+      const isNeon = (p.source || "").includes("neon");
+
+      const color = isNeon ? "#facc15" : (isMich ? "#bd2333" : "#2b70c9");
+      const isMobile = window.innerWidth < 640;
+      const baseRadius = isMobile ? 10 : 6;
+      const neonRadius = isMobile ? 13 : 8;
 
       const marker = L.circleMarker(latlng, {
-        radius: 6,
+        radius: isNeon ? neonRadius : baseRadius,
         fillColor: color,
-        color: "#fff",
-        weight: 1,
+        color: isNeon ? "#000000" : "#ffffff",
+        weight: isNeon ? 2 : 1.5, // Slightly thicker border makes it easier to tap
         opacity: 1,
-        fillOpacity: 0.8
+        fillOpacity: 0.9
       });
       feature.layer = marker;
       return marker;
@@ -302,12 +313,18 @@ function render() {
 
     visible.slice(0, 100).forEach(f => {
       const p = f.properties;
+
+      // Determine sidebar badge color
+      let tagClass = 'blue';
+      if (p.source.includes('michelin')) tagClass = 'michelin';
+      else if (p.source.includes('neon')) tagClass = 'neon';
+
       const div = document.createElement('div');
       div.className = 'list-item';
       div.innerHTML = `
         <div class="item-header">
           <span class="item-name">${esc(p.name)}</span>
-          <span class="tag ${p.source.includes('michelin') ? 'michelin' : 'blue'}">${getBadge(p)}</span>
+          <span class="tag ${tagClass}">${getBadge(p)}</span>
         </div>
         <div class="item-meta">
           ${p.cuisine ? `<span>${esc(p.cuisine)}</span>` : ''}
@@ -322,7 +339,13 @@ function render() {
       };
       div.onmouseleave = () => {
         if (f.layer) {
-          f.layer.setStyle({ radius: 6, color: '#fff', weight: 1, fillOpacity: 0.8 });
+          const isNeon = (p.source || "").includes("neon");
+          f.layer.setStyle({
+              radius: isNeon ? 8 : 6,
+              color: isNeon ? '#000' : '#fff',
+              weight: isNeon ? 2 : 1,
+              fillOpacity: 0.9
+          });
         }
       };
 
@@ -340,6 +363,7 @@ function render() {
 }
 
 map.on('moveend', render);
+map.on('popupclose', render);
 
 // --- INIT ---
 async function init() {
@@ -357,145 +381,111 @@ async function init() {
 }
 init();
 
-// --- CHATBOT LOGIC ---
-const chatWindow = document.getElementById('chatWindow');
-const chatMessages = document.getElementById('chatMessages');
-const chatInput = document.getElementById('chatInput');
-const chatSendBtn = document.getElementById('chatSend');
-const chatToggleBtn = document.getElementById('chatToggle');
-const chatCloseBtn = document.getElementById('chatClose');
+// --- THE OMNIBOX HYBRID ROUTER ---
+const omniInput = $('omniInput');
+const omniSend = $('omniSend');
+const omniClose = $('omniClose');
+const omnibox = $('omnibox');
+const omniChat = $('omniChat');
+const omniMessages = $('omniMessages');
 
-if (chatToggleBtn) {
-  chatToggleBtn.onclick = () => {
-    if (chatWindow) {
-      chatWindow.classList.toggle('hidden');
-      if (!chatWindow.classList.contains('hidden') && chatInput) {
-        chatInput.focus();
-      }
-    }
-  };
-}
+// Add a global state for the local keyword filter
+window.currentSearchQuery = "";
 
-if (chatCloseBtn) {
-  chatCloseBtn.onclick = () => {
-    if (chatWindow) chatWindow.classList.add('hidden');
-  };
-}
-
-async function sendMessage() {
-  if (!chatInput) return;
-  const text = chatInput.value.trim();
-  if (!text) return;
-
-  addMessage(text, 'user');
-  chatInput.value = '';
-  chatInput.disabled = true;
-  if (chatSendBtn) chatSendBtn.disabled = true;
-
-  const bounds = map.getBounds();
-  const visibleRestaurants = allFeatures
-    .filter(f => {
-      const lat = f.geometry.coordinates[1];
-      const lon = f.geometry.coordinates[0];
-      return bounds.contains([lat, lon]);
-    })
-    .map(f => ({
-      name: f.properties.name,
-      cuisine: f.properties.cuisine,
-      price: f.properties.price,
-      award: f.properties.category,
-      desc: f.properties.description ? f.properties.description.substring(0, 100) : ""
-    }))
-    .slice(0, 50);
-
-  if (visibleRestaurants.length === 0) {
-    addMessage("I don't see any restaurants on your screen! Move the map to an area with food first.", 'ai');
-    chatInput.disabled = false;
-    if (chatSendBtn) chatSendBtn.disabled = false;
-    return;
+// 1. Update the passes() function to use the new global state instead of the old #q input
+// Find your passes(p) function and replace the bottom part with this:
+/*
+  if (window.currentSearchQuery) {
+    const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
+    if (!hay.includes(window.currentSearchQuery)) return false;
   }
+  return true;
+*/
 
-  try {
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'message ai loading';
-    loadingDiv.textContent = 'Thinking...';
-    chatMessages.appendChild(loadingDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+// UI Toggles
+omniInput.addEventListener('focus', () => {
+  omnibox.classList.add('expanded');
+  omniChat.classList.remove('hidden');
+  omniClose.classList.remove('hidden');
+});
 
-    const response = await fetch('https://eatmyseoul.onrender.com/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userQuery: text,
-        language: currentLang,
-        restaurants: visibleRestaurants
-      })
-    });
+omniClose.addEventListener('click', () => {
+  omnibox.classList.remove('expanded');
+  omniChat.classList.add('hidden');
+  omniClose.classList.add('hidden');
 
-    const data = await response.json();
-    loadingDiv.remove();
+  // Clear the local filter when closed
+  window.currentSearchQuery = "";
+  omniInput.value = "";
+  render();
+});
 
-    if (data.reply) {
-      addMessage(data.reply, 'ai');
-    } else {
-      addMessage("Sorry, I got confused. Try again.", 'ai');
-    }
-
-  } catch (err) {
-    const loader = document.querySelector('.message.loading');
-    if (loader) loader.remove();
-    addMessage("Error connecting to AI. Is your local server running?", 'ai');
-    console.error(err);
-  }
-
-  chatInput.disabled = false;
-  if (chatSendBtn) chatSendBtn.disabled = false;
-  chatInput.focus();
-}
-
-function addMessage(text, sender) {
-  if (!chatMessages) return;
+function addOmniMessage(text, type) {
   const div = document.createElement('div');
-  div.className = `message ${sender}`;
+  div.className = `message ${type}`;
 
+  // Parse links
   let formatted = text.replace(/\n/g, '<br>');
   formatted = formatted.replace(/\[\[(.*?)\]\]/g, (match, name) => {
     return `<span class="chat-link" onclick="openRestaurantPopup('${esc(name)}')">${name}</span>`;
   });
 
   div.innerHTML = formatted;
-  chatMessages.appendChild(div);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  omniMessages.appendChild(div);
+  omniMessages.scrollTop = omniMessages.scrollHeight;
+  return div;
 }
 
-// Global helper to open popup from chat/list
-window.openRestaurantPopup = (name) => {
-  if (chatWindow) chatWindow.classList.add('hidden');
+async function handleOmniSubmit() {
+  const text = omniInput.value.trim();
+  if (!text) return;
 
-  const target = allFeatures.find(f => f.properties.name === name);
+  // Add user message to UI
+  addOmniMessage(text, 'user');
+  omniInput.value = '';
 
-  if (target) {
-    const lat = target.geometry.coordinates[1];
-    const lon = target.geometry.coordinates[0];
-    map.setView([lat, lon], 18);
+  // THE ROUTER LOGIC: Is it a simple keyword or an AI question?
+  // If it's 2 words or less, and has no question mark, treat it as a local map filter.
+  const isSimpleKeyword = text.split(' ').length <= 2 && !text.includes('?');
 
-    setTimeout(() => {
-      clusterGroup.eachLayer(l => {
-        if (l.feature === target) {
-          l.openPopup();
-        }
-      });
-    }, 300);
+  if (isSimpleKeyword) {
+    addOmniMessage(`Filtering the map for "${text}"...`, 'ai');
+    window.currentSearchQuery = text.toLowerCase();
+    render(); // Update the pins instantly!
   } else {
-    console.warn("Could not find " + name);
-  }
-};
+    // It's a complex query! Clear local filters and ask the AI.
+    window.currentSearchQuery = "";
+    render();
 
-if (chatSendBtn) {
-  chatSendBtn.onclick = sendMessage;
+    const loadingMsg = addOmniMessage('Let me look through the database...', 'ai loading');
+
+    try {
+      const response = await fetch('http://localhost:3000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userQuery: text,
+          language: currentLang
+        })
+      });
+
+      const data = await response.json();
+      loadingMsg.remove();
+
+      if (data.reply) {
+        addOmniMessage(data.reply, 'ai');
+      } else {
+        addOmniMessage("Sorry, something went wrong on my end.", 'ai');
+      }
+    } catch (err) {
+      loadingMsg.remove();
+      addOmniMessage("Error connecting to the AI brain. Is the server running?", 'ai');
+      console.error(err);
+    }
+  }
 }
-if (chatInput) {
-  chatInput.onkeypress = (e) => {
-    if (e.key === 'Enter') sendMessage();
-  };
-}
+
+omniSend.addEventListener('click', handleOmniSubmit);
+omniInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') handleOmniSubmit();
+});

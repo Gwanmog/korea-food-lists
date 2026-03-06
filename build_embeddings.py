@@ -23,10 +23,10 @@ FAISS_INDEX_PATH = os.path.join(script_dir, 'data', 'restaurant_vectors.index')
 
 
 def get_embedding(text):
-    """Calls Gemini's specialized embedding model to turn text into a 768-dimensional vector."""
+    """Calls Gemini's new embedding model to turn text into a 3072-dimensional vector."""
     try:
         response = client.models.embed_content(
-            model='text-embedding-004',
+            model='gemini-embedding-001',
             contents=text,
         )
         return response.embeddings[0].values
@@ -46,7 +46,7 @@ def build_retrieval_system():
     features = geojson_data.get('features', [])
 
     # Check for an existing FAISS index, or create a new one
-    embedding_dimension = 768  # Gemini text-embedding-004 uses 768 dimensions
+    embedding_dimension = 3072
     if os.path.exists(FAISS_INDEX_PATH):
         print(f"📂 Loading existing FAISS index from {FAISS_INDEX_PATH}...")
         index = faiss.read_index(FAISS_INDEX_PATH)
@@ -64,16 +64,24 @@ def build_retrieval_system():
         if 'vector_id' in props:
             continue
 
-        name = props.get('name', props.get('Restaurant Name', 'Unknown'))
-        print(f"🧠 Generating embedding for new place: {name}")
+        name = props.get('name_ko', props.get('name', 'Unknown'))
 
-        # Feature Engineering: Combine signals for the AI to read
-        # Adjust these keys if your GeoJSON property names are slightly different!
-        category = props.get('category', props.get('Keyword', ''))
-        vibe = props.get('description_en', props.get('English Desc', ''))
-        verdict = props.get('justification', props.get('AI Justification', ''))
+        # 🚨 THE DATA QUALITY GATE
+        # Handle nulls safely by using `or ""`
+        category = props.get('category') or ""
+        cuisine = props.get('cuisine') or ""
+        desc = props.get('description') or props.get('description_en') or ""
+        verdict = props.get('justification') or ""
 
-        rich_text = f"Name: {name}. Category: {category}. Vibe & Food: {vibe}. Verdict: {verdict}"
+        # If we have virtually no text, skip embedding so we don't pollute FAISS with garbage data
+        if len(desc.strip()) < 10 and len(cuisine.strip()) == 0:
+            print(f"⏭️ Skipping {name}: Not enough rich text to embed yet. Waiting for AI scrape.")
+            continue
+
+        print(f"🧠 Generating embedding for: {name}")
+
+        # Feature Engineering: Combine available signals
+        rich_text = f"Name: {name}. Category: {category} {cuisine}. Vibe & Food: {desc}. Verdict: {verdict}"
 
         vector = get_embedding(rich_text)
 
