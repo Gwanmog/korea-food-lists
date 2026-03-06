@@ -118,9 +118,15 @@ const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-// 🚀 SCALABILITY TRICK: Load the GeoJSON into memory once when the server starts!
-// This prevents reading the file from the hard drive on every single search.
-const geojsonPath = path.join(__dirname, '../site/places.geojson');
+// 🚀 ROBUST PATHING: Use process.cwd() for cleaner root-relative paths
+const geojsonPath = path.resolve(process.cwd(), 'site/places.geojson');
+
+if (!fs.existsSync(geojsonPath)) {
+    console.error(`🚨 CRITICAL ERROR: Could not find GeoJSON at ${geojsonPath}`);
+    // This will log the EXACT path Render is trying to use so you can debug in the logs
+    process.exit(1);
+}
+
 let placesData = JSON.parse(fs.readFileSync(geojsonPath, 'utf8'));
 
 // 🔍 The Semantic Search Endpoint
