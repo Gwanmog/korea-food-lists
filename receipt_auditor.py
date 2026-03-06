@@ -31,31 +31,60 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
     """Tries Qwen locally via Ollama. Falls back to Gemini if Ollama fails."""
 
     prompt = f"""
-        You are a restaurant auditor. Compare the AI's expected Score against the reality of the Customer Receipts.
+        You are a restaurant auditor comparing the AI's expected Score against the Customer Receipts.
 
         Restaurant Name: {restaurant_name}
         AI Score: {original_score}/100
         Customer Receipts: {receipts_text}
 
-        INSTRUCTIONS:
-        1. THE 90+ EXPECTATION: If the score is 90-100, the place must be near perfect. If reviews mention bad food, bad service, or high prices, it fails. ("justified": "No")
-        2. THE 70+ BASELINE: If the score is 70-89, minor nitpicks (noise, parking, wait times) are totally fine. ONLY fail it if people say the food is genuinely bad. ("justified": "Yes")
-        3. THE UPGRADE: If the score is 70-85 but the reviews are absolutely flawless, enthusiastic, and raving, flag it for a promotion! ("upgrade_recommended": true)
+        INSTRUCTION:
+        Read the reviews and pick EXACTLY ONE of the three JSON templates below.
+        
+        Copy the template exactly and only replace the text fields.
+        You may ONLY replace the text inside:
+        "comments"
+        "reason"
 
-        EXAMPLES TO FOLLOW:
-        - Score: 95/100 | Reviews: "Food was okay, but overpriced and service was slow." -> "justified": "No", "manual_flag": true, "upgrade_recommended": false
-        - Score: 75/100 | Reviews: "Tasty beer, good vibe, but the tables are a bit cramped." -> "justified": "Yes", "manual_flag": false, "upgrade_recommended": false
-        - Score: 72/100 | Reviews: "Literally the best meal of my life! Flawless food and amazing staff!" -> "justified": "Yes", "manual_flag": false, "upgrade_recommended": true
-        - Score: 85/100 | Reviews: "Terrible. Found a bug in my soup and the waiter yelled at me." -> "justified": "No", "manual_flag": true, "upgrade_recommended": false
+        All other JSON values must remain identical to the template.
+        Do NOT change any boolean values.
+        Do NOT invent new combinations.
+        
+        If your output does not exactly match one of the templates, the result is INVALID.
 
-        Respond ONLY with valid JSON in this exact format:
+        =========================================
+        TEMPLATE 1: THE PASS (DEFAULT)
+        Use this if the reviews are positive, neutral, or contain short generic compliments like "good meat" or "nice interior." Minor nitpicks are fine.
         {{
-            "justified": "Yes" or "No",
-            "comments": "Brief summary of the receipts",
-            "reason": "Explain why the reviews match or fail the {original_score}/100 expectation",
-            "manual_flag": true or false,
-            "upgrade_recommended": true or false
+            "justified": "Yes",
+            "comments": "[Your summary here]",
+            "reason": "[Explain why it passes]",
+            "manual_flag": false,
+            "upgrade_recommended": false
         }}
+
+        =========================================
+        TEMPLATE 2: THE FAIL / FLAG
+        Use this ONLY if there is a severe contradiction (e.g., Score is 90+ but reviews explicitly complain about bad food, rude staff, or scams).
+        {{
+            "justified": "No",
+            "comments": "[Your summary here]",
+            "reason": "[Explain the severe contradiction]",
+            "manual_flag": true,
+            "upgrade_recommended": false
+        }}
+
+        =========================================
+        TEMPLATE 3: THE UPGRADE
+        Use this ONLY if the score is under 85 but every single review is an enthusiastic, flawless, 5-star rave.
+        {{
+            "justified": "Yes",
+            "comments": "[Your summary here]",
+            "reason": "[Explain why it deserves a higher score]",
+            "manual_flag": false,
+            "upgrade_recommended": true
+        }}
+
+        OUTPUT: Provide ONLY the chosen JSON template with the text fields filled in.
         """
 
     # 1. Try Local Ollama First
@@ -82,7 +111,6 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
         clean_text = raw_text.replace('```json', '').replace('```', '').strip()
 
         # 2. 🚨 Extract ONLY the JSON dictionary, ignoring the "thinking"
-        import re
         json_match = re.search(r'(\{.*\})', clean_text, re.DOTALL)
 
         if json_match:
@@ -90,7 +118,23 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
         else:
             raise ValueError("Qwen rambled too much and never output a valid JSON dictionary!")
 
-        return json.loads(clean_text)
+        # Parse the text into a Python dictionary
+        result = json.loads(clean_text)
+
+        # 3. 🛡️ THE PYTHON SAFETY NET
+        # Force the manual_flag to align perfectly with the justified verdict
+        if result.get("justified") == "No":
+            if not result.get("manual_flag"):
+                print("   🛡️ [Python Override] AI failed the restaurant but forgot to flag. Forcing flag to True.")
+            result["manual_flag"] = True
+
+        elif result.get("justified") == "Yes":
+            if result.get("manual_flag"):
+                print("   🛡️ [Python Override] AI passed the restaurant but left the flag on. Forcing flag to False.")
+            result["manual_flag"] = False
+
+        # Finally, return the corrected dictionary
+        return result
 
     except Exception as e:
         print(f"   ⚠️ Local Qwen failed ({e}). Gracefully degrading to Gemini...")

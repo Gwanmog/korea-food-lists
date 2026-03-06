@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import time
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -20,6 +21,7 @@ client = genai.Client(api_key=API_KEY)
 # Define your local model here so it's easy to change later
 LOCAL_MODEL = "qwen2.5:3b"
 
+
 def get_kakao_categories(keyword, strict_mode=False):
     """
     Acts as a Pre-Flight Coordinator.
@@ -31,6 +33,7 @@ def get_kakao_categories(keyword, strict_mode=False):
 
     print(f"🧠 Coordinator: Translating '{keyword}' into Kakao categories...")
 
+    # 🚨 THE FIX: Explicitly ask for a JSON Object (Dictionary) to satisfy Ollama's format requirement
     instruction = f"""
     You understand common category labels used in Kakao Map restaurant listings.
 
@@ -45,9 +48,15 @@ def get_kakao_categories(keyword, strict_mode=False):
     - NEVER return the broad top-level category "음식점".
     - Be specific (e.g., "전,부침개", "요리주점", "감자탕").
     - Do NOT return menu items unless they are commonly used as a Kakao listing category.
-    - If the keyword is broad (e.g., 분위기, 데이트, 지역명), return the most likely establishment types instead.
-    - Return ONLY a valid JSON array of strings.
-    - Maximum 3 items.
+    - If the keyword is broad, return the most likely establishment types.
+
+    OUTPUT FORMAT:
+    Return ONLY a valid JSON object with a single key "categories" containing an array of strings.
+
+    EXAMPLE:
+    {{
+        "categories": ["요리주점", "맥주,호프", "펍"]
+    }}
 
     Keyword: {keyword}
     """
@@ -60,14 +69,17 @@ def get_kakao_categories(keyword, strict_mode=False):
             timeout=30
         )
         response.raise_for_status()
-        categories = json.loads(response.json()['response'])
 
-        if isinstance(categories, list):
+        # 🚨 THE FIX: Extract the list using the dictionary key
+        result_dict = json.loads(response.json()['response'])
+        categories = result_dict.get("categories", [])
+
+        if isinstance(categories, list) and len(categories) > 0:
             categories = categories[:3]
             print(f"   ✅ Categories locked in by Local AI: {categories}")
             return categories
         else:
-            raise ValueError("Local AI did not return a JSON list.")
+            raise ValueError("Local AI returned JSON, but the 'categories' list was missing or empty.")
 
     except Exception as e:
         print(f"   ⚠️ Local AI failed ({e}). Gracefully degrading to Gemini...")
@@ -81,7 +93,13 @@ def get_kakao_categories(keyword, strict_mode=False):
                     temperature=0.1
                 )
             )
-            categories = json.loads(gemini_response.text)[:3]
+
+            result_dict = json.loads(gemini_response.text)
+            categories = result_dict.get("categories", [])[:3]
+
+            if not categories:
+                categories = [keyword]  # Ultimate fallback
+
             print(f"   ✅ Categories locked in by Gemini: {categories}")
             return categories
         except Exception as gemini_e:
@@ -105,7 +123,18 @@ def get_image_bytes(image_url):
 def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     print(f"\n🧠 Junior Analyst: Verifying '{search_keyword}' and extracting Michelin criteria...")
 
-    combined_text = "\n\n--- NEXT REVIEW ---\n\n".join([item["text"] for item in scraped_blog_data])
+    # ==========================================
+    # 🚨 THE TRUNCATION SAFETY NET
+    # Prevent Base64 HTML bloat from blowing up the 1M token window
+    # ==========================================
+    safe_texts = []
+    for item in scraped_blog_data:
+        raw_text = item.get("text", "")
+        # Cap every single blog at exactly 10,000 characters
+        safe_texts.append(raw_text[:10000])
+
+    combined_text = "\n\n--- NEXT REVIEW ---\n\n".join(safe_texts)
+    # ==========================================
 
     image_bytes = None
     for item in scraped_blog_data:
@@ -189,38 +218,70 @@ Use the exact structure below:
     full_analyst_prompt = f"{analyst_instruction}\n\nAnalyze these reviews for {restaurant_name}:\n\n{combined_text}"
     analyst_data = None
 
-    # 🚨 Gemini goes first for the massive blog posts
-    try:
-        print(f"   [Junior Analyst] Asking Cloud Gemini first...")
-        payload_contents: list[Any] = [f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"]
-        if image_bytes:
-            print("   📸 Attaching image to Gemini payload...")
-            payload_contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"))
+    analyst_data = None
+    max_retries = 3
 
-        gemini_response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
-            contents=payload_contents,
-            config=types.GenerateContentConfig(
-                system_instruction=analyst_instruction,
-                response_mime_type="application/json",
-                temperature=0.2
-            )
-        )
-        analyst_data = json.loads(gemini_response.text)
-        print("   ✅ Gemini successfully extracted facts!")
-
-    except Exception as e:
-        print(f"   ⚠️ Gemini failed ({e}). Falling back to Local {LOCAL_MODEL}...")
+    for attempt in range(max_retries):
         try:
-            # 🚨 Qwen gets text ONLY. No image attached to prevent Ollama crashes.
-            payload = {"model": LOCAL_MODEL, "prompt": full_analyst_prompt, "stream": False, "format": "json"}
-            response = requests.post('http://localhost:11434/api/generate', json=payload, timeout=90)
-            response.raise_for_status()
-            analyst_data = json.loads(response.json()['response'])
-            print("   ✅ Local AI successfully extracted facts!")
-        except Exception as local_e:
-            print(f"   ❌ Both AI systems failed Junior Analyst stage: {local_e}")
-            return None
+            print(f"   [Junior Analyst] Asking Cloud Gemini (Attempt {attempt + 1}/{max_retries})...")
+            payload_contents: list[Any] = [f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"]
+            if image_bytes:
+                payload_contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"))
+
+            gemini_response = client.models.generate_content(
+                model='gemini-2.5-flash-lite',
+                contents=payload_contents,
+                config=types.GenerateContentConfig(
+                    system_instruction=analyst_instruction,
+                    response_mime_type="application/json",
+                    temperature=0.2
+                )
+            )
+            analyst_data = json.loads(gemini_response.text)
+            print("   ✅ Gemini successfully extracted facts!")
+            break  # Success! Break out of the retry loop
+
+        except Exception as e:
+            error_str = str(e)
+            if "503" in error_str and attempt < max_retries - 1:
+                print(f"   ⏳ Server overloaded (503). Waiting 3 seconds before retry...")
+                time.sleep(3)
+            else:
+                print(f"   ⚠️ Cloud AI failed permanently ({e}). Falling back to Local {LOCAL_MODEL}...")
+
+                # --- LOCAL FALLBACK BLOCK GOES HERE ---
+                try:
+                    payload = {"model": LOCAL_MODEL, "prompt": full_analyst_prompt, "stream": False, "format": "json"}
+                    response = requests.post('http://localhost:11434/api/generate', json=payload, timeout=90)
+                    response.raise_for_status()
+                    analyst_data = json.loads(response.json()['response'])
+                    print("   ✅ Local AI successfully extracted facts!")
+                except Exception as local_e:
+                    print(f"   ❌ Both AI systems failed Junior Analyst stage: {local_e}")
+                    return None
+                break  # Break out of the loop after local attempt
+
+    # ==========================================
+    # 🛡️ THE BULLETPROOF DATA UNWRAPPER
+    # Guaranteed to yield a dictionary no matter how the AI wraps it
+    # ==========================================
+    if isinstance(analyst_data, str):
+        try:
+            analyst_data = json.loads(analyst_data)
+        except:
+            pass
+
+    # Unwrap lists (and nested lists!)
+    while isinstance(analyst_data, list):
+        if len(analyst_data) > 0:
+            analyst_data = analyst_data[0]
+        else:
+            analyst_data = {}
+
+    # Final Failsafe
+    if not isinstance(analyst_data, dict):
+        analyst_data = {}
+    # ==========================================
 
     if not analyst_data.get("serves_target_food", False):
         print(f"   🛑 REJECTED: Does not focus on {search_keyword}.")
@@ -291,7 +352,6 @@ Use the exact structure below:
 
     full_critic_prompt = f"{critic_instruction}\n\nCritique this summary for {restaurant_name}:\n\n{extracted_facts}"
 
-    # 🚨 FIX 3: Gemini scores first, Qwen backs up
     try:
         print(f"   [Head Critic] Asking Cloud Gemini first...")
         gemini_response = client.models.generate_content(
