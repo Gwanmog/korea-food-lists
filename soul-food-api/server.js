@@ -43,9 +43,9 @@ async function searchFAISS(query) {
 
         return new Promise((resolve) => {
             const pythonScript = path.resolve(process.cwd(), 'search_vectors.py');
-
+            const faissIndexPath = path.resolve(process.cwd(), 'data/restaurant_vectors.index');
             // 🚨 MUST be python3 for the Linux Docker container!
-            const pythonProcess = spawn('python3', [pythonScript]);
+            const pythonProcess = spawn('python3', [pythonScript, faissIndexPath]);
 
             pythonProcess.stdin.write(JSON.stringify(vector));
             pythonProcess.stdin.end();
