@@ -21,19 +21,28 @@ KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 # ⚙️ THE SEOUL MASTER QUEUE (ALL 25 DISTRICTS)
 # ==========================================
 NEIGHBORHOODS = [
-    "서교동", "창천동", "대현동", "연남동", "망원동", "합정동", "상수동", "공덕동", "상암동",
-    "이태원동", "용산동2가",
-    "권농동", "익선동", "삼청동", "을지로", "명동", "신당동", "창신동",
-    "종로3가", "돈의동", "낙원동", "충무로", "필동", "광희동", "을지로6가",
-    "산림동", "인현동", "초동", "입정동", "예지동",
-    "역삼동", "서초동", "압구정동", "신사동", "성수동", "마장동",
-    "문래동", "정릉동", "용강동"
+    "잠실동", "방이동","송파동", "석촌동", "삼전동"
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    "미스터리브루잉": ("브루어리", False),
-    "치맥":("치맥", False)
+    # Late Night & Chicken
+    "치맥": ("치맥", False),
+    "술집": ("술집", False),
+
+    # Traditional Grill
+    "삼겹살": ("삼겹살", False),
+    "돼지갈비": ("돼지갈비", False),
+    "고기집": ("고기집", False),
+
+    # Noodle Staples
+    "칼국수": ("칼국수", False),
+    "멸치국수": ("국수", False),
+    "냉면": ("냉면", False),
+    "국수": ("국수", False),
+
+    # Modern Comfort
+    "돈까스": ("돈까스", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45
@@ -277,6 +286,62 @@ if __name__ == "__main__":
 
     try:
         subprocess.run([sys.executable, "final_verdict.py"], check=True)
-        print("\n🏆 ENTIRE PIPELINE FINISHED SUCCESSFULLY!")
     except subprocess.CalledProcessError as e:
         print(f"\n❌ The Final Verdict encountered an error: {e}")
+    # 4. Trigger the Deduplicator
+    print("\n" + "=" * 50)
+    print("👯 PHASE 4: Running Dedupe Master...")
+    print("=" * 50 + "\n")
+    try:
+        subprocess.run([sys.executable, "dedupe_master.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ Deduplicator failed: {e}")
+    except FileNotFoundError:
+        print("\n❌ Could not find 'dedupe_master.py'.")
+
+    # 5. Build the Raw Map Data
+    print("\n" + "=" * 50)
+    print("🗺️ PHASE 5: Building places.geojson...")
+    print("=" * 50 + "\n")
+    try:
+        subprocess.run([sys.executable, "build_map_list.py", "build"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ Map Builder failed: {e}")
+
+    # 6. Build the FAISS Index & Inject Vector IDs
+    print("\n" + "=" * 50)
+    print("🧠 PHASE 6: Generating AI Embeddings & FAISS Index...")
+    print("=" * 50 + "\n")
+    try:
+        subprocess.run([sys.executable, "build_embeddings.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ Embeddings Engine failed: {e}")
+
+    # 7. Auto-Deploy to GitHub / Render
+    print("\n" + "=" * 50)
+    print("🚀 PHASE 7: Deploying to Production...")
+    print("=" * 50 + "\n")
+    try:
+        # Using the exact relative paths based on your project tree
+        subprocess.run(["git", "add", "site/places.geojson", "data/restaurant_vectors.index"], check=True)
+
+        # Git commit throws a non-zero exit code if there are no changes.
+        # We capture the output instead of checking=True so it doesn't crash the script.
+        commit_process = subprocess.run(
+            ["git", "commit", "-m", "🤖 Auto-deploy: Master Agent pipeline finished"],
+            capture_output=True, text=True
+        )
+
+        if commit_process.returncode == 0:
+            # Changes were committed, safe to push!
+            print("📦 Changes committed. Pushing to GitHub...")
+            subprocess.run(["git", "push"], check=True)
+            print("\n🏆 ENTIRE PIPELINE DEPLOYED SUCCESSFULLY!")
+        else:
+            print("🤷 No new restaurants or data changes to commit. Skipping push.")
+            print("\n🏆 ENTIRE PIPELINE FINISHED SUCCESSFULLY (No updates needed)!")
+
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ Git Deployment failed: {e}")
+    except FileNotFoundError:
+        print("\n❌ Git is not installed or not in the system PATH.")
