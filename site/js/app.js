@@ -445,33 +445,41 @@ async function handleOmniSubmit() {
   const text = omniInput.value.trim();
   if (!text) return;
 
-  // Add user message to UI
   addOmniMessage(text, 'user');
   omniInput.value = '';
 
-  // THE ROUTER LOGIC: Is it a simple keyword or an AI question?
-  // If it's 2 words or less, and has no question mark, treat it as a local map filter.
   const isSimpleKeyword = text.split(' ').length <= 2 && !text.includes('?');
 
   if (isSimpleKeyword) {
     addOmniMessage(`Filtering the map for "${text}"...`, 'ai');
     window.currentSearchQuery = text.toLowerCase();
-    render(); // Update the pins instantly!
+    render();
   } else {
-    // It's a complex query! Clear local filters and ask the AI.
     window.currentSearchQuery = "";
     render();
 
-    const loadingMsg = addOmniMessage('Let me look through the database...', 'ai loading');
+    const loadingMsg = addOmniMessage('Scanning restaurants in your current view...', 'ai loading');
+
+    // 🚨 THE FIX: Get the current map window coordinates
+    const bounds = map.getBounds();
+    const mapWindow = {
+      north: bounds.getNorth(),
+      south: bounds.getSouth(),
+      east: bounds.getEast(),
+      west: bounds.getWest()
+    };
 
     try {
-const response = await fetch(`${API_BASE_URL}/chat`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ userQuery: text, language: currentLang })
-});
+      const response = await fetch(`${API_BASE_URL}/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Send the map window coordinates along with the query
+        body: JSON.stringify({
+          userQuery: text,
+          language: currentLang,
+          mapWindow: mapWindow
+        })
+      });
 
       const data = await response.json();
       loadingMsg.remove();
@@ -479,12 +487,11 @@ const response = await fetch(`${API_BASE_URL}/chat`, {
       if (data.reply) {
         addOmniMessage(data.reply, 'ai');
       } else {
-        addOmniMessage("Sorry, something went wrong on my end.", 'ai');
+        addOmniMessage("Sorry, I couldn't find anything in this area.", 'ai');
       }
     } catch (err) {
       loadingMsg.remove();
-      addOmniMessage("Error connecting to the AI brain. Is the server running?", 'ai');
-      console.error(err);
+      addOmniMessage("Error connecting to the AI brain.", 'ai');
     }
   }
 }
