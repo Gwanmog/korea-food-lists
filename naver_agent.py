@@ -24,26 +24,32 @@ HEADERS = {
 }
 
 
-def search_naver_blogs(restaurant_name, location="서울"):
-    """Finds the top Naver Blog URLs for the restaurant."""
-    print(f"\n🤖 Agent Task 1: Searching Naver for '{location} {restaurant_name}'...")
-
-    query = f"{location} {restaurant_name}"
-    encoded_query = urllib.parse.quote(query)
-    url = f"https://openapi.naver.com/v1/search/blog.json?query={encoded_query}&display=10&sort=sim"
-
-    auth_headers = {
-        "X-Naver-Client-Id": CLIENT_ID,
-        "X-Naver-Client-Secret": CLIENT_SECRET
+def search_naver_blogs(restaurant_name, neighborhood):
+    url = "https://openapi.naver.com/v1/search/blog.json"
+    query = f"{neighborhood} {restaurant_name}"
+    params = {
+        "query": query,
+        "display": 10,
+        "sort": "sim"
     }
 
-    response = requests.get(url, headers=auth_headers)
+    # 2. Pull the actual keys from the loaded environment
+    headers = {
+        "X-Naver-Client-Id": os.getenv("NAVER_CLIENT_ID"),
+        "X-Naver-Client-Secret": os.getenv("NAVER_CLIENT_SECRET")
+    }
 
-    if response.status_code == 200:
-        return response.json()['items']
-    else:
-        print(f"❌ API Error: {response.status_code}")
-        return None
+    try:
+        response = requests.get(url, headers=headers, params=params, timeout=10)
+        response.raise_for_status()
+        return response.json().get('items', [])
+
+    except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout):
+        print(f"⚠️  TIMEOUT: Naver ignored '{restaurant_name}'. Skipping...")
+        return []
+    except requests.exceptions.RequestException as e:
+        print(f"❌  ERROR: Naver API failed for '{restaurant_name}': {e}")
+        return []
 
 
 def scrape_naver_blog_text(blog_url):

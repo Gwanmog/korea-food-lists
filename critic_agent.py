@@ -130,10 +130,16 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     safe_texts = []
     for item in scraped_blog_data:
         raw_text = item.get("text", "")
-        # Cap every single blog at exactly 10,000 characters
-        safe_texts.append(raw_text[:10000])
 
-    combined_text = "\n\n--- NEXT REVIEW ---\n\n".join(safe_texts)
+        # 1. Swap double quotes for single quotes (prevents JSON string breaks)
+        # 2. Strip raw newlines and tabs
+        clean_text = raw_text.replace('"', "'").replace('\n', ' ').replace('\t', ' ')
+
+        # 3. Cap every single blog at exactly 10,000 characters
+        safe_texts.append(clean_text[:10000])
+
+    # Join with a clean delimiter
+    combined_text = " --- NEXT REVIEW --- ".join(safe_texts)
     # ==========================================
 
     image_bytes = None
