@@ -21,28 +21,13 @@ KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 # ⚙️ THE SEOUL MASTER QUEUE (ALL 25 DISTRICTS)
 # ==========================================
 NEIGHBORHOODS = [
-    "잠실동", "방이동","송파동", "석촌동", "삼전동"
+    "잠실동"
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
     # Late Night & Chicken
-    "치맥": ("치맥", False),
-    "술집": ("술집", False),
-
-    # Traditional Grill
-    "삼겹살": ("삼겹살", False),
-    "돼지갈비": ("돼지갈비", False),
-    "고기집": ("고기집", False),
-
-    # Noodle Staples
-    "칼국수": ("칼국수", False),
-    "멸치국수": ("국수", False),
-    "냉면": ("냉면", False),
-    "국수": ("국수", False),
-
-    # Modern Comfort
-    "돈까스": ("돈까스", False)
+    "치맥": ("치맥", False)
 }
 
 MAX_PLACES_PER_SEARCH = 45
@@ -111,16 +96,29 @@ def append_to_csv(row_dict):
         # Write the row. The dictionary won't have the 4 new keys, so DictWriter will automatically leave those CSV cells blank!
         writer.writerow(row_dict)
 
-def load_existing_restaurants():
-    """Reads the CSV to memorize places we've already scored across multiple runs."""
-    seen_names = set()
-    if os.path.isfile(CSV_FILENAME):
-        with open(CSV_FILENAME, 'r', encoding='utf-8-sig') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                seen_names.add(row.get("Restaurant Name"))
-    return seen_names
 
+def load_existing_restaurants():
+    """Reads ALL CSVs to memorize places we've already scored across multiple runs."""
+    seen_names = set()
+
+    # Check all three stages of the pipeline so we never re-scrape anything
+    files_to_check = [
+        CSV_FILENAME,  # 1. The live staging queue
+        os.path.join(script_dir, 'neon_guide_audited_final.csv'),  # 2. The clean production list
+        os.path.join(script_dir, 'needs_human_attention.csv')  # 3. The quarantine pile
+    ]
+
+    for file_path in files_to_check:
+        if os.path.isfile(file_path):
+            with open(file_path, 'r', encoding='utf-8-sig') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    name = row.get("Restaurant Name")
+                    if name:
+                        seen_names.add(name)
+
+    print(f"🧠 Master Agent Memory: {len(seen_names)} previously seen places will be skipped.")
+    return seen_names
 
 def is_strong_hit(place, keyword, valid_categories, expected_neighborhood):
     """
@@ -288,6 +286,18 @@ if __name__ == "__main__":
         subprocess.run([sys.executable, "final_verdict.py"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"\n❌ The Final Verdict encountered an error: {e}")
+
+    # 3.5. Trigger the Appellate Court
+    print("\n" + "=" * 50)
+    print("⚖️ PHASE 3.5: Activating the Appellate Court for Quarantined Data...")
+    print("=" * 50 + "\n")
+    try:
+        subprocess.run([sys.executable, "appellate_court.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ Appellate Court failed: {e}")
+    except FileNotFoundError:
+        print("\n❌ Could not find 'appellate_court.py'.")
+
     # 4. Trigger the Deduplicator
     print("\n" + "=" * 50)
     print("👯 PHASE 4: Running Dedupe Master...")

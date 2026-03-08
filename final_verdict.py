@@ -12,8 +12,10 @@ def supreme_court_audit(csv_path, output_path):
     scraper_error_str = "Scraper reached the review page, but only found dates, UI buttons, or boilerplate text"
 
     for idx, row in df.iterrows():
-        if row['Needs Manual Review'] in [True, 'True', 1.0, '1']:
-            reason = str(row['Auditor Reason']).lower()
+        # Safely check if it was flagged for review
+        review_flag = str(row['Needs Manual Review']).strip().lower()
+        if review_flag in ['true', '1.0', '1']:
+            reason = str(row.get('Auditor Reason', '')).lower()
 
             # 1. Missing scraper data
             if scraper_error_str.lower() in reason:
@@ -43,14 +45,14 @@ def supreme_court_audit(csv_path, output_path):
                 df.at[idx, 'Needs Manual Review'] = 'False'
                 df.at[idx, 'Justification'] = str(
                     df.at[idx, 'Justification']) + " (Supreme Court Verified: Reviews confirm exceptional quality)."
-            else:
-                df.at[idx, 'Needs Manual Review'] = 'False'
 
-    # ==========================================
+            # 4. Unknown anomaly. Leave 'Needs Manual Review' as True so it gets quarantined!
+            else:
+                pass
+
+                # ==========================================
     # 🍺 MANUAL DOMAIN KNOWLEDGE OVERRIDES
     # ==========================================
-    # Add any manual audits here. The key just needs to be a unique part of the restaurant's name.
-
     MANUAL_OVERRIDES = {
         "서울브루어리 합정": {
             "Score": 90,
@@ -261,21 +263,41 @@ def supreme_court_audit(csv_path, output_path):
             "Justification": "Supreme Court Verified: A craft beer spot definitely worth a stop if you're in the area."
         }
     }
-        # Just add a comma and drop your next audited brewery right here!
 
     # Apply the overrides
     for name_key, override_data in MANUAL_OVERRIDES.items():
         # Find all rows that contain the name_key
-        mask = df['Restaurant Name'].str.contains(name_key, na=False)
+        mask = df['Restaurant Name'].astype(str).str.contains(name_key, na=False)
         for i in df[mask].index:
             df.at[i, 'Score'] = override_data["Score"]
             df.at[i, 'Justification'] = override_data["Justification"]
             df.at[i, 'Needs Manual Review'] = 'False'
             print(f"   🍺 Applied manual brewery override for: {df.at[i, 'Restaurant Name']}")
 
-    # Save the audited file
-    df.to_csv(output_path, index=False)
-    print(f"✅ Supreme Court Audit Complete! Clean file saved as {output_path}")
+    # ==========================================
+    # 🛡️ THE QUARANTINE GATE (FAIL CLOSED)
+    # ==========================================
+    # Force 'Score' to be a number so we can safely filter
+    df['Score'] = pd.to_numeric(df['Score'], errors='coerce').fillna(0)
+    df['Needs Manual Review'] = df['Needs Manual Review'].astype(str).str.strip().str.lower()
+
+    # Create masks for what should be quarantined
+    needs_review_mask = df['Needs Manual Review'].isin(['true', '1', '1.0', 'rescrape'])
+    low_score_mask = df['Score'] < 80
+
+    quarantine_mask = needs_review_mask | low_score_mask
+
+    quarantine_df = df[quarantine_mask]
+    clean_df = df[~quarantine_mask]
+
+    # Save the files
+    if not quarantine_df.empty:
+        quarantine_df.to_csv('needs_human_attention.csv', index=False, encoding='utf-8-sig')
+        print(f"\n⚠️ QUARANTINE: Diverted {len(quarantine_df)} unverified/low-score places.")
+        print(f"   (Saved to 'needs_human_attention.csv')")
+
+    clean_df.to_csv(output_path, index=False, encoding='utf-8-sig')
+    print(f"\n✅ Supreme Court Audit Complete! {len(clean_df)} pristine places saved to {output_path}")
 
 
 if __name__ == "__main__":

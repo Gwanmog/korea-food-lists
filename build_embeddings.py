@@ -45,65 +45,53 @@ def build_retrieval_system():
 
     features = geojson_data.get('features', [])
 
-    # Check for an existing FAISS index, or create a new one
+    # 🚨 THE FIX: Always create a brand new FAISS index from scratch
     embedding_dimension = 3072
-    if os.path.exists(FAISS_INDEX_PATH):
-        print(f"📂 Loading existing FAISS index from {FAISS_INDEX_PATH}...")
-        index = faiss.read_index(FAISS_INDEX_PATH)
-    else:
-        print("✨ Creating brand new FAISS index...")
-        index = faiss.IndexFlatL2(embedding_dimension)
+    print("✨ Creating fresh FAISS index to perfectly match the map...")
+    index = faiss.IndexFlatL2(embedding_dimension)
 
     new_embeddings_count = 0
 
-    # The Incremental Loop
+    # Process every feature in the fresh map
     for idx, feature in enumerate(features):
         props = feature.get('properties', {})
-
-        # SKIP if we already embedded this restaurant!
-        if 'vector_id' in props:
-            continue
-
         name = props.get('name_ko', props.get('name', 'Unknown'))
 
-        # 🚨 THE DATA QUALITY GATE
-        # Handle nulls safely by using `or ""`
+        # Handle nulls safely
         category = props.get('category') or ""
         cuisine = props.get('cuisine') or ""
         desc = props.get('description') or props.get('description_en') or ""
         verdict = props.get('justification') or ""
 
-        # If we have virtually no text, skip embedding so we don't pollute FAISS with garbage data
+        # Data Quality Gate
         if len(desc.strip()) < 10 and len(cuisine.strip()) == 0:
-            print(f"⏭️ Skipping {name}: Not enough rich text to embed yet. Waiting for AI scrape.")
+            print(f"⏭️ Skipping {name}: Not enough rich text to embed.")
             continue
 
         print(f"🧠 Generating embedding for: {name}")
 
-        # Feature Engineering: Combine available signals
         rich_text = f"Name: {name}. Category: {category} {cuisine}. Vibe & Food: {desc}. Verdict: {verdict}"
-
         vector = get_embedding(rich_text)
 
         if vector:
             vector_np = np.array([vector], dtype=np.float32)
             index.add(vector_np)
 
-            # Save the ID back to the GeoJSON properties
+            # Save the new ID back to the GeoJSON properties
             props['vector_id'] = index.ntotal - 1
             new_embeddings_count += 1
 
-    # Save everything back to disk
+    # Overwrite everything on disk
     if new_embeddings_count > 0:
-        print(f"\n💾 Saving {new_embeddings_count} new vectors to FAISS...")
+        print(f"\n💾 Saving {new_embeddings_count} perfectly synced vectors to FAISS...")
+        # This completely overwrites the old .index file
         faiss.write_index(index, FAISS_INDEX_PATH)
 
         with open(DATA_PATH, 'w', encoding='utf-8') as f:
             json.dump(geojson_data, f, ensure_ascii=False, indent=2)
         print("✅ Live map data updated with vector IDs!")
     else:
-        print("\n👍 No new restaurants found. FAISS index is already up to date.")
-
+        print("\n👍 No valid restaurants found to embed.")
 
 if __name__ == "__main__":
     build_retrieval_system()

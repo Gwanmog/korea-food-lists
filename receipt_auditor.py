@@ -153,7 +153,7 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
             clean_text = gemini_response.text.replace('```json', '').replace('```', '').strip()
             return json.loads(clean_text)
         except Exception as gemini_e:
-            print(f"   ❌ Both Local AI and Gemini failed: {gemini_e}")
+            print(f"   ❌ Both Local AI and Gemini faLeiled: {gemini_e}")
             return None
 
 
@@ -296,19 +296,18 @@ def scrape_receipt_reviews(driver, neighborhood, restaurant_name):
         print(f"   ❌ Failed at Step 3: Could not extract review text. ({type(e).__name__})")
         return []
 
+
 def run_auditor_pipeline():
     if not os.path.exists(CSV_FILENAME):
         print("No CSV found!")
         return
 
-    # 1. Define the actual column names based on your data structure
     csv_headers = [
         'Neighborhood', 'Category', 'Restaurant Name', 'Score',
         'Award Level', 'Justification', 'Description EN',
         'Description KO', 'Kakao URL', 'Latitude', 'Longitude'
     ]
 
-    # 2. Load the CSV. header=None tells Pandas not to use row 1 as headers!
     df = pd.read_csv(
         CSV_FILENAME,
         on_bad_lines='skip',
@@ -316,7 +315,6 @@ def run_auditor_pipeline():
         encoding='utf-8-sig'
     )
 
-    # Strip invisible whitespace from all column headers just to be safe
     df.columns = df.columns.str.strip()
     auditor_cols = ['Auditor Comments', 'Rating Justified', 'Auditor Reason', 'Needs Manual Review',
                     'Upgrade Recommended']
@@ -325,7 +323,6 @@ def run_auditor_pipeline():
             df[col] = pd.NA
         df[col] = df[col].astype(object)
 
-    # Target the high-scorers (70+)
     high_scorers = df[pd.to_numeric(df['Score'], errors='coerce') >= 70]
     print(f"⚖️ Launching Supreme Court Auditor for {len(high_scorers)} high-scoring restaurants...")
 
@@ -335,62 +332,71 @@ def run_auditor_pipeline():
     driver = setup_driver()
 
     try:
-        # Use enumerate to create a true loop counter (starting at 1)
         for count, (idx, row) in enumerate(high_scorers.iterrows(), start=1):
-            justified_val = str(row.get('Rating Justified')).strip()
-            # 🚨 THE RETHINK LOOPHOLE: Skip if it has a value AND that value is not "No"
-            if pd.notna(row.get('Rating Justified')) and justified_val != '' and justified_val != 'No':
-                print(f"⏭️ Skipping '{row['Restaurant Name']}' - Already audited ({justified_val}).")
-                continue
 
-            neighborhood = row['Neighborhood']
-            name = row['Restaurant Name']
-            score = row['Score']
+            # 🚨 THE MASTER LOOP TRY-BLOCK 🚨
+            try:
+                justified_val = str(row.get('Rating Justified')).strip()
+                if pd.notna(row.get('Rating Justified')) and justified_val != '' and justified_val != 'No':
+                    print(f"⏭️ Skipping '{row['Restaurant Name']}' - Already audited ({justified_val}).")
+                    continue
 
-            receipts = scrape_receipt_reviews(driver, neighborhood, name)
+                neighborhood = row['Neighborhood']
+                name = row['Restaurant Name']
+                score = row['Score']
 
-            if receipts:
-                receipts_joined = " | ".join(receipts)
-                verdict = analyze_receipts_with_fallback(name, score, receipts_joined)
+                receipts = scrape_receipt_reviews(driver, neighborhood, name)
 
-                if verdict:
-                    df.at[idx, 'Auditor Comments'] = verdict.get('comments', '')
-                    df.at[idx, 'Rating Justified'] = verdict.get('justified', '')
-                    df.at[idx, 'Auditor Reason'] = verdict.get('reason', '')
-                    df.at[idx, 'Needs Manual Review'] = verdict.get('manual_flag', False)
-                    df.at[idx, 'Upgrade Recommended'] = verdict.get('upgrade_recommended', False)
+                if receipts:
+                    receipts_joined = " | ".join(receipts)
+                    verdict = analyze_receipts_with_fallback(name, score, receipts_joined)
 
-                    print(
-                        f"   📝 Verdict: {verdict.get('justified')} | Flagged: {verdict.get('manual_flag')} | Upgrade: {verdict.get('upgrade_recommended')}")
+                    if verdict:
+                        df.at[idx, 'Auditor Comments'] = verdict.get('comments', '')
+                        df.at[idx, 'Rating Justified'] = verdict.get('justified', '')
+                        df.at[idx, 'Auditor Reason'] = verdict.get('reason', '')
+                        df.at[idx, 'Needs Manual Review'] = verdict.get('manual_flag', False)
+                        df.at[idx, 'Upgrade Recommended'] = verdict.get('upgrade_recommended', False)
+
+                        print(
+                            f"   📝 Verdict: {verdict.get('justified')} | Flagged: {verdict.get('manual_flag')} | Upgrade: {verdict.get('upgrade_recommended')}")
+                        df.to_csv(CSV_FILENAME, index=False, encoding='utf-8-sig')
+
+                else:
+                    print("   ⚠️ No valid text extracted. Bypassing AI and flagging for manual review.")
+                    df.at[idx, 'Auditor Comments'] = "No valid reviews found."
+                    df.at[idx, 'Rating Justified'] = "Unknown"
+                    df.at[
+                        idx, 'Auditor Reason'] = "Scraper reached the review page, but only found dates, UI buttons, or boilerplate text. Needs human verification."
+                    df.at[idx, 'Needs Manual Review'] = True
+                    df.at[idx, 'Upgrade Recommended'] = False
                     df.to_csv(CSV_FILENAME, index=False, encoding='utf-8-sig')
 
-            else:
-                # 🚨 THE NEW TRAP: If it only found UI junk (or nothing at all), flag it immediately!
-                print("   ⚠️ No valid text extracted. Bypassing AI and flagging for manual review.")
+                time.sleep(random.uniform(3.5, 6.2))
 
-                df.at[idx, 'Auditor Comments'] = "No valid reviews found."
-                df.at[idx, 'Rating Justified'] = "Unknown"
-                df.at[
-                    idx, 'Auditor Reason'] = "Scraper reached the review page, but only found dates, UI buttons, or boilerplate text. Needs human verification."
-                df.at[idx, 'Needs Manual Review'] = True
-                df.at[idx, 'Upgrade Recommended'] = False
+                if count % 10 == 0:
+                    pause_time = random.uniform(60, 120)
+                    print(
+                        f"☕ Stealth Mode: Completed {count} searches. Taking a {int(pause_time)} second coffee break to fool Naver...")
+                    time.sleep(pause_time)
 
-                df.to_csv(CSV_FILENAME, index=False, encoding='utf-8-sig')
-
-            # Sleeps for a random amount of time between 3.5 and 6.2 seconds
-            time.sleep(random.uniform(3.5, 6.2))
-
-            # The Coffee Break: Use the 'count' variable instead of 'idx'
-            if count % 10 == 0:
-                pause_time = random.uniform(60, 120)
-                print(
-                    f"☕ Stealth Mode: Completed {count} searches. Taking a {int(pause_time)} second coffee break to fool Naver...")
-                time.sleep(pause_time)
+            # 🚨 THE SANDBOX CATCHER 🚨
+            except Exception as loop_e:
+                print(f"   ❌ FATAL BROWSER CRASH on '{row['Restaurant Name']}': {loop_e}")
+                print("   🔄 Restarting browser driver to prevent cascade failure...")
+                try:
+                    driver.quit()
+                except:
+                    pass
+                time.sleep(2)
+                driver = setup_driver()  # Spin up a fresh, clean browser
 
     finally:
-        driver.quit()
+        try:
+            driver.quit()
+        except:
+            pass
         print("\n🏁 Audit Complete!")
-
 
 if __name__ == "__main__":
     run_auditor_pipeline()
