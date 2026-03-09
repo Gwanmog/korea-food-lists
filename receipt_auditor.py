@@ -31,29 +31,57 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
     """Tries Qwen locally via Ollama. Falls back to Gemini if Ollama fails."""
 
     prompt = f"""
-        You are a restaurant auditor comparing the AI's expected Score against the Customer Receipts.
+        You are a restaurant receipt auditor. Your ONLY job is to detect when an AI score is SEVERELY CONTRADICTED by real customer reviews.
+
+        You are NOT re-scoring the restaurant. You are NOT penalizing minor flaws or preferences.
+        You are asking one question: "Do these reviews expose an obvious lie in the score?"
 
         Restaurant Name: {restaurant_name}
         AI Score: {original_score}/100
         Customer Receipts: {receipts_text}
 
-        INSTRUCTION:
-        Read the reviews and pick EXACTLY ONE of the three JSON templates below.
-        
-        Copy the template exactly and only replace the text fields.
-        You may ONLY replace the text inside:
-        "comments"
-        "reason"
-
-        All other JSON values must remain identical to the template.
-        Do NOT change any boolean values.
-        Do NOT invent new combinations.
-        
-        If your output does not exactly match one of the templates, the result is INVALID.
+        =========================================
+        STEP 1: UNDERSTAND WHAT THE SCORE MEANS
+        =========================================
+        A score of 70-79 = decent spot with real flaws. Mixed reviews, "just okay" comments, and some complaints are NORMAL and EXPECTED. Do NOT flag.
+        A score of 80-87 = genuinely good place. Occasional complaints are fine. Only flag if MOST reviews describe serious problems.
+        A score of 88-100 = exceptional. Flag if reviews are mediocre or show consistent serious complaints.
 
         =========================================
-        TEMPLATE 1: THE PASS (DEFAULT)
-        Use this if the reviews are positive, neutral, or contain short generic compliments like "good meat" or "nice interior." Minor nitpicks are fine.
+        STEP 2: THE FAIL TEST — ALL THREE MUST BE TRUE TO USE TEMPLATE 2
+        =========================================
+        Condition A: The AI score is 83 or higher.
+        Condition B: MULTIPLE reviews (not just one) describe bad food, hostile staff, food safety issues, or outright fraud.
+        Condition C: The complaints are SERIOUS — not just preferences or minor inconveniences.
+
+        THE FOLLOWING ARE NOT SERIOUS COMPLAINTS — DO NOT FLAG FOR THESE:
+        - Wait times or long lines
+        - Portion size being "a bit small"
+        - Price being "a bit expensive"
+        - One negative review among mostly positive ones
+        - Staff being busy or not super friendly
+        - Noise level or seating comfort
+        - A kiosk, screen, or environment issue
+        - "Could be better" or "room for improvement" comments
+        - Reviews that are mixed but lean positive overall
+
+        IF IN DOUBT → USE TEMPLATE 1. The AI score was carefully calculated. Trust it unless the contradiction is severe and obvious.
+
+        =========================================
+        STEP 3: THE UPGRADE TEST — USE TEMPLATE 3 ONLY IF:
+        =========================================
+        The score is under 85 AND the majority of reviews are enthusiastically positive with specific praise about food quality, taste, or craft.
+
+        =========================================
+        INSTRUCTION
+        =========================================
+        Pick EXACTLY ONE template. Copy it exactly. Only replace the text inside "comments" and "reason".
+        Do NOT change any boolean values. Do NOT invent new combinations.
+        If your output does not exactly match one template, the result is INVALID.
+
+        =========================================
+        TEMPLATE 1: THE PASS (DEFAULT — use this when in doubt)
+        Use this if reviews are positive, neutral, mixed-but-leaning-positive, or contain only minor nitpicks.
         {{
             "justified": "Yes",
             "comments": "[Your summary here]",
@@ -64,27 +92,27 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
 
         =========================================
         TEMPLATE 2: THE FAIL / FLAG
-        Use this ONLY if there is a severe contradiction (e.g., Score is 90+ but reviews explicitly complain about bad food, rude staff, or scams).
+        Use ONLY if ALL THREE conditions above are met: score is 83+, MULTIPLE reviews describe BAD FOOD or HOSTILE STAFF or FRAUD, and the complaints are serious.
         {{
             "justified": "No",
             "comments": "[Your summary here]",
-            "reason": "[Explain the severe contradiction]",
+            "reason": "[Name the specific serious complaints that contradict the score]",
             "manual_flag": true,
             "upgrade_recommended": false
         }}
 
         =========================================
         TEMPLATE 3: THE UPGRADE
-        Use this ONLY if the score is under 85 but every single review is an enthusiastic, flawless, 5-star rave.
+        Use ONLY if score is under 85 AND the majority of reviews are enthusiastically positive with specific food praise.
         {{
             "justified": "Yes",
             "comments": "[Your summary here]",
-            "reason": "[Explain why it deserves a higher score]",
+            "reason": "[Explain why the reviews suggest a higher score is warranted]",
             "manual_flag": false,
             "upgrade_recommended": true
         }}
 
-        OUTPUT: Provide ONLY the chosen JSON template with the text fields filled in.
+        OUTPUT: Provide ONLY the chosen JSON template with the text fields filled in. No other text.
         """
 
     # 1. Try Local Ollama First

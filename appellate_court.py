@@ -3,10 +3,12 @@ import json
 import csv
 import time
 import pandas as pd
+from typing import Any
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 from naver_agent import search_naver_blogs, scrape_naver_blog_text
+from critic_agent import get_image_bytes
 
 # 1. Setup and Auth
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -21,24 +23,34 @@ CLEAN_FILE = 'neon_guide_audited_final.csv'
 
 
 def deep_data_sweep(restaurant_name, neighborhood, target_count=12):
-    """Scrapes a massive amount of blogs to get a definitive consensus."""
+    """Scrapes a massive amount of blogs to get a definitive consensus.
+    Returns (combined_text, image_bytes) — image_bytes is the first bottom image found, or None."""
     print(f"   🕵️ Initiating Deep Sweep for {restaurant_name}...")
     blog_results = search_naver_blogs(restaurant_name, neighborhood)
 
     if not blog_results:
-        return ""
+        return "", None
 
     safe_texts = []
-    # Grab up to the target_count (way more than the Master Agent)
+    image_bytes = None
+
     for blog in blog_results[:target_count]:
         url = blog['link']
         blog_data = scrape_naver_blog_text(url)
         if blog_data and "text" in blog_data:
             clean_text = blog_data["text"].replace('"', "'").replace('\n', ' ').replace('\t', ' ')
-            safe_texts.append(clean_text[:5000])  # 5k chars per blog x 12 blogs = huge context
+            safe_texts.append(clean_text[:5000])
+
+            # Grab the first usable bottom image for visual sponsorship detection
+            if image_bytes is None:
+                for img_url in blog_data.get("bottom_images", []):
+                    image_bytes = get_image_bytes(img_url)
+                    if image_bytes:
+                        break
+
         time.sleep(1)  # Be polite to Naver
 
-    return " --- NEXT REVIEW --- ".join(safe_texts)
+    return " --- NEXT REVIEW --- ".join(safe_texts), image_bytes
 
 
 def run_appellate_court():
@@ -76,7 +88,7 @@ def run_appellate_court():
             continue
 
         # 2. Gather the Deep Evidence
-        massive_text = deep_data_sweep(restaurant_name, neighborhood, target_count=10)
+        massive_text, image_bytes = deep_data_sweep(restaurant_name, neighborhood, target_count=10)
         if len(massive_text) < 1000:
             print("⚠️ Deep sweep failed to find enough data. Leaving in quarantine.")
             remaining_quarantine.append(row)
@@ -84,33 +96,78 @@ def run_appellate_court():
 
         # 3. The Chief Justice Prompt
         instruction = f"""
-        You are the Chief Justice of the Neon Guide rating system.
+        You are the Chief Justice of the Neon Guide rating system. You are a skeptical, rigorous critic — not a cheerleader.
 
-        A restaurant named '{restaurant_name}' was flagged by an automated auditor.
+        A restaurant named '{restaurant_name}' was flagged for appeal.
         - Original Score Given: {original_score}/100
         - Original Justification: {original_justification}
-        - Auditor's Reason for Flagging: {auditor_reason}
+        - Reason for Appeal: {auditor_reason}
 
-        Your job is to read a MASSIVE sample of up to 10 customer reviews and determine the absolute truth.
+        Your job is to read a large sample of customer blog posts and produce a fair, evidence-based score.
 
-        Rules:
-        1. If the auditor says the AI was "too conservative" or "flawless", and the text supports this, you MUST raise the score (e.g., to the high 80s or 90s).
-        2. If the text reveals extreme flaws, tank the score.
-        3. Assign an award level: 95-100 (3 Neon Hearts), 88-94 (2 Neon Hearts), 80-87 (1 Neon Heart), <80 (None).
+        =========================================
+        STEP 1: SPONSORSHIP AUDIT (DO THIS FIRST)
+        =========================================
+        Check for Korean sponsored content disclosures using TWO methods:
+
+        - Text Check: Scan every blog post for disclosure phrases:
+          소정의 원고료, 제품을 제공받아, 협찬, 지원받아, 무료로 제공, 서포터즈, 체험단
+        - Image Check: If an image is attached, examine it visually for the same disclosure
+          phrases (협찬, 제공받아, etc.) — many blogs use image-based disclosures instead of text.
+
+        Count how many posts are sponsored (by text OR image).
+        Calculate: sponsored_ratio = sponsored posts / total posts reviewed.
+
+        SPONSORSHIP RULE: If sponsored_ratio exceeds 50%, the final score MUST NOT exceed 84.
+        Sponsored blogs are marketing, not genuine customer feedback. Do not let them inflate the score.
+
+        =========================================
+        STEP 2: SCORE ON 5 CRITERIA (20 points each, 100 total)
+        =========================================
+        1. ingredients — Quality and sourcing of raw materials
+        2. technique — Mastery of cooking, flavor, texture, temperature control
+        3. personality — Uniqueness of the chef or concept vs. generic
+        4. value — Price relative to quality and portion
+        5. consistency — Evidence of long-term reputation and repeat customers
+
+        Be strict. A score of 80+ means genuinely good. A score of 90+ means exceptional.
+        Do not award high scores just because reviews are positive — evaluate the SUBSTANCE of what they say.
+
+        =========================================
+        STEP 3: AWARD LEVEL
+        =========================================
+        - 95-100: 3 Neon Hearts (destination-worthy, near-flawless)
+        - 88-94: 2 Neon Hearts (exceptional neighborhood staple)
+        - 80-87: 1 Neon Heart (genuinely good, minor flaws)
+        - 70-79: None (decent, worth visiting but not award-worthy)
+        - <70: None (average or worse — do not pardon)
 
         Output ONLY valid JSON:
         {{
-            "final_score": (int),
+            "sponsored_ratio": "X/Y sponsored",
+            "score_breakdown": {{
+                "ingredients": (int 0-20),
+                "technique": (int 0-20),
+                "personality": (int 0-20),
+                "value": (int 0-20),
+                "consistency": (int 0-20)
+            }},
+            "final_score": (int, MUST equal exact sum of the 5 categories, and MUST NOT exceed 84 if sponsored_ratio > 50%),
             "award_level": "string",
-            "appellate_justification": "1 sentence explaining why you overturned or upheld the original score based on the deep data."
+            "appellate_justification": "1-2 sentences citing specific evidence from the reviews."
         }}
         """
 
         try:
             print("   🧠 Asking Chief Justice Gemini for a final verdict...")
+            payload_contents: list[Any] = [f"Deep Data for {restaurant_name}:\n\n{massive_text}"]
+            if image_bytes:
+                payload_contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"))
+                print("   🖼️ Bottom image attached for visual sponsorship check.")
+
             response = client.models.generate_content(
-                model='gemini-2.5-flash',  # We can use flash here because the prompt is highly targeted
-                contents=f"Deep Data for {restaurant_name}:\n\n{massive_text}",
+                model='gemini-2.5-flash',
+                contents=payload_contents,
                 config=types.GenerateContentConfig(
                     system_instruction=instruction,
                     response_mime_type="application/json",
@@ -121,7 +178,8 @@ def run_appellate_court():
             verdict = json.loads(response.text)
             new_score = verdict.get('final_score', 0)
 
-            print(f"   ✅ VERDICT REACHED. New Score: {new_score}/100")
+            sponsored = verdict.get('sponsored_ratio', 'unknown')
+            print(f"   ✅ VERDICT REACHED. New Score: {new_score}/100 | Sponsorship: {sponsored}")
             print(f"   📝 Justification: {verdict.get('appellate_justification')}")
 
             # 4. Process the Verdict
@@ -130,7 +188,7 @@ def run_appellate_court():
             row['AI Justification'] = verdict.get('appellate_justification', '')
 
             # Only pardon it if the new score is decent. If it's garbage, leave it in quarantine.
-            if new_score >= 80:
+            if new_score >= 70:
                 row['Needs Manual Review'] = 'False'
                 pardoned_rows.append(row)
                 print("   🕊️ PARDONED: Moving back to the clean deployment list.")

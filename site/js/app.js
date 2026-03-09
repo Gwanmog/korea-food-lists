@@ -1,3 +1,4 @@
+import { logSearchResults, logPinHover, logPinClick } from './interactionLogger.js';
 // --- UTILS ---
 const $ = id => document.getElementById(id);
 const enc = encodeURIComponent;
@@ -301,6 +302,16 @@ function render() {
         fillOpacity: 0.9
       });
       feature.layer = marker;
+      // --- DEEPFM: TRACK PIN HOVERS AND CLICKS ---
+      marker.on('mouseover', () => {
+        if (p.vector_id !== undefined) logPinHover(p.vector_id);
+      });
+
+      marker.on('click', () => {
+        if (p.vector_id !== undefined) logPinClick(p.vector_id);
+      });
+      // -------------------------------------------
+
       return marker;
     },
     onEachFeature: (feature, layer) => {
@@ -352,8 +363,25 @@ function render() {
         }
       };
 
-      // CLICK HANDLER
+// CLICK HANDLER
       div.onclick = () => {
+        // --- DEEPFM: TRACK THE BATCH (1 Click, 99 Zeros) ---
+        if (p.vector_id !== undefined) {
+          // Grab all vector IDs currently visible in the sidebar
+          const allVisibleIds = visible
+            .slice(0, 100)
+            .map(item => item.properties.vector_id)
+            .filter(id => id !== undefined);
+
+          // Fire the batch log!
+          logSearchResults(
+            allVisibleIds,           // The Sea of Zeros
+            p.vector_id,             // The chosen one
+            window.currentSearchQuery // The active filter (if any)
+          );
+        }
+        // ---------------------------------------------------
+
         window.openRestaurantPopup(p.name);
         if (window.innerWidth < 640 && $('listWrap')) {
           $('listWrap').classList.add('collapsed');
@@ -529,10 +557,12 @@ window.openRestaurantPopup = function(name) {
             }
         });
 
-        // 4. On mobile, collapse the chat/list so the user can see the map
-        if (window.innerWidth < 640) {
-            if ($('omnibox')) $('omnibox').classList.remove('expanded');
-            if ($('listWrap')) $('listWrap').classList.add('collapsed');
+        // 4. Always collapse the chat so the popup is visible, also hide the list on mobile
+        if (omnibox)    omnibox.classList.remove('expanded');
+        if (omniChat)   omniChat.classList.add('hidden');
+        if (omniClose)  omniClose.classList.add('hidden');
+        if (window.innerWidth < 640 && $('listWrap')) {
+            $('listWrap').classList.add('collapsed');
         }
     } else {
         console.warn(`Could not find restaurant: ${name}`);

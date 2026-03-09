@@ -283,9 +283,14 @@ def supreme_court_audit(csv_path, output_path):
 
     # Create masks for what should be quarantined
     needs_review_mask = df['Needs Manual Review'].isin(['true', '1', '1.0', 'rescrape'])
-    low_score_mask = df['Score'] < 80
+    low_score_mask = df['Score'] < 70
+    upgrade_mask = df['Upgrade Recommended'].astype(str).str.strip().str.lower().isin(['true', '1', '1.0'])
 
-    quarantine_mask = needs_review_mask | low_score_mask
+    quarantine_mask = needs_review_mask | low_score_mask | upgrade_mask
+
+    upgrade_count = upgrade_mask.sum()
+    if upgrade_count > 0:
+        print(f"   ⬆️ {upgrade_count} restaurants flagged for upgrade routed to Appellate Court.")
 
     quarantine_df = df[quarantine_mask]
     clean_df = df[~quarantine_mask]
