@@ -74,31 +74,69 @@ async function searchFAISS(query) {
 // 4. The Omnibox AI Route
 app.post('/chat', async (req, res) => {
   try {
-    const { userQuery, language } = req.body;
+    const { userQuery, language, mapWindow } = req.body;
     const targetLang = language === 'ko' ? 'Korean' : 'English';
 
     console.log(`[AI Request] Lang: ${targetLang} | User asked: "${userQuery}"`);
 
-    // 1. THE RAG RETRIEVAL: Ask FAISS for the best matches!
+    // 1. THE RAG RETRIEVAL: Ask FAISS for the best semantic matches (top 20 candidates)
     const vectorIds = await searchFAISS(userQuery);
-
-    // Cast FAISS numbers to strings so JavaScript doesn't panic on strict equality
     const safeVectorIds = vectorIds.map(id => String(id));
 
-    // 2. THE JOIN: Grab the rich metadata for those exact IDs
-    const bestMatches = placesData.features
-        .filter(feature => {
-            // Safely check if the ID exists and matches
-            if (!feature.properties.vector_id) return false;
-            return safeVectorIds.includes(String(feature.properties.vector_id));
-        })
-        .map(f => ({
-            name: f.properties.name,
-            cuisine: f.properties.cuisine,
-            award: f.properties.category,
-            // Increased to 300 chars so Gemini can actually read the menu/vibe details!
-            desc: f.properties.description ? f.properties.description.substring(0, 300) : ""
-        }));
+    // 2. THE JOIN: Grab rich metadata for all 20 candidates
+    const toRow = f => ({
+        name: f.properties.name,
+        cuisine: f.properties.cuisine,
+        award: f.properties.category,
+        desc: f.properties.description ? f.properties.description.substring(0, 300) : ""
+    });
+
+    const allCandidates = placesData.features.filter(f =>
+        f.properties.vector_id && safeVectorIds.includes(String(f.properties.vector_id))
+    );
+
+    // 3. LOCATION FILTER: prefer restaurants inside the user's current map viewport,
+    //    UNLESS the user explicitly named a neighbourhood — then search globally.
+    const SEOUL_NEIGHBOURHOODS = [
+        // English
+        'gangnam','hongdae','itaewon','sinchon','insadong','myeongdong','jongno',
+        'mapo','yeonnam','hapjeong','mangwon','euljiro','seongsu','gwanghwamun',
+        'dongdaemun','noryangjin','yeouido','apgujeong','cheongdam','seocho',
+        'banpo','bukchon','seochon','mullae','sangwang','nowon','dobong',
+        'sincheon','sadang','konkuk','건대','혜화','daehangno',
+        // Korean
+        '강남','홍대','이태원','신촌','인사동','명동','종로','마포','연남',
+        '합정','망원','을지로','성수','광화문','동대문','노량진','여의도',
+        '압구정','청담','서초','반포','북촌','서촌','문래','노원','도봉',
+        '신천','사당','건대입구','대학로'
+    ];
+
+    const queryLower = userQuery.toLowerCase();
+    const userNamedLocation = SEOUL_NEIGHBOURHOODS.some(n => queryLower.includes(n));
+
+    let bestMatches, locationNote;
+    if (userNamedLocation) {
+        // User explicitly asked about a place — trust their words, search globally
+        bestMatches  = allCandidates.map(toRow);
+        locationNote = "The user has named a specific neighbourhood. Recommend only restaurants that match that area per their request.";
+    } else if (mapWindow) {
+        const inView = allCandidates.filter(f => {
+            const [lon, lat] = f.geometry.coordinates;
+            return lat >= mapWindow.south && lat <= mapWindow.north &&
+                   lon >= mapWindow.west  && lon <= mapWindow.east;
+        });
+
+        if (inView.length >= 2) {
+            bestMatches  = inView.map(toRow);
+            locationNote = "All options below are within the user's current map view.";
+        } else {
+            bestMatches  = allCandidates.map(toRow);
+            locationNote = "NOTE: There were not enough strong matches in the user's current map area, so results may be from elsewhere in Seoul. Mention this briefly and suggest they pan the map.";
+        }
+    } else {
+        bestMatches  = allCandidates.map(toRow);
+        locationNote = "";
+    }
 
     const prompt = `
       You are a local foodie expert in Seoul.
@@ -107,14 +145,16 @@ app.post('/chat', async (req, res) => {
       **IMPORTANT:** You must reply in **${targetLang}**.
       **CRITICAL INSTRUCTION:** When you recommend a restaurant from the list, you MUST wrap its exact name in double brackets like this: [[Restaurant Name]].
 
+      ${locationNote}
+
       User's Request: "${userQuery}"
 
-      Here are the absolute best mathematical matches from our database:
+      Here are the best matches from our database:
       ${JSON.stringify(bestMatches)}
 
       Based ONLY on the list above, recommend the top 1-3 best matches.
-      Explain WHY it fits their request based on the description provided.
-      Keep it brief, highly accurate, and friendly.
+      Explain WHY each fits their request based on the description.
+      Keep it brief, accurate, and friendly.
     `;
 
     const result = await model.generateContent(prompt);

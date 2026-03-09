@@ -33,7 +33,7 @@ def search():
             return
 
         index = faiss.read_index(FAISS_INDEX_PATH)  # Fixed the variable name!
-        distances, indices = index.search(vector_np, 5)
+        distances, indices = index.search(vector_np, 20)
 
         # 3. Print ONLY the IDs as a JSON string
         # This is the only thing that should go to stdout
