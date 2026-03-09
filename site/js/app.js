@@ -531,10 +531,20 @@ omniInput.addEventListener('keypress', (e) => {
 window.openRestaurantPopup = function(name) {
     if (!name) return;
 
-    const feature = allFeatures.find(f =>
-        f.properties.name === name ||
-        f.properties.name_ko === name
-    );
+    const normalize = s => s ? s.toLowerCase().replace(/[\s\-·•]+/g, '') : '';
+    const needle = normalize(name);
+    const feature = allFeatures.find(f => {
+        const p = f.properties;
+        // 1. Exact match
+        if (p.name === name || p.name_ko === name) return true;
+        // 2. Case-insensitive
+        if (p.name?.toLowerCase() === name.toLowerCase()) return true;
+        // 3. Normalized (ignore spaces/hyphens)
+        if (normalize(p.name) === needle || normalize(p.name_ko) === needle) return true;
+        // 4. One contains the other (handles truncation or extra words)
+        if (p.name && (p.name.toLowerCase().includes(name.toLowerCase()) || name.toLowerCase().includes(p.name.toLowerCase()))) return true;
+        return false;
+    });
 
     if (!feature) {
         console.warn(`Could not find restaurant: ${name}`);
