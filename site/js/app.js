@@ -560,7 +560,7 @@ window.openRestaurantPopup = function(name) {
                 layer.feature.properties.name === name ||
                 layer.feature.properties.name_ko === name
             )) {
-                clusterGroup.zoomToShowLayer(layer, () => layer.openPopup());
+                layer.openPopup();
             }
         });
     });
