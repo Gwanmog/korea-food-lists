@@ -11,6 +11,7 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(process.cwd(), 'site')));
 
 // 1. Connect to Gemini
 const apiKey = process.env.GEMINI_API_KEY;
