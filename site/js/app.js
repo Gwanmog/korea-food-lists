@@ -531,40 +531,40 @@ omniInput.addEventListener('keypress', (e) => {
 window.openRestaurantPopup = function(name) {
     if (!name) return;
 
-    // 1. Search through all features to find the one matching the name
     const feature = allFeatures.find(f =>
         f.properties.name === name ||
         f.properties.name_ko === name
     );
 
-    if (feature) {
-        const [lon, lat] = feature.geometry.coordinates;
+    if (!feature) {
+        console.warn(`Could not find restaurant: ${name}`);
+        return;
+    }
 
-        // 2. Center the map with a nice zoom
-        map.flyTo([lat, lon], 17, {
-            animate: true,
-            duration: 1.5
-        });
+    const [lon, lat] = feature.geometry.coordinates;
 
-        // 3. Since we use Marker Clustering, we must find the marker inside the cluster
-        // and manually trigger the popup.
+    // 1. Close the chat immediately so the map is visible
+    if (omnibox)   omnibox.classList.remove('expanded');
+    if (omniChat)  omniChat.classList.add('hidden');
+    if (omniClose) omniClose.classList.add('hidden');
+    if (window.innerWidth < 640 && $('listWrap')) {
+        $('listWrap').classList.add('collapsed');
+    }
+
+    // 2. Wait for the fly animation to finish, then open the popup.
+    //    render() fires first (registered earlier), so the marker is in the
+    //    cluster by the time our once-listener runs.
+    map.once('moveend', () => {
         clusterGroup.eachLayer(layer => {
-            if (layer.feature && (layer.feature.properties.name === name || layer.feature.properties.name_ko === name)) {
-                // Ensure the cluster is expanded so the marker is visible
-                clusterGroup.zoomToShowLayer(layer, () => {
-                    layer.openPopup();
-                });
+            if (layer.feature && (
+                layer.feature.properties.name === name ||
+                layer.feature.properties.name_ko === name
+            )) {
+                clusterGroup.zoomToShowLayer(layer, () => layer.openPopup());
             }
         });
+    });
 
-        // 4. Always collapse the chat so the popup is visible, also hide the list on mobile
-        if (omnibox)    omnibox.classList.remove('expanded');
-        if (omniChat)   omniChat.classList.add('hidden');
-        if (omniClose)  omniClose.classList.add('hidden');
-        if (window.innerWidth < 640 && $('listWrap')) {
-            $('listWrap').classList.add('collapsed');
-        }
-    } else {
-        console.warn(`Could not find restaurant: ${name}`);
-    }
+    // 3. Fly to the restaurant (triggers moveend when done)
+    map.flyTo([lat, lon], 17, { animate: true, duration: 1.5 });
 };
