@@ -98,7 +98,10 @@ app.post('/chat', async (req, res) => {
         name: f.properties.name,
         cuisine: f.properties.cuisine,
         award: f.properties.category,
-        desc: f.properties.description ? f.properties.description.substring(0, 300) : ""
+        desc: f.properties.description ? f.properties.description.substring(0, 300) : "",
+        address: f.properties.address_ko || f.properties.address || null,
+        lat: f.geometry.coordinates[1],
+        lon: f.geometry.coordinates[0]
     });
 
     const allCandidates = placesData.features.filter(f =>
@@ -159,12 +162,15 @@ app.post('/chat', async (req, res) => {
 
       User's Request: "${userQuery}"
 
-      Here are the best matches from our database:
+      Here are the best matches from our database (each includes its real GPS coordinates and address):
       ${JSON.stringify(bestMatches)}
 
-      Based ONLY on the list above, recommend the top 1-3 best matches.
-      Explain WHY each fits their request based on the description.
-      Keep it brief, accurate, and friendly.
+      RULES:
+      - If the user asked for a specific neighbourhood, check the lat/lon and address of each restaurant. Only recommend ones that are genuinely in or very close to that area. Do NOT claim a restaurant is in a neighbourhood if its address says otherwise.
+      - Never invent or assume a restaurant's location — use only the address and coordinates provided.
+      - Based ONLY on the list above, recommend the top 1-3 best matches.
+      - Explain WHY each fits their request based on the description.
+      - Keep it brief, accurate, and friendly.
     `;
 
     console.log(`[Step 3] Sending ${bestMatches.length} matches to Gemini chat...`);
