@@ -88,7 +88,9 @@ app.post('/chat', async (req, res) => {
     console.log(`[AI Request] Lang: ${targetLang} | User asked: "${userQuery}"`);
 
     // 1. THE RAG RETRIEVAL: Ask FAISS for the best semantic matches (top 20 candidates)
+    console.log(`[Step 1] Calling Gemini embeddings...`);
     const vectorIds = await searchFAISS(userQuery);
+    console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds);
     const safeVectorIds = vectorIds.map(id => String(id));
 
     // 2. THE JOIN: Grab rich metadata for all 20 candidates
@@ -165,8 +167,10 @@ app.post('/chat', async (req, res) => {
       Keep it brief, accurate, and friendly.
     `;
 
+    console.log(`[Step 3] Sending ${bestMatches.length} matches to Gemini chat...`);
     const result = await model.generateContent(prompt);
     const response = await result.response;
+    console.log(`[Step 4] Gemini chat responded OK`);
 
     res.json({ reply: response.text() });
 
