@@ -86423,6 +86423,2616 @@
         "address_ko": null,
         "vector_id": 2873
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.924122347757,
+          37.5615993978453
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "월강부산돼지국밥",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "국밥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nWolgang Busan Dwaeji Gukbap offers tender, high-quality domestic pork and generous portions, making it a popular Yeonnam-dong staple. While the suyuk impresses, the broth, though clean, leans too mild and lacks the distinctive depth expected of a true Busan 돼지국밥.\n\nInspector Notes: The score of 84 reflects excellent ingredient quality, good value, and strong consistency, though the broth's flavor profile, while clean, did not fully capture the essence of a true Busan-style 돼지국밥.",
+        "kakao_id": "14822702",
+        "kakao_url": "http://place.map.kakao.com/14822702",
+        "korean_query": null,
+        "name_ko": "월강부산돼지국밥",
+        "address_ko": null,
+        "vector_id": 2874
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98785921857343,
+          37.53867832931781
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "남매국밥 이태원본점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "국밥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment offers a deeply satisfying 국밥 experience, marked by meticulous broth preparation and generous portions. While the service is commendable, a more distinctive culinary vision would elevate its standing further.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1369752416",
+        "kakao_url": "http://place.map.kakao.com/1369752416",
+        "korean_query": null,
+        "name_ko": "남매국밥 이태원본점",
+        "address_ko": null,
+        "vector_id": 2875
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.014992947287,
+          37.4863116371443
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "보승회관 남부터미널역점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "국밥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment offers a diverse menu of well-executed Gukbap and related dishes, distinguished by fresh ingredients, deep flavors, and impressive customization options. Its consistent quality and generous portions make it an exceptional neighborhood staple.\n\nInspector Notes: The score of 90 reflects excellent ingredient quality, masterful flavor balance, strong chef personality through menu diversity and customization, great value for money, and commendable operational consistency.",
+        "kakao_id": "908873713",
+        "kakao_url": "http://place.map.kakao.com/908873713",
+        "korean_query": null,
+        "name_ko": "보승회관 남부터미널역점",
+        "address_ko": null,
+        "vector_id": 2876
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.937940894628,
+          37.557411527469
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "연안옥칼순대국 신촌점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "순대국",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n연안옥칼순대국 신촌점 transcends the humble 순대국 with its innovative 칼순대국 and impeccable ingredient quality. This establishment delivers a truly exceptional dining experience, marked by culinary creativity and thoughtful hospitality.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1665375008",
+        "kakao_url": "http://place.map.kakao.com/1665375008",
+        "korean_query": null,
+        "name_ko": "연안옥칼순대국 신촌점",
+        "address_ko": null,
+        "vector_id": 2877
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.98187164947,
+          37.584468016058
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "삼청순대국추어탕",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "순대국",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nSamcheong Sundaeguk Chueotang offers a commendable Sundae-guk and Chueo-tang experience, praised for its generous portions and refreshing, clean broths. While a local favorite providing excellent value, a minor lapse in the texture and temperature of side meats prevents it from achieving higher acclaim.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "2060222139",
+        "kakao_url": "http://place.map.kakao.com/2060222139",
+        "korean_query": null,
+        "name_ko": "삼청순대국추어탕",
+        "address_ko": null,
+        "vector_id": 2878
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0201530244134,
+          37.56475932971746
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "전주순대국",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "순대국",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nJeonju Sundaeguk delivers a deeply authentic and meticulously crafted sundae experience, highlighted by its creamy, handmade blood sausage and a chef's unwavering dedication to quality. While the broth might occasionally require a touch of personal seasoning, its overall excellence and unique culinary integrity make it a standout.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1073948223",
+        "kakao_url": "http://place.map.kakao.com/1073948223",
+        "korean_query": null,
+        "name_ko": "전주순대국",
+        "address_ko": null,
+        "vector_id": 2879
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.99214069303378,
+          37.56067386790036
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "백암왕순대순대국",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "순대국",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nDespite its long history and local popularity, this establishment struggles with fundamental culinary consistency, evidenced by occasional off-flavors and fluctuating ingredient quality. While it may serve as a nostalgic local favorite, it falls short of the rigorous standards for a truly exceptional 순대국 experience.\n\nInspector Notes: The score reflects significant deductions for inconsistent ingredient quality (occasional off-flavors, changing 순대 size), lack of mastery in flavor execution (비린내), and questionable value given price increases and reduced portions, alongside concerns about product consistency over time.",
+        "kakao_id": "12051610",
+        "kakao_url": "http://place.map.kakao.com/12051610",
+        "korean_query": null,
+        "name_ko": "백암왕순대순대국",
+        "address_ko": null,
+        "vector_id": 2880
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.992439046681,
+          37.5650761563167
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "명품을지순대국",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "순대국",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThis establishment masterfully elevates the humble sundae-guk with impeccable ingredients and a chef's passionate touch, delivering a consistently outstanding experience that justifies its long-standing reputation. It's a destination-worthy culinary achievement in the realm of everyday dining.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "27547834",
+        "kakao_url": "http://place.map.kakao.com/27547834",
+        "korean_query": null,
+        "name_ko": "명품을지순대국",
+        "address_ko": null,
+        "vector_id": 2881
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.030332745392,
+          37.4884386776574
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "한냉정국 뱅뱅사거리점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "돼지국밥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n한냉정국 뱅뱅사거리점 delivers a masterclass in 돼지국밥, showcasing impeccable ingredient sourcing and refined cooking techniques. Its exceptional value and unwavering consistency make it a truly destination-worthy establishment.\n\nInspector Notes: The score reflects high marks for premium ingredients, masterful technique, outstanding value, and proven consistency, with a solid showing in the chef's thoughtful approach.",
+        "kakao_id": "1139858709",
+        "kakao_url": "http://place.map.kakao.com/1139858709",
+        "korean_query": null,
+        "name_ko": "한냉정국 뱅뱅사거리점",
+        "address_ko": null,
+        "vector_id": 2882
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.917960500629,
+          37.5555739145476
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "일미집 홍대점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "감자탕",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nIlmijib Hongdae offers a uniquely clear and deeply flavorful gamjatang broth, a refreshing departure from the norm, crafted with consistently high-quality, fresh ingredients. While the initial serving is exemplary, minor inconsistencies in additional meat portions prevent it from reaching the highest echelon.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1909018248",
+        "kakao_url": "http://place.map.kakao.com/1909018248",
+        "korean_query": null,
+        "name_ko": "일미집 홍대점",
+        "address_ko": null,
+        "vector_id": 2883
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.89896895288408,
+          37.55633855397729
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "용머리감자탕",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "감자탕",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nYongmeori Gamjatang delivers a heartwarming, authentic experience with its impeccably fresh ingredients and masterful, clean flavors. This local gem, run by a friendly grandmother, offers consistent quality and exceptional value, making it a true destination for 감자탕.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "16048027",
+        "kakao_url": "http://place.map.kakao.com/16048027",
+        "korean_query": null,
+        "name_ko": "용머리감자탕",
+        "address_ko": null,
+        "vector_id": 2884
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01234117287682,
+          37.48444685659892
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "호남집뼈다귀감자탕",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "감자탕",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis long-standing local gem delivers a remarkably clean and deep 감자탕 broth, showcasing tender ingredients and a commitment to generous portions. Its consistent quality and exceptional value make it a standout for everyday fine dining.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "965187174",
+        "kakao_url": "http://place.map.kakao.com/965187174",
+        "korean_query": null,
+        "name_ko": "호남집뼈다귀감자탕",
+        "address_ko": null,
+        "vector_id": 2885
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.05440698505689,
+          37.54614291430739
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "옛골 감자탕",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "감자탕",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n옛골 감자탕 delivers a deeply satisfying, nostalgic gamjatang, a testament to 29 years of culinary dedication by its endearing owners. With its rich, savory broth and tender Spanish pork, this establishment is a true local treasure.\n\nInspector Notes: The score of 92 is awarded for its excellent ingredient quality, masterful traditional flavors, the unique charm of its long-standing owners, strong value, and inferred consistency over nearly three decades.",
+        "kakao_id": "12044431",
+        "kakao_url": "http://place.map.kakao.com/12044431",
+        "korean_query": null,
+        "name_ko": "옛골 감자탕",
+        "address_ko": null,
+        "vector_id": 2886
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.935678823639,
+          37.5583518588326
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "착한곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n착한곱창 delivers an exceptional value proposition with its consistently fresh ingredients and a heartwarming commitment to its community. While the fried rice could use a flavor boost, the succulent 곱창 and generous portions make it a true neighborhood gem.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1212311455",
+        "kakao_url": "http://place.map.kakao.com/1212311455",
+        "korean_query": null,
+        "name_ko": "착한곱창",
+        "address_ko": null,
+        "vector_id": 2887
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.924578433532,
+          37.5616393339241
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "대승곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nDaeseung Gopchang delivers a flawless 곱창 experience, showcasing top-tier ingredients and masterful techniques. Its consistent quality and unique culinary touches make it a truly destination-worthy establishment.\n\nInspector Notes: The score reflects exceptional ingredient quality, masterful cooking, a unique chef's personality, strong value, and outstanding consistency, all supported by genuine organic reviews.",
+        "kakao_id": "387546287",
+        "kakao_url": "http://place.map.kakao.com/387546287",
+        "korean_query": null,
+        "name_ko": "대승곱창",
+        "address_ko": null,
+        "vector_id": 2888
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.924439975952,
+          37.5608896162635
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "연남곱창타운",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\n연남곱창타운 offers a lively atmosphere with an engaging fire show, and commendable freshness in its side dishes. However, the main gopchang, while decent, often falls short of expectations in both portion size and flavor consistency.\n\nInspector Notes: The score of 73 reflects commendable freshness in side dishes and a unique fire show, but is significantly impacted by inconsistent main gopchang quality, small portion sizes, and thus, poor value for money.",
+        "kakao_id": "1438571311",
+        "kakao_url": "http://place.map.kakao.com/1438571311",
+        "korean_query": null,
+        "name_ko": "연남곱창타운",
+        "address_ko": null,
+        "vector_id": 2889
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.895673582185,
+          37.5780541837942
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "하버드곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n하버드곱창 offers a remarkably fresh gopchang experience, elevated by a chef whose engaging personality and consistent execution promise a delightful meal. This new establishment, with its generous portions and genuine customer satisfaction, quickly establishes itself as an exceptional neighborhood staple.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1508035796",
+        "kakao_url": "http://place.map.kakao.com/1508035796",
+        "korean_query": null,
+        "name_ko": "하버드곱창",
+        "address_ko": null,
+        "vector_id": 2890
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.013083299336,
+          37.5580731271331
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "황소불곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nHwangso Bulgopchang delivers a truly exceptional gopchang experience, marked by impeccable ingredient quality and masterful cooking techniques that result in dishes praised as 'life-changing'. Its unwavering consistency, outstanding value, and a genuinely kind owner solidify its status as a culinary gem.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "10886789",
+        "kakao_url": "http://place.map.kakao.com/10886789",
+        "korean_query": null,
+        "name_ko": "황소불곱창",
+        "address_ko": null,
+        "vector_id": 2891
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.019282569033,
+          37.5650279719573
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "미옥이네곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n미옥이네곱창 delivers a heartwarming experience with its fresh gopchang and generous portions, rooted in decades of tradition and a welcoming owner. While offering great value, subtle flavor inconsistencies and a whisper of past perfection not quite met keep it from ascending to the highest ranks.\n\nInspector Notes: The score of 84 reflects strong historical presence and value, balanced against minor inconsistencies in flavor execution and a hint of past glory not fully recaptured.",
+        "kakao_id": "812976809",
+        "kakao_url": "http://place.map.kakao.com/812976809",
+        "korean_query": null,
+        "name_ko": "미옥이네곱창",
+        "address_ko": null,
+        "vector_id": 2892
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.010311983335,
+          37.5527394956236
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "대가곱창 약수본점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nDaega Gopchang Yaksu Bonjeom stands as a beacon of gopchang mastery, delivering consistently fresh ingredients and nuanced flavors that elevate this everyday fare to an art form. Its exceptional value and unwavering quality make it a true destination for discerning palates.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "13288597",
+        "kakao_url": "http://place.map.kakao.com/13288597",
+        "korean_query": null,
+        "name_ko": "대가곱창 약수본점",
+        "address_ko": null,
+        "vector_id": 2893
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.030882509685,
+          37.4944987109844
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "자갈치양곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment delivers an exceptional 곱창 experience, marked by meticulously prepared, high-quality ingredients and masterful grilling techniques. Its consistent excellence and attentive service make it a reliable neighborhood staple.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "189014165",
+        "kakao_url": "http://place.map.kakao.com/189014165",
+        "korean_query": null,
+        "name_ko": "자갈치양곱창",
+        "address_ko": null,
+        "vector_id": 2894
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.03942104783648,
+          37.49620808325616
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "마포짚불곱창 역삼점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nA venerable gopchang institution, 마포짚불곱창 역삼점 offers a fiery spectacle and generally fresh ingredients. While the chef's personality shines, minor inconsistencies in execution and value prevent it from reaching higher echelons.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "16061668",
+        "kakao_url": "http://place.map.kakao.com/16061668",
+        "korean_query": null,
+        "name_ko": "마포짚불곱창 역삼점",
+        "address_ko": null,
+        "vector_id": 2895
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.02265973214996,
+          37.50362596563284
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "제일곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nJeil Gopchang offers a nostalgic journey with its fresh ingredients and an owner who clearly understands hospitality, making for a truly unique dining atmosphere. However, while the gopchang excels, the inconsistent grilling technique for other cuts like daechang prevents it from reaching higher culinary acclaim.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "27288694",
+        "kakao_url": "http://place.map.kakao.com/27288694",
+        "korean_query": null,
+        "name_ko": "제일곱창",
+        "address_ko": null,
+        "vector_id": 2896
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.018972128234,
+          37.4829611157158
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "큰솔곱창",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "곱창",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\n큰솔곱창 struggles with the fundamentals, offering tough beef intestines and unremarkable flavors that fail to justify a visit. With no verifiable consistency, this establishment falls far short of 'Neon Guide' standards.\n\nInspector Notes: The score of 33 reflects significant deficiencies in ingredient quality, uninspired flavor mastery, and a complete lack of data regarding consistency over time.",
+        "kakao_id": "1232119497",
+        "kakao_url": "http://place.map.kakao.com/1232119497",
+        "korean_query": null,
+        "name_ko": "큰솔곱창",
+        "address_ko": null,
+        "vector_id": 2897
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.95456149051708,
+          37.54701436795169
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "한우마당 마포직영점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "육회",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nHanwoomadang Mapo excels in delivering exceptional Hanwoo quality and value, with a highly engaged owner providing a unique dining experience. While the grilled meat shines, a minor misstep in a basic side dish prevents a higher culinary accolade.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "18258871",
+        "kakao_url": "http://place.map.kakao.com/18258871",
+        "korean_query": null,
+        "name_ko": "한우마당 마포직영점",
+        "address_ko": null,
+        "vector_id": 2898
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.019640158061,
+          37.5642746801695
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "대돈가",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "육회",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nDaedonga offers a genuinely personal touch with its owner-farmed vegetables and fresh offal, providing excellent value. While mostly consistent, a minor lapse in freshness was noted, preventing a higher accolade.\n\nInspector Notes: The score of 90 reflects strong points in owner's uniqueness, value for money, and flavor mastery, slightly tempered by minor inconsistencies in ingredient quality and overall consistency.",
+        "kakao_id": "657375233",
+        "kakao_url": "http://place.map.kakao.com/657375233",
+        "korean_query": null,
+        "name_ko": "대돈가",
+        "address_ko": null,
+        "vector_id": 2899
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.002357078345,
+          37.617021278063
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "화랑식당",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "육회",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n화랑식당 offers an exceptional 육회 experience, built on impeccable ingredient sourcing and a chef's personal touch that elevates traditional flavors. Despite a minor consistency note on one dish, this establishment delivers a truly memorable and authentic taste of Korean raw beef.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1781115064",
+        "kakao_url": "http://place.map.kakao.com/1781115064",
+        "korean_query": null,
+        "name_ko": "화랑식당",
+        "address_ko": null,
+        "vector_id": 2900
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.036956907111,
+          37.49841634571
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "아쭈맛나",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "쭈꾸미",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment demonstrates commendable technique with its well-balanced, smoky 불쭈꾸미 and a clear dedication to fresh, made-to-order dishes. While ingredient quality is adequate, its consistent flavor and generous portions make it a reliable choice for a satisfying meal.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1525232571",
+        "kakao_url": "http://place.map.kakao.com/1525232571",
+        "korean_query": null,
+        "name_ko": "아쭈맛나",
+        "address_ko": null,
+        "vector_id": 2901
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.91969653845334,
+          37.56194245318255
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "녹원쌈밥",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "제육볶음",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nNokwon Ssambap excels with its top-tier ingredients and masterful cooking techniques, delivering a consistently satisfying experience. However, the complete absence of a unique culinary identity or chef's personality prevents it from achieving higher critical acclaim.\n\nInspector Notes: The score reflects exceptional ingredients, strong technique, and good consistency, but is significantly hampered by the complete lack of a discernible culinary personality.",
+        "kakao_id": "1189909591",
+        "kakao_url": "http://place.map.kakao.com/1189909591",
+        "korean_query": null,
+        "name_ko": "녹원쌈밥",
+        "address_ko": null,
+        "vector_id": 2902
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.90587971568104,
+          37.55338629058895
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "오복식당",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "제육볶음",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\n오복식당 delivers a robust, homestyle 제육볶음, expertly stir-fried dry with a clean, spicy umami. While some ingredients are standard, the owner's distinct touch and exceptional value make it a noteworthy comfort food destination.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "12059460",
+        "kakao_url": "http://place.map.kakao.com/12059460",
+        "korean_query": null,
+        "name_ko": "오복식당",
+        "address_ko": null,
+        "vector_id": 2903
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.989946551512,
+          37.5742201733972
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "소담집",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "제육볶음",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nSodamjip's jeyuk-bokkeum is a testament to heartfelt home cooking, boasting exceptional flavor balance and tender pork belly. Its daily rotating menu and mother's distinct touch ensure a consistently delightful and personal dining experience.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "747860068",
+        "kakao_url": "http://place.map.kakao.com/747860068",
+        "korean_query": null,
+        "name_ko": "소담집",
+        "address_ko": null,
+        "vector_id": 2904
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.011515008425,
+          37.4940886240678
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "해궁",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "제육볶음",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n해궁 offers a well-executed 제육볶음 with balanced flavors and excellent temperature control, complemented by generous portions and outstanding value. However, without evidence of long-term consistency, it remains a promising but unproven contender.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "882454035",
+        "kakao_url": "http://place.map.kakao.com/882454035",
+        "korean_query": null,
+        "name_ko": "해궁",
+        "address_ko": null,
+        "vector_id": 2905
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.92297590873416,
+          37.55820279873313
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "더블플레이치킨 동교동본점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n더블플레이치킨 동교동본점 excels with its meticulous cooking techniques and exceptional value, offering consistently crisp and juicy chicken alongside thoughtfully developed sauces. The unique baseball-themed ambiance adds a distinct personality, creating a vibrant space for fans and food lovers alike.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "37052170",
+        "kakao_url": "http://place.map.kakao.com/37052170",
+        "korean_query": null,
+        "name_ko": "더블플레이치킨 동교동본점",
+        "address_ko": null,
+        "vector_id": 2906
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.93646482786714,
+          37.55903614113185
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "오늘통닭 신촌직영점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment stands as a venerable institution, boasting 47 years of tradition backed by meticulous ingredient sourcing and refined cooking techniques. Its unique garlic aging and double-frying methods ensure a distinctive and consistently high-quality product.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "855767372",
+        "kakao_url": "http://place.map.kakao.com/855767372",
+        "korean_query": null,
+        "name_ko": "오늘통닭 신촌직영점",
+        "address_ko": null,
+        "vector_id": 2907
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.90550917020096,
+          37.56452051297372
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "위대한치킨동무",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThe fried chicken, while not exceptionally crispy, is excellently prepared, and the old-style yangnyeom offers a rich, balanced flavor profile. This establishment provides outstanding value, especially for pickup, making it a solid choice for traditional Korean fried chicken.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "994095635",
+        "kakao_url": "http://place.map.kakao.com/994095635",
+        "korean_query": null,
+        "name_ko": "위대한치킨동무",
+        "address_ko": null,
+        "vector_id": 2908
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.96898169414936,
+          37.54938776205493
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "하림치킨",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nHarim, as a ubiquitous poultry supplier, offers a consistent and generally clean base ingredient for various establishments. However, its pervasive industrial presence and overwhelming sponsorship ratio severely undermine any claim to genuine culinary distinction or value.\n\nInspector Notes: The score reflects Harim as a reliable but generic ingredient supplier, with significant deductions in value and consistency due to the overwhelming 80% sponsored ratio.",
+        "kakao_id": "21392651",
+        "kakao_url": "http://place.map.kakao.com/21392651",
+        "korean_query": null,
+        "name_ko": "하림치킨",
+        "address_ko": null,
+        "vector_id": 2909
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.993235277897,
+          37.5342791739897
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "이태원통닭",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nA venerable establishment, 이태원통닭 excels with its unique, thin, and crispy curry-flavored batter, perfectly encasing juicy domestic chicken. While the owner's demeanor is noted, the consistent quality and value for its generous portions make it a local favorite.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1693365984",
+        "kakao_url": "http://place.map.kakao.com/1693365984",
+        "korean_query": null,
+        "name_ko": "이태원통닭",
+        "address_ko": null,
+        "vector_id": 2910
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.015203179105,
+          37.5639798081118
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "치킨드새우",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n치킨드새우 elevates comfort food with its meticulous preparation and unique flavor profiles. While not the cheapest, the quality of ingredients and consistent execution make it a worthwhile culinary experience.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "615126489",
+        "kakao_url": "http://place.map.kakao.com/615126489",
+        "korean_query": null,
+        "name_ko": "치킨드새우",
+        "address_ko": null,
+        "vector_id": 2911
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01870753791282,
+          37.56442800099632
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "구어스치킨 신당점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n구어스치킨 신당점 delivers a commendably executed grilled chicken, boasting fresh ingredients and balanced flavors. While the owner's personal touch enhances service, the culinary identity, though solid, doesn't quite reach the level of groundbreaking innovation.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "13336350",
+        "kakao_url": "http://place.map.kakao.com/13336350",
+        "korean_query": null,
+        "name_ko": "구어스치킨 신당점",
+        "address_ko": null,
+        "vector_id": 2912
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.011541655485,
+          37.5716531026249
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "한국통닭",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n한국통닭 masterfully executes a double-fried chicken and exceptional gizzard, delivering remarkable flavor and texture at an astonishingly low price point. While lacking a distinct chef's persona, its consistent quality and value firmly establish its identity.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1155739247",
+        "kakao_url": "http://place.map.kakao.com/1155739247",
+        "korean_query": null,
+        "name_ko": "한국통닭",
+        "address_ko": null,
+        "vector_id": 2913
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.015897685835,
+          37.5724815118783
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "대화치킨호프",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThe fried chicken at 대화치킨호프 delivers a nostalgic, average neighborhood taste, lacking any distinctive culinary flair or refined technique. While the price point offers commendable value, the overall experience fails to rise above generic comfort food standards.\n\nInspector Notes: The score reflects average technique and personality, offset by good value, with no sponsorship penalty applied as the ratio was below 50%.",
+        "kakao_id": "12752499",
+        "kakao_url": "http://place.map.kakao.com/12752499",
+        "korean_query": null,
+        "name_ko": "대화치킨호프",
+        "address_ko": null,
+        "vector_id": 2914
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.044861984017,
+          37.4951033101558
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "깐부치킨 강남세브란스병원점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis branch of Kkanbu Chicken stands out with its exceptional execution of classic fried chicken and thoughtful owner, making it a true neighborhood gem. The consistent quality and distinctive flavors, especially the garlic soy, ensure a loyal following.\n\nInspector Notes: The high score reflects superior technique, consistent quality across dishes, and strong customer loyalty, with no sponsorship penalty applied.",
+        "kakao_id": "18365080",
+        "kakao_url": "http://place.map.kakao.com/18365080",
+        "korean_query": null,
+        "name_ko": "깐부치킨 강남세브란스병원점",
+        "address_ko": null,
+        "vector_id": 2915
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.039450826384,
+          37.5033728738319
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "BBQ 역삼GS타워점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nDespite some positive notes on oil quality and side dishes, the core chicken execution suffers from inconsistent crispiness and off-flavors like bitterness. The lack of a unique culinary identity combined with a high sponsorship ratio significantly impacts its perceived value and reliability.\n\nInspector Notes: The score reflects significant deductions in consistency due to reported flavor variations and in value due to the high sponsored review ratio, which also capped the total score below 89.",
+        "kakao_id": "187799783",
+        "kakao_url": "http://place.map.kakao.com/187799783",
+        "korean_query": null,
+        "name_ko": "BBQ 역삼GS타워점",
+        "address_ko": null,
+        "vector_id": 2916
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0084463318152,
+          37.48701056785314
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "지코바 서초1호점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nWhile the chicken offers a palatable sweet and salty profile appealing to a broad audience, significant technical flaws, such as overly raw green onions, detract from the overall experience. The establishment lacks a distinct culinary identity and consistent reputation, despite offering a generous portion of tteok.\n\nInspector Notes: Ingredients, personality, and consistency received low scores due to a lack of specific positive mentions, indicating an average performance. Technique was moderately scored, acknowledging the chicken's flavor but penalizing the raw green onions, while value was fair due to the generous tteok portion. No sponsorship penalty was applied.",
+        "kakao_id": "860110247",
+        "kakao_url": "http://place.map.kakao.com/860110247",
+        "korean_query": null,
+        "name_ko": "지코바 서초1호점",
+        "address_ko": null,
+        "vector_id": 2917
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.047083323101,
+          37.5389560852777
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "후라이드참잘하는집 성수점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment excels in delivering consistently high-quality fried chicken, boasting superior ingredients and masterful technique at an exceptional value. Its clear identity and unwavering standards make it a standout.\n\nInspector Notes: The high score reflects superior ingredient quality, masterful cooking technique, excellent value, and unwavering consistency, all contributing to a distinct culinary personality.",
+        "kakao_id": "1549861422",
+        "kakao_url": "http://place.map.kakao.com/1549861422",
+        "korean_query": null,
+        "name_ko": "후라이드참잘하는집 성수점",
+        "address_ko": null,
+        "vector_id": 2918
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.046752753057,
+          37.5604143956736
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "다시올치킨",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nWhile 다시올치킨 utilizes quality domestic chicken and demonstrates competent frying technique, its lack of unique personality and heavy reliance on sponsored content significantly undermine its overall appeal. The high sponsorship ratio casts serious doubt on the perceived value and long-term consistency, despite initial positive remarks.\n\nInspector Notes: The score reflects strong ingredients and technique, but a low personality score and a severe penalty applied to value and consistency due to the overwhelming sponsored ratio.",
+        "kakao_id": "15553391",
+        "kakao_url": "http://place.map.kakao.com/15553391",
+        "korean_query": null,
+        "name_ko": "다시올치킨",
+        "address_ko": null,
+        "vector_id": 2919
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.01402132098627,
+          37.611235220429776
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "홈타운바베큐치킨",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment excels with impeccably fresh ingredients and a masterful charcoal grilling technique that delivers profound smoky flavors without greasiness. Its enduring charm is rooted in a unique personality and an unwavering commitment to consistency, fostering a loyal customer base for over a decade.\n\nInspector Notes: The high score is attributed to exceptional consistency and technique, supported by fresh ingredients, a strong personality, and solid value, with no sponsorship penalty applied.",
+        "kakao_id": "16040192",
+        "kakao_url": "http://place.map.kakao.com/16040192",
+        "korean_query": null,
+        "name_ko": "홈타운바베큐치킨",
+        "address_ko": null,
+        "vector_id": 2920
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.106186712996,
+          37.5000691947893
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "오늘은매콤떡볶이",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "떡볶이",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nDespite commendable technique in preparing its rice cakes and crispy fried items, this establishment suffers from a severe lack of personality and transparency regarding its ingredients. The exceptionally high sponsorship ratio heavily penalizes its perceived value and consistency, making it an unreliable recommendation.\n\nInspector Notes: The score breakdown reflects a severe lack of information on ingredients, personality, and consistency, with heavy deductions applied to value and consistency due to the overwhelming sponsored ratio.",
+        "kakao_id": "1814117161",
+        "kakao_url": "http://place.map.kakao.com/1814117161",
+        "korean_query": null,
+        "name_ko": "오늘은매콤떡볶이",
+        "address_ko": null,
+        "vector_id": 2921
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.10856271495857,
+          37.50162307179354
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "봉구가래떡볶이 송파점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "떡볶이",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThe tteokbokki itself boasts good texture and well-absorbed seasoning, but the rose tteokbokki's unusual color and consistency are notable flaws. Lacking a distinct personality and evidence of long-term consistency, it remains an average offering despite decent ingredient quality and portion sizes.\n\nInspector Notes: The score reflects solid ingredient quality and decent value, but is significantly pulled down by a lack of unique personality, unverified consistency, and specific technical flaws in the rose tteokbokki.",
+        "kakao_id": "1638330742",
+        "kakao_url": "http://place.map.kakao.com/1638330742",
+        "korean_query": null,
+        "name_ko": "봉구가래떡볶이 송파점",
+        "address_ko": null,
+        "vector_id": 2922
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.11263619773727,
+          37.50080925408449
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "최애떡볶이",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "떡볶이",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nWhile showcasing creative technique with its unique cream sauce and fresh scallops, this establishment falters significantly on value and consistency. The overwhelming sponsorship ratio casts a long shadow over its true culinary merit and customer experience.\n\nInspector Notes: The score breakdown reflects decent ingredient quality and creative technique, but significant deductions were applied to value and consistency due to high pricing, a clear instance of inconsistency, and the heavy sponsorship penalty.",
+        "kakao_id": "181786842",
+        "kakao_url": "http://place.map.kakao.com/181786842",
+        "korean_query": null,
+        "name_ko": "최애떡볶이",
+        "address_ko": null,
+        "vector_id": 2923
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.08485448200942,
+          37.50495637841063
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "옛날통닭호프 잠실동점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n옛날통닭호프 잠실동점 delivers an exceptional old-style fried chicken experience, characterized by impeccable technique and outstanding value. The clean oil, crispy-yet-juicy texture, and well-balanced seasoning make this a true neighborhood staple.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1662471196",
+        "kakao_url": "http://place.map.kakao.com/1662471196",
+        "korean_query": null,
+        "name_ko": "옛날통닭호프 잠실동점",
+        "address_ko": null,
+        "vector_id": 2924
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.122337069931,
+          37.5077067100426
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "처갓집양념치킨 방이역점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "치킨",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThis establishment provides absolutely no discernible information regarding its culinary merits or operational standards. It appears to be a generic offering, lacking any distinguishing features that would warrant critical attention.\n\nInspector Notes: The complete absence of information across all critical categories, including ingredients, technique, personality, value, and consistency, necessitated extremely low scores; no sponsorship penalty was applied as the ratio was not provided.",
+        "kakao_id": "375770217",
+        "kakao_url": "http://place.map.kakao.com/375770217",
+        "korean_query": null,
+        "name_ko": "처갓집양념치킨 방이역점",
+        "address_ko": null,
+        "vector_id": 2925
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.11681965612,
+          37.5103927830355
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "빨간부산오뎅",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "분식",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment excels with high-quality ingredients and commendable cooking techniques, delivering a nostalgic yet refined take on classic bunsik. While its current offerings are strong, past inconsistencies in taste prevent a higher rating.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1827236569",
+        "kakao_url": "http://place.map.kakao.com/1827236569",
+        "korean_query": null,
+        "name_ko": "빨간부산오뎅",
+        "address_ko": null,
+        "vector_id": 2926
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.114622535901,
+          37.5114689322587
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "맛있는집소풍 방이본점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "분식",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThis establishment exhibits flashes of culinary brilliance in its ingredients and technical execution, particularly with seafood and innovative dishes. However, a significant sponsorship ratio combined with noted inconsistencies in main meal quality and questionable value for money prevents it from earning any commendation.\n\nInspector Notes: The high scores in ingredients, technique, and personality are severely undermined by the low scores in value and consistency, primarily due to the explicit mention of inconsistent quality and the heavy sponsorship penalty applied.",
+        "kakao_id": "1088427081",
+        "kakao_url": "http://place.map.kakao.com/1088427081",
+        "korean_query": null,
+        "name_ko": "맛있는집소풍 방이본점",
+        "address_ko": null,
+        "vector_id": 2927
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.11617044015068,
+          37.50674886078545
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "윤가네김밥",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "분식",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\n\n\nInspector Notes: Does not specialize in 분식.",
+        "kakao_id": "18452788",
+        "kakao_url": "http://place.map.kakao.com/18452788",
+        "korean_query": null,
+        "name_ko": "윤가네김밥",
+        "address_ko": null,
+        "vector_id": 2928
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.105121891319,
+          37.5052536307613
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "김밥천국 석촌점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "분식",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis Gimbap Cheonguk branch offers reliable, if uninspired, comfort food at a fair price. While the tteokbokki shows some merit, the overall experience lacks the distinctiveness and ingredient quality required for higher acclaim.\n\nInspector Notes: The score reflects average ingredients and technique, a lack of unique personality, and unproven consistency, offset by decent value.",
+        "kakao_id": "15593196",
+        "kakao_url": "http://place.map.kakao.com/15593196",
+        "korean_query": null,
+        "name_ko": "김밥천국 석촌점",
+        "address_ko": null,
+        "vector_id": 2929
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.08831116754467,
+          37.50148857820178
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "삼전신성김밥",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "분식",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis gimbap establishment elevates a common dish through meticulous technique and thoughtful flavor combinations, offering exceptional value and unwavering consistency. Its authentic character, focused on quality over publicity, solidifies its status as a beloved local gem.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "15541829",
+        "kakao_url": "http://place.map.kakao.com/15541829",
+        "korean_query": null,
+        "name_ko": "삼전신성김밥",
+        "address_ko": null,
+        "vector_id": 2930
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.098581642633,
+          37.5062503753012
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "노랑통닭 석촌호수점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "치맥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nWhile the natural preparation and exceptional frying technique deliver a satisfyingly crispy and flavorful experience, the inconsistent quality of boneless chicken and variable portioning are significant drawbacks. A high sponsored ratio further compromises its perceived value and reliability, preventing it from achieving a higher standing.\n\nInspector Notes: The score reflects commendable technical execution and unique flavor profiles, but is heavily impacted by inconsistent ingredient quality, variable portioning, and a significant sponsorship penalty applied to value and consistency.",
+        "kakao_id": "257885360",
+        "kakao_url": "http://place.map.kakao.com/257885360",
+        "korean_query": null,
+        "name_ko": "노랑통닭 석촌호수점",
+        "address_ko": null,
+        "vector_id": 2931
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.10220145821488,
+          37.497598547541216
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "교촌치킨 헬리오시티점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "치맥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nWhile this branch's Honey Combo exhibits commendable frying technique and balanced seasoning, the utter lack of information regarding ingredient sourcing and value is a critical oversight. As a chain, it inherently lacks the unique culinary personality we demand, offering a merely functional experience despite its consistent execution.\n\nInspector Notes: The score reflects strong consistency and technique, heavily offset by a complete lack of information on ingredients and value, alongside the inherent absence of unique personality from a chain establishment; no sponsorship penalty was applied.",
+        "kakao_id": "1875593445",
+        "kakao_url": "http://place.map.kakao.com/1875593445",
+        "korean_query": null,
+        "name_ko": "교촌치킨 헬리오시티점",
+        "address_ko": null,
+        "vector_id": 2932
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.114130920125,
+          37.509502516441
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "부자치맥",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "치맥",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nWith a complete absence of information regarding any critical culinary aspect, 부자치맥 presents no discernible merit for evaluation. It is impossible to recommend a establishment that fails to provide even basic evidence of quality or character.\n\nInspector Notes: All categories received 0 points due to the complete lack of information ('언급 없음') for every single criterion, indicating a total failure to meet review standards. No sponsorship penalty was applied as the ratio was below 50%.",
+        "kakao_id": "676628099",
+        "kakao_url": "http://place.map.kakao.com/676628099",
+        "korean_query": null,
+        "name_ko": "부자치맥",
+        "address_ko": null,
+        "vector_id": 2933
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.084337556945,
+          37.5099194826678
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "잊힐리야 잠실새내",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment excels with fresh, abundant ingredients and masterful technique, particularly in its unique hotpot and crispy pancakes. Its distinct personality, from literary branding to interactive events and thoughtful services like welcome drinks and baby chairs, creates a memorable experience.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "253837045",
+        "kakao_url": "http://place.map.kakao.com/253837045",
+        "korean_query": null,
+        "name_ko": "잊힐리야 잠실새내",
+        "address_ko": null,
+        "vector_id": 2934
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.081485892619,
+          37.5096448759501
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "숯토리 잠실새내점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment excels with its meticulously sourced ingredients and masterful culinary techniques, offering a distinctive dining experience. While its charming mascot-driven personality adds a unique touch, the overall value and consistent quality solidify its standing as an exceptional neighborhood staple.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "999412594",
+        "kakao_url": "http://place.map.kakao.com/999412594",
+        "korean_query": null,
+        "name_ko": "숯토리 잠실새내점",
+        "address_ko": null,
+        "vector_id": 2935
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.109660007946,
+          37.5126530576323
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "라스트춘선 방이점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThis establishment consistently delivers well-executed comfort food, showcasing quality ingredients and a distinctive, inviting atmosphere. Its strength lies in the reliable technique and unique personality, making it an exceptional neighborhood staple.\n\nInspector Notes: The score reflects high marks for ingredients, technique, and consistency, complemented by a strong personality and fair value, with no sponsorship penalty applied.",
+        "kakao_id": "37599809",
+        "kakao_url": "http://place.map.kakao.com/37599809",
+        "korean_query": null,
+        "name_ko": "라스트춘선 방이점",
+        "address_ko": null,
+        "vector_id": 2936
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.110576463281,
+          37.5128396120364
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "88노가리 방이직영점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nA vibrant '술집' offering well-executed comfort food and excellent value, complemented by a unique retro atmosphere and engaging events. While not pushing culinary boundaries, its consistent quality and lively personality make it a reliable spot for gatherings.\n\nInspector Notes: The restaurant scores well across all categories due to its consistent quality, strong personality, and excellent value, resulting in a solid \"1 Neon Heart\" rating.",
+        "kakao_id": "750416046",
+        "kakao_url": "http://place.map.kakao.com/750416046",
+        "korean_query": null,
+        "name_ko": "88노가리 방이직영점",
+        "address_ko": null,
+        "vector_id": 2937
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.109849431314,
+          37.5130159861327
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "발리앤발리 방이점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nBalley & Balley Bangi Branch offers an impressive array of comfort dishes, executed with notable precision and generous, high-quality ingredients. Its exceptional value and consistent delivery make it a true neighborhood gem, despite a less distinct culinary personality.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1916105492",
+        "kakao_url": "http://place.map.kakao.com/1916105492",
+        "korean_query": null,
+        "name_ko": "발리앤발리 방이점",
+        "address_ko": null,
+        "vector_id": 2938
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.11261772228,
+          37.5080848870012
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "10Q",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n10Q impresses with its dedication to fresh ingredients and masterful technique, delivering dishes that are both flavorful and well-executed. While offering exceptional value and a unique, intimate dining experience, a minor inconsistency in one dish prevents a higher score.\n\nInspector Notes: The score reflects high marks for ingredients, technique, and value, with a strong personality score and a slightly lower consistency due to a minor flavor note, and no sponsorship penalty was applied.",
+        "kakao_id": "1882130371",
+        "kakao_url": "http://place.map.kakao.com/1882130371",
+        "korean_query": null,
+        "name_ko": "10Q",
+        "address_ko": null,
+        "vector_id": 2939
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.101453040379,
+          37.4994264327857
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "돌담길",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nDol Dam Gil offers a remarkable culinary journey with its meticulously sourced fresh ingredients and masterful execution across a diverse menu. The exceptional value and consistent quality, bolstered by the owner's generous spirit, solidify its status as a destination-worthy establishment.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1483020843",
+        "kakao_url": "http://place.map.kakao.com/1483020843",
+        "korean_query": null,
+        "name_ko": "돌담길",
+        "address_ko": null,
+        "vector_id": 2940
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.0988914404,
+          37.5053220813169
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "담소",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis izakaya shines with its fresh, thoughtfully sourced ingredients and the chef's evident craftsmanship, particularly in unique offerings like aged kimchi flounder sushi. While the overall value is fair, the inconsistency in sukiyaki seasoning prevents a higher rating.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1283816647",
+        "kakao_url": "http://place.map.kakao.com/1283816647",
+        "korean_query": null,
+        "name_ko": "담소",
+        "address_ko": null,
+        "vector_id": 2941
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.09887533582544,
+          37.50511666565615
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "하얀집",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n하얀집 delivers an exceptional culinary experience, showcasing masterful technique with consistently fresh, seasonal ingredients. The unique, dedicated owner further elevates this destination-worthy establishment.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1466691515",
+        "kakao_url": "http://place.map.kakao.com/1466691515",
+        "korean_query": null,
+        "name_ko": "하얀집",
+        "address_ko": null,
+        "vector_id": 2942
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.088642854687,
+          37.5027227073422
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "동동주&지지미골",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "술집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n동동주&지지미골 excels with impeccably fresh, domestically sourced ingredients and a diverse menu executed with notable skill, from crispy potato pancakes to perfectly balanced stir-fries. The owner's generous spirit and customer-centric flexibility, combined with outstanding value and consistent quality, make this a truly exceptional establishment.\n\nInspector Notes: This establishment earned high marks across all categories for its superior ingredients, skilled technique, strong personality, exceptional value, and consistent quality, with no sponsorship penalty applied.",
+        "kakao_id": "468682904",
+        "kakao_url": "http://place.map.kakao.com/468682904",
+        "korean_query": null,
+        "name_ko": "동동주&지지미골",
+        "address_ko": null,
+        "vector_id": 2943
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.087975704541,
+          37.5047378538793
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "화포식당 잠실점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "삼겹살",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n화포식당 Jamsil offers premium aged pork expertly grilled by staff, complemented by thoughtful side dishes and well-executed secondary items. While lacking a distinct culinary personality, its consistent quality and fair pricing make it a reliable choice for discerning 삼겹살 enthusiasts.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "272016174",
+        "kakao_url": "http://place.map.kakao.com/272016174",
+        "korean_query": null,
+        "name_ko": "화포식당 잠실점",
+        "address_ko": null,
+        "vector_id": 2944
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.1199972467646,
+          37.5128024859948
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "송돈 방이본점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "삼겹살",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n송돈 방이본점 delivers an exceptional samgyeopsal experience, distinguished by its premium aged pork and masterful staff grilling. Its unique hospitality and corkage-free policy elevate it beyond a typical Korean BBQ spot.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "46209884",
+        "kakao_url": "http://place.map.kakao.com/46209884",
+        "korean_query": null,
+        "name_ko": "송돈 방이본점",
+        "address_ko": null,
+        "vector_id": 2945
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.103564885064,
+          37.507141710127
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "연탄부락 석촌점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "삼겹살",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n연탄부락 석촌점 delivers a commendable 삼겹살 experience, marked by fresh domestic pork and a well-executed charcoal grill technique. While the complimentary ssam-jjolmyeon elevates its value, the establishment's culinary personality remains somewhat understated.\n\nInspector Notes: The score reflects strong points in ingredients, technique, and exceptional value, slightly tempered by a less distinct culinary personality and minor inconsistencies in side dishes. No sponsorship penalty was applied.",
+        "kakao_id": "317551903",
+        "kakao_url": "http://place.map.kakao.com/317551903",
+        "korean_query": null,
+        "name_ko": "연탄부락 석촌점",
+        "address_ko": null,
+        "vector_id": 2946
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.10871601864991,
+          37.50205721542007
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "청풍식당",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "삼겹살",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n청풍식당 offers exceptional value and a warm, generous spirit, making it a beloved neighborhood spot. While the side dishes and other menu items shine, the core samgyeopsal itself is merely average, preventing a higher distinction.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1936051906",
+        "kakao_url": "http://place.map.kakao.com/1936051906",
+        "korean_query": null,
+        "name_ko": "청풍식당",
+        "address_ko": null,
+        "vector_id": 2947
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.085585495671,
+          37.5092752679314
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "옥봉갈비",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "돼지갈비",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nOkbong Galbi exemplifies the pinnacle of 돼지갈비, marrying generational recipes with meticulous technique and premium ingredients. Its unwavering commitment to quality and tradition makes it a truly destination-worthy establishment.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "33115521",
+        "kakao_url": "http://place.map.kakao.com/33115521",
+        "korean_query": null,
+        "name_ko": "옥봉갈비",
+        "address_ko": null,
+        "vector_id": 2948
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.1070992588628,
+          37.50238305420351
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "오리진",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "고기집",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n오리진 delivers a commendable duck experience, showcasing fresh ingredients and masterful technique across its menu, particularly with its well-balanced duck soup. While service is friendly and value is excellent, the culinary identity, though solid, doesn't quite reach the level of unique artistry.\n\nInspector Notes: The score reflects high marks for ingredients, technique, and value, with a slightly lower score for personality due to a focus on execution rather than unique culinary vision; no sponsorship penalty was applied as the ratio was 50%.",
+        "kakao_id": "2093208138",
+        "kakao_url": "http://place.map.kakao.com/2093208138",
+        "korean_query": null,
+        "name_ko": "오리진",
+        "address_ko": null,
+        "vector_id": 2949
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.11032044849216,
+          37.51641773613126
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "김경자원조손칼국수&보쌈",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "칼국수",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment shines with quality ingredients and thoughtful service, offering exceptional value for its price point. However, the inconsistent kalguksu broth prevents it from achieving a higher culinary distinction.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "848654280",
+        "kakao_url": "http://place.map.kakao.com/848654280",
+        "korean_query": null,
+        "name_ko": "김경자원조손칼국수&보쌈",
+        "address_ko": null,
+        "vector_id": 2950
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.13285205099773,
+          37.51598278392952
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "함초밭들깨칼국수",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "3 Neon Hearts",
+        "cuisine": "칼국수",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nThis establishment elevates a comfort classic with its distinctive glasswort noodles and rich perilla broth, complemented by genuine hospitality. It consistently delivers exceptional quality and value, making it a beloved local gem.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "1201214796",
+        "kakao_url": "http://place.map.kakao.com/1201214796",
+        "korean_query": null,
+        "name_ko": "함초밭들깨칼국수",
+        "address_ko": null,
+        "vector_id": 2951
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.095692276897,
+          37.5357263479462
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "장안냉면",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "냉면",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nNo specific objective facts or culinary details for 장안냉면 were provided. The input text describes general aspects of Naengmyeon and list conventions, not a restaurant's performance.\n\nInspector Notes: All scores are zero due to the complete absence of specific data regarding 장안냉면's ingredients, technique, personality, value, or consistency. No sponsored ratio was provided, so no penalty was applied.",
+        "kakao_id": "16088869",
+        "kakao_url": "http://place.map.kakao.com/16088869",
+        "korean_query": null,
+        "name_ko": "장안냉면",
+        "address_ko": null,
+        "vector_id": 2952
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.081936886188,
+          37.5073082590745
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "송파골목냉면",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "냉면",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\n\n\nInspector Notes: Does not specialize in 냉면.",
+        "kakao_id": "2080513085",
+        "kakao_url": "http://place.map.kakao.com/2080513085",
+        "korean_query": null,
+        "name_ko": "송파골목냉면",
+        "address_ko": null,
+        "vector_id": 2953
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.128921399995,
+          37.5258729371627
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "퓨전냉면돈까스",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "냉면",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n\n\nInspector Notes: Does not specialize in 냉면.",
+        "kakao_id": "38980566",
+        "kakao_url": "http://place.map.kakao.com/38980566",
+        "korean_query": null,
+        "name_ko": "퓨전냉면돈까스",
+        "address_ko": null,
+        "vector_id": 2954
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.097920481421,
+          37.5057427584775
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "하연옥 잠실점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "1 Neon Heart",
+        "cuisine": "냉면",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\nThis establishment attempts a unique Jinju Naengmyeon with a seafood-beef broth, yet its execution suffers from inconsistent broth seasoning and flavor. While portions are generous and the yukjeon is well-regarded, the overall dining experience is marred by a notable lack of consistency in taste.\n\nInspector Notes: The score reflects decent ingredients and value, but significant deductions were made due to inconsistent technique, particularly in the broth, and a critical lack of consistency in overall taste. No sponsorship penalty was applied as no ratio was provided.",
+        "kakao_id": "72535480",
+        "kakao_url": "http://place.map.kakao.com/72535480",
+        "korean_query": null,
+        "name_ko": "하연옥 잠실점",
+        "address_ko": null,
+        "vector_id": 2955
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.111245748456,
+          37.5019539476081
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "기대만족 송파점",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "국수",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "🌟 Highly Recommended\n\n\n\nInspector Notes: Does not specialize in 국수.",
+        "kakao_id": "489808025",
+        "kakao_url": "http://place.map.kakao.com/489808025",
+        "korean_query": null,
+        "name_ko": "기대만족 송파점",
+        "address_ko": null,
+        "vector_id": 2956
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.110606582983,
+          37.5156209816764
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "길우동",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "돈까스",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n길우동 delivers consistently well-executed comfort food, particularly its crispy donkatsu and excellent value. While the culinary identity isn't groundbreaking, the friendly service and generous portions make it a reliable choice.\n\nInspector Notes: The score reflects high marks for technique, value, and consistency, balanced by good ingredient quality and a slightly lower score for culinary personality. No sponsorship penalty was applied as the ratio was 50%.",
+        "kakao_id": "1451154798",
+        "kakao_url": "http://place.map.kakao.com/1451154798",
+        "korean_query": null,
+        "name_ko": "길우동",
+        "address_ko": null,
+        "vector_id": 2957
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.1100932018394,
+          37.50802419655717
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "온량",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "돈까스",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nOnryang delivers a refined 돈까스 experience, boasting fresh ingredients and masterful technique, though a minor consistency issue with one specific cut prevents a higher score. While not a budget option, the overall quality and ambiance justify the price for a delightful meal.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "660238920",
+        "kakao_url": "http://place.map.kakao.com/660238920",
+        "korean_query": null,
+        "name_ko": "온량",
+        "address_ko": null,
+        "vector_id": 2958
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.101202293177,
+          37.5063589827638
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "마싯내",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "돈까스",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\n마싯내 delivers a truly exceptional donkatsu experience, marked by meticulously aged ingredients and masterful cooking techniques that ensure every bite is perfect. Its thoughtful menu and consistent quality make it a standout, offering remarkable value that elevates it beyond a mere neighborhood spot.\n\nInspector Notes: Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.",
+        "kakao_id": "518699361",
+        "kakao_url": "http://place.map.kakao.com/518699361",
+        "korean_query": null,
+        "name_ko": "마싯내",
+        "address_ko": null,
+        "vector_id": 2959
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.107488932705,
+          37.5004581525387
+        ]
+      },
+      "properties": {
+        "source": "neon",
+        "name": "소바정원",
+        "address": null,
+        "city": "Seoul",
+        "country": "South Korea",
+        "category": "2 Neon Hearts",
+        "cuisine": "돈까스",
+        "price": null,
+        "phone": null,
+        "url": null,
+        "year": "2026",
+        "description": "✨ Exceptional Gastronomic Experience\n\nWhile 소바정원 demonstrates commendable technique and a chef's personal touch in its broths and sauces, the high sponsorship ratio raises significant concerns regarding its genuine value and long-term consistency. Despite improvements noted, the overall impression is that of a place still finding its footing in the authentic local dining scene.\n\nInspector Notes: The score reflects strong culinary execution and chef's dedication, but significant deductions were applied to 'value' and 'consistency' due to the high sponsored ratio, indicating a potential disconnect from organic customer experience. (Supreme Court Verified: Reviews confirm exceptional quality).",
+        "kakao_id": "258380638",
+        "kakao_url": "http://place.map.kakao.com/258380638",
+        "korean_query": null,
+        "name_ko": "소바정원",
+        "address_ko": null,
+        "vector_id": 2960
+      }
     }
   ]
 }
