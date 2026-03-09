@@ -48,6 +48,13 @@ async function searchFAISS(query) {
             // 🚨 MUST be python3 for the Linux Docker container!
             const pythonProcess = spawn('python3', [pythonScript, faissIndexPath]);
 
+            // Kill the subprocess and resolve empty if it takes too long
+            const timeout = setTimeout(() => {
+                console.error("❌ FAISS subprocess timed out — killing process");
+                pythonProcess.kill();
+                resolve([]);
+            }, 10000);
+
             pythonProcess.stdin.write(JSON.stringify(vector));
             pythonProcess.stdin.end();
 
@@ -56,6 +63,7 @@ async function searchFAISS(query) {
             pythonProcess.stderr.on('data', (data) => console.error(`[Python stderr]: ${data}`));
 
             pythonProcess.on('close', () => {
+                clearTimeout(timeout);
                 try {
                     const vectorIds = JSON.parse(outputData.trim());
                     resolve(vectorIds);
