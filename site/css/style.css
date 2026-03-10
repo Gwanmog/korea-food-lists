@@ -305,6 +305,25 @@ body.dark .tag.neon {
 .popup-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
 .popup-meta { font-size: 13px; color: var(--muted); margin-bottom: 8px; line-height: 1.4; }
 .popup-desc { font-size: 12px; margin-bottom: 8px; color: var(--text); line-height: 1.5; border-left: 2px solid var(--border); padding-left: 8px; }
+.desc-expand-btn {
+  display: inline-block;
+  margin-top: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 11px;
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 600;
+  opacity: 0.8;
+}
+.desc-expand-btn:hover { opacity: 1; text-decoration: underline; }
+.desc-loading {
+  color: var(--muted);
+  font-style: italic;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 .popup-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
 
 .linkbtn {

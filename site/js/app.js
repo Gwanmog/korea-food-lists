@@ -22,6 +22,11 @@ const I18N = {
     count: "{n} places",
     myLoc: "You",
     searchKakao: "Search Kakao",
+    selectAll: "☑ All",
+    deselectAll: "☐ None",
+    readMore: "Read more ▼",
+    showLess: "Show less ▲",
+    translating: "Translating... ⏳",
   },
   ko: {
     placeholder: "식당 검색...",
@@ -33,6 +38,11 @@ const I18N = {
     count: "{n}곳 발견",
     myLoc: "내 위치",
     searchKakao: "카카오맵 검색",
+    selectAll: "☑ 전체",
+    deselectAll: "☐ 해제",
+    readMore: "더 보기 ▼",
+    showLess: "접기 ▲",
+    translating: "번역 중... ⏳",
   }
 };
 
@@ -44,6 +54,16 @@ let clusterGroup = null;
 let userLoc = null;
 let userMarker = null;
 let tileLayer = null;
+// Persisted translation cache — survives page reloads
+const TRANSLATION_CACHE_KEY = 'ems_translation_cache_v1';
+const translationCache = (() => {
+  try { return JSON.parse(localStorage.getItem(TRANSLATION_CACHE_KEY)) || {}; }
+  catch { return {}; }
+})();
+function saveTranslationCache() {
+  try { localStorage.setItem(TRANSLATION_CACHE_KEY, JSON.stringify(translationCache)); }
+  catch { /* storage full — no-op, in-memory cache still works */ }
+}
 
 // --- MAP INIT ---
 const map = L.map('map', {
@@ -107,6 +127,7 @@ if (langBtn) langBtn.onclick = () => {
     if (t[key]) el.textContent = t[key];
   });
 
+  updateSelectAllBtn();
   render();
 };
 
@@ -139,9 +160,53 @@ const filters = {
   n_exc: $('f_n_exc'), n_high: $('f_n_high'), n_worth: $('f_n_worth')
 };
 
-Object.values(filters).forEach(el => {
-  if (el) el.onchange = render;
+const filterChildren = {
+  michelin: ['m3', 'm2', 'm1', 'bib'],
+  blu: ['r3', 'r2', 'r1'],
+  neon: ['n_exc', 'n_high', 'n_worth']
+};
+
+function handleFilterChange(key) {
+  // Parent toggled → cascade to children
+  if (filterChildren[key]) {
+    const state = filters[key].checked;
+    filterChildren[key].forEach(childKey => {
+      if (filters[childKey]) filters[childKey].checked = state;
+    });
+  }
+  // Child toggled → if all children unchecked, uncheck parent
+  for (const [parentKey, children] of Object.entries(filterChildren)) {
+    if (children.includes(key) && filters[parentKey]) {
+      const anyChecked = children.some(k => filters[k]?.checked);
+      if (!anyChecked) filters[parentKey].checked = false;
+      else if (children.every(k => filters[k]?.checked)) filters[parentKey].checked = true;
+    }
+  }
+  updateSelectAllBtn();
+  render();
+}
+
+Object.entries(filters).forEach(([key, el]) => {
+  if (el) el.onchange = () => handleFilterChange(key);
 });
+
+function updateSelectAllBtn() {
+  const btn = $('selectAllBtn');
+  if (!btn) return;
+  const t = I18N[currentLang];
+  const allChecked = Object.values(filters).every(el => !el || el.checked);
+  btn.textContent = allChecked ? t.deselectAll : t.selectAll;
+}
+
+const selectAllBtn = $('selectAllBtn');
+if (selectAllBtn) {
+  selectAllBtn.onclick = () => {
+    const anyUnchecked = Object.values(filters).some(el => el && !el.checked);
+    Object.values(filters).forEach(el => { if (el) el.checked = anyUnchecked; });
+    updateSelectAllBtn();
+    render();
+  };
+}
 
 // --- FILTER LOGIC ---
 function passes(p) {
@@ -229,8 +294,22 @@ function renderPopup(p) {
 
   let descHtml = "";
   if (p.description) {
-    const shortDesc = p.description.length > 300 ? p.description.substring(0, 300) + "..." : p.description;
-    descHtml = `<div class="popup-desc">${esc(shortDesc)}</div>`;
+    const fullText = p.description;
+    const isLong = fullText.length > 300;
+    const shortText = isLong ? fullText.substring(0, 300) + "..." : fullText;
+    // Escape for use inside HTML attribute (also escape quotes)
+    const attrEsc = s => esc(s).replace(/"/g, '&quot;');
+    const t = I18N[currentLang];
+    if (currentLang === 'ko') {
+      descHtml = `<div class="popup-desc" data-en="${attrEsc(fullText)}" data-name="${attrEsc(p.name)}">
+        <span class="desc-text desc-loading">${t.translating}</span>
+      </div>`;
+    } else {
+      descHtml = `<div class="popup-desc" data-en="${attrEsc(fullText)}" data-name="${attrEsc(p.name)}">
+        <span class="desc-text">${esc(shortText)}</span>
+        ${isLong ? `<button class="desc-expand-btn" onclick="window.toggleDesc(this)">${t.readMore}</button>` : ''}
+      </div>`;
+    }
   }
 
   let titleHtml = `<div class="popup-title">${esc(p.name)}</div>`;
@@ -395,6 +474,59 @@ function render() {
 
 map.on('moveend', render);
 map.on('popupclose', render);
+
+// --- POPUP TRANSLATION (KR mode) ---
+map.on('popupopen', async (e) => {
+  if (currentLang !== 'ko') return;
+  const popupEl = e.popup.getElement();
+  if (!popupEl) return;
+  const descEl = popupEl.querySelector('.popup-desc');
+  if (!descEl) return;
+  const englishText = descEl.getAttribute('data-en');
+  const restaurantName = descEl.getAttribute('data-name');
+  if (!englishText) return;
+  const textEl = descEl.querySelector('.desc-text');
+  if (!textEl) return;
+
+  if (translationCache[restaurantName]) {
+    textEl.textContent = translationCache[restaurantName];
+    textEl.classList.remove('desc-loading');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/translate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: englishText })
+    });
+    const data = await response.json();
+    translationCache[restaurantName] = data.translated;
+    saveTranslationCache();
+    textEl.textContent = data.translated;
+    textEl.classList.remove('desc-loading');
+  } catch {
+    textEl.textContent = englishText;
+    textEl.classList.remove('desc-loading');
+  }
+});
+
+// --- EXPAND/COLLAPSE POPUP DESCRIPTION ---
+window.toggleDesc = function(btn) {
+  const descEl = btn.closest('.popup-desc');
+  const textEl = descEl.querySelector('.desc-text');
+  const fullText = descEl.getAttribute('data-en');
+  const t = I18N[currentLang];
+  if (btn.dataset.expanded === '1') {
+    textEl.textContent = fullText.substring(0, 300) + "...";
+    btn.textContent = t.readMore;
+    btn.dataset.expanded = '0';
+  } else {
+    textEl.textContent = fullText;
+    btn.textContent = t.showLess;
+    btn.dataset.expanded = '1';
+  }
+};
 
 // --- INIT ---
 async function init() {

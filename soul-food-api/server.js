@@ -186,6 +186,22 @@ app.post('/chat', async (req, res) => {
   }
 });
 
+// 5. Lightweight translation endpoint (used for popup descriptions in KR mode)
+app.post('/translate', async (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text) return res.status(400).json({ error: "Missing text" });
+    const result = await model.generateContent(
+      `Translate the following restaurant description into natural Korean. Return ONLY the Korean translation, no explanations or extra text:\n\n${text}`
+    );
+    const translated = result.response.text().trim();
+    res.json({ translated });
+  } catch (error) {
+    console.error("Translation error:", error);
+    res.status(500).json({ error: "Translation failed" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`🚀 Server is running on port ${port}`);
 });
