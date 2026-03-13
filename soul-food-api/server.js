@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { spawn } = require('child_process');
 const path = require('path');
@@ -12,6 +13,14 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(process.cwd(), 'site')));
+
+// Rate limiting — 10 searches per minute per IP, 30 translates per minute
+const searchLimiter = rateLimit({ windowMs: 60 * 1000, max: 10, standardHeaders: true, legacyHeaders: false });
+const translateLimiter = rateLimit({ windowMs: 60 * 1000, max: 30, standardHeaders: true, legacyHeaders: false });
+
+// In-memory search cache — keyed by normalized query string, cleared every 6 hours
+const searchCache = new Map();
+setInterval(() => searchCache.clear(), 6 * 60 * 60 * 1000);
 
 // 1. Connect to Gemini
 const apiKey = process.env.GEMINI_API_KEY;
@@ -80,10 +89,17 @@ async function searchFAISS(query) {
 }
 
 // 4. The Omnibox AI Route
-app.post('/chat', async (req, res) => {
+app.post('/chat', searchLimiter, async (req, res) => {
   try {
     const { userQuery, language, mapWindow } = req.body;
     const targetLang = language === 'ko' ? 'Korean' : 'English';
+
+    // Serve from cache if available (language-aware key)
+    const cacheKey = `${language || 'en'}:${userQuery.trim().toLowerCase()}`;
+    if (searchCache.has(cacheKey)) {
+      console.log(`[Cache HIT] "${userQuery}"`);
+      return res.json(searchCache.get(cacheKey));
+    }
 
     console.log(`[AI Request] Lang: ${targetLang} | User asked: "${userQuery}"`);
 
@@ -178,7 +194,9 @@ app.post('/chat', async (req, res) => {
     const response = await result.response;
     console.log(`[Step 4] Gemini chat responded OK`);
 
-    res.json({ reply: response.text() });
+    const responseData = { reply: response.text() };
+    searchCache.set(cacheKey, responseData);
+    res.json(responseData);
 
   } catch (error) {
     console.error("Error generating AI response:", error);
@@ -186,15 +204,35 @@ app.post('/chat', async (req, res) => {
   }
 });
 
+// Build a lookup map from English description → cached Korean translation
+// so /translate never needs to call the API for known restaurants
+const descriptionKoCache = new Map();
+for (const feature of placesData.features) {
+  const p = feature.properties;
+  if (p.description && p.description_ko) {
+    descriptionKoCache.set(p.description.trim(), p.description_ko);
+  }
+}
+console.log(`Loaded ${descriptionKoCache.size} cached Korean translations.`);
+
 // 5. Lightweight translation endpoint (used for popup descriptions in KR mode)
-app.post('/translate', async (req, res) => {
+app.post('/translate', translateLimiter, async (req, res) => {
   try {
     const { text } = req.body;
     if (!text) return res.status(400).json({ error: "Missing text" });
+
+    // Serve from GeoJSON cache first — no API call needed
+    const cached = descriptionKoCache.get(text.trim());
+    if (cached) {
+      return res.json({ translated: cached });
+    }
+
+    // Fallback to Gemini for any text not in our dataset
     const result = await model.generateContent(
       `Translate the following restaurant description into natural Korean. Return ONLY the Korean translation, no explanations or extra text:\n\n${text}`
     );
     const translated = result.response.text().trim();
+    descriptionKoCache.set(text.trim(), translated); // cache for next time
     res.json({ translated });
   } catch (error) {
     console.error("Translation error:", error);

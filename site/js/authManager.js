@@ -28,6 +28,7 @@ const PROVIDERS = [
     className: 'auth-btn-kakao',
     supabaseProvider: 'kakao',
     enabled: true,
+    scopes: 'profile_nickname profile_image',
   },
   {
     id: 'naver',
