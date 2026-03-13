@@ -27,7 +27,7 @@ const PROVIDERS = [
     label: '카카오로 계속하기',
     className: 'auth-btn-kakao',
     supabaseProvider: 'kakao',
-    enabled: true,
+    enabled: false,
     scopes: 'profile_nickname profile_image',
   },
   {
