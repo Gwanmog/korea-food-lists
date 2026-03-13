@@ -597,3 +597,42 @@ body.dark .auth-btn-google {
   font-size: 16px;
   font-style: italic;
 }
+
+/* --- Share Button (popup) --- */
+.share-btn {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+.share-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(100, 255, 218, 0.06);
+}
+
+/* --- Toast --- */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

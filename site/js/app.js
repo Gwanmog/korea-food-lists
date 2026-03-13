@@ -287,11 +287,14 @@ function renderPopup(p) {
   if (p.price) meta.push(`💰 ${esc(p.price)}`);
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
-  // Save button
+  // Save + Share buttons
   const vectorId = p.vector_id;
   const isSaved = vectorId !== undefined ? favoritesManager.isFavorited(vectorId) : false;
   const saveBtn = vectorId !== undefined
-    ? `<button class="linkbtn save-btn full-width${isSaved ? ' saved' : ''}" onclick="window.toggleFavorite(${vectorId}, this)">${isSaved ? '❤️ Saved' : '🤍 Save'}</button>`
+    ? `<button class="linkbtn save-btn${isSaved ? ' saved' : ''}" onclick="window.toggleFavorite(${vectorId}, this)">${isSaved ? '❤️ Saved' : '🤍 Save'}</button>`
+    : '';
+  const shareBtn = vectorId !== undefined
+    ? `<button class="linkbtn share-btn" onclick="window.shareRestaurant(${vectorId}, '${esc(p.name).replace(/'/g, "\\'")}')">🔗 Share</button>`
     : '';
 
   let actions = [];
@@ -336,7 +339,7 @@ function renderPopup(p) {
     </div>
     ${descHtml}
     <div class="popup-actions">
-      ${saveBtn}
+      ${saveBtn}${shareBtn}
       ${actions.join("")}
     </div>
   `;
@@ -543,6 +546,33 @@ window.toggleDesc = function(btn) {
   }
 };
 
+// --- TOAST ---
+function showToast(message) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('visible'));
+  setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => toast.remove(), 300);
+  }, 2200);
+}
+
+// --- SHARE (called from popup button) ---
+window.shareRestaurant = function(vectorId, name) {
+  const url = `${window.location.origin}${window.location.pathname}?place=${vectorId}`;
+  if (navigator.share) {
+    navigator.share({ title: name, text: `Check out ${name} on Eat My Seoul`, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url)
+      .then(() => showToast('Link copied to clipboard!'))
+      .catch(() => prompt('Copy this link:', url));
+  }
+};
+
 // --- FAVOURITES TOGGLE (called from popup button) ---
 window.toggleFavorite = async function(vectorId, btn) {
   const user = authManager.getUser();
@@ -599,6 +629,16 @@ async function init() {
     const data = await res.json();
     allFeatures = data.features || [];
     render();
+
+    // Deep-link: ?place=vectorId opens that restaurant's popup on load
+    const placeId = new URLSearchParams(window.location.search).get('place');
+    if (placeId) {
+      const feature = allFeatures.find(f => String(f.properties.vector_id) === placeId);
+      if (feature) {
+        window.history.replaceState({}, '', window.location.pathname);
+        window.openRestaurantPopup(feature.properties.name);
+      }
+    }
   } catch (e) {
     console.error(e);
     alert("Error loading map data: " + e.message);
