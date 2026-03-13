@@ -1,4 +1,6 @@
 import { logSearchResults, logPinHover, logPinClick } from './interactionLogger.js';
+import * as authManager from './authManager.js';
+import * as favoritesManager from './favoritesManager.js';
 // --- UTILS ---
 const $ = id => document.getElementById(id);
 const enc = encodeURIComponent;
@@ -49,6 +51,7 @@ const I18N = {
 let currentLang = 'en';
 
 // --- STATE ---
+window.favoritesOnly = false;
 let allFeatures = [];
 let clusterGroup = null;
 let userLoc = null;
@@ -236,6 +239,8 @@ function passes(p) {
     if (filters.n_worth && desc.includes("👍") && !filters.n_worth.checked) return false;
   }
 
+  if (window.favoritesOnly && !favoritesManager.isFavorited(p.vector_id)) return false;
+
   // Use the global state from the Omnibox instead of the old DOM element!
   if (window.currentSearchQuery) {
     const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
@@ -282,6 +287,13 @@ function renderPopup(p) {
   if (p.price) meta.push(`💰 ${esc(p.price)}`);
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
+  // Save button
+  const vectorId = p.vector_id;
+  const isSaved = vectorId !== undefined ? favoritesManager.isFavorited(vectorId) : false;
+  const saveBtn = vectorId !== undefined
+    ? `<button class="linkbtn save-btn full-width${isSaved ? ' saved' : ''}" onclick="window.toggleFavorite(${vectorId}, this)">${isSaved ? '❤️ Saved' : '🤍 Save'}</button>`
+    : '';
+
   let actions = [];
   if (p.kakao_url && p.kakao_id) {
     actions.push(`<a class="linkbtn kakao" href="${p.kakao_url}" target="_blank">Kakao</a>`);
@@ -323,7 +335,10 @@ function renderPopup(p) {
       ${meta.join("<br>")}
     </div>
     ${descHtml}
-    <div class="popup-actions">${actions.join("")}</div>
+    <div class="popup-actions">
+      ${saveBtn}
+      ${actions.join("")}
+    </div>
   `;
 }
 
@@ -528,9 +543,56 @@ window.toggleDesc = function(btn) {
   }
 };
 
+// --- FAVOURITES TOGGLE (called from popup button) ---
+window.toggleFavorite = async function(vectorId, btn) {
+  const user = authManager.getUser();
+  if (!user) {
+    authManager.showLoginModal();
+    return;
+  }
+
+  btn.disabled = true;
+  const saved = await favoritesManager.toggleFavorite(user.id, vectorId);
+  btn.textContent = saved ? '❤️ Saved' : '🤍 Save';
+  btn.classList.toggle('saved', saved);
+  btn.disabled = false;
+
+  // If we're in favourites-only mode and just unsaved, re-render
+  if (window.favoritesOnly && !saved) render();
+};
+
+// --- FAVOURITES FILTER BUTTON ---
+const favBtn = $('favBtn');
+if (favBtn) {
+  favBtn.addEventListener('click', () => {
+    window.favoritesOnly = !window.favoritesOnly;
+    favBtn.textContent = window.favoritesOnly ? '❤️' : '🤍';
+    favBtn.classList.toggle('active', window.favoritesOnly);
+    render();
+  });
+}
+
 // --- INIT ---
 async function init() {
   setMapLanguage('en');
+
+  // Auth: init and listen for login/logout
+  authManager.init();
+  authManager.onAuthStateChange(async (user) => {
+    if (user) {
+      await favoritesManager.load(user.id);
+    } else {
+      favoritesManager.clear();
+      // If we were in favourites-only mode, exit it on logout
+      if (window.favoritesOnly) {
+        window.favoritesOnly = false;
+        const fb = $('favBtn');
+        if (fb) { fb.textContent = '🤍'; fb.classList.remove('active'); }
+      }
+    }
+    render();
+  });
+
   try {
     const res = await fetch('./places.geojson');
     if (!res.ok) throw new Error("Failed to load data");
