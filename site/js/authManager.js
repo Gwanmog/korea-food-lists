@@ -120,7 +120,7 @@ export async function signIn(providerId) {
 
 // Redirects the browser to Kakao's auth page (no email scope — avoids KOE205).
 function _startKakaoLogin() {
-  const redirectUri = window.location.origin + '/';
+  const redirectUri = window.location.origin;
   const params = new URLSearchParams({
     client_id: KAKAO_REST_API_KEY,
     redirect_uri: redirectUri,
@@ -145,7 +145,7 @@ async function _handleKakaoRedirect() {
     const res = await fetch(`${API_BASE_URL}/auth/kakao/token`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code, redirect_uri: window.location.origin + '/' }),
+      body: JSON.stringify({ code, redirect_uri: window.location.origin }),
     });
 
     const data = await res.json();
