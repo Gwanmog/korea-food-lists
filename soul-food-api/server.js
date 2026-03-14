@@ -240,6 +240,49 @@ app.post('/translate', translateLimiter, async (req, res) => {
   }
 });
 
+// 6. Kakao OIDC Token Exchange
+// Receives the one-time `code` from the frontend, exchanges it with Kakao for
+// tokens, and returns the `id_token` so the frontend can call supabase.auth.signInWithIdToken.
+app.post('/auth/kakao/token', async (req, res) => {
+  const { code, redirect_uri } = req.body;
+  if (!code || !redirect_uri) {
+    return res.status(400).json({ error: 'Missing code or redirect_uri' });
+  }
+
+  const kakaoRestApiKey = process.env.KAKAO_REST_API_KEY;
+  if (!kakaoRestApiKey) {
+    console.error('ERROR: KAKAO_REST_API_KEY is missing from environment!');
+    return res.status(500).json({ error: 'Server misconfiguration' });
+  }
+
+  try {
+    const params = new URLSearchParams({
+      grant_type: 'authorization_code',
+      client_id: kakaoRestApiKey,
+      redirect_uri,
+      code,
+    });
+
+    const kakaoRes = await fetch('https://kauth.kakao.com/oauth/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+    });
+
+    const data = await kakaoRes.json();
+
+    if (!kakaoRes.ok || !data.id_token) {
+      console.error('[Kakao] Token exchange failed:', data);
+      return res.status(400).json({ error: data.error_description || 'Kakao token exchange failed' });
+    }
+
+    res.json({ id_token: data.id_token });
+  } catch (err) {
+    console.error('[Kakao] Token exchange error:', err);
+    res.status(500).json({ error: 'Token exchange failed' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`🚀 Server is running on port ${port}`);
 });
