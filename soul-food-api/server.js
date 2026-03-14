@@ -264,6 +264,7 @@ app.post('/auth/kakao/token', async (req, res) => {
       client_id: kakaoRestApiKey,
       redirect_uri,
       code,
+      ...(process.env.KAKAO_CLIENT_SECRET && { client_secret: process.env.KAKAO_CLIENT_SECRET }),
     });
 
     const kakaoRes = await fetch('https://kauth.kakao.com/oauth/token', {
