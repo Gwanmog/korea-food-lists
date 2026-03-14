@@ -179,7 +179,7 @@ function _updateAuthButton(user) {
   const btn = document.getElementById('authBtn');
   if (!btn) return;
   if (user) {
-    const name = user.user_metadata?.full_name || user.email || '?';
+    const name = user.user_metadata?.full_name || user.user_metadata?.name || user.user_metadata?.nickname || user.email || '?';
     const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
     btn.textContent = initials;
     btn.classList.add('signed-in');
