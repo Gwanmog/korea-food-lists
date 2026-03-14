@@ -254,6 +254,9 @@ app.post('/auth/kakao/token', async (req, res) => {
     console.error('ERROR: KAKAO_REST_API_KEY is missing from environment!');
     return res.status(500).json({ error: 'Server misconfiguration' });
   }
+  console.log(`[Kakao] Using client_id: ${kakaoRestApiKey.substring(0, 6)}... (len=${kakaoRestApiKey.length})`);
+  console.log(`[Kakao] redirect_uri: ${redirect_uri}`);
+  console.log(`[Kakao] code (first 10): ${code.substring(0, 10)}...`);
 
   try {
     const params = new URLSearchParams({
