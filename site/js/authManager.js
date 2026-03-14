@@ -12,6 +12,15 @@
 
 import { supabase } from './supabaseClient.js';
 
+// ─── Config ───────────────────────────────────────────────────────────────────
+
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocal ? 'http://localhost:3000' : 'https://eatmyseoul.onrender.com';
+
+// The Kakao REST API key — this is a public key, safe to hardcode in frontend
+// (it's visible in the OAuth redirect URL anyway)
+const KAKAO_REST_API_KEY = '6928b1e47b4a422ff911f068a1948c44';
+
 // ─── Provider Config ──────────────────────────────────────────────────────────
 
 const PROVIDERS = [
@@ -27,7 +36,7 @@ const PROVIDERS = [
     label: '카카오로 계속하기',
     className: 'auth-btn-kakao',
     supabaseProvider: 'kakao',
-    enabled: false,
+    enabled: true,
     scopes: 'profile_nickname profile_image',
   },
   {
@@ -97,12 +106,67 @@ export function hideLoginModal() {
 // ─── Auth Actions ─────────────────────────────────────────────────────────────
 
 export async function signIn(providerId) {
+  if (providerId === 'kakao') {
+    _startKakaoLogin();
+    return;
+  }
   const provider = PROVIDERS.find(p => p.id === providerId);
   if (!provider) return;
   await supabase.auth.signInWithOAuth({
     provider: provider.supabaseProvider,
     options: { redirectTo: window.location.origin },
   });
+}
+
+// Redirects the browser to Kakao's auth page (no email scope — avoids KOE205).
+function _startKakaoLogin() {
+  const redirectUri = window.location.origin + '/';
+  const params = new URLSearchParams({
+    client_id: KAKAO_REST_API_KEY,
+    redirect_uri: redirectUri,
+    response_type: 'code',
+    scope: 'profile_nickname profile_image openid',
+  });
+  window.location.href = `https://kauth.kakao.com/oauth/authorize?${params}`;
+}
+
+// Called on every page load. If Kakao redirected back with ?code=..., handle it.
+async function _handleKakaoRedirect() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const code = urlParams.get('code');
+  if (!code) return;
+
+  // Clean the code from the URL immediately so it doesn't get reused
+  const cleanUrl = window.location.pathname;
+  window.history.replaceState({}, document.title, cleanUrl);
+
+  try {
+    // Exchange the code for an id_token via our backend
+    const res = await fetch(`${API_BASE_URL}/auth/kakao/token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code, redirect_uri: window.location.origin + '/' }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.id_token) {
+      console.error('[Kakao] Backend token exchange failed:', data);
+      return;
+    }
+
+    // Sign into Supabase using the id_token — bypasses the broken signInWithOAuth
+    const { error } = await supabase.auth.signInWithIdToken({
+      provider: 'kakao',
+      token: data.id_token,
+    });
+
+    if (error) {
+      console.error('[Kakao] Supabase signInWithIdToken failed:', error);
+    }
+  } catch (err) {
+    console.error('[Kakao] Redirect handling error:', err);
+  }
 }
 
 export async function signOut() {
@@ -137,6 +201,7 @@ function _updateFavBtn(user) {
 
 export function init() {
   _buildModal();
+  _handleKakaoRedirect();
 
   supabase.auth.onAuthStateChange((_event, session) => {
     _currentUser = session?.user ?? null;
