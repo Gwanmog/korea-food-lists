@@ -323,8 +323,9 @@ Use the exact structure below:
 
         <sponsorship_weighting_rule>
         Read the Sponsored Ratio carefully. 
-        - If the sponsored ratio is > 50%: You MUST set "sponsorship_penalty_applied" to true. You must heavily deduct points from the "consistency" and "value" categories. The final calculated total score MUST NOT exceed 89. No exceptions.
-        - If the sponsored ratio is <= 50%: Set "sponsorship_penalty_applied" to false. Score normally based purely on the culinary facts.
+        - If the sponsored ratio is >= 75%: You MUST set "sponsorship_penalty_applied" to true. You must heavily deduct points from the "consistency" and "value" categories. The final calculated total score MUST NOT exceed 70. No exceptions.
+        - Else if the sponsored ratio is >= 50%: You MUST set "sponsorship_penalty_applied" to true. You must heavily deduct points from the "consistency" and "value" categories. The final calculated total score MUST NOT exceed 80. No exceptions.
+        - If the sponsored ratio is < 50%: Set "sponsorship_penalty_applied" to false. Score normally based purely on the culinary facts.
         </sponsorship_weighting_rule>
 
         <award_levels>
@@ -370,6 +371,7 @@ Use the exact structure below:
             )
         )
         critic_data = json.loads(gemini_response.text)
+        critic_data['sponsored_ratio'] = analyst_data.get('sponsored_ratio', 'unknown')
         print("   ✅ Gemini successfully scored the restaurant!")
         return critic_data
 
@@ -383,6 +385,7 @@ Use the exact structure below:
             )
             response.raise_for_status()
             critic_data = json.loads(response.json()['response'])
+            critic_data['sponsored_ratio'] = analyst_data.get('sponsored_ratio', 'unknown')
             print("   ✅ Local AI successfully scored the restaurant!")
             return critic_data
 

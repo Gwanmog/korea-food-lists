@@ -1,7 +1,1125 @@
-source,name,address,city,country,category,cuisine,price,phone,url,year,latitude,longitude,captured_at
-michelin,3rd Samgyetang,"56-3 Banpo-daero 28-gil, Seocho-gu, Seoul, 06646, South Korea",Seoul,South Korea,,"Samgyetang
+﻿source,name,address,city,country,category,cuisine,price,phone,url,year,latitude,longitude,captured_at,kakao_id,kakao_url
+michelin,3rd Samgyetang,"56-3 Banpo-daero 28-gil, Seocho-gu, Seoul, 06646, South Korea",Seoul,South Korea,Selected,"Samgyetang
 Eat like a local
 Favorite
 Visited
 Notes
-This establishment manages its own bookings",₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/3rd-samgyetang,,,,2026-02-13T05:43:43.255962+00:00
+This establishment manages its own bookings",₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/3rd-samgyetang,,37.49135,127.01155,2026-02-14T03:18:57.269320+00:00,,
+michelin,Andeok,"18 Jahamun-ro 17-gil, Jongno-gu, Seoul, 03035, South Korea",Seoul,South Korea,Selected,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-723-1518,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/andeok,,37.58143,126.96969,2026-02-14T03:18:57.269320+00:00,,
+michelin,Base is nice,"20 Dohwa 2-gil, Mapo-gu, Seoul, 04171, South Korea",Seoul,South Korea,Bib Gourmand,"Vegetarian
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/base-is-nice,,37.53958,126.94908,2026-02-14T03:18:57.269320+00:00,,
+michelin,Bium,"41 Hakdong-ro 97-gil, Gangnam-gu, Seoul, 06072, South Korea",Seoul,South Korea,Selected,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-549-8889,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bium,,37.52239,127.05439,2026-02-14T03:18:57.269320+00:00,,
+michelin,Bongsanok,"5-6 Banpo-daero 8-gil, Seocho-gu, Seoul, 06716, South Korea",Seoul,South Korea,Selected,"Mandu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-525-2282,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bongsanok,,37.48336,127.01242,2026-02-14T03:18:57.269320+00:00,,
+michelin,Born and Bred,"2F, 1 Majang-ro 42-gil, Seongdong-gu, Seoul, 04757, South Korea",Seoul,South Korea,Selected,"Barbecue
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-2294-5005,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/born-and-bred,,37.56697,127.04468,2026-02-14T03:18:57.269320+00:00,,
+michelin,Chaconne,"1F, Building 102, Yeoksam Hills, 23 Nonhyeon-ro 97-gil, Gangnam-gu, Seoul, 06131, South Korea",Seoul,South Korea,Selected,"French Contemporary
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8210-2693-6392,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/chaconne,,37.50274,127.03376,2026-02-14T03:18:57.269320+00:00,,
+michelin,Collage,"2F Ananti at Gangnam, 11 Nonhyeon-ro 136-gil, Gangnam-gu, Seoul, 06051, South Korea",Seoul,South Korea,Selected,"French Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-2190-4112,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/collage,,37.51619,127.03099,2026-02-14T03:18:57.269320+00:00,,
+michelin,Doori,"27 Wonhyo-ro 63-gil, Yongsan-gu, Seoul, 04364, South Korea",Seoul,South Korea,Selected,"Korean
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/doori,,37.53795,126.96352,2026-02-14T03:18:57.269320+00:00,,
+michelin,Épanoui,"3F, 33 Seolleung-ro 146-gil, Gangnam-gu, Seoul, 06064, South Korea",Seoul,South Korea,Selected,"French
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-548-2020,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/epanoui,,37.52187,127.04254,2026-02-14T03:18:57.269320+00:00,,
+michelin,Fuje,"2F, 21 Nonhyeon-ro 24-gil, Gangnam-gu, Seoul, 06302, South Korea",Seoul,South Korea,Selected,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8270-4837-4997,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/fuje,,37.48207,127.04473,2026-02-14T03:18:57.269320+00:00,,
+michelin,GiwaKang,"4F, 9 Nonhyeon-ro 152-gil, Gangnam-gu, Seoul, 06025, South Korea",Seoul,South Korea,Selected,"Korean Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-517-2511,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/giwakang,,37.52107,127.02893,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gomtang Lab,"10F, Hyundai Department Store, 517 Teheran-ro, Gangnam-gu, Seoul, 06164, South Korea",Seoul,South Korea,Bib Gourmand,"Gomtang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-517-4656,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gomtang-lab,,37.50859,127.05971,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gosari Express,"12-10, Toegye-ro 85-gil, Jung-gu, Seoul, 04576, South Korea",Seoul,South Korea,Selected,"Vegan
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2039-3140,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gosari-express,,37.56626,127.02001,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hakusi,"2F, 8-4 Eonju-ro 157-gil, Gangnam-gu, Seoul, 06024, South Korea",Seoul,South Korea,Selected,"Japanese
+Chef's Table
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8210-7316-6212,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hakusi,,37.52414,127.03227,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hapjeongok,"2F, 21 Yanghwa-ro 1-gil, Mapo-gu, Seoul, 04026, South Korea",Seoul,South Korea,Bib Gourmand,"Gomtang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-322-4822,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hapjeongok,,37.54944,126.91037,2026-02-14T03:18:57.269320+00:00,,
+michelin,Imok Smoke Dining,"B1F, 6 Apgujeong-ro 2-gil, Gangnam-gu, Seoul, 06027, South Korea",Seoul,South Korea,Selected,"Barbecue
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/imok-smoke-dining,,37.521151,127.019274,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jin Jin,"60 World Cup buk-ro 1-gil, Mapo-gu, Seoul, 04031, South Korea",Seoul,South Korea,Bib Gourmand,"Chinese
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8270-5035-8878,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jin-jin,,37.55777,126.91324,2026-02-14T03:18:57.269320+00:00,,
+michelin,JUE,"124-7 Dokseodang-ro, Yongsan-gu, Seoul, 04420, South Korea",Seoul,South Korea,Selected,"Chinese
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-798-9700,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jue,,37.53744,127.01277,2026-02-14T03:18:57.269320+00:00,,
+michelin,Manao,"2F, 18 Hannam-daero 21-gil, Yongsan-gu, Seoul, 04401, South Korea",Seoul,South Korea,Selected,"Thai
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/manao,,37.53411,127.00613,2026-02-14T03:18:57.269320+00:00,,
+michelin,Manjok Ohyang Jokbal,"134-7 Seosomun-ro, Jung-gu, Seoul, 04514, South Korea",Seoul,South Korea,Bib Gourmand,"Jokbal
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-753-4755,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/manjok-ohyang-jokbal,,37.56324,126.97598,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mipildam,"22 Seongji 3-gil, Mapo-gu, Seoul, 04083, South Korea",Seoul,South Korea,Bib Gourmand,"Mandu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-5455-5041,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mipildam,,37.54658,126.91419,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mugunghwa,"38F Lotte Hotel, 30 Eulji-ro, Jung-gu, Seoul, 04533, South Korea",Seoul,South Korea,Selected,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-317-7061,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mugunghwa,,37.56533,126.981,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mukjung,"17 Teogye-ro 48-gil, Jung-gu, Seoul, 04619, South Korea",Seoul,South Korea,Selected,"Korean
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-8350-6743,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mukjung,,37.56181,127.00053,2026-02-14T03:18:57.269320+00:00,,
+michelin,Myungbodang,"3F, 13-12 Seolleung-ro 158-gil, Gangnam-gu, Seoul, 06014, South Korea",Seoul,South Korea,Selected,"Contemporary
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-511-5046,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/myungbodang,,37.52635,127.041513,2026-02-14T03:18:57.269320+00:00,,
+michelin,Nishimuramen,"4F, 265 Donggyo-ro, Mapo-gu, Seoul, 03983, South Korea",Seoul,South Korea,Bib Gourmand,"Ramen
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-9596-1122,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/nishimuramen,,37.56337,126.92526,2026-02-14T03:18:57.269320+00:00,,
+michelin,Oegojip Seolleongtang,"555 Samseong-ro, Gangnam-gu, Seoul, 06155, South Korea",Seoul,South Korea,Selected,"Seolleongtang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-567-5225,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/oegojip-sellongtang,,37.51097,127.05388,2026-02-14T03:18:57.269320+00:00,,
+michelin,Oilje,"29 Hangang-daero 62da-gil, Yongsan-gu, Seoul, 04382, South Korea",Seoul,South Korea,Selected,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-8831-5534,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/oilje,,37.53254,126.97473,2026-02-14T03:18:57.269320+00:00,,
+michelin,Okdol Heyonok,"26-1 Ogeum-ro  36-gil, Songpa-gu, Seoul, 05700, South Korea",Seoul,South Korea,Bib Gourmand,"Naengmyeon
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-404-4824,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/okdol-heyonok,,37.50153,127.12408,2026-02-14T03:18:57.269320+00:00,,
+michelin,Onjium,"4F, 49 Hyoja-ro, Jongno-gu, Seoul, 03043, South Korea",Seoul,South Korea,1 Star,"Korean
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-6952-0024,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/onjium,,37.58048,126.97345,2026-02-14T03:18:57.269320+00:00,,
+michelin,Onyva,"B1, 15 Dosan-daero 75-gil, Gangnam-gu, Seoul, 06015, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-516-3352,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/onyva,,37.52515,127.0457,2026-02-14T03:18:57.269320+00:00,,
+michelin,Original Numbers,"24 Dosan-daero 55-gil, Gangnam-gu, Seoul, 06014, South Korea",Seoul,South Korea,Selected,Contemporary,₩₩,+822-545-1777,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/original-numbers,,37.52509,127.04071,2026-02-14T03:18:57.269320+00:00,,
+michelin,Pierre Gagnaire,"35F Lotte Hotel, 30 Eulji-ro, Jung-gu, Seoul, 04533, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-317-7181,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/pierre-gagnaire,,37.56529,126.98103,2026-02-14T03:18:57.269320+00:00,,
+michelin,Restaurant OY,"B1F, 48-12 Seolleung-ro 148-gil, Gangnam-gu, Seoul, 06064, South Korea",Seoul,South Korea,Selected,French,₩₩₩₩,+822-515-7250,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/restaurant-oy,,37.522219,127.04329,2026-02-14T03:18:57.269320+00:00,,
+michelin,SAN,"B1, 6 Eonju-ro 168-gil, Gangnam-gu, Seoul, 06020, South Korea",Seoul,South Korea,Selected,"Innovative
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/san,,37.52631,127.03391,2026-02-14T03:18:57.269320+00:00,,
+michelin,Seokyonanmyunbang,"16 Donggyo-ro 12-gil, Mapo-gu, Seoul, 04029, South Korea",Seoul,South Korea,Bib Gourmand,"Noodles
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-9516-0934,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/seokyonanmyunbang,,37.55359,126.91231,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sobakeeri Suzu,"98 Dongho-ro 12-gil, Jung-gu, Seoul, 04608, South Korea",Seoul,South Korea,Selected,"Soba
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2256-6986,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sobakeeri-suzu,,37.55949,127.01243,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sonnet,"3F, Seolleung-ro 157-gil, Gangnam-gu, Seoul, 06018, South Korea",Seoul,South Korea,Selected,"French Contemporary
+Date night
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-6953-5999,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sonnet-1241886,,37.52628,127.03704,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sooksoodoga,"28 Dongsomun-ro 17-gil, Seongbuk-gu, Seoul, 02830, South Korea",Seoul,South Korea,Selected,"Barbecue
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-8231-2627,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sooksoodoga,,37.5935,127.01539,2026-02-14T03:18:57.269320+00:00,,
+michelin,Joo052,"26 Gosanja-ro 14-gil, Seongdong-gu, Seoul, 04750, South Korea",Seoul,South Korea,Selected,"Korean
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-2281-0343,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sool052,,37.56344,127.03766,2026-02-14T03:18:57.269320+00:00,,
+michelin,Tenjimon,"4F, 41 Hakdong-ro 97-gil, Gangnam-gu, Seoul, 06072, South Korea",Seoul,South Korea,Selected,"Japanese
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-542-3010,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tenjimon,,37.52237,127.05429,2026-02-14T03:18:57.269320+00:00,,
+michelin,Teppan,"B1F, Grand Hyatt Hotel, 322 Sowol-ro, Yongsan-gu, Seoul, 04347, South Korea",Seoul,South Korea,Selected,"Teppanyaki
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-799-8272,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/teppan,,37.53929,126.9971,2026-02-14T03:18:57.269320+00:00,,
+michelin,Tim Ho Wan,"30 Bongeunsa-ro 86-gil, Gangnam-gu, Seoul, 06165, South Korea",Seoul,South Korea,Selected,"Dim Sum
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-6207-3082,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tim-ho-wan,,37.5115769,127.0567982,2026-02-14T03:18:57.269320+00:00,,
+michelin,Toh Lim,"37F Lotte Hotel, 30 Eulji-ro, Jung-gu, Seoul, 04533, South Korea",Seoul,South Korea,Selected,"Chinese
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-317-7101,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/toh-lim,,37.56531,126.981,2026-02-14T03:18:57.269320+00:00,,
+michelin,Trid,"2F, 16 Seolleung-ro 162-gil, Gangnam-gu, Seoul, 06014, South Korea",Seoul,South Korea,Selected,Contemporary,₩₩₩,+822-512-8312,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/trid,,37.5267383,127.0416702,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yakitori Mook,"165-1 Seongmisan-ro, Mapo-gu, Seoul, 03980, South Korea",Seoul,South Korea,Selected,"Yakitori
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-8835-3433,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yakitori-mook,,37.56461,126.92449,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yu Yuan,"11F Four Seasons Hotel, 97 Saemunan-ro, Jongno-gu, Seoul, 03183, South Korea",Seoul,South Korea,1 Star,"Chinese
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-6388-5500,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yu-yuan,,37.57049,126.97545,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yurimmyeon,"139-1 Seosomun-ro, Jung-gu, Seoul, 04515, South Korea",Seoul,South Korea,Bib Gourmand,"Memil-guksu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-755-0659,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yurimmyeon,,37.56419,126.9761,2026-02-14T03:18:57.269320+00:00,,
+michelin,Bicena,"81F Lotte World Tower, 300 Olympic-ro, Songpa-gu, Seoul, 05551, South Korea",Seoul,South Korea,1 Star,"Korean
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-3213-1261,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bicena,,37.5126,127.10253,2026-02-14T03:18:57.269320+00:00,,
+michelin,Bistrot de Yountville,"13-7 Seolleung-ro 158-gil, Gangnam-gu, Seoul, 06014, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-541-1550,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bistrot-de-yountville,,37.52602,127.04126,2026-02-14T03:18:57.269320+00:00,,
+michelin,Bongmilga,"664 Seolleung-ro, Gangnam-gu, Seoul, 06088, South Korea",Seoul,South Korea,Selected,"Naengmyeon
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-546-2305,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/bongmilga,,37.51598,127.0424,2026-02-14T03:18:57.269320+00:00,,
+michelin,Boreumsae,"36 Teheran-ro 81-gil, Gangnam-gu, Seoul, 06167, South Korea",Seoul,South Korea,Selected,"Barbecue
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-569-9967,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/boreumsae,,37.509328,127.056611,2026-02-14T03:18:57.269320+00:00,,
+michelin,Budnamujip,"434 Hyoryeong-ro, Seocho-gu, Seoul, 06729, South Korea",Seoul,South Korea,Selected,"Barbecue
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-3473-4167,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/budnamujip,,37.48907,127.03118,2026-02-14T03:18:57.269320+00:00,,
+michelin,Chez Nous Private Kitchen,"3F, 210-6 Noksapyeong-Daero, Yongsan-gu, Seoul, 04345, South Korea",Seoul,South Korea,Selected,"French
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8270-8624-8907,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/chez-nous,,37.53634,126.98734,2026-02-14T03:18:57.269320+00:00,,
+michelin,Comme Moa,"56 Sinheung-ro, Yongsan-gu, Seoul, 04339, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-6217-5252,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/comme-moa,,37.54344,126.9877,2026-02-14T03:18:57.269320+00:00,,
+michelin,Crystal Jade,"B1F, 16 Namdaemun-ro 7-gil, Jung-gu, Seoul, 04533, South Korea",Seoul,South Korea,Selected,"Chinese
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-3789-8088,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/crystal-jade,,37.564311,126.981212,2026-02-14T03:18:57.269320+00:00,,
+michelin,Daesungjip,"5 Sajik-ro, Jongno-gu, Seoul, 03029, South Korea",Seoul,South Korea,Bib Gourmand,"Doganitang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-735-4259,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/daesungjip,,37.57269,126.96091,2026-02-14T03:18:57.269320+00:00,,
+michelin,Damtaek,"51 Donggyo-ro 12an-gil, Mapo-gu, Seoul, 04029, South Korea",Seoul,South Korea,Bib Gourmand,"Ramen
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-332-4560,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/damtaek,,37.55448,126.91512,2026-02-14T03:18:57.269320+00:00,,
+michelin,Doughroom,"2F, 99 Donggwang-ro, Seocho-gu, Seoul, 06584, South Korea",Seoul,South Korea,Selected,"Italian
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-535-9386,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/doughroom,,37.49379,126.99333,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gaeseong Mandu Koong,"11-3 Insadong 10-gil, Jongno-gu, Seoul, 03146, South Korea",Seoul,South Korea,Bib Gourmand,"Mandu
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-733-9240,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gaeseong-mandu-koong,,37.57423,126.98539,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gom Ba Wie,"10 Yeongdong-daero 115-gil, Gangnam-gu, Seoul, 06087, South Korea",Seoul,South Korea,Selected,"Barbecue
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-511-0068,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gom-ba-wie,,37.51485,127.05885,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kyoyang Siksa,"238 Itaewon-ro, Yongsan-gu, Seoul, 04400, South Korea",Seoul,South Korea,Selected,"Barbecue
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-7601-4041,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gyoyang-siksa,,37.53592,126.99994,2026-02-14T03:18:57.269320+00:00,,
+michelin,Halmaejip,"1-5 Sajik-ro 12-gil, Jongno-gu, Seoul, 03169, South Korea",Seoul,South Korea,Bib Gourmand,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-735-2608,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/halmaejip,,37.5755506,126.9715631,2026-02-14T03:18:57.269320+00:00,,
+michelin,HORAPA,"2F, 37-1 Jahamun-ro, Jongno-gu, Seoul, 03040, South Korea",Seoul,South Korea,Bib Gourmand,"Thai
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-730-0215,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/horapa,,37.57938,126.9711,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hwanggeum Kongbat,"9 Mapo-daero 16-gil, Mapo-gu, Seoul, 04205, South Korea",Seoul,South Korea,Bib Gourmand,"Dubu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-313-2952,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hwanggeum-kongbat,,37.5509,126.9567,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hwangsaengga Kalguksu,"78 Bukchon-ro 5-gil, Jongno-gu, Seoul, 03053, South Korea",Seoul,South Korea,Bib Gourmand,"Kalguksu
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-739-6334,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hwangsaengga-kalguksu,,37.58003,126.98065,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jeongmyeon,"88 Neungdong-ro 13-gil, Gwangjin-gu, Seoul, 05012, South Korea",Seoul,South Korea,Bib Gourmand,"Noodles
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-9974-3592,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jeongmyeon,,37.54551,127.06866,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jinmi Sikdang,"186-6 Mapo-daero, Mapo-gu, Seoul, 04207, South Korea",Seoul,South Korea,Selected,"Gejang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-3211-4468,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jinmi-sikdang,,37.55055,126.95577,2026-02-14T03:18:57.269320+00:00,,
+michelin,July,"164 Donggwang-ro, Seocho-gu, Seoul, 06589, South Korea",Seoul,South Korea,Selected,"Modern Cuisine
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-534-9544,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/july,,37.49475,127.00008,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jungin Myeonok,"10 Gukhoe-daero 76-gil, Yeongdeungpo-gu, Seoul, 07238, South Korea",Seoul,South Korea,Bib Gourmand,"Naengmyeon
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2683-2615,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jungin-myeonok,,37.5307,126.92167,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kirameki,"18 Dosan-daero 28-gil, Gangnam-gu, Seoul, 06040, South Korea",Seoul,South Korea,Selected,"Japanese
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8210-3894-2356,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kirameki,,37.51808,127.02822,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kojacha,"17 Hakdong-ro 97-gil, Gangnam-gu, Seoul, 06072, South Korea",Seoul,South Korea,Selected,"Asian
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8210-9023-7771,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kojacha,,37.52083,127.05519,2026-02-14T03:18:57.269320+00:00,,
+michelin,L'Impasse 81,"17-1 Donggyo-ro 30-gil, Mapo-gu, Seoul, 03985, South Korea",Seoul,South Korea,Selected,"French
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8270-7779-8181,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-empasse-81,,37.56018,126.92521,2026-02-14T03:18:57.269320+00:00,,
+michelin,Lee Buk Bang,"2F, 16 Mapo-daero 1-gil, Mapo-gu, Seoul, 04165, South Korea",Seoul,South Korea,Selected,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-720-2345,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/lee-buk-bang,,37.5396777,126.9431187,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mandujip,"338 Apgujeong-ro, Gangnam-gu, Seoul, 06018, South Korea",Seoul,South Korea,Bib Gourmand,"Mandu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-544-3710,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mandujip,,37.52785,127.03898,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mapo Ok,"312 Tojeong-ro, Mapo-gu, Seoul, 04165, South Korea",Seoul,South Korea,Bib Gourmand,"Seolleongtang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-716-6661,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mapo-ok,,37.53983,126.94332,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mijin,"#116-2 le Meilleur Jongno town, 19 Jong-ro, Jongno-gu, Seoul, 03157, South Korea",Seoul,South Korea,Bib Gourmand,"Memil-guksu
+Solo dining
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-730-6198,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mijin,,37.5708,126.97985,2026-02-14T03:18:57.269320+00:00,,
+michelin,Muni,"16 Dosan-daero 72-gil, Gangnam-gu, Seoul, 06063, South Korea",Seoul,South Korea,1 Star,"Japanese
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-511-1303,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/muni,,37.52291,127.04545,2026-02-14T03:18:57.269320+00:00,,
+michelin,Muoki,"2F, 12-12 Hakdong-ro 55-gil, Gangnam-gu, Seoul, 06065, South Korea",Seoul,South Korea,1 Star,"Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8210-2948-4171,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/muoki,,37.51896,127.04222,2026-02-14T03:18:57.269320+00:00,,
+michelin,Myeongdong Kyoja,"29 Myeongdong 10-gil, Jung-gu, Seoul, 04537, South Korea",Seoul,South Korea,Bib Gourmand,"Kalguksu
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-776-5348,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/myeongdong-kyoja,,37.56347,126.984552,2026-02-14T03:18:57.269320+00:00,,
+michelin,Nampo Myeonok,"24 Eulji-ro 3-gil, Jung-gu, Seoul, 04522, South Korea",Seoul,South Korea,Selected,"Naengmyeon
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-777-3131,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/nampo-myeonok,,37.567269,126.981609,2026-02-14T03:18:57.269320+00:00,,
+michelin,ON,"B1F, 42 Dosan-daero 92-gil, Gangnam-gu, Seoul, 06070, South Korea",Seoul,South Korea,Selected,"French
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-547-0467,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/on565623,,37.52192,127.04938,2026-02-14T03:18:57.269320+00:00,,
+michelin,One Degree North,"8 Hakdong-ro 43-gil, Gangnam-gu, Seoul, 06061, South Korea",Seoul,South Korea,Selected,Asian,₩,+8270-4333-8884,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/one-degree-north,,37.516773,127.037424,2026-02-14T03:18:57.269320+00:00,,
+michelin,Oreno Ramen,"16 Dongmak-ro 8-gil, Mapo-gu, Seoul, 04072, South Korea",Seoul,South Korea,Bib Gourmand,"Ramen
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-322-3539,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/oreno-ramen,,37.54725,126.91781,2026-02-14T03:18:57.269320+00:00,,
+michelin,JUEUN,"8F Gyeonghuidang, 36 Gyeonghuigung-gil, Jongno-gu, Seoul, 03175, South Korea",Seoul,South Korea,Selected,Korean,₩₩₩₩,+822-540-8580,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/restaurant-jueun,,37.57276,126.96991,2026-02-14T03:18:57.269320+00:00,,
+michelin,Samcheongdong Sujebi,"101-1 Samcheong-ro, Jongno-gu, Seoul, 03049, South Korea",Seoul,South Korea,Bib Gourmand,"Sujebi
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-735-2965,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/samcheongdong-sujebi,,37.584597774,126.98197124,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sarukame,"15 Yeonnam-ro, Mapo-gu, Seoul, 03990, South Korea",Seoul,South Korea,Bib Gourmand,"Ramen
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sarukame,,37.56103,126.92267,2026-02-14T03:18:57.269320+00:00,,
+michelin,Solbam,"2F, 231 Hakdong-ro, Gangnam-gu, Seoul, 06053, South Korea",Seoul,South Korea,1 Star,Contemporary,₩₩₩₩,+8270-4405-7788,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/solbam,,37.516,127.03378,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sosuheon,"8 Mallijae-ro 21-gil, Jung-gu, Seoul, 04500, South Korea",Seoul,South Korea,1 Star,"Sushi
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8210-9694-3368,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sosuheon,,37.55294,126.9634,2026-02-14T03:18:57.269320+00:00,,
+michelin,STAY,"81F Lotteworld Tower, 300 Olympic-ro, Songpa-gu, Seoul, 05551, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-3213-1231,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/stay,,37.51271,127.10258,2026-02-14T03:18:57.269320+00:00,,
+michelin,Subaru,"7 Bangbae-jungangno 21-gil, Seocho-gu, Seoul, 06560, South Korea",Seoul,South Korea,Bib Gourmand,"Soba
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-596-4882,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/subaru,,37.49234,126.98611,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sushi Matsumoto,"24 Dosan-daero 75-gil, Gangnam-gu, Seoul, 06015, South Korea",Seoul,South Korea,1 Star,"Sushi
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-543-4334,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sushi-matsumoto-1195338,,37.52535,127.04573,2026-02-14T03:18:57.269320+00:00,,
+michelin,The Green Table,"5F Arario Space, 83 Yulgok-ro, Jongno-gu, Seoul, 03058, South Korea",Seoul,South Korea,Selected,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-591-2672,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/the-green-table,,37.57781,126.98829,2026-02-14T03:18:57.269320+00:00,,
+michelin,The Ninth Gate,"1F The Westin Chosun Hotel, 106 Sogong-ro, Jung-gu, Seoul, 04533, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-317-0366,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/the-ninth-gate,,37.5644,126.97969,2026-02-14T03:18:57.269320+00:00,,
+michelin,Tongue & Groove Joint,"7 Bogwang-ro 60-gil, Yongsan-gu, Seoul, 04406, South Korea",Seoul,South Korea,Selected,"Barbecue
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-790-7036,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tongue-groove-joint,,37.53404,126.99451,2026-02-14T03:18:57.269320+00:00,,
+michelin,Tutoiement,"20 Gwangnaru-ro 11-gil, Seongdong-gu, Seoul, 04801, South Korea",Seoul,South Korea,1 Star,"French
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-499-9056,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tutoiement,,37.54969,127.0666,2026-02-14T03:18:57.269320+00:00,,
+michelin,A Flower Blossom on the Rice,"3-6 Insadong 16-gil, Jongno-gu, Seoul, 03146, South Korea",Seoul,South Korea,Bib Gourmand,"Korean
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-732-0276,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/a-flower-blossom-on-the-rice,,37.57535,126.98404,2026-02-14T03:18:57.269320+00:00,,
+michelin,Aelgerizm,"2F, 8 Dosan-daero 49-gil, Gangnam-gu, Seoul, 06019, South Korea",Seoul,South Korea,Selected,Contemporary,₩₩₩,+8210-3015-3869,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/aelgerizm,,37.5233164,127.0374241,2026-02-14T03:18:57.269320+00:00,,
+michelin,Buchon Yukhoe,"200-12 Jong-ro, Jongno-gu, Seoul, 03195, South Korea",Seoul,South Korea,Bib Gourmand,"Yukhoe
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2267-1831,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/buchon-yukhoe,,37.57034,126.99991,2026-02-14T03:18:57.269320+00:00,,
+michelin,Chez Simon,"3F, 66 Hoenamu-ro, Yongsan-gu, Seoul, 04003, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-730-1045,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/chez-simon,,37.54015,126.99404,2026-02-14T03:18:57.269320+00:00,,
+michelin,Continental,"23F The Shilla Hotel, 249 Dongho-ro, Jung-gu, Seoul, 04605, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-2230-3369,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/continental,,37.5558213,127.00517,2026-02-14T03:18:57.269320+00:00,,
+michelin,Evett,"10-5 Dosan-daero 45-gil, Gangnam-gu, Seoul, 06021, South Korea",Seoul,South Korea,2 Stars,Innovative,₩₩₩₩,+8270-4231-1022,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/evett,,37.52334,127.0362,2026-02-14T03:18:57.269320+00:00,,
+michelin,Exquisine,"6 Samseong-ro 140-gil, Gangnam-gu, Seoul, 06073, South Korea",Seoul,South Korea,1 Star,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-542-6921,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/exquisine,,37.5211374,127.04969,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gebangsikdang,"17 Seolleung-ro 131-gil, Gangnam-gu, Seoul, 06060, South Korea",Seoul,South Korea,Bib Gourmand,"Gejang
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-8479-1107,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gebang-sikdang,,37.51727,127.03942,2026-02-14T03:18:57.269320+00:00,,
+michelin,Geumdwaeji Sikdang,"149 Dasan-ro, Jung-gu, Seoul, 04607, South Korea",Seoul,South Korea,Bib Gourmand,"Barbecue
+Eat like a local
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-4484-8750,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/geumdwaeji-sikdang,,37.55705,127.01165,2026-02-14T03:18:57.269320+00:00,,
+michelin,Ggupdang,"615 Gangnam-daero, Seocho-gu, Seoul, 06524, South Korea",Seoul,South Korea,Bib Gourmand,"Barbecue
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-545-9600,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/ggupdang,,37.5166307,127.0188926,2026-02-14T03:18:57.269320+00:00,,
+michelin,Goobok Mandu,"7 Duteopbawi-ro, Yongsan-gu, Seoul, 04335, South Korea",Seoul,South Korea,Bib Gourmand,"Dim Sum
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-797-8656,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/goobok-mandu,,37.54501,126.97318,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hadongkwan,"12 Myeongdong 9-gil, Jung-gu, Seoul, 04538, South Korea",Seoul,South Korea,Selected,"Gomtang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-776-5656,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hadongkwan,,37.56439,126.98501,2026-02-14T03:18:57.269320+00:00,,
+michelin,Haenam Cheonilgwan,"36-1 Banpo-daero 39-gil, Seocho-gu, Seoul, 06578, South Korea",Seoul,South Korea,Selected,"Korean
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-568-7775,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/haenam-cheonilgwan,,37.49862,127.00195,2026-02-14T03:18:57.269320+00:00,,
+michelin,Haobin,"2F, Ambassador-Pullman Hotel, 287 Dongho-ro, Jung-gu, Seoul, 04618, South Korea",Seoul,South Korea,1 Star,"Chinese
+Family Friendly
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-2270-3141,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/haobin,,37.5599583,127.0024232,2026-02-14T03:18:57.269320+00:00,,
+michelin,Imun Seolnongtang,"38-13 Ujeongguk-ro, Jongno-gu, Seoul, 03149, South Korea",Seoul,South Korea,Selected,"Seolleongtang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-733-6526,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/imun-seolnongtang,,37.57272,126.98388,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jinmi Pyeongyang Naengmyeon,"305-3 Hakdong-ro, Gangnam-gu, Seoul, 06061, South Korea",Seoul,South Korea,Selected,"Naengmyeon
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-515-3469,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jinmi-pyungyang-naengmyeon,,37.516114,127.036202,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jungsik,"11 Seolleung-ro 158-gil, Gangnam-gu, Seoul, 06014, South Korea",Seoul,South Korea,2 Stars,"Contemporary
+Solo dining
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-517-4654,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jungsik511965,,37.525584,127.041069,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kwonsooksoo,"4F, 37 Apgujeong-ro 80-gil, Gangnam-gu, Seoul, 06016, South Korea",Seoul,South Korea,2 Stars,"Korean
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-542-6268,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kwonsooksoo,,37.52437,127.04355,2026-02-14T03:18:57.269320+00:00,,
+michelin,L'Amant Secret,"26F L'Escape Hotel, 67 Toegye-ro, Jung-gu, Seoul, 04529, South Korea",Seoul,South Korea,1 Star,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-317-4003,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-amant-secret,,37.55983,126.97949,2026-02-14T03:18:57.269320+00:00,,
+michelin,L'Espoir du Hibou,"16 Dosan-daero 59-gil, Gangnam-gu, Seoul, 06016, South Korea",Seoul,South Korea,Selected,"French
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-517-6034,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-espoir-du-hibou,,37.5245,127.04227,2026-02-14T03:18:57.269320+00:00,,
+michelin,La Yeon,"23F Shilla Hotel, 249 Dongho-ro, Jung-gu, Seoul, 04605, South Korea",Seoul,South Korea,2 Stars,Korean,₩₩₩₩,+822-2230-3367,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/la-yeon,,37.555813,127.00517,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mater,"B1F, 16 Eonju-ro 154-gil, Gangnam-gu, Seoul, 06021, South Korea",Seoul,South Korea,Selected,Contemporary,₩₩,+822-518-5879,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mater-1210122,,37.52337,127.03464,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mattdol,"63 Seongdeokjeong-gil, Seongdong-gu, Seoul, 04775, South Korea",Seoul,South Korea,Bib Gourmand,"Mexican
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-4886-2928,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mattdol,,37.53808,127.05065,2026-02-14T03:18:57.269320+00:00,,
+michelin,Minami,"31-2 Seocho-daero 58-gil, Seocho-gu, Seoul, 06632, South Korea",Seoul,South Korea,Selected,"Soba
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-522-0373,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/minami,,37.4933,127.0181,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mingles,"2F, 19 Dosan-daero 67-gil, Gangnam-gu, Seoul, 06016, South Korea",Seoul,South Korea,3 Stars,"Korean
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-515-7306,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mingles,,37.52535,127.04426,2026-02-14T03:18:57.269320+00:00,,
+michelin,Moulin,"8 Jahamun-ro 16-gil, Jongno-gu, Seoul, 03043, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8270-4404-7978,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/moulin,,37.5814682,126.9718836,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mr. Ahn's Craft Makgeolli,"3 Hoenamu-ro, Yongsan-gu, Seoul, 04343, South Korea",Seoul,South Korea,Selected,"Korean
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-9965-5112,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mr-ahn-s-craft-makgeolli-1192580,,37.53858,126.9874,2026-02-14T03:18:57.269320+00:00,,
+michelin,Myeon Seoul,"805 Seolleung-ro, Gangnam-gu, Seoul, 06019, South Korea",Seoul,South Korea,Bib Gourmand,"Noodles
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/myeon-seoul,,37.52416,127.03906,2026-02-14T03:18:57.269320+00:00,,
+michelin,Okdongsik,"44-10 Yanghwa-ro 7-gil, Mapo-gu, Seoul, 04035, South Korea",Seoul,South Korea,Bib Gourmand,"Dwaeji-gukbap
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-5571-9915,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/okdongsik,,37.55261,126.91449,2026-02-14T03:18:57.269320+00:00,,
+michelin,Olh Eum,"3F, 37 Seolleung-ro 152-gil, Gangnam-gu, Seoul, 06016, South Korea",Seoul,South Korea,Selected,"Contemporary
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-549-2016,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/olh-eum,,37.52451,127.04266,2026-02-14T03:18:57.269320+00:00,,
+michelin,Palais de Chine,"6F L'Escape Hotel, 67 Toegye-ro, Jung-gu, Seoul, 04529, South Korea",Seoul,South Korea,Selected,"Chinese
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-317-4001,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/palais-de-chine,,37.55983,126.97949,2026-02-14T03:18:57.269320+00:00,,
+michelin,PERIGEE,"6-5 Bongeunsa-ro 68-gil, Gangnam-gu, Seoul, 06153, South Korea",Seoul,South Korea,Selected,"Italian Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-6550-8912,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/perigee,,37.51126,127.04949,2026-02-14T03:18:57.269320+00:00,,
+michelin,Pildong Myeonok,"26 Seoae-ro, Jung-gu, Seoul, 04624, South Korea",Seoul,South Korea,Bib Gourmand,"Naengmyeon
+Solo dining
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2266-2611,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/pildong-myeonok,,37.56035,126.99689,2026-02-14T03:18:57.269320+00:00,,
+michelin,Pyeongyang Myeonok,"207 Jangchungdan-ro, Jung-gu, Seoul, 04615, South Korea",Seoul,South Korea,Selected,"Naengmyeon
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2267-7784,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/pyeongyang-myeonok,,37.56325,127.00664,2026-02-14T03:18:57.269320+00:00,,
+michelin,Rialto,"2F, 13 Samseong-ro 149-gil, Gangnam-gu, Seoul, 06063, South Korea",Seoul,South Korea,Selected,"Italian
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-544-4761,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/rialto,,37.52318,127.04655,2026-02-14T03:18:57.269320+00:00,,
+michelin,Ryunique,"8-1 Dosan-daero 45-gil, Gangnam-gu, Seoul, 06021, South Korea",Seoul,South Korea,Selected,"Innovative
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-546-9279,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/ryunique,,37.52291,127.03599,2026-02-14T03:18:57.269320+00:00,,
+michelin,Seoryung,"10 Sowol-ro, Jung-gu, Seoul, 04527, South Korea",Seoul,South Korea,Bib Gourmand,"Memil-guksu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-318-8766,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/seoryung,,37.55857,126.97546,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sobajuu,"B1 #22, 75 Keunumul-ro, Mapo-gu, Seoul, 04158, South Korea",Seoul,South Korea,Selected,"Japanese
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8270-8676-0218,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sobajuu,,37.54126,126.94629,2026-02-14T03:18:57.269320+00:00,,
+michelin,Soigné,"#201, 2F, Sinsa square, 652 Gangnam-daero, Gangnam-gu, Seoul, 06027, South Korea",Seoul,South Korea,2 Stars,"Contemporary
+Solo dining
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-3477-9386,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/soigne,,37.51933,127.01903,2026-02-14T03:18:57.269320+00:00,,
+michelin,Soul,"B1F, 35 Sinheung-ro 26-gil, Yongsan-gu, Seoul, 04337, South Korea",Seoul,South Korea,1 Star,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-318-7685,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/soul-dining,,37.54533,126.98443,2026-02-14T03:18:57.269320+00:00,,
+michelin,Table for Four,"5F, 25-12 Daesagwan-ro 31-gil, Yongsan-gu, Seoul, 04401, South Korea",Seoul,South Korea,Selected,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-797-3655,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/table-for-four,,37.53468,127.00523,2026-02-14T03:18:57.269320+00:00,,
+michelin,Woo Lae Oak,"62-29 Changgyeonggung-ro, Jung-gu, Seoul, 04546, South Korea",Seoul,South Korea,Bib Gourmand,"Naengmyeon
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2265-0151,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/woo-lae-oak,,37.56815,126.99866,2026-02-14T03:18:57.269320+00:00,,
+michelin,Wooga,"B1F, 22 Dosan-daero 49-gil, Gangnam-gu, Seoul, 06019, South Korea",Seoul,South Korea,Selected,"Barbecue
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-6272-2223,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/wooga,,37.52432,127.03734,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yangyang Memil Makguksu,"10 Donggwang-ro 15-gil, Seocho-gu, Seoul, 06561, South Korea",Seoul,South Korea,Bib Gourmand,"Memil-guksu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-3482-3738,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yangyang-memil-makguksu,,37.49247,126.98826,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yonggeumok,"41-2 Jahamun-ro, Jongno-gu, Seoul, 03036, South Korea",Seoul,South Korea,Bib Gourmand,"Chueotang
+Solo dining
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-777-4749,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yonggeumok,,37.57972,126.97088,2026-02-14T03:18:57.269320+00:00,,
+michelin,Youhan,"10-5 Daesagwan-ro 5-gil, Yongsan-gu, Seoul, 04400, South Korea",Seoul,South Korea,Bib Gourmand,"Thai
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-8691-1509,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/youhan,,37.53482,127.00108,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yukjeon Hoekwan,"47 Tojeong-ro 37-gil, Mapo-gu, Seoul, 04155, South Korea",Seoul,South Korea,Bib Gourmand,"Bulgogi
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-703-0019,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yukjeon-hoekwan,,37.542921584,126.94700752,2026-02-14T03:18:57.269320+00:00,,
+michelin,Zero Complex,"11-8 Seobinggo-ro 59-gil, Yongsan-gu, Seoul, 04384, South Korea",Seoul,South Korea,1 Star,"Innovative
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-532-0876,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/zero-complex,,37.52079,126.99285,2026-02-14T03:18:57.269320+00:00,,
+michelin,7th Door,"4F, 41 Hakdong-ro 97-gil, Gangnam-gu, Seoul, 06072, South Korea",Seoul,South Korea,1 Star,Contemporary,₩₩₩₩,+822-542-3010,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/7th-door,,37.52237,127.05429,2026-02-14T03:18:57.269320+00:00,,
+michelin,A L'AISE,"89 Dokseodang-ro, Yongsan-gu, Seoul, 04419, South Korea",Seoul,South Korea,Selected,"Modern Cuisine
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8270-8868-1686,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/al-aise,,37.53479,127.01029,2026-02-14T03:18:57.269320+00:00,,
+michelin,alla prima,"13 Hakdong-ro 17-gil, Gangnam-gu, Seoul, 06045, South Korea",Seoul,South Korea,2 Stars,"Innovative
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-511-2555,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/alla-prima,,37.51346,127.02602,2026-02-14T03:18:57.269320+00:00,,
+michelin,ALT.a,"109 Bogwang-ro, Yongsan-gu, Seoul, 04391, South Korea",Seoul,South Korea,Bib Gourmand,Vegan,₩,+822-790-8688,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/alt-a,,37.53245,126.99446,2026-02-14T03:18:57.269320+00:00,,
+michelin,Au Bouillon,"29-1 Dokseodang-ro 51-gil, Seongdong-gu, Seoul, 04718, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-6401-1048,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/au-bouillon,,37.5311165,127.0073647,2026-02-14T03:18:57.269320+00:00,,
+michelin,Baek Nyun Ok,"2407 Nambusunhwan-ro, Seocho-gu, Seoul, 06719, South Korea",Seoul,South Korea,Selected,"Dubu
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-523-2860,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/baecnyunok,,37.48115,127.01374,2026-02-14T03:18:57.269320+00:00,,
+michelin,Borgo Hannam,"3F, 31 Itaewon-ro 54-gil, Yongsan-gu, Seoul, 04400, South Korea",Seoul,South Korea,Selected,"Italian
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-6082-2727,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/borgo-hannam,,37.53687,127.00187,2026-02-14T03:18:57.269320+00:00,,
+michelin,Byeokje Galbi,"1-4 Yangjae-daero 71-gil, Songpa-gu, Seoul, 05639, South Korea",Seoul,South Korea,Selected,"Barbecue
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-415-5522,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/byeokje-galbi,,37.51007,127.12619,2026-02-14T03:18:57.269320+00:00,,
+michelin,De Tempore,"37 Hannam-daero, Yongsan-gu, Seoul, 04410, South Korea",Seoul,South Korea,Selected,"French
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8270-4848-6359,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/de-tempore,,37.532213,127.0081086,2026-02-14T03:18:57.269320+00:00,,
+michelin,Egg & Flour,"2F, 35 Shinheung-ro 26-gil, Yongsan-gu, Seoul, 04337, South Korea",Seoul,South Korea,Bib Gourmand,"Italian
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-3789-7681,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/egg-flour,,37.545342,126.984447,2026-02-14T03:18:57.269320+00:00,,
+michelin,ELPIC,"25 Dosan-daero 78-gil, Gangnam-gu, Seoul, 06063, South Korea",Seoul,South Korea,Selected,"Meats and Grills
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8210-6556-9757,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/elpic,,37.52237,127.04659,2026-02-14T03:18:57.269320+00:00,,
+michelin,Escondido,"B1F, 61-7 Hannam-daero 20-gil, Yongsan-gu, Seoul, 04419, South Korea",Seoul,South Korea,1 Star,"Mexican
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-2038-8994,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/escondido,,37.53517,127.01046,2026-02-14T03:18:57.269320+00:00,,
+michelin,Essence,"12 Banpo-daero 4-gil, Seocho-gu, Seoul, 06719, South Korea",Seoul,South Korea,Selected,"French
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-8010-5099,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/essence-1207862,,37.48179,127.01336,2026-02-14T03:18:57.269320+00:00,,
+michelin,GAGGEN by Choi Junho,"2F, 19-1 Apgujeong-ro 80-gil, Gangnam-gu, Seoul, 06015, South Korea",Seoul,South Korea,Selected,"Japanese
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-542-0176,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gaggen,,37.52451,127.04523,2026-02-14T03:18:57.269320+00:00,,
+michelin,Goryori Ken,"2F, 15-3 Eonju-ro 152-gil, Gangnam-gu, Seoul, 06021, South Korea",Seoul,South Korea,1 Star,Contemporary,₩₩₩₩,+822-511-7809,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/goryori-ken,,37.52298,127.03478,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gucci Osteria da Massimo Bottura,"5F, 462 Apgujeong-ro, Gangnam-gu, Seoul, 06015, South Korea",Seoul,South Korea,Selected,"Italian Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8210-4158-3906,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gucci-osteria-da-massimo-bottura-1203402,,37.5192193,127.0413985,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gwanghwamun Gukbap,"53 Sejong-daero 21-gil, Jung-gu, Seoul, 04519, South Korea",Seoul,South Korea,Bib Gourmand,"Dwaeji-gukbap
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-738-5688,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gwanghwamun-gukbap,,37.5689,126.97541,2026-02-14T03:18:57.269320+00:00,,
+michelin,HANE,"14 Eonju-ro 172-gil, Gangnam-gu, Seoul, 06017, South Korea",Seoul,South Korea,1 Star,"Sushi
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8210-9773-0887,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hane,,37.5275808,127.0348773,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hong Yuan,"1F The Westin Chosun Hotel, 106 Sogong-ro, Jung-gu, Seoul, 04533, South Korea",Seoul,South Korea,Selected,"Chinese
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-317-0494,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hong-yuan,,37.56441,126.9797,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hyun Udon,"53 Nonhyeon-ro 149-gil, Gangnam-gu, Seoul, 06039, South Korea",Seoul,South Korea,Bib Gourmand,"Udon
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-515-3622,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hyun-udon,,37.51698,127.02429,2026-02-14T03:18:57.269320+00:00,,
+michelin,Ichiryu,"44 Jandari-ro 3 an-gil, Mapo-gu, Seoul, 04043, South Korea",Seoul,South Korea,Selected,"Barbecue
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-3144-1312,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/ichiryu,,37.55061,126.91913,2026-02-14T03:18:57.269320+00:00,,
+michelin,Jaha Son Mandu,"12 Baekseokdong-gil, Jongno-gu, Seoul, 03020, South Korea",Seoul,South Korea,Bib Gourmand,"Mandu
+Family Friendly
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-379-2648,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/jaha-son-mandu,,37.59309,126.96603,2026-02-14T03:18:57.269320+00:00,,
+michelin,KANG MINCHUL Restaurant,"5F, 18 Dosan-daero 63-gil, Gangnam-gu, Seoul, 06064, South Korea",Seoul,South Korea,1 Star,"French Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-545-2511,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kang-minchul-restaurant,,37.5249,127.04365,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kushi Kawa,"37 Nonhyeon-ro 24-gil, Gangnam-gu, Seoul, 06300, South Korea",Seoul,South Korea,Selected,"Kushiage
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-579-0538,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kushi-kawa,,37.48268,127.04566,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kyodaiya,"39 Seongji-gil, Mapo-gu, Seoul, 04083, South Korea",Seoul,South Korea,Bib Gourmand,"Udon
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-2654-2645,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kyodaiya,,37.54681,126.91317,2026-02-14T03:18:57.269320+00:00,,
+michelin,L'Amitié,"2F, 30 Dosan-daero 67-gil, Gangnam-gu, Seoul, 06015, South Korea",Seoul,South Korea,1 Star,"French
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-546-9621,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-amitie,,37.52591,127.04455,2026-02-14T03:18:57.269320+00:00,,
+michelin,Légume,"2F, Sinsa Square, 652 Gangnam-daero, Gangnam-gu, Seoul, 06027, South Korea",Seoul,South Korea,1 Star,Vegan,₩₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/legume,,37.51938,127.01932,2026-02-14T03:18:57.269320+00:00,,
+michelin,Limbyungjoo Sandong Kalguksu,"65 Gangnam-daero 37-gil, Seocho-gu, Seoul, 06734, South Korea",Seoul,South Korea,Bib Gourmand,"Kalguksu
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+822-3473-7972,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/limbyungjoo-sandong-kalguksu,,37.48458,127.02988,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mimi Myeonga,"29 Gangnam-daero 160-gil, Gangnam-gu, Seoul, 06028, South Korea",Seoul,South Korea,Selected,"Noodles
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-4233-5466,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mimi-myeonga,,37.52003,127.02108,2026-02-14T03:18:57.269320+00:00,,
+michelin,Mitou,"24 Dosan-daero 70-gil, Gangnam-gu, Seoul, 06064, South Korea",Seoul,South Korea,2 Stars,"Japanese
+Chef's Table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8210-7286-9914,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/mitou,,37.52206,127.04502,2026-02-14T03:18:57.269320+00:00,,
+michelin,Neungdong Minari,"28 Hangang-daero 40-gil, Yongsan-gu, Seoul, 04386, South Korea",Seoul,South Korea,Bib Gourmand,"Gomtang
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/neungdong-minari,,37.53008,126.97078,2026-02-14T03:18:57.269320+00:00,,
+michelin,Niuroumianguan,"75-2 Cheonggyecheon-ro, Jongno-gu, Seoul, 03190, South Korea",Seoul,South Korea,Bib Gourmand,"Noodles
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-4213-5678,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/niroumianguan,,37.56854,126.98612,2026-02-14T03:18:57.269320+00:00,,
+michelin,OPNNG,"B1, 22 Dosan-daero 34-gil, Gangnam-gu, Seoul, 06049, South Korea",Seoul,South Korea,Selected,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-2088-5844,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/opnng,,37.51844,127.03105,2026-02-14T03:18:57.269320+00:00,,
+michelin,Osteria Orzo,"2F, 47 Hannam-daero 20-gil, Yongsan-gu, Seoul, 04419, South Korea",Seoul,South Korea,Selected,"Italian
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-322-0801,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/osteria-orzo,,37.53486,127.00946,2026-02-14T03:18:57.269320+00:00,,
+michelin,RMW Carne,"2F, 12 Daesagwan-ro 5-gil, Yongsan-gu, Seoul, 04400, South Korea",Seoul,South Korea,Selected,"Steakhouse
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-5068-4133,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/rmw-carne,,37.53483,127.00085,2026-02-14T03:18:57.269320+00:00,,
+michelin,Samwon Garden,"835 Eonju-ro, Gangnam-gu, Seoul, 06023, South Korea",Seoul,South Korea,Selected,"Barbecue
+Groups
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-548-3030,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/samwon-garden,,37.52499,127.03297,2026-02-14T03:18:57.269320+00:00,,
+michelin,Sanro,"2F, 518 Dosan-daero, Gangnam-gu, Seoul, 06070, South Korea",Seoul,South Korea,Selected,"Japanese
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+8250-6465-6292,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/sanro,,37.52417,127.04978,2026-02-14T03:18:57.269320+00:00,,
+michelin,Seoul Dining,"2F, Designhouse, 272 Dongho-ro, Jung-gu, Seoul, 04617, South Korea",Seoul,South Korea,Selected,"Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-6325-6321,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/seoul-dining,,37.55919,127.00359,2026-02-14T03:18:57.269320+00:00,,
+michelin,SIIO,"33 Dosan-daero 54-gil, Gangnam-gu, Seoul, 06056, South Korea",Seoul,South Korea,Selected,Contemporary,₩₩₩,+822-6013-5110,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/siio,,37.5205428,127.0391949,2026-02-14T03:18:57.269320+00:00,,
+michelin,Soseoul Hannam,"B1F, 21-18 Hannam-daero 20-gil, Yongsan-gu, Seoul, 04419, South Korea",Seoul,South Korea,1 Star,"Korean
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-797-5995,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/soseoul-hannam,,37.53528,127.00914,2026-02-14T03:18:57.269320+00:00,,
+michelin,Tasty Cube,"22-8 Yeonsei-ro 5da-gil, Seodaemun-gu, Seoul, 03789, South Korea",Seoul,South Korea,Bib Gourmand,"Noodles
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-4179-3819,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/tasty-cube,,37.55665,126.93576,2026-02-14T03:18:57.269320+00:00,,
+michelin,Toc Toc,"3F, 41 Hakdong-ro 97-gil, Gangnam-gu, Seoul, 06072, South Korea",Seoul,South Korea,Selected,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-542-3030,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/toc-toc,,37.52237,127.05429,2026-02-14T03:18:57.269320+00:00,,
+michelin,Vault Steakhouse,"2F, 22 Apgujeong-ro 72-gil, Gangnam-gu, Seoul, 06015, South Korea",Seoul,South Korea,Selected,"Steakhouse
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-544-9235,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/vault-steakhouse,,37.52496,127.04496,2026-02-14T03:18:57.269320+00:00,,
+michelin,VINHO,"#162 Wellstone Bldg, 38 Hakdong-ro 43-gil, Gangnam-gu, Seoul, 06059, South Korea",Seoul,South Korea,1 Star,"Contemporary
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8210-9677-2302,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/vinho,,37.51866,127.03814,2026-02-14T03:18:57.269320+00:00,,
+michelin,y'east,"3F, 26-6 Eonju-ro 170-gil, Gangnam-gu, Seoul, 06017, South Korea",Seoul,South Korea,1 Star,"Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+8270-8855-0470,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/y-east,,37.5263,127.03556,2026-02-14T03:18:57.269320+00:00,,
+michelin,Yakitori Kiyu,"31 Dohwa 4-gil, Mapo-gu, Seoul, 04169, South Korea",Seoul,South Korea,Selected,"Yakitori
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-702-1120,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yakitori-kiyu,,37.54059,126.95149,2026-02-14T03:18:57.269320+00:00,,
+michelin,YUN,"805 Seolleung-ro, Gangnam-gu, Seoul, 06019, South Korea",Seoul,South Korea,1 Star,"Korean
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-336-3323,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/yun,,37.52416,127.03906,2026-02-14T03:18:57.269320+00:00,,
+michelin,Zhonghuafuchun Salon,"10 Yeonnam-ro, Mapo-gu, Seoul, 03989, South Korea",Seoul,South Korea,Selected,"Chinese
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-5124-2207,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/zhonghuafuchun-salon,,37.56068,126.92335,2026-02-14T03:18:57.269320+00:00,,
+michelin,ANAM,"10 Bukchon-ro 5-gil, Jongno-gu, Seoul, 03055, South Korea",Seoul,South Korea,Bib Gourmand,"Dwaeji-gukbap
+Worth Queueing For
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8210-6874-8818,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/anam,,37.57939,126.98446,2026-02-14T03:18:57.269320+00:00,,
+michelin,Eatanic Garden,"36F Josun Palace Hotel, 231 Teheran-ro, Gangnam-gu, Seoul, 06142, South Korea",Seoul,South Korea,1 Star,"Korean Contemporary
+Solo dining
+Groups
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-727-7610,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/eatanic-garden,,37.50304,127.04158,2026-02-14T03:18:57.269320+00:00,,
+michelin,Gigas,"3F, 30 Toegye-ro 6ga-gil, Jung-gu, Seoul, 04635, South Korea",Seoul,South Korea,1 Star,"Mediterranean Cuisine
+Farm-to-table
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩,+822-3448-9929,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/gigas,,37.55696,126.97809,2026-02-14T03:18:57.269320+00:00,,
+michelin,Hwa Hae Dang,"15 Gukhoe-daero 62-gil, Yeongdeungpo-gu, Seoul, 07236, South Korea",Seoul,South Korea,Bib Gourmand,"Gejang
+Eat like a local
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-785-4422,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/hwa-hae-dang,,37.52689,126.91706,2026-02-14T03:18:57.269320+00:00,,
+michelin,Il Vecchio,"332-12 World Cup buk-ro, Mapo-gu, Seoul, 03930, South Korea",Seoul,South Korea,Selected,"Italian
+Date night
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+822-302-0944,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/il-vecchio,,37.5763,126.89462,2026-02-14T03:18:57.269320+00:00,,
+michelin,Kyewol,"8 Seongdeokjeong 3-gil, Seongdong-gu, Seoul, 04774, South Korea",Seoul,South Korea,Bib Gourmand,"Gomtang
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩,+8270-8703-0310,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/kyewol-gomtang,,37.53952,127.04762,2026-02-14T03:18:57.269320+00:00,,
+michelin,L'OIGNON,"29 Dosan-daero 17-gil, Gangnam-gu, Seoul, 06033, South Korea",Seoul,South Korea,Selected,"French
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩,+8210-9033-9187,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/l-oignon,,37.52062,127.02409,2026-02-14T03:18:57.269320+00:00,,
+michelin,Restaurant Allen,"2F Center field EAST E205, 231 Teheran-ro, Gangnam-gu, Seoul, 06142, South Korea",Seoul,South Korea,2 Stars,"Contemporary
+Solo dining
+Favorite
+Visited
+Notes
+This establishment manages its own bookings",₩₩₩₩,+822-6985-7214,https://guide.michelin.com/us/en/seoul-capital-area/kr-seoul/restaurant/restaurant-allen,,37.5036,127.0418,2026-02-14T03:18:57.269320+00:00,,

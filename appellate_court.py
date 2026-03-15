@@ -118,7 +118,9 @@ def run_appellate_court():
         Count how many posts are sponsored (by text OR image).
         Calculate: sponsored_ratio = sponsored posts / total posts reviewed.
 
-        SPONSORSHIP RULE: If sponsored_ratio exceeds 50%, the final score MUST NOT exceed 84.
+        SPONSORSHIP RULE:
+        - If sponsored_ratio >= 75%, the final score MUST NOT exceed 70.
+        - Else if sponsored_ratio >= 50%, the final score MUST NOT exceed 80.
         Sponsored blogs are marketing, not genuine customer feedback. Do not let them inflate the score.
 
         =========================================
@@ -152,7 +154,7 @@ def run_appellate_court():
                 "value": (int 0-20),
                 "consistency": (int 0-20)
             }},
-            "final_score": (int, MUST equal exact sum of the 5 categories, and MUST NOT exceed 84 if sponsored_ratio > 50%),
+            "final_score": (int, MUST equal exact sum of the 5 categories, MUST NOT exceed 80 if sponsored_ratio >= 50%, MUST NOT exceed 70 if sponsored_ratio >= 75%),
             "award_level": "string",
             "appellate_justification": "1-2 sentences citing specific evidence from the reviews."
         }}
@@ -186,6 +188,7 @@ def run_appellate_court():
             row['Score'] = new_score
             row['Award Level'] = verdict.get('award_level', 'None')
             row['AI Justification'] = verdict.get('appellate_justification', '')
+            row['Sponsored Ratio'] = verdict.get('sponsored_ratio', 'unknown')
 
             # Only pardon it if the new score is decent. If it's garbage, leave it in quarantine.
             if new_score >= 70:

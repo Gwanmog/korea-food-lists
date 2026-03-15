@@ -82,7 +82,8 @@ def append_to_csv(row_dict):
     headers = [
         "Neighborhood", "Keyword", "Restaurant Name", "Score", "Award Level",
         "AI Justification", "English Desc", "Korean Desc", "Kakao URL", "Lat", "Lon",
-        "Auditor Comments", "Rating Justified", "Auditor Reason", "Needs Manual Review", "Upgrade Recommended"
+        "Sponsored Ratio", "Auditor Comments", "Rating Justified", "Auditor Reason",
+        "Needs Manual Review", "Upgrade Recommended"
     ]
 
     file_exists = os.path.isfile(CSV_FILENAME)
@@ -248,7 +249,8 @@ def run_massive_pipeline():
                         "Korean Desc": evaluation.get('description_ko', ''),
                         "Kakao URL": place.get('place_url', ''),
                         "Lat": place.get('y', ''),
-                        "Lon": place.get('x', '')
+                        "Lon": place.get('x', ''),
+                        "Sponsored Ratio": evaluation.get('sponsored_ratio', ''),
                     }
 
                     append_to_csv(row)
