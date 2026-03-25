@@ -653,36 +653,62 @@ const omniClose = $('omniClose');
 const omnibox = $('omnibox');
 const omniChat = $('omniChat');
 const omniMessages = $('omniMessages');
+const omniFilterTag = $('omniFilterTag');
 
 // Add a global state for the local keyword filter
 window.currentSearchQuery = "";
 
-// 1. Update the passes() function to use the new global state instead of the old #q input
-// Find your passes(p) function and replace the bottom part with this:
-/*
-  if (window.currentSearchQuery) {
-    const hay = [p.name, p.cuisine, p.address, p.description].join(" ").toLowerCase();
-    if (!hay.includes(window.currentSearchQuery)) return false;
-  }
-  return true;
-*/
+// Show an active-filter pill in the input row for keyword searches.
+// Clicking its × clears the filter without touching chat history.
+function showFilterTag(text) {
+  omniFilterTag.innerHTML = '';
+  const label = document.createElement('span');
+  label.className = 'tag-text';
+  label.textContent = text;
+  const clear = document.createElement('button');
+  clear.className = 'tag-clear';
+  clear.textContent = '×';
+  clear.title = 'Clear filter';
+  clear.addEventListener('click', clearOmniFilter);
+  omniFilterTag.appendChild(label);
+  omniFilterTag.appendChild(clear);
+  omniFilterTag.classList.remove('hidden');
+}
+
+function clearOmniFilter() {
+  window.currentSearchQuery = "";
+  omniFilterTag.innerHTML = '';
+  omniFilterTag.classList.add('hidden');
+  render();
+}
 
 // UI Toggles
+
+// Re-expand chat on focus only if there is AI conversation history.
+// Keyword-only users don't need the chat panel to pop up every time.
 omniInput.addEventListener('focus', () => {
-  omnibox.classList.add('expanded');
-  omniChat.classList.remove('hidden');
-  omniClose.classList.remove('hidden');
+  const hasAIHistory = omniMessages.children.length > 1;
+  if (hasAIHistory) {
+    omnibox.classList.add('expanded');
+    omniChat.classList.remove('hidden');
+    omniClose.classList.remove('hidden');
+  }
 });
 
-omniClose.addEventListener('click', () => {
+// Minimize only — preserve filter state and chat history.
+function minimizeOmni() {
   omnibox.classList.remove('expanded');
   omniChat.classList.add('hidden');
   omniClose.classList.add('hidden');
+}
 
-  // Clear the local filter when closed
-  window.currentSearchQuery = "";
-  omniInput.value = "";
-  render();
+omniClose.addEventListener('click', minimizeOmni);
+
+// Clicking anywhere outside the omnibox minimizes it.
+document.addEventListener('click', (e) => {
+  if (omnibox.classList.contains('expanded') && !omnibox.contains(e.target)) {
+    minimizeOmni();
+  }
 });
 
 function addOmniMessage(text, type) {
@@ -707,18 +733,27 @@ async function handleOmniSubmit() {
   const text = omniInput.value.trim();
   if (!text) return;
 
-  addOmniMessage(text, 'user');
   omniInput.value = '';
 
   const isSimpleKeyword = text.split(' ').length <= 2 && !text.includes('?');
 
   if (isSimpleKeyword) {
-    addOmniMessage(`Filtering the map for "${text}"...`, 'ai');
+    // Keyword filter: silently filter the map and show an active-filter pill.
+    // Don't touch chat history so the AI conversation stays clean.
     window.currentSearchQuery = text.toLowerCase();
     render();
+    showFilterTag(text);
+    omnibox.classList.remove('expanded');
+    omniChat.classList.add('hidden');
+    omniClose.classList.add('hidden');
   } else {
-    window.currentSearchQuery = "";
+    // AI mode: log user message, clear any active keyword filter, expand chat.
+    addOmniMessage(text, 'user');
+    clearOmniFilter();
     render();
+    omnibox.classList.add('expanded');
+    omniChat.classList.remove('hidden');
+    omniClose.classList.remove('hidden');
 
     const loadingMsg = addOmniMessage('Scanning restaurants in your current view...', 'ai loading');
 
@@ -787,7 +822,7 @@ window.openRestaurantPopup = function(name) {
 
     const [lon, lat] = feature.geometry.coordinates;
 
-    // 1. Close the chat immediately so the map is visible
+    // 1. Minimize the chat so the map is visible. Don't clear filter state.
     if (omnibox)   omnibox.classList.remove('expanded');
     if (omniChat)  omniChat.classList.add('hidden');
     if (omniClose) omniClose.classList.add('hidden');
