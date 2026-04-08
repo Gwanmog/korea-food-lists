@@ -1,0 +1,1982 @@
+DATA QUALITY FIX REPORT
+======================================================================
+
+Original row count:  3273
+Final row count:     1315
+Total removed:       1958
+
+PASS 1 — REVOKED ENTRIES (694 removed)
+----------------------------------------------------------------------
+Criteria: Justification contains 'Supreme Court Overruled' AND 'Revoked'
+Cause: pandas type mismatch — score not zeroed but justification was updated
+
+  태리로제떡볶이 서울교대점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  비어룸 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  조가홍닭 남부터미널점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태성골뱅이 성수점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육전국밥 홍대점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주가콩나물국밥전문점 망원역점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  도월리가 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육전국밥 공덕점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  공덕소머리국밥 1호점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 상암DMC점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강원도집 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  함박웃음순대국 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부산돼지국밥 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해주옥덤벙 소고기국밥 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오늘도 고기국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  이맛콩나물국밥 역삼충현점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부산아지매국밥 역삼점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  시골국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광주진국밥 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼백집 역삼역점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  호봉골미나리국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  보승회관 교대역직영점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품돼지국밥 서초본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 강남교보점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  밀양무안돼지국밥 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 신사가로수길점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  예가주 전주콩나물국밥 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진국당성수국밥 본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  안목 성수 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  말방국밥 성수본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  3일한우국밥 문래직영점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  창평본가 본점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마포소문난족발순대국 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오복명가 순대국 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  시골순대 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우사골순대국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  상암순대국 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  순대일번지 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  원조순대국 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  장충순대국 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  큰맘할매순대국 낙원동점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  북촌무궁화 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품양평해장국 종로3가점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고향순대국 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  왕순대 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  평안도순대국감자탕 강남본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  담원순대 강남직영점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청춘옥 강남역점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  탐라순대국감자탕 양재역직영점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  탐라순대국감자탕 교대점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신의주 왕족발 순대국 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한국밥 서초점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구길순대국 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품양평해장국 뚝섬역점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  도담순대국 성수본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태양각 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  박찬숙순대국 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  온향집 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서부청기와감자탕 망원역점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  송가네감자탕 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옹달샘합정감자탕 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  원조감자탕 일미집 상암점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  푸짐한왕뼈감자탕 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신동궁 감자탕뼈숯불구이 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  콩뼈숯뼈감자탕 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  항상감자탕 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  촌장골 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품투가리감자탕 강남본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신미감자탕 신사본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  본가왕뼈감자탕 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  맷돌감자탕 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마장감자탕 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  맛나명태감자탕 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  노루목황소곱창 2호점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강수곱창 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김덕후의곱창조 홍대2호점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  홍곱창 신촌점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우곱 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청어람 2호점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  형제한우곱창 합정직영점 | Score: 99 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  둥둥막창구이 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  상수곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  문현연탄곱창 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돌황소곱창 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  두레박 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구리돌곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마장동한우곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  릴라곱창 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  을지작업장 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  왕십리원조곱창 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대한곱창 약수역점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼룡이네곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  10막창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동대문허파집 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서대문곱창 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  충무곱창 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  개그맨정용국의용곱창 강남본점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강남곱 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  1977소곱창 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구백냥곱창 강남점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  황소양곱창 양재점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  손욱정힘불끈황소곱창 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삽다리곱창 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  싹쓰리곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  보배곱창막창 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  곱 문래점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  방춘자볶곱 문래2호점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  하나양곱창 문래점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한아름곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  먹거리곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  뭉티크 홍대소고기 본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소주방 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잊힐리야 연남 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회by유신 망원점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회예술 새우감성 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  모모의기묘한모험 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회란연어다 금호신당점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  백제정육식당 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진주육회 4호점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  미스터육회연어왕 강남점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  남도진미 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광시 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대봉집 신사본점 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우앤 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고기익는마을 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  용문집 본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한우리광주집 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한옥집 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대다 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소한마리정육식당 정릉점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  만복국수집 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  순남시래기 삼청동점 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  주전 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고향마을 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  배제현의웰빙 낙지한마리수제비 강남신사본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  성수전 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태양슈퍼 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동방손칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김박사손칼국수 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  나들목빈대떡 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진남포면옥 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신숙 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  뉴만두집 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  무교동낙지골 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부추긴돼지 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신의주순대와쭈꾸미 망원점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소문난쭈꾸미 공덕점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  어제그쭈꾸미jib | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  너구리칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  직화한상 상암DDMC점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부뚜막 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동묘집 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진도집 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  쭈담 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  충무로쭈꾸미불고기 본점 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  어람촌 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  다미 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광해쭈꾸미 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동인동 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해가 신사직영점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  면화 | Score: 86 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  2002횟집 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  용강동숯불쭈꾸미 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서교김치찌개 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  이양권반상 본점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진수성찬 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  작은마을 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  황제부대찌개 공덕점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  남미식당 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  풍림 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해들녘 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옛골꽁치김치찌개 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서울숲오삼불고기 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  찐짜솥뚜껑삼겹살갈비 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  웰빙여기가좋겠네 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  감나무집기사식당 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  산산바베큐 신촌본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옥돌 누룽지통닭 홍대연남점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  누구나홀딱반한닭 연남점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광계토 숯불바베큐 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  숯불바베큐치킨 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  푸라닭치킨 망원점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  다사랑치킨피자 서울합정점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옛날장터치킨 성산동점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  컬투치킨 합정사랑점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  후라이드참잘하는집 공덕점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 성산2동점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  롸카두들 이태원점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 명동점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  둘둘치킨 명동본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BBQ 명동점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  치킨플러스 신당점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  꽁스치킨 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 동대문역점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오븐마루치킨 보문자이점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  하림옛날통닭 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대왕통닭 역삼점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  깐부치킨 역삼디오빌점 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  윙스탑 강남점 | Score: 82 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 역삼2동점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  누구나홀딱반한닭 선릉점 | Score: 81 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바른치킨 강남역로봇점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동근이숯불두마리치킨 서울역삼점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  놀란치킨 강남역본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  60계치킨 압구정점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  깐부치킨 압구정역점 | Score: 82 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자담치킨 강남청담점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서울숲누룽지통닭구이 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  킴스치킨 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고니스 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  맛닭꼬 성수뚝도점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BBQ 마장행복점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자담치킨 서울답십리점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  양키통닭 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  치킨홀릭 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  경상닭도매 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  쌀쌀맞은닭 문래점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  푸라닭치킨 문래점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BBQ 정릉풍림스타점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우리집양념통닭 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  60계치킨 서울마포역점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  더맛존숯불바베큐 충무로점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  홍코너 신천새마을시장점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청년다방 롯데월드점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  을찌로국물떡볶이 잠실점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  응급실국물떡볶이 서울석촌점 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  불타는여고24시떡볶이 송파점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  방이떡볶이 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우리할매떡볶이 송파점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  모꼬지에 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  큰집닭강정 잠실점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  와구이닭은근바베큐 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  공씨네족발보쌈 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  퍽퍽살이싫어 내가만든치킨집 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한솥도시락 잠실석촌호수점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  명가통닭 송파점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  처갓집양념치킨 송파점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  국민통닭 잠실본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  종로빈대떡 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오렌지분식 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고봉민김밥인 서울잠실신천점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  지니네분식 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  땡깡김밥 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바르다김선생 잠실새내역점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  명가왕만두 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서울김밥 백제고분점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김가네 송파여성문화회관점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  사보르김밥 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  떡순튀 송파점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  뉴서울분식 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  낭낭김밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BHC치킨 롯데월드 아이스가든점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  치킨뱅이 방이점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  야키토리로만 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  칸코시 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  콤마 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  팡매야 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  79대포 잠실새내점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  죠렌 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잠실나그네 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  만주 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  기유 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구도로통닭 서울방이점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  슈타인도르프 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  새마을포차 방이본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  압구정수산시장 방이점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  야키토리렌 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  매일포차 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  프랑스슈퍼 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  세이야 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소요리한상 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  언덕빼기포차 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  아지태 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  주점 본디 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  시차 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  노무토모 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  은빛포차 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  티코 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잠실포차술깡이 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  투다리 석촌본점 | Score: 82 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  죽변항 포차 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  토탈 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자기류 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  주묘 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  나냐의공동체 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잠실백정 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  갑돼지 신천본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  당산오돌 잠실신천점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  후발대 방이점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  빽돈 방이점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  꿉당 잠실방이점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돈사돈 방이점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  표현식당 방이점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  로스로스 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  패대기 서울본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  윗세오름 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼전식당 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돈고돈락 본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼겹도서관 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  봉피양 방이점 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서호생갈비 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  불마차 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  흥부골숯불돼지왕갈비 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  촌돼지숯불갈비 석촌본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부일갈매기 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동래정 잠실새내점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  원조마포소금구이 본점 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  도니족발 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바이춘천 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우진각 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  석쇠 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  송파한우정육식당 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  지호한방삼계탕 삼전동점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  방이손칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  다랑손칼국수 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  방산바지락칼국수 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오륜명동칼국수 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  칼누들바 방이본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  이랑칼국수 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  학만칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  엄지손칼국수 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  큰손칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  황도바지락칼국수 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  통영멸치국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해주냉면 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강남면옥 신천점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김영희아구찜&코다리냉면 성내점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  평냉식 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  장옥정 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  사보텐 신천점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  수아영 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  제주애월카츠 잠실롯데월드점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  초밥왕 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  경양식소나무 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돈까스짱 방이시장점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  간코 방이점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고인돌 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  치커리 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  어니언스 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마츠미 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태리로제떡볶이 서울교대점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  조가홍닭 남부터미널점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태성골뱅이 성수점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육전국밥 홍대점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주가콩나물국밥전문점 망원역점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  도월리가 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육전국밥 공덕점 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  공덕소머리국밥 1호점 | Score: 99 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 상암DMC점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  남매국밥 이태원본점 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  합천돼지국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강원도집 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 서울강남대로점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오늘도 고기국밥 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  이맛콩나물국밥 역삼충현점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부산아지매국밥 역삼점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  시골국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼백집 역삼역점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  호봉골미나리국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  보승회관 교대역직영점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품돼지국밥 서초본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 강남교보점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  밀양무안돼지국밥 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주현대옥 신사가로수길점 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  예가주 전주콩나물국밥 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일미돼지국밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  안목 성수 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  말방국밥 성수본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  3일한우국밥 문래직영점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  창평본가 본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  정릉 순대국집 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  기차순대국 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마포소문난족발순대국 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  시골순대 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  연안옥칼순대국 신촌점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우사골순대국밥 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  상암순대국 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  순대일번지 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼청순대국추어탕 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  전주순대국 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  원조순대국 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  큰맘할매순대국 낙원동점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  북촌무궁화 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품양평해장국 종로3가점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고향순대국 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  명품을지순대국 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  왕순대 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  평안도순대국감자탕 강남본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  담원순대 강남직영점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청춘옥 강남역점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  탐라순대국감자탕 양재역직영점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  탐라순대국감자탕 교대점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신의주 왕족발 순대국 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  평안도순대국감자탕 서초교대점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한국밥 서초점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  탁골감자탕 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청담순대국 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구길순대국 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품양평해장국 뚝섬역점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  도담순대국 성수본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  수제양정순대국 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  병천순대국 성수점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태양각 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  박찬숙순대국 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  온향집 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서부청기와감자탕 망원역점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일미집 홍대점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  용머리감자탕 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옹달샘합정감자탕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  원조감자탕 일미집 상암점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  푸짐한왕뼈감자탕 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  말뚜기감자탕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  콩뼈숯뼈감자탕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  항상감자탕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  촌장골 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  호남집뼈다귀감자탕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  일품투가리감자탕 강남본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신미감자탕 신사본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  본가왕뼈감자탕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  맷돌감자탕 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마장감자탕 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  노루목황소곱창 2호점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강수곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  뿔난황소곱창 홍대점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  착한곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신촌부추곱창 신촌본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  홍곱창 신촌점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우곱 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청어람 2호점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  형제한우곱창 합정직영점 | Score: 99 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  둥둥막창구이 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  상수곱창 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  문현연탄곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돌황소곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마장동한우곱창 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  하버드곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  을지작업장 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  왕십리원조곱창 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  황소불곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대가곱창 약수본점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대한곱창 약수역점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼룡이네곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  10막창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  여진곱 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동대문허파집 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  충무곱창 | Score: 83 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  인현곱창 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  개그맨정용국의용곱창 강남본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자갈치양곱창 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마포짚불곱창 역삼점 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구백냥곱창 강남점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  제일곱창 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  손욱정힘불끈황소곱창 | Score: 86 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  영동소곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  곱 문래점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  먹거리곱창 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소주방 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회예술 새우감성 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한우마당 마포직영점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  모모의기묘한모험 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회란연어다 금호신당점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  창신집 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  백제정육식당 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진주육회 4호점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회2990 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  미스터육회연어왕 강남점 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  남도진미 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  칠갑청국장육회 남부터미널지점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광시 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우앤 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고기익는마을 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한우리광주집 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대다 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소한마리정육식당 정릉점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  육회바른연어 정릉시장점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  화랑식당 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  만복국수집 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  순남시래기 삼청동점 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  주전 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고향마을 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  윤대감빈대떡 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  배제현의웰빙 낙지한마리수제비 강남신사본점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  흙과나무 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  성수전 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  태양슈퍼 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동방손칼국수 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김박사손칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  나들목빈대떡 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진남포면옥 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신숙 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  뉴만두집 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  무교동낙지골 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신의주순대와쭈꾸미 망원점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소문난쭈꾸미 공덕점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  너구리칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  직화한상 상암DDMC점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  부뚜막 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동묘집 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진도집 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  쭈담 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  충무로쭈꾸미불고기 본점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  어람촌 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  다미 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  아쭈맛나 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광해쭈꾸미 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  수라 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동인동 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해가 신사직영점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  면화 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  2002횟집 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  용강동숯불쭈꾸미 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서교김치찌개 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  이양권반상 본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  진수성찬 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  작은마을 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오복식당 | Score: 83 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  황제부대찌개 공덕점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  남미식당 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  풍림 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소담집 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼보식당 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  순천가 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옛골꽁치김치찌개 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해궁 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서울숲오삼불고기 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  웰빙여기가좋겠네 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  감나무집기사식당 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  더블플레이치킨 동교동본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오늘통닭 신촌직영점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  산산바베큐 신촌본점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  광계토 숯불바베큐 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  박군치킨 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  숯불바베큐치킨 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  푸라닭치킨 망원점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  다사랑치킨피자 서울합정점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옛날장터치킨 성산동점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  위대한치킨동무 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  후라이드참잘하는집 공덕점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  명가통닭 공덕역점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 성산2동점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  이태원통닭 | Score: 86 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  둘둘치킨 명동본점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  치킨드새우 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구어스치킨 신당점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  꽁스치킨 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한국통닭 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 동대문역점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오븐마루치킨 보문자이점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  하림옛날통닭 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  누구나홀딱반한닭 역삼개나리점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  윙스탑 강남점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  굽네치킨 역삼2동점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  누구나홀딱반한닭 선릉점 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바른치킨 강남역로봇점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  동근이숯불두마리치킨 서울역삼점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  놀란치킨 강남역본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  카츠네치킨 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바른치킨 남부터미널로봇점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  깐부치킨 압구정역점 | Score: 82 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자담치킨 강남청담점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  영동치킨 논현본점 | Score: 80 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서울숲누룽지통닭구이 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고니스 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  맛닭꼬 성수뚝도점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  멕시카나치킨 마장점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  야미또치킨&호프 왕십리점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BBQ 마장행복점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  꼬끼오치킨 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자담치킨 서울답십리점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  양키통닭 | Score: 85 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  60계치킨 문래점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  치킨홀릭 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  경상닭도매 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  쌀쌀맞은닭 문래점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BBQ 정릉풍림스타점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오븐마루치킨 정릉점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  60계치킨 서울마포역점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  더맛존숯불바베큐 충무로점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  홍코너 신천새마을시장점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  땅스떡볶이 새마을시장점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  응급실국물떡볶이 서울석촌점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  불타는여고24시떡볶이 송파점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  방이떡볶이 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우리할매떡볶이 송파점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청년다방 서울송파일신여상점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  큰집닭강정 잠실점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우리집닭강정 일원점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옛날통닭호프 잠실동점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바른치킨 송파오륜점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  퍽퍽살이싫어 내가만든치킨집 | Score: 80 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  한솥도시락 잠실석촌호수점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  명가통닭 송파점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  종로빈대떡 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오렌지분식 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김가네 잠실점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바르다김선생 잠실새내역점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  명가왕만두 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  보영만두 잠실점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  빨간부산오뎅 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서울김밥 백제고분점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  입분식 가정집 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마미떡 송파점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김가네 송파여성문화회관점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  사보르김밥 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  떡순튀 송파점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  어멍서울분식 직영3호점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼전신성김밥 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  뉴서울분식 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  낭낭김밥 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BHC치킨 잠실본점 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  BHC치킨 롯데월드 아이스가든점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  호치킨 방이시장점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잊힐리야 잠실새내 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  칸코시 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  콤마 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신천포차 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  숯토리 잠실새내점 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  죠렌 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잠실나그네 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  요기포차 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  구도로통닭 서울방이점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  슈타인도르프 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  새마을포차 방이본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  발리앤발리 방이점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  압구정수산시장 방이점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  매일포차 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼라 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  소요리한상 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  언덕빼기포차 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돌담길 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  담소 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  은빛포차 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  잠실포차술깡이 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  아뷔 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  투다리 석촌본점 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  술깡이 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  하얀집 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  자기류 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  주묘 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  나냐의공동체 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  화포식당 잠실점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  갑돼지 신천본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  송돈 방이본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  후발대 방이점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  빽돈 방이점 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  대박쌈 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  꿉당 잠실방이점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돈사돈 방이점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  표현식당 방이점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  로스로스 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  단막 석촌호수점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  청풍식당 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  패대기 서울본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  나촌골 숯불갈비 | Score: 88 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  여수집 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  삼전식당 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돈고돈락 본점 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  옥봉갈비 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  봉피양 방이점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  서호생갈비 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  불마차 | Score: 94 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  흥부골숯불돼지왕갈비 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  촌돼지숯불갈비 석촌본점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  원조마포소금구이 본점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  운집 방이본점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  도니족발 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  바이춘천 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  우진각 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  윤재갑양심칼국수 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  다랑손칼국수 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김경자원조손칼국수&보쌈 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  함초밭들깨칼국수 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오륜명동칼국수 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  학만칼국수 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  큰손칼국수 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  장칼집 | Score: 89 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  통영멸치국수 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  해주냉면 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  강남면옥 신천점 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  김영희아구찜&코다리냉면 성내점 | Score: 93 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  평냉식 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  장옥정 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  사보텐 신천점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  수아영 | Score: 98 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  초밥왕 | Score: 95 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  경양식소나무 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  돈까스짱 방이시장점 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  간코 방이점 | Score: 91 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  신죠오사사게요 | Score: 96 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  고인돌 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  온량 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마싯내 | Score: 92 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  오로라 | Score: 90 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+  마츠미 | Score: 97 | Supreme Court Overruled: Authentic customer receipts revealed major flaws (service/taste/hygiene). Revoked.
+
+PASS 2 — SPONSORED CAP VIOLATIONS (423 removed)
+----------------------------------------------------------------------
+Criteria: Score > 84 AND 'significant deductions' AND 'sponsored' in Justification
+Cause: critic_agent did not enforce the ≤84 sponsorship cap correctly
+
+  백순대본가새맛 신촌연대점 | Score: 93 | The score of 93 reflects high marks across all categories, particularly for the exceptional quality of ingredients, mast
+  부산아지매국밥 선릉점 | Score: 90 | The score of 43 reflects moderate ingredient quality (15), acceptable but flawed flavor mastery (14), minimal chef perso
+  두성전주콩나물국밥 교대직영점 | Score: 88 | The score reflects decent flavor and value, but significant deductions were applied to consistency and value for money d
+  정릉 순대국집 | Score: 96 | The score of 73 reflects solid ingredient quality (17/20) and flavor mastery (17/20), alongside a strong sense of unique
+  신촌순대국 | Score: 92 | The score reflects moderate ingredient quality and technique, a lack of unique culinary personality, and significant ded
+  원조부산돼지국밥 | Score: 88 | The score of 67 reflects decent ingredient quality and value, but significant deductions were made for inconsistent flav
+  리치런치 | Score: 90 | The score includes significant deductions for consistency and value, applying extreme skepticism due to the absence of a
+  역삼동찹쌀순대국 | Score: 91 | The score reflects solid ingredient quality (17/20) and flavor execution (16/20), but significant deductions were made f
+  제일곱창 홍대직영점 | Score: 95 | The score reflects solid ingredient quality and competent cooking technique, but significant deductions were applied to 
+  생곱창집 (구.진미소곱창) 상암직영점 | Score: 92 | The score reflects strong ingredient quality (18/20) and decent technique (16/20), but significant deductions were appli
+  한우곱창집 상암점 | Score: 90 | The score reflects strong ingredient quality and cooking mastery, but significant deductions were applied to 'Value for 
+  마장동연가 강남점 | Score: 95 | The score of 64 reflects strong ingredient quality and value, but significant deductions were made for a lack of culinar
+  압구정곱창 본점 | Score: 95 | The score reflects decent ingredient quality and cooking technique, but significant deductions were applied to "Value fo
+  압구정곱창 가로수길직영점 | Score: 92 | The score of 56 reflects fair ingredient quality and cooking technique, but significant deductions were applied to 'Valu
+  육회어때 공덕점 | Score: 95 | The score of 68 reflects strong ingredient quality and decent technique, but significant deductions were applied to 'Val
+  잊힐리야 | Score: 92 | The score reflects strong points in personality and decent ingredient quality, but significant deductions were applied t
+  소신 문래본점 | Score: 91 | The score reflects high marks for ingredients and technique, but significant deductions were applied to value and consis
+  망원틈새전 | Score: 92 | The score reflects decent ingredient quality and technique, but significant deductions were applied to value and consist
+  장수포차 | Score: 95 | The score reflects significant deductions in value and consistency due to the high sponsored ratio, alongside a general 
+  두루미 | Score: 90 | The scores reflect solid ingredients, technique, and personality, but significant deductions were applied to value and c
+  양화로쭈꾸미 | Score: 95 | The score reflects strong points in ingredients and technique, but significant deductions were applied to consistency an
+  양화로1984 | Score: 91 | The score reflects strong points in ingredients and technique, but significant deductions were applied to consistency an
+  매운녀석들 신당본점 | Score: 89 | The score reflects solid ingredient quality and decent technique, but a severe lack of personality and consistency, with
+  동아골뱅이 | Score: 91 | The score reflects solid ingredients and personality, but technique has minor flaws, and significant deductions were app
+  햇살 숯불고갈비쭈꾸미 광희점 | Score: 91 | The score reflects solid ingredient quality and cooking technique, but is severely hampered by a complete absence of inf
+  신복관한우육개장전문점 강남본점 | Score: 90 | The score reflects strong ingredients and technique, but significant deductions were applied to value and consistency du
+  기장꼼장어 | Score: 92 | The score of 63 reflects strong technique and decent ingredients, but significant deductions were applied to consistency
+  맛기행사계절 | Score: 96 | The score of 69 reflects strong culinary execution in ingredients and technique, but significant deductions were applied
+  서울숲쭈꾸미 | Score: 92 | The score reflects strong culinary execution, but significant deductions were applied to value and consistency due to th
+  쭈꾸미장군 | Score: 95 | The score reflects decent technique and ingredient quantity, but significant deductions were applied to consistency and 
+  복준당 | Score: 92 | The score reflects strong technique and good ingredients, but significant deductions were applied to 'value' and 'consis
+  향나무세그루 | Score: 90 | The score breakdown reflects strong technique and personality, but the high sponsored ratio led to significant deduction
+  현대북어 | Score: 88 | The score reflects strong initial flavor profiles and a long history, but significant deductions were applied to 'value'
+  더블플레이치킨 홍대2호점 | Score: 92 | The score reflects strong technical execution and a clear theme, but significant deductions were applied to value and co
+  상수동치맥 | Score: 92 | The score reflects strong technique but weak personality, with significant deductions in value and consistency due to th
+  철인7호치킨 홍대점 | Score: 95 | The score reflects strong execution in ingredients and technique, but significant deductions were applied to value and c
+  치킨인더키친 | Score: 92 | The score reflects strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  네네치킨 서교점 | Score: 92 | The total score of 51 reflects strong technique and decent ingredients, but significant deductions were applied to value
+  요기요치킨 | Score: 90 | The score reflects strong technique and a distinct personality, but significant deductions were applied to value and con
+  통통닭 | Score: 92 | The score reflects solid technique and decent ingredients, but significant deductions were applied to 'value' and 'consi
+  네오치킨 신촌점 | Score: 96 | The score reflects decent technique and personality, but significant deductions were applied to value and consistency du
+  멕시칸치킨 연남점 | Score: 92 | The scores reflect solid culinary execution in ingredients, technique, and personality, but significant deductions were 
+  교촌치킨 연남점 | Score: 95 | The score reflects strong technique but low marks for personality and ingredients, with significant deductions applied t
+  교촌치킨 망원2동점 | Score: 92 | The score reflects strong technique overshadowed by a complete lack of personality, unverified ingredient quality, and s
+  굽네치킨 망원1동점 | Score: 95 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  BBQ 한강버스망원선착장점 | Score: 90 | The score reflects poor execution, lack of unique identity, and significant deductions in consistency and value due to t
+  또바기치킨 망원시장점 | Score: 92 | The scores reflect strong technical execution but a lack of unique personality and significant deductions in value and c
+  불만있는치킨 | Score: 96 | The score reflects decent ingredients and technique, but significant deductions were applied to 'value' and 'consistency
+  효도치킨 공덕점 | Score: 88 | Scores reflect strong technique and personality, but significant deductions were applied to consistency and value due to
+  샘스핫치킨 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to value and consistency du
+  자담치킨 서울보광점 | Score: 95 | The score reflects strong points in ingredients and technique, but significant deductions were applied to personality, a
+  바른치킨 종로5가점 | Score: 92 | The score reflects strong technical execution, but significant deductions were applied to 'value' and 'consistency' due 
+  우리안치킨 | Score: 91 | The score reflects strong technique and a friendly owner, but significant deductions were applied to 'value' and 'consis
+  바렌티나치킨비어 충무본점 | Score: 92 | The scores reflect strong technique and personality, but significant deductions were applied to 'value' and 'consistency
+  BHC치킨 동대문점 | Score: 85 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  아지트치킨호프 | Score: 92 | The total score of 58 is the sum of the individual category scores, with significant deductions applied to 'value' and '
+  BBQ 명동스타점 | Score: 90 | The score reflects strong technique and ingredient quality, but significant deductions were applied to 'value' and 'cons
+  한방 통닭구이 | Score: 90 | The score reflects strong technique and personality, but significant deductions were applied to consistency due to repor
+  명가통닭 청구점 | Score: 93 | The score reflects competent technique and decent ingredients, but significant deductions were applied to value and cons
+  포미치킨 약수역점 | Score: 89 | The score reflects solid technique and a unique personality, but significant deductions were made in 'value' and 'consis
+  후라이드참잘하는집 신당금호점 | Score: 96 | The score reflects solid ingredient sourcing and decent technique, but significant deductions were applied to consistenc
+  치교치밥&치킨 신당점 | Score: 95 | The score reflects significant deductions in consistency and value due to explicit reports of quality inconsistency acro
+  자담치킨 서울신당역점 | Score: 91 | The score reflects strong points in ingredients and technique, offset by significant deductions in value and consistency
+  한국통닭 종로3호점 | Score: 89 | The score reflects high marks for technique and personality, but significant deductions were applied to 'value' and 'con
+  페리카나 종로낙원점 | Score: 92 | The score reflects decent technique but suffers from unknown ingredient quality and generic personality, with significan
+  BBQ 역삼SG타워점 | Score: 92 | The score reflects strong technique and decent ingredient quality, but significant deductions were applied to value and 
+  기영이숯불두마리치킨 강남역삼점 | Score: 90 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  치킨파머스 서초점 | Score: 92 | The scores reflect strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  자담치킨 서초교대점 | Score: 92 | The score breakdown reflects solid technique and some personality, but significant deductions were applied to 'value' an
+  교촌치킨 서초1호점 | Score: 90 | The score reflects significant deductions in consistency and value due to reported taste variations and a high sponsored
+  교촌치킨 서초2호점 | Score: 89 | The score reflects significant deductions in consistency and value due to the high sponsored ratio, compounded by noted 
+  페리카나 서초동점 | Score: 90 | The score reflects solid technique and decent ingredients for a chain, but personality is minimal, and significant deduc
+  당신이선택한인생치킨 강남본점 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to consistency and v
+  치킨더비 학동역점 | Score: 92 | The score of 59 reflects decent technique and ingredient quality, but significant deductions were applied to consistency
+  BBQ 성수2점 | Score: 92 | The score reflects strong technical execution within a franchise framework, but significant deductions were made for the
+  호식이두마리치킨 한양대점 | Score: 95 | The score reflects strong technique and good ingredients, but significant deductions were applied to personality, value,
+  참참한방통닭&치킨 | Score: 92 | The score reflects strong culinary execution in ingredients and technique, but significant deductions were applied to co
+  바삭순살핫 후라이드치킨 | Score: 91 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  지코바 문래점 | Score: 96 | The score reflects significant deductions in consistency and value due to the high sponsored ratio and reported branch-t
+  OEC 통치킨 문래점 | Score: 93 | The score reflects solid ingredient quality and fair technique, but personality is weak, and significant deductions were
+  교촌치킨 영등포역점 | Score: 95 | The score reflects high marks for ingredients and technique, but significant deductions were applied to personality, val
+  치킨랜드 | Score: 92 | The score reflects significant deductions for unmentioned ingredients, lack of personality, and poor value, with a heavy
+  훌랄라참숯치킨 영등포시장점 | Score: 92 | The score reflects strong technique for grilled chicken, but significant deductions were applied to value and consistenc
+  노랑통닭 정릉점 | Score: 92 | The score reflects decent ingredients and technique, but significant deductions were applied to consistency and value du
+  감탄계 정릉점 | Score: 94 | The score reflects strong ingredients and technique, but significant deductions were applied to value and consistency du
+  가마치통닭 서울북한산점 | Score: 92 | The score reflects strong ingredient quality and technique, but significant deductions were applied to 'personality', 'v
+  푸라닭치킨 정릉1호점 | Score: 91 | The score breakdown reflects solid ingredients and technique, but significant deductions were applied due to inconsisten
+  X치킨 | Score: 92 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  마미치킨 마포본점 | Score: 92 | The scores reflect solid culinary execution and a personal touch, but significant deductions were applied to 'value' and
+  떡볶이집 | Score: 92 | The score reflects a decent technique and traditional flavor, but significant deductions were applied to value and consi
+  반장떡볶이 잠실롯데월드몰점 | Score: 90 | The score of 52 is a sum of the category evaluations, with significant deductions applied to 'value' and 'consistency' d
+  떡볶이참잘하는집 떡참 강남일원점 | Score: 92 | The score reflects competent technique and acceptable ingredients, but significant deductions were applied to value and 
+  호기떡 | Score: 93 | The score reflects solid ingredients and technique, but significant deductions were applied to consistency and value due
+  떡볶이의신 방이본점 | Score: 93 | Scores reflect strong technique and decent ingredients, but significant deductions were made in personality due to lack 
+  일방통행국물즉석떡볶이&화덕피자 | Score: 92 | The score breakdown reflects strong points in ingredients and technique, but significant deductions were applied to valu
+  국물즉석떡볶이&화덕피자 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to 'value' and 'c
+  동대문엽기떡볶이 가락점 | Score: 90 | The score reflects a strong personality and decent technique, but significant deductions were applied to value and consi
+  스텔라떡볶이 서울둔촌성내점 | Score: 91 | The scores reflect strong performance in technique and ingredients, but significant deductions were applied to consisten
+  33떡볶이 올림픽파크포레온점 | Score: 92 | Scores reflect competent technique and decent ingredients, but significant deductions were applied to 'personality' and 
+  골목떡볶이 | Score: 92 | The score breakdown reflects strong points in technique and personality, but significant deductions were applied to valu
+  군떡 송파점 | Score: 92 | The score reflects strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  깻잎닭강정 | Score: 92 | The score reflects decent ingredient quality and a clear personality, but significant deductions were made for the absen
+  다온닭강정 잠실새내역점 | Score: 95 | The score breakdown reflects strong technique and good ingredients, but significant deductions were applied to value and
+  인생닭강정 새내역점 | Score: 95 | The score reflects strong technical execution and ingredient quality, but significant deductions were applied to consist
+  튀김명인 최영일 닭강정&새우강정 | Score: 85 | The score reflects decent ingredients and technique overshadowed by a complete absence of personality, poor value, and u
+  바우닭강정 본점 | Score: 94 | The score reflects strong points in technique and a unique flavor profile, but significant deductions were applied to va
+  맘스터치 잠실1호점 | Score: 92 | The score reflects average fast-food execution and a lack of unique personality, with significant deductions applied to 
+  직화계 잠실직영점 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to ingredients for sourcing
+  노랑강정 올림픽공원점 | Score: 92 | The score reflects strong technical execution, but significant deductions were applied to consistency and value due to t
+  작살치킨 방이본점 | Score: 92 | The score reflects strong technique and ingredient quality, but the high sponsored ratio led to significant deductions i
+  돈치킨 잠실점 | Score: 92 | Scores reflect a lack of culinary depth in ingredients, technique, and personality, with significant deductions applied 
+  서울빈대떡 | Score: 91 | The scores reflect strong points in technique and personality, but significant deductions were applied to consistency an
+  잠실첫집 | Score: 92 | The scores reflect strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  꼬마김밥돈까스 | Score: 85 | The score reflects strong ingredient quality and excellent service, but significant deductions were applied to technique
+  헬키푸키 방이점 | Score: 95 | The total score of 56 is a sum of the category scores, with significant deductions applied to 'value' and 'consistency' 
+  고슬당 | Score: 90 | The score reflects excellent ingredients, technique, and a unique personality, but significant deductions were applied t
+  조은분식 올림픽공원점 | Score: 90 | The score reflects strong points in technique and personality, but significant deductions were applied to value and cons
+  자매분식 | Score: 92 | The score breakdown reflects strong points in technique and personality, but significant deductions were applied to 'val
+  온새미로김밥 | Score: 92 | The score reflects strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  울엄마김밥 | Score: 92 | The score breakdown reflects solid ingredient quality and technique, but significant deductions were applied to value an
+  서울김밥 잠실점 | Score: 92 | The score of 53 reflects strong points in ingredients and technique, but significant deductions were applied to value an
+  속초킹김밥&도시락 석촌점 | Score: 91 | The score reflects strong personality and interesting ingredients, but significant deductions were applied to value and 
+  삼전김밥 | Score: 92 | The score reflects strong ingredient quality and technique, but significant deductions were applied to personality, valu
+  윙집 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  교촌치킨 잠실1호점 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  호치킨 신천점 | Score: 90 | The score reflects decent ingredients and some technical proficiency, but significant deductions were applied to value a
+  자담치킨 잠실1점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  옛날산골바베큐 | Score: 90 | The score reflects solid ingredients and technique, but a lower personality score and significant deductions in value an
+  푸라닭치킨 방이점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  60계치킨 방이점 | Score: 90 | Scores reflect significant deductions for a lack of unique personality and critical flaws in flavor technique, further c
+  BHC치킨 방이점 | Score: 90 | The score reflects decent technique and ingredients for core items, but significant deductions were applied to value and
+  호식이두마리치킨 방이점 | Score: 91 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  바른치킨 오금역점 | Score: 95 | The score of 50 is a direct sum of the category evaluations, with significant deductions applied to 'value' and 'consist
+  BBQ 빌리지 송리단길점 | Score: 90 | The low score reflects significant deductions in technique, personality, value, and consistency, with an explicit heavy 
+  맛닭꼬 석촌역점 | Score: 96 | The score breakdown reflects strong technique and ingredient quality, but significant deductions were applied to value a
+  야들리애치킨 석촌호수점 | Score: 94 | The score breakdown reflects solid technique and decent ingredients, but significant deductions were applied to 'value' 
+  BBQ 헬리오시티점 | Score: 92 | The score of 55 reflects strong technique and ingredient quality, but significant deductions were applied to consistency
+  아빠가만든치킨 본점 | Score: 91 | The score reflects solid ingredient quality and a unique culinary personality, but significant deductions were applied t
+  굽네치킨 삼전점 | Score: 89 | The score breakdown reflects significant deductions across all categories, particularly in consistency and value due to 
+  하이꼬꼬 배명사거리점 | Score: 90 | The scores reflect solid ingredient quality and technique, but significant deductions were applied to 'value' and 'consi
+  닭장수후라이드 잠실점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  주택가 | Score: 91 | The score reflects significant deductions in consistency and value due to the overwhelming sponsored ratio, compounded b
+  우이락 잠실새내점 | Score: 95 | The score reflects decent objective quality in ingredients and technique, but significant deductions were applied to val
+  무진장포차 | Score: 91 | Scores reflect decent ingredients, strong technique, and personality, but significant deductions were applied to value a
+  우정국 | Score: 92 | The score reflects high marks for ingredients, technique, and personality, but significant deductions were applied to va
+  도톤보리 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  맛나포차 | Score: 95 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  새마을상회 방이역점 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  바 더스크 | Score: 95 | The score reflects strong technique in beverage preparation and selection, but significant deductions were applied to va
+  재즈바 바티칸 | Score: 96 | The score reflects strong technique offset by absent information on ingredients and personality, with significant deduct
+  사사노하 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  도키도키키친 | Score: 90 | The score reflects strong ingredients and personality, but technique flaws and significant deductions in value and consi
+  생활맥주 석촌역2번출구점 | Score: 92 | The score reflects decent execution of standard pub food, but significant deductions were applied to value and consisten
+  미혼술관 | Score: 96 | The score reflects strong technique and personality, but significant deductions were applied to value and consistency du
+  아뷔 | Score: 93 | The score reflects high marks for ingredients, technique, and personality, but significant deductions were applied to va
+  수꼬치구이 | Score: 89 | The score reflects solid technique and ingredient quality, but significant deductions were applied to value and consiste
+  유키토리 | Score: 92 | The score breakdown reflects strong points in ingredients and technique, but significant deductions were applied to valu
+  야키토리나니야 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  늘밤 | Score: 92 | The score reflects excellent culinary execution and ingredient quality, coupled with a strong owner personality; however
+  포차시대 | Score: 90 | Scores reflect decent ingredients, solid technique, and strong personality, but significant deductions were applied to '
+  부자포차 | Score: 95 | The score reflects strong points in ingredients and technique, but significant deductions were made in personality, valu
+  연탄부락 잠실새내점 | Score: 92 | The score reflects solid ingredients and technique, but significant deductions were applied to 'value' and 'consistency'
+  아궁이왕돌구이 | Score: 90 | The score reflects decent personality and technique, but significant deductions were applied to value and consistency du
+  신천집 | Score: 91 | The score reflects strong points in ingredients and technique, but significant deductions were applied to 'value' and 'c
+  화덕고깃간 신천본점 | Score: 91 | The score reflects strong points in unique personality and technique, but significant deductions were applied to value a
+  신흥정육식당 | Score: 92 | The score reflects strong ingredient quality and decent technique, but the high sponsored ratio led to significant deduc
+  장수식당 | Score: 92 | The score of 59 reflects strong points in ingredients and technique, but significant deductions were applied to value an
+  무한팔도대패 잠실새내점 | Score: 92 | The score reflects reasonable ingredient quality and strong personality, but significant deductions were applied to valu
+  금돈옥 잠실점 | Score: 96 | The score reflects strong points in ingredients and technique, but significant deductions were applied to personality du
+  송돝 | Score: 90 | The score reflects strong personality and good ingredients, but significant deductions were made in consistency and valu
+  솥뚜껑오겹살 본점 | Score: 95 | The score reflects strong culinary execution and a unique identity, but significant deductions were applied to 'value' a
+  홍교집 | Score: 92 | The score reflects excellent ingredients and technique, but significant deductions were applied to value and consistency
+  한돈촌생삼겹살 | Score: 92 | The score reflects strong personality and decent ingredients, but significant deductions were applied to value and consi
+  일월고기 | Score: 90 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  옛날농장 방이점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  전주골 | Score: 95 | The score reflects strong technique and decent ingredients, but a low personality score and significant deductions in va
+  연정민소금구이 | Score: 95 | The score reflects excellent ingredients, technique, and personality, but significant deductions were applied to consist
+  장원식당 | Score: 92 | The scores reflect strong culinary execution and personality, but significant deductions were applied to 'value' and 'co
+  여수집 | Score: 93 | The score reflects high marks for ingredients, technique, and personality, but significant deductions were applied to va
+  금사월 | Score: 92 | The score reflects solid ingredients and technique, with some personality, but significant deductions were applied to va
+  부뚜막구이 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to consistency and value du
+  늘푸른목장 잠실본점 | Score: 92 | The score breakdown reflects solid ingredients and technique, but significant deductions were applied to personality due
+  육병장 | Score: 92 | The score breakdown reflects solid technique and personality, but significant deductions were applied to 'value' and 'co
+  담가화로구이 잠실1호점 | Score: 91 | The score reflects strong points in ingredients and technique, but significant deductions were applied to personality, v
+  잠실한우정육식당 | Score: 95 | The score reflects excellent ingredient quality, but significant deductions were applied to consistency and value due to
+  숯불성화 | Score: 96 | The score reflects high marks for ingredients and technique, but significant deductions were applied to value and consis
+  평상집 송파점 | Score: 92 | The score reflects high marks for ingredients and technique, offset by significant deductions in value and consistency d
+  윤재갑양심칼국수 | Score: 90 | The score breakdown reflects strong points in ingredients and technique, but significant deductions were applied to valu
+  개성손만두 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  글로리칼국수 잠실본점 | Score: 92 | The score reflects excellent ingredients and technique, alongside a strong chef's personality. However, significant dedu
+  방이샤브샤브칼국수 방이본점 | Score: 96 | Ingredients and technique scored highly, but personality was low due to no information, and significant deductions were 
+  선일네칼국수 | Score: 92 | The score reflects strong personality and good ingredient sourcing, but significant deductions were applied to value and
+  박대박 방이점 | Score: 92 | Scores reflect high ingredient quality and good technique, but significant deductions were applied to 'value' and 'consi
+  신라샤브칼국수 송파점 | Score: 91 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  석촌칼국수보리밥 본점 | Score: 91 | The score breakdown reflects strong ingredient sourcing and decent technique, but the personality lacks distinctiveness,
+  강남교자 석촌호수점 | Score: 86 | The score reflects solid technique and ingredients, but significant deductions were made in 'value' and 'consistency' du
+  세수대야 냉면&칼국수 | Score: 92 | The scores reflect strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  남경막국수 가족1 | Score: 90 | The score reflects solid ingredients and technique, but significant deductions were applied to 'value' and 'consistency'
+  포브라더스 잠실점 | Score: 95 | The score of 34 reflects strong technique but significant deductions due to the absence of information regarding ingredi
+  온수반 송파점 | Score: 92 | Scores reflect competent ingredients and technique, but personality is average, and significant deductions were applied 
+  팔월쌀국수 | Score: 92 | The score breakdown reflects strong points in ingredients and technique; however, significant deductions were applied to
+  배달의쌀국수 송파점 | Score: 90 | The score reflects strong technique in some areas, but significant deductions were applied to consistency and value due 
+  포옹남 석촌호수점 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to value and consistency du
+  경성밥상 석촌호수점 | Score: 92 | The score reflects solid technique and good ingredients, but significant deductions were made in 'value' and 'consistenc
+  혜화동 돈까스극장 서울잠실운동장점 | Score: 91 | The score reflects decent culinary execution and ingredient quality, but significant deductions were applied to 'value' 
+  동경 | Score: 92 | The score reflects decent ingredient quality and technique, but the complete absence of consistency data combined with a
+  백소정 잠실새내점 | Score: 95 | The score breakdown reflects solid technique and decent ingredients, but significant deductions were applied to 'value' 
+  돈까스의집 | Score: 90 | The score breakdown reflects strong personality and decent ingredient quality, but significant deductions were made in t
+  좋은생각 | Score: 92 | The score reflects decent technique and ingredients, but significant deductions were applied to 'value' and 'consistency
+  남이돈까스 | Score: 91 | The score breakdown reflects a solid foundation in technique and personality, but significant deductions were applied to
+  정성카츠 송파점 | Score: 90 | The score reflects strong culinary execution in ingredients and technique, but significant deductions were applied to 'v
+  영카츠 잠실학원사거리점 | Score: 92 | The score breakdown reflects strong points in ingredients, technique, and personality, but significant deductions were a
+  동경규동 잠실점 | Score: 88 | The score reflects decent ingredients and technique, but significant deductions were applied to 'value' and 'consistency
+  맛있는돈까스 | Score: 92 | The score reflects high marks for ingredients and technique, but significant deductions were applied to consistency and 
+  부산아지매국밥 선릉점 | Score: 91 | The score of 43 reflects moderate ingredient quality (15), acceptable but flawed flavor mastery (14), minimal chef perso
+  두성전주콩나물국밥 교대직영점 | Score: 85 | The score reflects decent flavor and value, but significant deductions were applied to consistency and value for money d
+  신촌순대국 | Score: 92 | The score reflects moderate ingredient quality and technique, a lack of unique culinary personality, and significant ded
+  리치런치 | Score: 90 | The score includes significant deductions for consistency and value, applying extreme skepticism due to the absence of a
+  역삼동찹쌀순대국 | Score: 93 | The score reflects solid ingredient quality (17/20) and flavor execution (16/20), but significant deductions were made f
+  제일곱창 홍대직영점 | Score: 92 | The score reflects solid ingredient quality and competent cooking technique, but significant deductions were applied to 
+  생곱창집 (구.진미소곱창) 상암직영점 | Score: 96 | The score reflects strong ingredient quality (18/20) and decent technique (16/20), but significant deductions were appli
+  한우곱창집 상암점 | Score: 90 | The score reflects strong ingredient quality and cooking mastery, but significant deductions were applied to 'Value for 
+  마장동연가 강남점 | Score: 92 | The score of 64 reflects strong ingredient quality and value, but significant deductions were made for a lack of culinar
+  압구정곱창 본점 | Score: 95 | The score reflects decent ingredient quality and cooking technique, but significant deductions were applied to "Value fo
+  압구정곱창 가로수길직영점 | Score: 95 | The score of 56 reflects fair ingredient quality and cooking technique, but significant deductions were applied to 'Valu
+  육회어때 공덕점 | Score: 92 | The score of 68 reflects strong ingredient quality and decent technique, but significant deductions were applied to 'Val
+  잊힐리야 | Score: 90 | The score reflects strong points in personality and decent ingredient quality, but significant deductions were applied t
+  소신 문래본점 | Score: 96 | The score reflects high marks for ingredients and technique, but significant deductions were applied to value and consis
+  망원틈새전 | Score: 91 | The score reflects decent ingredient quality and technique, but significant deductions were applied to value and consist
+  장수포차 | Score: 95 | The score reflects significant deductions in value and consistency due to the high sponsored ratio, alongside a general 
+  두루미 | Score: 92 | The scores reflect solid ingredients, technique, and personality, but significant deductions were applied to value and c
+  양화로쭈꾸미 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to consistency an
+  양화로1984 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to consistency an
+  매운녀석들 신당본점 | Score: 90 | The score reflects solid ingredient quality and decent technique, but a severe lack of personality and consistency, with
+  동아골뱅이 | Score: 92 | The score reflects solid ingredients and personality, but technique has minor flaws, and significant deductions were app
+  햇살 숯불고갈비쭈꾸미 광희점 | Score: 91 | The score reflects solid ingredient quality and cooking technique, but is severely hampered by a complete absence of inf
+  신복관한우육개장전문점 강남본점 | Score: 90 | The score reflects strong ingredients and technique, but significant deductions were applied to value and consistency du
+  기장꼼장어 | Score: 92 | The score of 63 reflects strong technique and decent ingredients, but significant deductions were applied to consistency
+  맛기행사계절 | Score: 96 | The score of 69 reflects strong culinary execution in ingredients and technique, but significant deductions were applied
+  서울숲쭈꾸미 | Score: 92 | The score reflects strong culinary execution, but significant deductions were applied to value and consistency due to th
+  쭈꾸미장군 | Score: 90 | The score reflects decent technique and ingredient quantity, but significant deductions were applied to consistency and 
+  복준당 | Score: 95 | The score reflects strong technique and good ingredients, but significant deductions were applied to 'value' and 'consis
+  향나무세그루 | Score: 89 | The score breakdown reflects strong technique and personality, but the high sponsored ratio led to significant deduction
+  더블플레이치킨 홍대2호점 | Score: 92 | The score reflects strong technical execution and a clear theme, but significant deductions were applied to value and co
+  상수동치맥 | Score: 92 | The score reflects strong technique but weak personality, with significant deductions in value and consistency due to th
+  철인7호치킨 홍대점 | Score: 92 | The score reflects strong execution in ingredients and technique, but significant deductions were applied to value and c
+  치킨인더키친 | Score: 92 | The score reflects strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  네네치킨 서교점 | Score: 96 | The total score of 51 reflects strong technique and decent ingredients, but significant deductions were applied to value
+  요기요치킨 | Score: 85 | The score reflects strong technique and a distinct personality, but significant deductions were applied to value and con
+  통통닭 | Score: 92 | The score reflects solid technique and decent ingredients, but significant deductions were applied to 'value' and 'consi
+  네오치킨 신촌점 | Score: 92 | The score reflects decent technique and personality, but significant deductions were applied to value and consistency du
+  멕시칸치킨 연남점 | Score: 91 | The scores reflect solid culinary execution in ingredients, technique, and personality, but significant deductions were 
+  교촌치킨 연남점 | Score: 95 | The score reflects strong technique but low marks for personality and ingredients, with significant deductions applied t
+  교촌치킨 망원2동점 | Score: 95 | The score reflects strong technique overshadowed by a complete lack of personality, unverified ingredient quality, and s
+  굽네치킨 망원1동점 | Score: 95 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  BBQ 한강버스망원선착장점 | Score: 90 | The score reflects poor execution, lack of unique identity, and significant deductions in consistency and value due to t
+  또바기치킨 망원시장점 | Score: 92 | The scores reflect strong technical execution but a lack of unique personality and significant deductions in value and c
+  불만있는치킨 | Score: 92 | The score reflects decent ingredients and technique, but significant deductions were applied to 'value' and 'consistency
+  효도치킨 공덕점 | Score: 85 | Scores reflect strong technique and personality, but significant deductions were applied to consistency and value due to
+  하림치킨 | Score: 90 | The score reflects Harim as a reliable but generic ingredient supplier, with significant deductions in value and consist
+  샘스핫치킨 | Score: 91 | The score reflects strong technique and personality, but significant deductions were applied to value and consistency du
+  자담치킨 서울보광점 | Score: 95 | The score reflects strong points in ingredients and technique, but significant deductions were applied to personality, a
+  바른치킨 종로5가점 | Score: 92 | The score reflects strong technical execution, but significant deductions were applied to 'value' and 'consistency' due 
+  우리안치킨 | Score: 92 | The score reflects strong technique and a friendly owner, but significant deductions were applied to 'value' and 'consis
+  바렌티나치킨비어 충무본점 | Score: 92 | The scores reflect strong technique and personality, but significant deductions were applied to 'value' and 'consistency
+  BHC치킨 동대문점 | Score: 90 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  아지트치킨호프 | Score: 92 | The total score of 58 is the sum of the individual category scores, with significant deductions applied to 'value' and '
+  BBQ 명동스타점 | Score: 90 | The score reflects strong technique and ingredient quality, but significant deductions were applied to 'value' and 'cons
+  한방 통닭구이 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to consistency due to repor
+  명가통닭 청구점 | Score: 92 | The score reflects competent technique and decent ingredients, but significant deductions were applied to value and cons
+  포미치킨 약수역점 | Score: 90 | The score reflects solid technique and a unique personality, but significant deductions were made in 'value' and 'consis
+  후라이드참잘하는집 신당금호점 | Score: 92 | The score reflects solid ingredient sourcing and decent technique, but significant deductions were applied to consistenc
+  치교치밥&치킨 신당점 | Score: 92 | The score reflects significant deductions in consistency and value due to explicit reports of quality inconsistency acro
+  자담치킨 서울신당역점 | Score: 95 | The score reflects strong points in ingredients and technique, offset by significant deductions in value and consistency
+  한국통닭 종로3호점 | Score: 85 | The score reflects high marks for technique and personality, but significant deductions were applied to 'value' and 'con
+  페리카나 종로낙원점 | Score: 92 | The score reflects decent technique but suffers from unknown ingredient quality and generic personality, with significan
+  BBQ 역삼GS타워점 | Score: 89 | The score reflects significant deductions in consistency due to reported flavor variations and in value due to the high 
+  BBQ 역삼SG타워점 | Score: 92 | The score reflects strong technique and decent ingredient quality, but significant deductions were applied to value and 
+  기영이숯불두마리치킨 강남역삼점 | Score: 90 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  치킨파머스 서초점 | Score: 92 | The scores reflect strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  자담치킨 서초교대점 | Score: 95 | The score breakdown reflects solid technique and some personality, but significant deductions were applied to 'value' an
+  교촌치킨 서초1호점 | Score: 90 | The score reflects significant deductions in consistency and value due to reported taste variations and a high sponsored
+  교촌치킨 서초2호점 | Score: 85 | The score reflects significant deductions in consistency and value due to the high sponsored ratio, compounded by noted 
+  페리카나 서초동점 | Score: 92 | The score reflects solid technique and decent ingredients for a chain, but personality is minimal, and significant deduc
+  당신이선택한인생치킨 강남본점 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to consistency and v
+  치킨더비 학동역점 | Score: 90 | The score of 59 reflects decent technique and ingredient quality, but significant deductions were applied to consistency
+  BBQ 성수2점 | Score: 96 | The score reflects strong technical execution within a franchise framework, but significant deductions were made for the
+  호식이두마리치킨 한양대점 | Score: 92 | The score reflects strong technique and good ingredients, but significant deductions were applied to personality, value,
+  참참한방통닭&치킨 | Score: 95 | The score reflects strong culinary execution in ingredients and technique, but significant deductions were applied to co
+  바삭순살핫 후라이드치킨 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  지코바 문래점 | Score: 92 | The score reflects significant deductions in consistency and value due to the high sponsored ratio and reported branch-t
+  OEC 통치킨 문래점 | Score: 95 | The score reflects solid ingredient quality and fair technique, but personality is weak, and significant deductions were
+  교촌치킨 영등포역점 | Score: 95 | The score reflects high marks for ingredients and technique, but significant deductions were applied to personality, val
+  훌랄라참숯치킨 영등포시장점 | Score: 92 | The score reflects strong technique for grilled chicken, but significant deductions were applied to value and consistenc
+  노랑통닭 정릉점 | Score: 96 | The score reflects decent ingredients and technique, but significant deductions were applied to consistency and value du
+  감탄계 정릉점 | Score: 93 | The score reflects strong ingredients and technique, but significant deductions were applied to value and consistency du
+  가마치통닭 서울북한산점 | Score: 96 | The score reflects strong ingredient quality and technique, but significant deductions were applied to 'personality', 'v
+  푸라닭치킨 정릉1호점 | Score: 90 | The score breakdown reflects solid ingredients and technique, but significant deductions were applied due to inconsisten
+  X치킨 | Score: 92 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  마미치킨 마포본점 | Score: 92 | The scores reflect solid culinary execution and a personal touch, but significant deductions were applied to 'value' and
+  떡볶이집 | Score: 96 | The score reflects a decent technique and traditional flavor, but significant deductions were applied to value and consi
+  반장떡볶이 잠실롯데월드몰점 | Score: 88 | The score of 52 is a sum of the category evaluations, with significant deductions applied to 'value' and 'consistency' d
+  떡볶이참잘하는집 떡참 강남일원점 | Score: 92 | The score reflects competent technique and acceptable ingredients, but significant deductions were applied to value and 
+  호기떡 | Score: 92 | The score reflects solid ingredients and technique, but significant deductions were applied to consistency and value due
+  떡볶이의신 방이본점 | Score: 95 | Scores reflect strong technique and decent ingredients, but significant deductions were made in personality due to lack 
+  일방통행국물즉석떡볶이&화덕피자 | Score: 92 | The score breakdown reflects strong points in ingredients and technique, but significant deductions were applied to valu
+  국물즉석떡볶이&화덕피자 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to 'value' and 'c
+  동대문엽기떡볶이 가락점 | Score: 85 | The score reflects a strong personality and decent technique, but significant deductions were applied to value and consi
+  스텔라떡볶이 서울둔촌성내점 | Score: 91 | The scores reflect strong performance in technique and ingredients, but significant deductions were applied to consisten
+  33떡볶이 올림픽파크포레온점 | Score: 92 | Scores reflect competent technique and decent ingredients, but significant deductions were applied to 'personality' and 
+  골목떡볶이 | Score: 95 | The score breakdown reflects strong points in technique and personality, but significant deductions were applied to valu
+  군떡 송파점 | Score: 92 | The score reflects strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  깻잎닭강정 | Score: 91 | The score reflects decent ingredient quality and a clear personality, but significant deductions were made for the absen
+  다온닭강정 잠실새내역점 | Score: 96 | The score breakdown reflects strong technique and good ingredients, but significant deductions were applied to value and
+  인생닭강정 새내역점 | Score: 95 | The score reflects strong technical execution and ingredient quality, but significant deductions were applied to consist
+  바우닭강정 본점 | Score: 92 | The score reflects strong points in technique and a unique flavor profile, but significant deductions were applied to va
+  맘스터치 잠실1호점 | Score: 95 | The score reflects average fast-food execution and a lack of unique personality, with significant deductions applied to 
+  직화계 잠실직영점 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to ingredients for sourcing
+  노랑강정 올림픽공원점 | Score: 90 | The score reflects strong technical execution, but significant deductions were applied to consistency and value due to t
+  작살치킨 방이본점 | Score: 95 | The score reflects strong technique and ingredient quality, but the high sponsored ratio led to significant deductions i
+  돈치킨 잠실점 | Score: 90 | Scores reflect a lack of culinary depth in ingredients, technique, and personality, with significant deductions applied 
+  서울빈대떡 | Score: 88 | The scores reflect strong points in technique and personality, but significant deductions were applied to consistency an
+  잠실첫집 | Score: 94 | The scores reflect strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  헬키푸키 방이점 | Score: 95 | The total score of 56 is a sum of the category scores, with significant deductions applied to 'value' and 'consistency' 
+  고슬당 | Score: 92 | The score reflects excellent ingredients, technique, and a unique personality, but significant deductions were applied t
+  조은분식 올림픽공원점 | Score: 91 | The score reflects strong points in technique and personality, but significant deductions were applied to value and cons
+  자매분식 | Score: 92 | The score breakdown reflects strong points in technique and personality, but significant deductions were applied to 'val
+  온새미로김밥 | Score: 91 | The score reflects strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  울엄마김밥 | Score: 92 | The score breakdown reflects solid ingredient quality and technique, but significant deductions were applied to value an
+  서울김밥 잠실점 | Score: 92 | The score of 53 reflects strong points in ingredients and technique, but significant deductions were applied to value an
+  속초킹김밥&도시락 석촌점 | Score: 90 | The score reflects strong personality and interesting ingredients, but significant deductions were applied to value and 
+  삼전김밥 | Score: 90 | The score reflects strong ingredient quality and technique, but significant deductions were applied to personality, valu
+  윙집 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  교촌치킨 잠실1호점 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  호치킨 신천점 | Score: 91 | The score reflects decent ingredients and some technical proficiency, but significant deductions were applied to value a
+  자담치킨 잠실1점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  옛날산골바베큐 | Score: 90 | The score reflects solid ingredients and technique, but a lower personality score and significant deductions in value an
+  푸라닭치킨 방이점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  60계치킨 방이점 | Score: 92 | Scores reflect significant deductions for a lack of unique personality and critical flaws in flavor technique, further c
+  BHC치킨 방이점 | Score: 90 | The score reflects decent technique and ingredients for core items, but significant deductions were applied to value and
+  호식이두마리치킨 방이점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  바른치킨 오금역점 | Score: 95 | The score of 50 is a direct sum of the category evaluations, with significant deductions applied to 'value' and 'consist
+  BBQ 빌리지 송리단길점 | Score: 90 | The low score reflects significant deductions in technique, personality, value, and consistency, with an explicit heavy 
+  맛닭꼬 석촌역점 | Score: 92 | The score breakdown reflects strong technique and ingredient quality, but significant deductions were applied to value a
+  야들리애치킨 석촌호수점 | Score: 92 | The score breakdown reflects solid technique and decent ingredients, but significant deductions were applied to 'value' 
+  BBQ 헬리오시티점 | Score: 92 | The score of 55 reflects strong technique and ingredient quality, but significant deductions were applied to consistency
+  아빠가만든치킨 본점 | Score: 90 | The score reflects solid ingredient quality and a unique culinary personality, but significant deductions were applied t
+  굽네치킨 삼전점 | Score: 92 | The score breakdown reflects significant deductions across all categories, particularly in consistency and value due to 
+  하이꼬꼬 배명사거리점 | Score: 91 | The scores reflect solid ingredient quality and technique, but significant deductions were applied to 'value' and 'consi
+  닭장수후라이드 잠실점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  주택가 | Score: 90 | The score reflects significant deductions in consistency and value due to the overwhelming sponsored ratio, compounded b
+  우이락 잠실새내점 | Score: 92 | The score reflects decent objective quality in ingredients and technique, but significant deductions were applied to val
+  무진장포차 | Score: 89 | Scores reflect decent ingredients, strong technique, and personality, but significant deductions were applied to value a
+  우정국 | Score: 94 | The score reflects high marks for ingredients, technique, and personality, but significant deductions were applied to va
+  도톤보리 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  맛나포차 | Score: 95 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  새마을상회 방이역점 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  바 더스크 | Score: 95 | The score reflects strong technique in beverage preparation and selection, but significant deductions were applied to va
+  재즈바 바티칸 | Score: 96 | The score reflects strong technique offset by absent information on ingredients and personality, with significant deduct
+  사사노하 | Score: 85 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  도키도키키친 | Score: 90 | The score reflects strong ingredients and personality, but technique flaws and significant deductions in value and consi
+  생활맥주 석촌역2번출구점 | Score: 92 | The score reflects decent execution of standard pub food, but significant deductions were applied to value and consisten
+  미혼술관 | Score: 95 | The score reflects strong technique and personality, but significant deductions were applied to value and consistency du
+  수꼬치구이 | Score: 85 | The score reflects solid technique and ingredient quality, but significant deductions were applied to value and consiste
+  유키토리 | Score: 92 | The score breakdown reflects strong points in ingredients and technique, but significant deductions were applied to valu
+  야키토리나니야 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  늘밤 | Score: 92 | The score reflects excellent culinary execution and ingredient quality, coupled with a strong owner personality; however
+  포차시대 | Score: 90 | Scores reflect decent ingredients, solid technique, and strong personality, but significant deductions were applied to '
+  부자포차 | Score: 93 | The score reflects strong points in ingredients and technique, but significant deductions were made in personality, valu
+  연탄부락 잠실새내점 | Score: 92 | The score reflects solid ingredients and technique, but significant deductions were applied to 'value' and 'consistency'
+  아궁이왕돌구이 | Score: 91 | The score reflects decent personality and technique, but significant deductions were applied to value and consistency du
+  신천집 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to 'value' and 'c
+  화덕고깃간 신천본점 | Score: 91 | The score reflects strong points in unique personality and technique, but significant deductions were applied to value a
+  신흥정육식당 | Score: 92 | The score reflects strong ingredient quality and decent technique, but the high sponsored ratio led to significant deduc
+  장수식당 | Score: 92 | The score of 59 reflects strong points in ingredients and technique, but significant deductions were applied to value an
+  당산오돌 잠실신천점 | Score: 95 | The score reflects excellent ingredients and technique, but significant deductions were applied to value and consistency
+  무한팔도대패 잠실새내점 | Score: 95 | The score reflects reasonable ingredient quality and strong personality, but significant deductions were applied to valu
+  금돈옥 잠실점 | Score: 96 | The score reflects strong points in ingredients and technique, but significant deductions were applied to personality du
+  송돝 | Score: 91 | The score reflects strong personality and good ingredients, but significant deductions were made in consistency and valu
+  솥뚜껑오겹살 본점 | Score: 92 | The score reflects strong culinary execution and a unique identity, but significant deductions were applied to 'value' a
+  홍교집 | Score: 92 | The score reflects excellent ingredients and technique, but significant deductions were applied to value and consistency
+  한돈촌생삼겹살 | Score: 92 | The score reflects strong personality and decent ingredients, but significant deductions were applied to value and consi
+  일월고기 | Score: 89 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  옛날농장 방이점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to value and cons
+  전주골 | Score: 91 | The score reflects strong technique and decent ingredients, but a low personality score and significant deductions in va
+  연정민소금구이 | Score: 95 | The score reflects excellent ingredients, technique, and personality, but significant deductions were applied to consist
+  장원식당 | Score: 91 | The scores reflect strong culinary execution and personality, but significant deductions were applied to 'value' and 'co
+  금사월 | Score: 92 | The score reflects solid ingredients and technique, with some personality, but significant deductions were applied to va
+  부뚜막구이 | Score: 95 | The score reflects strong technique and personality, but significant deductions were applied to consistency and value du
+  삼겹도서관 | Score: 92 | The score reflects strong ingredients, technique, and personality, but significant deductions were applied to consistenc
+  늘푸른목장 잠실본점 | Score: 91 | The score breakdown reflects solid ingredients and technique, but significant deductions were applied to personality due
+  육병장 | Score: 90 | The score breakdown reflects solid technique and personality, but significant deductions were applied to 'value' and 'co
+  담가화로구이 잠실1호점 | Score: 92 | The score reflects strong points in ingredients and technique, but significant deductions were applied to personality, v
+  잠실한우정육식당 | Score: 92 | The score reflects excellent ingredient quality, but significant deductions were applied to consistency and value due to
+  숯불성화 | Score: 95 | The score reflects high marks for ingredients and technique, but significant deductions were applied to value and consis
+  평상집 송파점 | Score: 92 | The score reflects high marks for ingredients and technique, offset by significant deductions in value and consistency d
+  개성손만두 | Score: 92 | The score reflects strong technique and ingredient quality, but significant deductions were applied to value and consist
+  글로리칼국수 잠실본점 | Score: 92 | The score reflects excellent ingredients and technique, alongside a strong chef's personality. However, significant dedu
+  방이샤브샤브칼국수 방이본점 | Score: 92 | Ingredients and technique scored highly, but personality was low due to no information, and significant deductions were 
+  선일네칼국수 | Score: 90 | The score reflects strong personality and good ingredient sourcing, but significant deductions were applied to value and
+  박대박 방이점 | Score: 92 | Scores reflect high ingredient quality and good technique, but significant deductions were applied to 'value' and 'consi
+  신라샤브칼국수 송파점 | Score: 91 | The score reflects strong technique and decent ingredients, but significant deductions were applied to value and consist
+  석촌칼국수보리밥 본점 | Score: 91 | The score breakdown reflects strong ingredient sourcing and decent technique, but the personality lacks distinctiveness,
+  강남교자 석촌호수점 | Score: 88 | The score reflects solid technique and ingredients, but significant deductions were made in 'value' and 'consistency' du
+  세수대야 냉면&칼국수 | Score: 90 | The scores reflect strong points in ingredients, technique, and personality, but significant deductions were applied to 
+  남경막국수 가족1 | Score: 90 | The score reflects solid ingredients and technique, but significant deductions were applied to 'value' and 'consistency'
+  포브라더스 잠실점 | Score: 96 | The score of 34 reflects strong technique but significant deductions due to the absence of information regarding ingredi
+  온수반 송파점 | Score: 92 | Scores reflect competent ingredients and technique, but personality is average, and significant deductions were applied 
+  팔월쌀국수 | Score: 96 | The score breakdown reflects strong points in ingredients and technique; however, significant deductions were applied to
+  배달의쌀국수 송파점 | Score: 90 | The score reflects strong technique in some areas, but significant deductions were applied to consistency and value due 
+  포옹남 석촌호수점 | Score: 92 | The score reflects strong technique and personality, but significant deductions were applied to value and consistency du
+  경성밥상 석촌호수점 | Score: 92 | The score reflects solid technique and good ingredients, but significant deductions were made in 'value' and 'consistenc
+  혜화동 돈까스극장 서울잠실운동장점 | Score: 91 | The score reflects decent culinary execution and ingredient quality, but significant deductions were applied to 'value' 
+  동경 | Score: 92 | The score reflects decent ingredient quality and technique, but the complete absence of consistency data combined with a
+  백소정 잠실새내점 | Score: 92 | The score breakdown reflects solid technique and decent ingredients, but significant deductions were applied to 'value' 
+  돈까스의집 | Score: 90 | The score breakdown reflects strong personality and decent ingredient quality, but significant deductions were made in t
+  좋은생각 | Score: 90 | The score reflects decent technique and ingredients, but significant deductions were applied to 'value' and 'consistency
+  남이돈까스 | Score: 89 | The score breakdown reflects a solid foundation in technique and personality, but significant deductions were applied to
+  정성카츠 송파점 | Score: 92 | The score reflects strong culinary execution in ingredients and technique, but significant deductions were applied to 'v
+  소바정원 | Score: 91 | The score reflects strong culinary execution and chef's dedication, but significant deductions were applied to 'value' a
+  영카츠 잠실학원사거리점 | Score: 93 | The score breakdown reflects strong points in ingredients, technique, and personality, but significant deductions were a
+  동경규동 잠실점 | Score: 90 | The score reflects decent ingredients and technique, but significant deductions were applied to 'value' and 'consistency
+  맛있는돈까스 | Score: 95 | The score reflects high marks for ingredients and technique, but significant deductions were applied to consistency and 
+
+PASS 3 — DUPLICATES (841 removed)
+----------------------------------------------------------------------
+Criteria: Same Restaurant Name + Latitude + Longitude
+Cause: multiple neighborhood pipeline runs scoring the same restaurant twice
+
+  소문난순대국왕족발 | Score: 95 | Lat: 37.55906553886731
+  원조감자탕 일미집 역삼점 | Score: 92 | Lat: 37.4965255123329
+  으쌰라곱창 본점 | Score: 92 | Lat: 37.5447236775217
+  창고43 역삼점 | Score: 91 | Lat: 37.5025855503958
+  복돈이막회물회육회해산물 역삼본점 | Score: 95 | Lat: 37.503708567664
+  동강해물찜 | Score: 93 | Lat: 37.5535913785335
+  오쭈꾸미 | Score: 93 | Lat: 37.5557653216539
+  인정쭈꾸미 망원점 | Score: 91 | Lat: 37.559876558024825
+  성원식당 별관 | Score: 95 | Lat: 37.565062792632766
+  문래옥 | Score: 93 | Lat: 37.5212948265209
+  불타니한우 | Score: 90 | Lat: 37.51153399584007
+  우마담호수 | Score: 93 | Lat: 37.5090088683487
+  엠브로돈까스 송파점 | Score: 93 | Lat: 37.5034856554353
+  2도비어 문래점 | Score: 82 | Lat: 37.52058055
+  샵크래프트 | Score: 92 | Lat: 37.57179592
+  숲속양조장 | Score: 92 | Lat: 37.54687247
+  바오밥 교대점 | Score: 91 | Lat: 37.49499189
+  브루웍스 역삼점 | Score: 90 | Lat: 37.50282553
+  비어 퍼블릭 | Score: 92 | Lat: 37.57848717
+  통파이브 약수역점 | Score: 92 | Lat: 37.55580647
+  낙타브루잉 | Score: 92 | Lat: 37.50290432
+  올드문래 | Score: 93 | Lat: 37.51391353
+  더부스 경리단점 | Score: 89 | Lat: 37.53940362
+  더리터 신사점 | Score: 90 | Lat: 37.52481882
+  정릉맥주도가 | Score: 90 | Lat: 37.602705
+  더테이블 마포점 | Score: 89 | Lat: 37.55067392
+  리퀴드랩 | Score: 91 | Lat: 37.54682752
+  배떡 교대점 | Score: 92 | Lat: 37.494213
+  밀회관 강남삼성타운점 | Score: 82 | Lat: 37.49456249
+  행아웃 | Score: 91 | Lat: 37.57355257
+  같이양조장 합정점 | Score: 95 | Lat: 37.54734025
+  블랙서커스 | Score: 92 | Lat: 37.5814191
+  브루스카 | Score: 85 | Lat: 37.51294053
+  맥주집 | Score: 92 | Lat: 37.55250611
+  을지맥옥 | Score: 91 | Lat: 37.56546517
+  브루웍스 남부버스터미널점 | Score: 90 | Lat: 37.4858764
+  브루브루 | Score: 91 | Lat: 37.5501593
+  아트몬스터 을지로점 | Score: 92 | Lat: 37.56575802
+  케그샵 프리미엄수제맥주&전통주셀렉샵 강남점 | Score: 95 | Lat: 37.5006506
+  서울장수막걸리 체험관 | Score: 91 | Lat: 37.55646724
+  느린마을양조장 홍대점 | Score: 89 | Lat: 37.55401513
+  이스트벙커 | Score: 92 | Lat: 37.5765403
+  달맥슈퍼 | Score: 91 | Lat: 37.53938469
+  황남주택 삼청점 | Score: 92 | Lat: 37.58452034
+  스탑오버 | Score: 90 | Lat: 37.49506893
+  감천양조장 | Score: 88 | Lat: 37.57768746
+  크래프트루 익선 | Score: 83 | Lat: 37.57307406
+  땡기면땡비어 | Score: 92 | Lat: 37.50078497
+  느린마을양조장 연남점 | Score: 91 | Lat: 37.56152407
+  댕크야드 서울 | Score: 95 | Lat: 37.5417398
+  생활맥주 합정역3번출구점 | Score: 90 | Lat: 37.54917346
+  브루3.14 | Score: 95 | Lat: 37.57448956
+  꼭그닭 | Score: 90 | Lat: 37.5024393
+  생활맥주 남부터미널점 | Score: 92 | Lat: 37.48541072
+  스태거 | Score: 92 | Lat: 37.53810993
+  비어포스트바 | Score: 90 | Lat: 37.51380264
+  크래프트리퍼블릭 | Score: 92 | Lat: 37.48778422
+  교촌필방 | Score: 92 | Lat: 37.53407918
+  호맥 서울합정점 | Score: 93 | Lat: 37.54844785
+  롱타임노씨 신사점 | Score: 93 | Lat: 37.51742702
+  메즈나인브루잉컴퍼니 | Score: 91 | Lat: 37.56528597
+  생활맥주 역삼점 | Score: 91 | Lat: 37.50325309
+  육전국밥 서교점 | Score: 92 | Lat: 37.5557620788361
+  보승회관 서교점 | Score: 91 | Lat: 37.5511664531071
+  3일한우국밥 홍대입구점 | Score: 92 | Lat: 37.5539330399362
+  보승회관 신촌점 | Score: 89 | Lat: 37.5565569720129
+  망원동돼지국밥 | Score: 90 | Lat: 37.5566509215641
+  장터국밥 | Score: 90 | Lat: 37.5585189929025
+  그레이스국밥 | Score: 91 | Lat: 37.54802715511253
+  이화수전통육개장 서울공덕점 | Score: 90 | Lat: 37.5476991412512
+  신가네수제순대뒷고기 | Score: 92 | Lat: 37.546175548594896
+  신의주순대와쭈꾸미 이태원역점 | Score: 92 | Lat: 37.53417187156767
+  보광리광장 | Score: 92 | Lat: 37.5339305932361
+  부산아지매국밥 파인에비뉴점 | Score: 86 | Lat: 37.5657966583596
+  보승회관 명동점 | Score: 91 | Lat: 37.5644014717436
+  육전국밥 약수역점 | Score: 92 | Lat: 37.5542468371613
+  육대장 신당점 | Score: 92 | Lat: 37.5649604240002
+  소문난국밥전문 | Score: 85 | Lat: 37.5724910086314
+  전주집 | Score: 92 | Lat: 37.57221077276816
+  전통맛집 | Score: 94 | Lat: 37.5675847440576
+  보승회관 강남역직영점 | Score: 92 | Lat: 37.4994622637853
+  국밥쟁이 | Score: 90 | Lat: 37.4970037739976
+  국밥 참 맛있는 집 역삼점 | Score: 92 | Lat: 37.50469538417964
+  3일한우국밥 역삼직영점 | Score: 95 | Lat: 37.49544142591475
+  가마솥순대국밥 역삼역점 | Score: 92 | Lat: 37.4977245217044
+  육전국밥 서초역점 | Score: 92 | Lat: 37.4896621809356
+  김명자굴국밥보쌈 | Score: 92 | Lat: 37.495104920084
+  가마솥순대국밥 서초역점 | Score: 91 | Lat: 37.4915768824578
+  보승회관 강남역서초점 | Score: 82 | Lat: 37.49490747815288
+  더진국 교대역점 | Score: 86 | Lat: 37.4934096752766
+  전주콩뿌리콩나물국밥 서초점 | Score: 89 | Lat: 37.491482415236
+  이화수전통육개장 서울숲IT밸리점 | Score: 89 | Lat: 37.54737179415171
+  전주현대옥 서울숲점 | Score: 90 | Lat: 37.54712685050307
+  또댓국 | Score: 92 | Lat: 37.5440862700682
+  수육국밥 담미온 성수점 | Score: 88 | Lat: 37.5449647109236
+  청계돼지국밥 | Score: 92 | Lat: 37.57127344600317
+  24시전주명가콩나물국밥 | Score: 91 | Lat: 37.517043482936
+  육수당 문래SK점 | Score: 82 | Lat: 37.51766330547652
+  전주콩나물국밥 본점 | Score: 92 | Lat: 37.6109762502953
+  손가네국밥 | Score: 96 | Lat: 37.6024158681728
+  족보잇는국밥 정릉점 | Score: 92 | Lat: 37.6024739896134
+  평사리 메밀막국수 | Score: 90 | Lat: 37.611240187073776
+  평안도식당 신촌점 | Score: 90 | Lat: 37.5570492218813
+  백암순대촌 2호점 | Score: 90 | Lat: 37.5776604885963
+  해남순대국 | Score: 88 | Lat: 37.5528620692666
+  원조호남순대국 | Score: 92 | Lat: 37.5529123617277
+  약수깡족발순대국 | Score: 80 | Lat: 37.5535036578414
+  무봉리토종순대국 창신점 | Score: 90 | Lat: 37.578244369046
+  대원집 | Score: 91 | Lat: 37.5707233642817
+  황해집 | Score: 90 | Lat: 37.5707017403947
+  종로집 | Score: 92 | Lat: 37.5715450715249
+  을지로 산수갑산 을지로점 | Score: 92 | Lat: 37.56537903946138
+  선릉순대국 | Score: 85 | Lat: 37.50472101719761
+  서울순대국 역삼점 | Score: 90 | Lat: 37.49496567117321
+  장수옥순대국 | Score: 92 | Lat: 37.490936895932
+  황토감자탕 강남본점 | Score: 92 | Lat: 37.49964422590763
+  인하순대국 | Score: 92 | Lat: 37.4965292242744
+  신토리순대국 | Score: 82 | Lat: 37.482447108584
+  병천순대국 서초점 | Score: 90 | Lat: 37.49288958044514
+  보양정순대국손만두 | Score: 95 | Lat: 37.4922277352758
+  압구정순대국 | Score: 89 | Lat: 37.527002275734
+  전주감자탕순대국 | Score: 95 | Lat: 37.52833233004627
+  조양순대국 | Score: 83 | Lat: 37.5486649699173
+  옴시롱감시롱순대국 | Score: 92 | Lat: 37.5490134068954
+  제일참순대국 | Score: 93 | Lat: 37.54546106546167
+  큰맘할매순대국 문래산들바다점 | Score: 91 | Lat: 37.51939854163909
+  원당감자탕 홍대점 | Score: 91 | Lat: 37.5526138828749
+  통뼈감자탕 홍대점 | Score: 90 | Lat: 37.5500297896534
+  영심이네 감자탕 | Score: 88 | Lat: 37.5562593599667
+  무청감자탕 이대점 | Score: 92 | Lat: 37.55926083315095
+  인생감자탕 합정점 | Score: 91 | Lat: 37.5495535738459
+  이상수불뼈찜 | Score: 91 | Lat: 37.58132458471325
+  이바돔감자탕 이태원역점 | Score: 90 | Lat: 37.5342476501412
+  원당감자탕 명동1호점 | Score: 92 | Lat: 37.5645769457144
+  한사리감자탕 뼈구이 충무로점 | Score: 93 | Lat: 37.5615192046972
+  범골 | Score: 90 | Lat: 37.5003784787082
+  삼식이 감자탕 | Score: 89 | Lat: 37.4959458180398
+  가마솥감자탕 | Score: 90 | Lat: 37.492747680078885
+  소문난성수감자탕 별관 | Score: 84 | Lat: 37.5430001371699
+  본가왕뼈감자탕 문래역점 | Score: 92 | Lat: 37.5173641069098
+  부야스곱창 홍대본점 | Score: 95 | Lat: 37.5557691540741
+  김덕후의곱창조 홍대3호점 | Score: 91 | Lat: 37.5531945040226
+  백두한우곱창 | Score: 88 | Lat: 37.54969050036664
+  해방왕곱창 | Score: 90 | Lat: 37.5460662200232
+  곱창박사 | Score: 89 | Lat: 37.5669064477619
+  오발탄 충무로점 | Score: 91 | Lat: 37.5615768057479
+  60년전통신촌황소곱창 강남직영점 | Score: 96 | Lat: 37.50180948520512
+  꽉찬소곱창 역삼점 | Score: 92 | Lat: 37.5062007212646
+  창대한곱창 강남직영점 | Score: 95 | Lat: 37.4970037785687
+  송가옥 | Score: 90 | Lat: 37.48854458319401
+  세광양대창 교대본점 | Score: 90 | Lat: 37.4920062884773
+  갑진이네한우곱창 교대점 | Score: 96 | Lat: 37.4881850110364
+  감동곱창 | Score: 90 | Lat: 37.48691044571383
+  신사소곱창 | Score: 89 | Lat: 37.5177467325528
+  구미곱창 신사본점 | Score: 92 | Lat: 37.5195288214435
+  연탄요릿집 이태원 | Score: 93 | Lat: 37.5337186063216
+  마포차돌박이 | Score: 93 | Lat: 37.55853775631388
+  동화소 | Score: 92 | Lat: 37.5593931372039
+  와우산참숯구이 | Score: 84 | Lat: 37.5475291096127
+  모박사육회막회 | Score: 89 | Lat: 37.5447874892798
+  명동주막 | Score: 88 | Lat: 37.5626716595782
+  백제고깃간 | Score: 81 | Lat: 37.5723955815976
+  더뭉티기 역삼점 | Score: 95 | Lat: 37.49535882227748
+  육회상자 | Score: 92 | Lat: 37.4866444737205
+  육회바른연어 교대점 | Score: 92 | Lat: 37.4934682847696
+  서호정 | Score: 92 | Lat: 37.4908548634951
+  육타 | Score: 90 | Lat: 37.54255352803384
+  육품 | Score: 96 | Lat: 37.5393638152356
+  서교가든숯불갈비 | Score: 90 | Lat: 37.55467767886158
+  몽주방 | Score: 92 | Lat: 37.558320747405
+  충무로구룡포 | Score: 89 | Lat: 37.5623868237394
+  고박사정육식당 | Score: 91 | Lat: 37.570618820585366
+  채윤희 | Score: 90 | Lat: 37.51539328494587
+  육회바른연어 문래동점 | Score: 92 | Lat: 37.5206138379481
+  철길부산집 문래역점 | Score: 92 | Lat: 37.5174627603048
+  엉터리생고기 문래점 | Score: 92 | Lat: 37.520171262127874
+  교반 문래점 | Score: 92 | Lat: 37.5146020312129
+  모연 | Score: 93 | Lat: 37.53937101445396
+  서울안심축산 마포용강점 | Score: 98 | Lat: 37.54045687119684
+  전주향 | Score: 91 | Lat: 37.539877504879
+  판자집 | Score: 89 | Lat: 37.5563315200082
+  여기가거기 | Score: 88 | Lat: 37.5479851998564
+  공덕집 | Score: 91 | Lat: 37.54510951272149
+  명동부대찌게 | Score: 89 | Lat: 37.56412383536634
+  술통 | Score: 90 | Lat: 37.5627651852851
+  경복이모네포차 역삼본점 | Score: 92 | Lat: 37.50326590110844
+  교동전선생 선릉역점 | Score: 90 | Lat: 37.5058000198845
+  삼원가든 별채 | Score: 92 | Lat: 37.5246783300082
+  굴세상 | Score: 91 | Lat: 37.5280845122618
+  미락바지락칼국수 | Score: 92 | Lat: 37.5492231722694
+  미사랑 | Score: 92 | Lat: 37.5461236267201
+  강남빈대떡 | Score: 90 | Lat: 37.53808020262256
+  남북통일 | Score: 92 | Lat: 37.553796239926776
+  송아저씨빈대떡 | Score: 91 | Lat: 37.5580488441647
+  소문난빈대떡마을 | Score: 90 | Lat: 37.5580808714115
+  종로빈대떡 상수점 | Score: 90 | Lat: 37.5461364805984
+  원조 마포할머니빈대떡 본점 | Score: 89 | Lat: 37.5445713397855
+  낙원빈대떡 | Score: 91 | Lat: 37.57116125344786
+  황해도빈대떡 | Score: 92 | Lat: 37.5637950831257
+  토종시골집 | Score: 90 | Lat: 37.50440304408584
+  거대곰탕 서초점 | Score: 93 | Lat: 37.492358020786405
+  쭈앤쭈 홍대점 | Score: 95 | Lat: 37.5558037205214
+  봉혜자반상 현대백화점신촌 | Score: 90 | Lat: 37.5560832381509
+  퍼줄래대박집 | Score: 92 | Lat: 37.5548801140699
+  봄이보리밥 합정점 | Score: 92 | Lat: 37.5507553989554
+  미나리쭈꾸미 | Score: 92 | Lat: 37.54467960218869
+  공평동꼼장어 을지로점 | Score: 89 | Lat: 37.5667013849756
+  더식당 명동본점 | Score: 92 | Lat: 37.562257192861
+  다동황소막창 | Score: 90 | Lat: 37.5626621896615
+  백하돼지생갈비 | Score: 92 | Lat: 37.56344588402361
+  명태어장 신당점 | Score: 96 | Lat: 37.5628692445044
+  목포낙지마을 | Score: 92 | Lat: 37.5709570134502
+  봉이밥 인사동점 | Score: 92 | Lat: 37.5742524221476
+  역삼쭈꾸미&낙지 역삼본점 | Score: 92 | Lat: 37.49882095981541
+  직화불향쭈꾸미 강남점 | Score: 95 | Lat: 37.49450855797409
+  백년교동짬뽕 강남본점 | Score: 89 | Lat: 37.4909663430788
+  갓포돈 역삼2호점 | Score: 96 | Lat: 37.5034737230233
+  서초불쭈꾸미 | Score: 92 | Lat: 37.4907073474052
+  황재벌 | Score: 90 | Lat: 37.486126394387945
+  이조불쭈꾸미 | Score: 92 | Lat: 37.49288645197497
+  서초명가 서초본점 | Score: 92 | Lat: 37.4863351254429
+  참이맛감자탕 강남점 | Score: 90 | Lat: 37.5030564627987
+  우렁식탁 | Score: 88 | Lat: 37.5027736325518
+  의정부부대찌개 된장삼겹살 양재점 | Score: 92 | Lat: 37.4847895956591
+  이수쭈꾸미 | Score: 92 | Lat: 37.5270585943048
+  쭈꾸미도사 압구정로데오점 | Score: 92 | Lat: 37.525917310592455
+  창해식탁 | Score: 92 | Lat: 37.52783595701244
+  바다화원 | Score: 95 | Lat: 37.5471147101957
+  땡초꼼장어 | Score: 91 | Lat: 37.5468203076285
+  쭈꾸미도사 성수점 | Score: 90 | Lat: 37.54418150470509
+  문래양푼이동태탕 | Score: 92 | Lat: 37.517462760298
+  정릉쭈꾸미 | Score: 90 | Lat: 37.60797413121145
+  괜찮은생고기 | Score: 90 | Lat: 37.549412969311
+  별당김치찜 | Score: 90 | Lat: 37.55790133969693
+  참참참 | Score: 90 | Lat: 37.5594592726059
+  따순밥꼬순전 | Score: 92 | Lat: 37.5610220059878
+  이구역의요리왕 | Score: 90 | Lat: 37.5618137276796
+  진토리닭곰탕 | Score: 92 | Lat: 37.5559281671716
+  달래식탁 | Score: 91 | Lat: 37.5589593442684
+  합정생고기김치찌개 | Score: 90 | Lat: 37.5480701010344
+  더삼겹170 | Score: 91 | Lat: 37.544312679433936
+  명동칼국수 | Score: 91 | Lat: 37.5448909263213
+  오봉집 상암점 | Score: 92 | Lat: 37.577023708198936
+  장독대김치찌개김치찜 | Score: 91 | Lat: 37.5778659805668
+  잔치마당 | Score: 93 | Lat: 37.57422648392
+  공가네식당 | Score: 93 | Lat: 37.55165848950071
+  웃음에식당 | Score: 93 | Lat: 37.571335726662
+  고기와찌개마을 | Score: 92 | Lat: 37.5726693995483
+  실비식당 | Score: 90 | Lat: 37.5635806476055
+  모아식품 | Score: 92 | Lat: 37.56458254165528
+  장서는날 본점 | Score: 92 | Lat: 37.4957237268725
+  대운식당 | Score: 90 | Lat: 37.4943252963182
+  동해식당 | Score: 92 | Lat: 37.50463306449
+  오봉집 교대점 | Score: 91 | Lat: 37.49267578439107
+  진미정생선구이 | Score: 90 | Lat: 37.48838410058074
+  유락식당 | Score: 90 | Lat: 37.4908777185267
+  솜리 | Score: 92 | Lat: 37.5273600170771
+  감미옥 | Score: 91 | Lat: 37.5187409856637
+  별달맛집 | Score: 92 | Lat: 37.5258918658762
+  성수부대찌개 | Score: 92 | Lat: 37.54940404989467
+  집밥 | Score: 92 | Lat: 37.5496878861515
+  교대이층집 성수점 | Score: 92 | Lat: 37.54487317295694
+  옛골 | Score: 85 | Lat: 37.5127138569443
+  다슬기해장국 | Score: 93 | Lat: 37.5160074838687
+  만복기사식당 | Score: 92 | Lat: 37.5552707878608
+  만리기사식당 | Score: 88 | Lat: 37.5499439317412
+  굽네치킨 서교점 | Score: 96 | Lat: 37.55418463409209
+  로켓치킨 | Score: 93 | Lat: 37.55129687257679
+  꼬꼬로치킨 홍대점 | Score: 91 | Lat: 37.55135712827282
+  교촌치킨 홍대점 | Score: 90 | Lat: 37.5536211466791
+  BHC치킨 홍대서교점 | Score: 90 | Lat: 37.5562922971704
+  깐부치킨 홍대점 | Score: 90 | Lat: 37.5502738488588
+  아웃닭 홍대점 | Score: 92 | Lat: 37.5500868019196
+  BBQ 홍대로데오점 | Score: 90 | Lat: 37.55241644258439
+  기영이숯불두마리치킨 홍대점 | Score: 92 | Lat: 37.55773997390224
+  누구나홀딱반한닭 망원역점 | Score: 96 | Lat: 37.5575848705653
+  후라이드의 품격 서교본점 | Score: 90 | Lat: 37.557081019891
+  고명치킨 | Score: 92 | Lat: 37.5545674914725
+  자담치킨 서울신촌본점 | Score: 90 | Lat: 37.55775019898728
+  아웃닭 신촌역점 | Score: 92 | Lat: 37.55739433945822
+  BHC치킨 신촌점 | Score: 95 | Lat: 37.555889841058914
+  교촌치킨 신촌점 | Score: 88 | Lat: 37.55800788425997
+  기영이숯불두마리치킨 신촌점 | Score: 92 | Lat: 37.5590239109091
+  신촌누룽지통닭 | Score: 95 | Lat: 37.55759226534219
+  순살만공격 마포신촌점 | Score: 95 | Lat: 37.5577081309981
+  굽네치킨 신촌점 | Score: 95 | Lat: 37.558733564285305
+  BBQ 신촌점 | Score: 92 | Lat: 37.5579790503136
+  자담치킨 서울홍대점 | Score: 93 | Lat: 37.55389814472635
+  60계치킨 서울이대역점 | Score: 91 | Lat: 37.55865487199941
+  BHC치킨 이대역점 | Score: 85 | Lat: 37.55750131500595
+  프랑킨바베큐치킨 신촌점 | Score: 95 | Lat: 37.5535599931226
+  잉치킨 마포프레스티지자이점 | Score: 93 | Lat: 37.55214864713915
+  연남장작 | Score: 92 | Lat: 37.56234629606809
+  교촌치킨 연희점 | Score: 90 | Lat: 37.566023759926416
+  청년치킨 서교점 | Score: 90 | Lat: 37.558608271085255
+  처갓집양념치킨 연희점 | Score: 85 | Lat: 37.57112914819072
+  큐큐치킨 | Score: 92 | Lat: 37.55588850135416
+  계림원 망원점 | Score: 94 | Lat: 37.5568230889002
+  또래오래 마포망원점 | Score: 92 | Lat: 37.5568028580311
+  티바두마리치킨 망원점 | Score: 92 | Lat: 37.5558916414911
+  탐스바베큐 TOM'S B.B.Q | Score: 88 | Lat: 37.5540143541986
+  후라이드참잘하는집 마포점 | Score: 95 | Lat: 37.55862262218206
+  윤사부치킨 망원점 | Score: 92 | Lat: 37.55378412956952
+  화락바베큐치킨 망원역점 | Score: 90 | Lat: 37.5560989526039
+  BHC치킨 망원점 | Score: 92 | Lat: 37.55895160658641
+  가마치통닭 서울망원역점 | Score: 92 | Lat: 37.555452834430056
+  60계치킨 서울망원점 | Score: 92 | Lat: 37.552576516855474
+  BBQ 망원점 | Score: 92 | Lat: 37.5592344324727
+  바베큐치킨 참잘하는집 | Score: 95 | Lat: 37.5560989525976
+  동근이숯불두마리치킨 망원점 | Score: 91 | Lat: 37.56033398186376
+  네네치킨 망원점 | Score: 89 | Lat: 37.55311638473524
+  베이직프라이드치킨 망원직영점 | Score: 92 | Lat: 37.56050733217902
+  훌랄라참숯치킨 성산1점 | Score: 95 | Lat: 37.558918198401
+  계림원 합정역점 | Score: 92 | Lat: 37.54851392577881
+  누구나홀딱반한닭 합정역점 | Score: 92 | Lat: 37.5503978657169
+  돈치킨 합정점 | Score: 92 | Lat: 37.5494844541989
+  치킨뱅이 합정점 | Score: 90 | Lat: 37.5497226645318
+  또바기치킨호프 상수홍대점 | Score: 95 | Lat: 37.5469014776442
+  바른치킨 서강대로봇점 | Score: 91 | Lat: 37.54900011237012
+  BBQ 마포공덕점 | Score: 89 | Lat: 37.54510940467912
+  바른치킨 공덕파크자이점 | Score: 91 | Lat: 37.54517699721369
+  굽네치킨 공덕점 | Score: 90 | Lat: 37.54684167299728
+  BHC치킨 공덕점 | Score: 92 | Lat: 37.54410667747104
+  어거스트치킨 공덕점 | Score: 93 | Lat: 37.5471477670822
+  기영이숯불두마리치킨 마포공덕점 | Score: 90 | Lat: 37.55053938467229
+  페리카나 공덕동점 | Score: 95 | Lat: 37.5473742147072
+  동근이숯불두마리치킨 서울숙대점 | Score: 92 | Lat: 37.5450589002827
+  깐부치킨 상암점 | Score: 92 | Lat: 37.57767660296052
+  보드람치킨 상암점 | Score: 92 | Lat: 37.5783775391524
+  치킨버스상암점 | Score: 89 | Lat: 37.5769548505429
+  교촌치킨 상암점 | Score: 95 | Lat: 37.5767350366069
+  BHC치킨 상암점 | Score: 95 | Lat: 37.5777349326926
+  지코바 상암점 | Score: 90 | Lat: 37.581617710345945
+  BBQ 상암점 | Score: 92 | Lat: 37.57478083942438
+  호치킨 상암9단지점 | Score: 92 | Lat: 37.5844079407577
+  BHC치킨 한강공원난지2호점 | Score: 88 | Lat: 37.5648333104397
+  네네치킨 상암점 | Score: 89 | Lat: 37.57443889798243
+  BHC치킨 가재울DMC점 | Score: 88 | Lat: 37.57459912401261
+  처갓집양념치킨 상암점 | Score: 92 | Lat: 37.57095926180183
+  네키드윙즈 | Score: 92 | Lat: 37.5338220858695
+  프라이비 | Score: 90 | Lat: 37.533194235808
+  엉터리통닭 | Score: 82 | Lat: 37.5396354546137
+  후라이드참잘하는집 용산점 | Score: 92 | Lat: 37.5393109931201
+  이태원숯불바베큐치킨 | Score: 90 | Lat: 37.53772317126784
+  옐로치킨 | Score: 92 | Lat: 37.53389004858472
+  돈키돈키치킨 용산점 | Score: 95 | Lat: 37.54521478295475
+  한강호프&치킨 | Score: 88 | Lat: 37.53336107963051
+  페트라 | Score: 90 | Lat: 37.5346256133915
+  코리아호프 | Score: 92 | Lat: 37.53489446249025
+  해방촌닭 | Score: 91 | Lat: 37.54521744806464
+  전통을지로골뱅이&치킨호프 | Score: 90 | Lat: 37.572353192939445
+  행복두배통다리치킨 종로점 | Score: 93 | Lat: 37.579123868491074
+  자담치킨 서울종로점 | Score: 92 | Lat: 37.56947428904957
+  BHC치킨 종로5가광장점 | Score: 92 | Lat: 37.5713329125221
+  쭈노치킨가게 충무로점 | Score: 90 | Lat: 37.56454458459052
+  깐부치킨 을지로3가역점 | Score: 82 | Lat: 37.565859835451725
+  다동골뱅이치킨 | Score: 92 | Lat: 37.5668625108835
+  미락치킨 경복궁본점 | Score: 90 | Lat: 37.5776329255728
+  치킨인더키친 경복궁역점 | Score: 91 | Lat: 37.5779537630485
+  세종마을치킨 | Score: 92 | Lat: 37.5764938464286
+  효도치킨 광화문점 | Score: 88 | Lat: 37.5746342133369
+  경성치킨 광화문스퀘어점 | Score: 90 | Lat: 37.5699428236446
+  BHC치킨 충무로역점 | Score: 82 | Lat: 37.56123084181272
+  브라운치킨 동대문본점 | Score: 90 | Lat: 37.5669863115235
+  둘둘치킨 동대문DDP점 | Score: 83 | Lat: 37.5660988888587
+  치킨주막 종로6가점 | Score: 90 | Lat: 37.5717292879619
+  BHC치킨 명동본점 | Score: 90 | Lat: 37.564609663770895
+  둘둘치킨 무교점 | Score: 88 | Lat: 37.5673562458754
+  BHC치킨 서울시청점 | Score: 82 | Lat: 37.5617451609165
+  북창치킨 | Score: 92 | Lat: 37.5633632042563
+  효 옛날통닭 닭강정 신당점 | Score: 92 | Lat: 37.5625092074894
+  바삭한하루 | Score: 92 | Lat: 37.5627642864032
+  노랑통닭 신당점 | Score: 92 | Lat: 37.5631673998167
+  한국통닭 신당점 | Score: 89 | Lat: 37.5649702529908
+  BBQ 신당2점 | Score: 96 | Lat: 37.56294172967813
+  동성로원주통닭 | Score: 90 | Lat: 37.5649169666265
+  옛날통닭 | Score: 92 | Lat: 37.5532475401103
+  BHC치킨 왕십리점 | Score: 96 | Lat: 37.56494615008116
+  오케이치킨 약수점 | Score: 93 | Lat: 37.55368006075569
+  BBQ 동대문패션타운점 | Score: 92 | Lat: 37.56931397617229
+  푸라닭치킨 신당청구점 | Score: 92 | Lat: 37.56399884995864
+  60계치킨 서울신당점 | Score: 90 | Lat: 37.5636626823113
+  BBQ 남산타운점 | Score: 92 | Lat: 37.54755273921908
+  멕시카나치킨 약수역점 | Score: 95 | Lat: 37.555350569008105
+  치킨마루 신당점 | Score: 92 | Lat: 37.565413517393424
+  호식이두마리치킨 신당점 | Score: 92 | Lat: 37.5635625927226
+  부어치킨 신당역점 | Score: 85 | Lat: 37.5655034632688
+  오븐마루치킨 중구신당점 | Score: 92 | Lat: 37.5599318401466
+  지코바 서울신당점 | Score: 90 | Lat: 37.5651936271918
+  동대문옛날통닭 | Score: 91 | Lat: 37.5717287456729
+  가마치통닭 서울창신점 | Score: 92 | Lat: 37.573100195258725
+  대양통닭 | Score: 91 | Lat: 37.57275319592263
+  또봉이통닭 서울창신역점 | Score: 82 | Lat: 37.57726589050766
+  송가네 마늘통닭 | Score: 90 | Lat: 37.5720547047227
+  매일치킨 | Score: 92 | Lat: 37.5759999416601
+  호또치킨 강남본점 | Score: 92 | Lat: 37.5034017869659
+  깐부치킨 역삼럭키점 | Score: 92 | Lat: 37.4922365863997
+  보드람치킨 역삼역점 | Score: 91 | Lat: 37.4988585445484
+  치킨공식 | Score: 84 | Lat: 37.49882550955176
+  꼬꼬아찌숯불치킨 강남역점 | Score: 90 | Lat: 37.5003128050196
+  한앤둘치킨 선릉점 | Score: 89 | Lat: 37.50513610323519
+  깐부치킨 역삼역점 | Score: 82 | Lat: 37.50067872702824
+  교촌치킨 강남역점 | Score: 93 | Lat: 37.5008849836354
+  감탄계 강남역점 | Score: 92 | Lat: 37.500554219318
+  굽네치킨 역삼1동점 | Score: 88 | Lat: 37.4943393046404
+  후라이드참잘하는집 역삼점 | Score: 92 | Lat: 37.49281768284462
+  깐부치킨 강남역플래티넘점 | Score: 90 | Lat: 37.4949421032926
+  강남통닭호프 | Score: 92 | Lat: 37.50073298872459
+  깐부치킨 역삼본점 | Score: 90 | Lat: 37.49818084603359
+  삼풍치킨 역삼점 | Score: 92 | Lat: 37.5014687663563
+  돈치킨 역삼점 | Score: 92 | Lat: 37.4959585016726
+  BHC치킨 역삼점 | Score: 92 | Lat: 37.4981064259808
+  둘둘치킨 뱅뱅점 | Score: 92 | Lat: 37.49170065564382
+  푸라닭치킨 역삼1동점 | Score: 91 | Lat: 37.4971757510559
+  BHC치킨 역삼스타점 | Score: 92 | Lat: 37.5056792197688
+  청년치킨 역삼점 | Score: 95 | Lat: 37.4944149384529
+  깐부치킨 서초점 | Score: 90 | Lat: 37.49557312780228
+  깐부치킨 남부터미널점 | Score: 92 | Lat: 37.485869997299744
+  BHC치킨 서초교대점 | Score: 95 | Lat: 37.4913954599177
+  깐부치킨 서초삼성타운점 | Score: 95 | Lat: 37.494114712226605
+  오늘통닭 강남역점 | Score: 90 | Lat: 37.49459498836523
+  삼풍치킨 교대직영점 | Score: 90 | Lat: 37.49491626764851
+  푸라닭치킨 서초2동점 | Score: 92 | Lat: 37.4871375833097
+  이모네꼬꾸이 | Score: 95 | Lat: 37.48551208116992
+  깐부치킨 양재역점 | Score: 83 | Lat: 37.4851383803708
+  깐부치킨 교대점 | Score: 91 | Lat: 37.4906240531092
+  서초통닭호프 | Score: 91 | Lat: 37.493699979748186
+  누구나홀딱반한닭 강남역점 | Score: 96 | Lat: 37.50052586251156
+  노랑통닭 남부터미널점 | Score: 90 | Lat: 37.4854193164617
+  네네치킨 서초교대점 | Score: 92 | Lat: 37.4892716166092
+  맥켄치킨 | Score: 92 | Lat: 37.4884473249128
+  교촌치킨 서초3호점 | Score: 92 | Lat: 37.488210234211685
+  BBQ 교대본점 | Score: 90 | Lat: 37.4915864546664
+  호치킨 서초1호점 | Score: 90 | Lat: 37.48276949131629
+  깐부치킨 교대7번출구점 | Score: 92 | Lat: 37.4951037354311
+  치킨뱅이 남부터미널점 | Score: 85 | Lat: 37.48598391521372
+  BBQ 에브리데이 남부터미널점 | Score: 85 | Lat: 37.48558547284751
+  교촌치킨 압구정신사점 | Score: 92 | Lat: 37.5275171694641
+  땅땅치킨 한강르네상스 잠원1호점 | Score: 95 | Lat: 37.528360718737
+  가주치킨 | Score: 90 | Lat: 37.521503998258
+  깐부치킨 학동역점 | Score: 88 | Lat: 37.5145111247459
+  사또치킨 | Score: 92 | Lat: 37.52395519848855
+  가마치통닭 서울압구정점 | Score: 92 | Lat: 37.5237650797665
+  원해치킨하우스 | Score: 88 | Lat: 37.5171343553432
+  60계치킨 서울논현점 | Score: 91 | Lat: 37.5064078467309
+  푸라닭치킨 성수1가점 | Score: 92 | Lat: 37.54127635281399
+  BHC치킨 성수역점 | Score: 92 | Lat: 37.53817569784611
+  BBQ 성수3점 | Score: 90 | Lat: 37.5382087998119
+  60계치킨 서울성수점 | Score: 92 | Lat: 37.5493405031934
+  김군네통닭집 성수직영점 | Score: 82 | Lat: 37.5472139195288
+  교촌치킨 성수역점 | Score: 91 | Lat: 37.54612211038674
+  호식이두마리치킨 서울숲점 | Score: 91 | Lat: 37.5373276885409
+  자담치킨 서울성수1호점 | Score: 92 | Lat: 37.53784065617448
+  깐부치킨 성수점 | Score: 91 | Lat: 37.54534516546019
+  영계소문옛날통닭 | Score: 88 | Lat: 37.538039795118095
+  통닭연구소 성수점 | Score: 96 | Lat: 37.5389441542484
+  맛닭꼬 성수역점 | Score: 88 | Lat: 37.54476763550449
+  왕십리누룽지통닭 | Score: 93 | Lat: 37.56632051056644
+  명가통닭 마장직영점 | Score: 95 | Lat: 37.56562779416221
+  네네치킨 한양점 | Score: 92 | Lat: 37.56313824995419
+  계동치킨 마장점 | Score: 92 | Lat: 37.5694504540213
+  또바기치킨 | Score: 88 | Lat: 37.5661564727278
+  브로스치킨 | Score: 95 | Lat: 37.5594544367049
+  원조마늘통닭 문래본점 | Score: 89 | Lat: 37.5158785304841
+  자담치킨 문래역점 | Score: 92 | Lat: 37.51742398251848
+  교촌치킨 문래점 | Score: 95 | Lat: 37.51937291604672
+  BHC치킨 문래점 | Score: 95 | Lat: 37.5190590937455
+  옌날통닭 | Score: 92 | Lat: 37.5116889491719
+  보드람치킨 영등포역점 | Score: 92 | Lat: 37.5184777770918
+  굽네치킨 영등포구청역점 | Score: 92 | Lat: 37.5239456911918
+  잉치킨 | Score: 86 | Lat: 37.5148404944208
+  치교치밥&치킨 영등포점 | Score: 89 | Lat: 37.5135250459458
+  처갓집양념치킨 정릉점 | Score: 92 | Lat: 37.6109861571655
+  교촌치킨 정릉1호점 | Score: 82 | Lat: 37.610848271919046
+  참나라숯불바베큐치킨 정릉점 | Score: 92 | Lat: 37.60856794278189
+  네네치킨 정릉점 | Score: 92 | Lat: 37.612302525161
+  가마치통닭 서울정릉점 | Score: 91 | Lat: 37.60312005455816
+  BBQ 정릉점 | Score: 96 | Lat: 37.6125691085683
+  BBQ 정릉중앙점 | Score: 90 | Lat: 37.60157688140208
+  아주맛있는빠베큐 | Score: 91 | Lat: 37.60827056439712
+  보네르치킨 | Score: 92 | Lat: 37.608695961262114
+  60계치킨 서울정릉점 | Score: 92 | Lat: 37.60935710916602
+  오븐마루치킨 국민대점 | Score: 92 | Lat: 37.6081798971886
+  힐링죤치킨&비어 | Score: 92 | Lat: 37.6168491776422
+  마마치킨 | Score: 91 | Lat: 37.5416583459964
+  BBQ 마포용강점 | Score: 95 | Lat: 37.54163234591573
+  교촌치킨 도화점 | Score: 92 | Lat: 37.5383019081758
+  경성치킨 마포가든점 | Score: 90 | Lat: 37.5400769398329
+  오늘은치맥 | Score: 90 | Lat: 37.578346421268456
+  생활맥주 명동점 | Score: 92 | Lat: 37.5647329165719
+  치르치르&뉴욕야시장 명동본점 | Score: 88 | Lat: 37.56457977106592
+  오렌지치맥홀 | Score: 90 | Lat: 37.5757998470777
+  신전떡볶이 잠실점 | Score: 90 | Lat: 37.5089700712797
+  마신떡볶이 | Score: 90 | Lat: 37.5043745954368
+  동대문엽기떡볶이 송파점 | Score: 85 | Lat: 37.5034816183964
+  동대문엽기떡볶이 잠실역점 | Score: 88 | Lat: 37.51770486103462
+  두끼떡볶이 홈플러스잠실점 | Score: 82 | Lat: 37.5162585329324
+  스텔라떡볶이 서울송파석촌점 | Score: 90 | Lat: 37.5009465172736
+  감탄떡볶이 방이점 | Score: 92 | Lat: 37.51156239756836
+  감탄떡볶이 잠실나루역점 | Score: 92 | Lat: 37.5209172502886
+  공룡떡볶이 방이본점 | Score: 89 | Lat: 37.5130229013037
+  신전떡볶이 송파점 | Score: 89 | Lat: 37.50302083669328
+  당신은지금떡볶이가땡긴다 헬리오시티점 | Score: 88 | Lat: 37.4980749677648
+  33떡볶이 올림픽공원점 | Score: 92 | Lat: 37.5158310746848
+  청년다방 송파방이점 | Score: 92 | Lat: 37.5067874006392
+  두끼떡볶이 방이역점 | Score: 91 | Lat: 37.5096807107081
+  배떡 방이점 | Score: 90 | Lat: 37.50732481968197
+  동대문엽기떡볶이 오금점 | Score: 90 | Lat: 37.510128297857634
+  동대문엽기떡볶이 올림픽성내점 | Score: 90 | Lat: 37.52437270670421
+  두끼떡볶이 둔촌동역점 | Score: 90 | Lat: 37.52548592118774
+  아차산매운떡볶이 서울송파점 | Score: 89 | Lat: 37.49838132717319
+  쏘크라테스떡볶이 | Score: 92 | Lat: 37.4975486211084
+  33떡볶이 송파헬리오점 | Score: 95 | Lat: 37.49924963136375
+  33떡볶이 서울영업소 | Score: 95 | Lat: 37.50153409030197
+  랜떡 송파직영점(휴업중) | Score: 84 | Lat: 37.5081146707301
+  김판조닭강정 | Score: 92 | Lat: 37.51076179663959
+  정석닭강정 송파점 | Score: 93 | Lat: 37.49975833855893
+  돌화격닭강정 자양점 | Score: 92 | Lat: 37.5306644163223
+  오토김밥 잠실점 | Score: 92 | Lat: 37.51091252883131
+  쌀통닭 신천점 | Score: 90 | Lat: 37.51035028381267
+  한솥도시락 잠실아시아선수촌점 | Score: 92 | Lat: 37.50551493411164
+  네네치킨 잠실새내역점 | Score: 95 | Lat: 37.51210090970197
+  치킨박사 | Score: 92 | Lat: 37.50894818533629
+  처갓집양념치킨 신천점 | Score: 88 | Lat: 37.510328024136776
+  미쳐버린파닭 잠실점 | Score: 90 | Lat: 37.50870536012735
+  잠실야구장먹거리 인생순살치킨 | Score: 92 | Lat: 37.511108347225
+  다온닭강정 둔촌점 | Score: 92 | Lat: 37.5274756806392
+  맘스터치 송파방이점 | Score: 90 | Lat: 37.5104030973471
+  한솥도시락 한성백제역점 | Score: 92 | Lat: 37.51424910673159
+  수원왕갈비통닭 올림픽공원역점 | Score: 96 | Lat: 37.5157154135558
+  명가통닭 올림픽공원점 | Score: 90 | Lat: 37.5157123791503
+  옛날산골통닭 | Score: 92 | Lat: 37.5102392024555
+  디디치킨 올림픽점 | Score: 92 | Lat: 37.5159035467004
+  화락바베큐치킨 송파방이점 | Score: 90 | Lat: 37.5134279084849
+  나루호프 | Score: 92 | Lat: 37.51237629710797
+  가마로강정 송파점 | Score: 96 | Lat: 37.50356067225542
+  존맛탱닭강정 문정점 | Score: 82 | Lat: 37.4871829367296
+  바삭통통닭강정 | Score: 93 | Lat: 37.4940074392747
+  천하일미강정치킨 | Score: 92 | Lat: 37.51062382499961
+  오토김밥 석촌점 | Score: 92 | Lat: 37.50510103205299
+  멕시카나치킨 송파점 | Score: 92 | Lat: 37.50746692962808
+  한솥도시락 송파나루역점 | Score: 90 | Lat: 37.50924426699402
+  자갈치부산어묵 | Score: 90 | Lat: 37.5072045653695
+  케네디로즈 | Score: 90 | Lat: 37.50324928182701
+  영계소문옛날통닭호프 | Score: 92 | Lat: 37.50062164685205
+  처갓집양념치킨 헬리오시티점 | Score: 92 | Lat: 37.500721577646
+  가화김밥 | Score: 92 | Lat: 37.5051046065204
+  한솥도시락 삼전역점 | Score: 95 | Lat: 37.5035692438728
+  네네치킨 삼전점 | Score: 96 | Lat: 37.5030659155672
+  빈대떡신사 | Score: 92 | Lat: 37.5055633153829
+  고향빈대떡 | Score: 83 | Lat: 37.5378710089986
+  칼라분식 | Score: 91 | Lat: 37.50904977889683
+  싸다김밥 잠실새내역점 | Score: 89 | Lat: 37.51030277256054
+  김반장 | Score: 91 | Lat: 37.5088418159812
+  도산김밥 본점 | Score: 95 | Lat: 37.5103493844035
+  올레김밥 | Score: 90 | Lat: 37.51070200358753
+  케이콜라보김밥 잠실본점 | Score: 91 | Lat: 37.5070501582494
+  호호맛집 | Score: 83 | Lat: 37.5114850687789
+  조은김밥 잠실점 | Score: 90 | Lat: 37.5094754952846
+  도란도란꼬마김밥 잠실점 | Score: 92 | Lat: 37.50815937422463
+  쌀어묵공방 잠실리센츠점 | Score: 92 | Lat: 37.5119790174954
+  심형제김밥 잠실점 | Score: 96 | Lat: 37.51203983907664
+  스쿨스토어 롯데월드매직아일랜드점 | Score: 85 | Lat: 37.50892538708624
+  서울김밥 | Score: 90 | Lat: 37.5149583850153
+  김가네 송파나루역점 | Score: 92 | Lat: 37.51209935478683
+  부부김밥 | Score: 85 | Lat: 37.5096527147995
+  미미충무김밥 | Score: 88 | Lat: 37.5161166950201
+  서울분식 | Score: 82 | Lat: 37.512206594632566
+  올림픽김밥 | Score: 92 | Lat: 37.5154580411662
+  김밥사랑 방이역점 | Score: 82 | Lat: 37.5096439372155
+  송이네분식 | Score: 82 | Lat: 37.51555572405488
+  싸다김밥 석촌역점 | Score: 89 | Lat: 37.50577080844694
+  애플꼬마김밥 서울송파점 | Score: 90 | Lat: 37.5037482883475
+  헬키푸키 석촌점 | Score: 90 | Lat: 37.5038619479897
+  한솔김밥 석촌점 | Score: 92 | Lat: 37.5057621625246
+  선비꼬마김밥 헬리오시티점 | Score: 90 | Lat: 37.5004115677615
+  바르다김선생 가락로점 | Score: 92 | Lat: 37.50027539637348
+  김밥천국 | Score: 88 | Lat: 37.5015314568336
+  오마미 | Score: 92 | Lat: 37.5026130669942
+  송파만두 본점 | Score: 92 | Lat: 37.5040038671945
+  똑똑김밥 | Score: 84 | Lat: 37.5021570508907
+  오마뎅 잠실학원사거리점 | Score: 90 | Lat: 37.50694478044235
+  스쿨푸드 잠실 | Score: 92 | Lat: 37.5037678097432
+  정성한줄 잠실학원사거리점 | Score: 95 | Lat: 37.507012684558
+  삼총사분식 | Score: 90 | Lat: 37.50099696145581
+  마싯는한끼 | Score: 96 | Lat: 37.50385994165313
+  깐부치킨 잠실새내역점 | Score: 95 | Lat: 37.5107075333252
+  지코바 잠실1호점 | Score: 89 | Lat: 37.50739326030919
+  보드람치킨 잠실신천점 | Score: 90 | Lat: 37.508929859004056
+  60계치킨 서울잠실점 | Score: 92 | Lat: 37.50960606193696
+  치맥킹 잠실새내점 | Score: 96 | Lat: 37.510463438018526
+  노랑통닭 잠실새내점 | Score: 95 | Lat: 37.51010437408174
+  계림원 잠실점 | Score: 92 | Lat: 37.5056499529362
+  맛닭꼬 잠실본동점 | Score: 92 | Lat: 37.5062047084342
+  DK치킨 잠실5단지점 | Score: 92 | Lat: 37.51617853217021
+  후라이드참잘하는집 삼전점 | Score: 92 | Lat: 37.5077708197644
+  BHC치킨 롯데월드빅토리아점 | Score: 90 | Lat: 37.5086513525933
+  BBQ 한강버스잠실선착장점 | Score: 95 | Lat: 37.5192060540076
+  명품치킨&꼬치 | Score: 93 | Lat: 37.5088614177768
+  BHC치킨 롯데월드어드벤처산호세점 | Score: 96 | Lat: 37.5112342058913
+  페리카나 잠실새마을점 | Score: 92 | Lat: 37.5109438073449
+  BBQ 잠실엘스점 | Score: 90 | Lat: 37.5120847037359
+  기영이숯불두마리치킨 송파잠실본동점 | Score: 96 | Lat: 37.50618259804009
+  교촌치킨 방이2호점 | Score: 92 | Lat: 37.51320266916071
+  건풍치킨 | Score: 90 | Lat: 37.51558097030131
+  페리카나 방이2점 | Score: 85 | Lat: 37.510728869314605
+  BHC치킨 송파구청점 | Score: 90 | Lat: 37.5143389244653
+  맛닭꼬 방이시장점 | Score: 92 | Lat: 37.5103317303803
+  BBQ 방이스타점 | Score: 96 | Lat: 37.515832343255504
+  BBQ 방이점 | Score: 90 | Lat: 37.509753246625
+  한양치킨 | Score: 92 | Lat: 37.50610837024032
+  호치킨 오금점 | Score: 90 | Lat: 37.50870198172287
+  교촌치킨 송파1호점 | Score: 96 | Lat: 37.5071818678747
+  푸라닭치킨 송파점 | Score: 93 | Lat: 37.50016886406949
+  지코바 송파1호점 | Score: 92 | Lat: 37.504465983843
+  굽네치킨 송파점 | Score: 95 | Lat: 37.50261507666687
+  김종구식맛치킨 전기바베큐 옛날통닭 송파석촌점 | Score: 92 | Lat: 37.5011515063529
+  기영이숯불두마리치킨 송파석촌점 | Score: 92 | Lat: 37.5060446979732
+  가마치통닭 서울송파헬리오시티점 | Score: 95 | Lat: 37.50025290819809
+  페리카나 석촌점 | Score: 88 | Lat: 37.501026727528014
+  코리안바베큐 석촌점 | Score: 88 | Lat: 37.500258330642
+  당신은지금치킨이땡긴다 헬리오시티점 | Score: 92 | Lat: 37.4983039680485
+  동근이숯불두마리치킨 서울삼전점 | Score: 95 | Lat: 37.505178708837086
+  청년치킨 삼전점 | Score: 92 | Lat: 37.5033891018694
+  치맥앤포차 | Score: 90 | Lat: 37.5310424771637
+  치맥한잔 올림픽공원점 | Score: 92 | Lat: 37.5109757316361
+  펍마이마이 | Score: 96 | Lat: 37.5103141020082
+  화심 | Score: 92 | Lat: 37.51011583197288
+  수다주막 | Score: 88 | Lat: 37.5109456093519
+  건대꼴목포차 잠실점 | Score: 92 | Lat: 37.5058234233651
+  맥JOO 퍼블릭하우스 | Score: 92 | Lat: 37.5102406928988
+  오더캐스크 | Score: 96 | Lat: 37.5103327777906
+  월간우주 | Score: 95 | Lat: 37.50927075773409
+  손자네 | Score: 95 | Lat: 37.51005727757408
+  한사발포차 잠실새내점 | Score: 92 | Lat: 37.5106536623274
+  유케집 잠실새내점 | Score: 95 | Lat: 37.5100908733037
+  역전할머니맥주 서울신천점 | Score: 91 | Lat: 37.5101956639708
+  할머니포장마차멸치국수 | Score: 90 | Lat: 37.5152685544653
+  요시 | Score: 91 | Lat: 37.511122531247445
+  고구려민속주막 | Score: 90 | Lat: 37.5143898328399
+  부엉이산장 방이점 | Score: 92 | Lat: 37.51445076972377
+  홉쏘 | Score: 96 | Lat: 37.51030817908
+  79대포 방이점 | Score: 92 | Lat: 37.51303468077415
+  펀비어킹 송파방이역점 | Score: 90 | Lat: 37.5099551734895
+  용용선생 방이점 | Score: 91 | Lat: 37.51411242017835
+  한사발포차 방이점 | Score: 92 | Lat: 37.515090075431
+  라디오헤드펍 | Score: 93 | Lat: 37.51402218628522
+  선율의밤 | Score: 96 | Lat: 37.51375542785869
+  장생관 | Score: 92 | Lat: 37.5152510822717
+  사운드예술펍 | Score: 92 | Lat: 37.51602640853184
+  나쉬펍 잠실방이점 | Score: 92 | Lat: 37.5130889575835
+  마스타하이볼 | Score: 82 | Lat: 37.515057124964486
+  하이뮤직타운 | Score: 92 | Lat: 37.51508557564108
+  바이더레이크 | Score: 92 | Lat: 37.5093934678257
+  아낙네그루브 | Score: 91 | Lat: 37.50958060773532
+  서울리즘 | Score: 90 | Lat: 37.5097815878229
+  연주방 송리단길점 | Score: 95 | Lat: 37.5107492799145
+  오땅비어 석촌역점 | Score: 92 | Lat: 37.5073380280238
+  하우스오브브라운 | Score: 91 | Lat: 37.5109160088427
+  라이언하트 | Score: 95 | Lat: 37.51072644954028
+  서아진 루프탑송리단길점 | Score: 93 | Lat: 37.5092678325058
+  다이닝펍하영 | Score: 90 | Lat: 37.5100322693743
+  아도겐 송파점 | Score: 95 | Lat: 37.509837875575
+  사운드온 | Score: 92 | Lat: 37.50777904675135
+  셔터54 | Score: 92 | Lat: 37.5100847890562
+  신세계오뎅3 별관 | Score: 92 | Lat: 37.5084134382066
+  별달포차 | Score: 95 | Lat: 37.5065339794176
+  달구지포차 | Score: 90 | Lat: 37.5006640011019
+  담쟁이포차 | Score: 93 | Lat: 37.5034980280133
+  헤이옹드솔레일 | Score: 91 | Lat: 37.50132092203817
+  호수별 | Score: 92 | Lat: 37.5049157483944
+  퍼플독 송파본점 | Score: 96 | Lat: 37.5007435743263
+  추엌 | Score: 90 | Lat: 37.5059091562754
+  크라운호프 석촌호수점 | Score: 92 | Lat: 37.5064171691458
+  숯불직화꼬치포차 | Score: 85 | Lat: 37.5008863066406
+  코끼리 | Score: 92 | Lat: 37.505385506853
+  매드나이트 | Score: 92 | Lat: 37.5060878654907
+  산울림 | Score: 90 | Lat: 37.5067980396069
+  79대포 석촌점 | Score: 91 | Lat: 37.50715076080186
+  이태리양조장 잠실본점 | Score: 92 | Lat: 37.5108834931815
+  쇼넨 헬리오시티점 | Score: 93 | Lat: 37.5005865588927
+  생활맥주 석촌호수점 | Score: 92 | Lat: 37.5061833832685
+  투다리 스타점 | Score: 82 | Lat: 37.5049526384289
+  남도포차 | Score: 89 | Lat: 37.5034915394032
+  와이모어 크래프트 펍 | Score: 96 | Lat: 37.5033102449995
+  생활맥주 송파삼전점 | Score: 96 | Lat: 37.5026775381953
+  케씨펍 | Score: 92 | Lat: 37.5029361838177
+  삼전역2번부두 | Score: 88 | Lat: 37.5047048713455
+  호프 매니아 | Score: 90 | Lat: 37.50059873041759
+  투다리 삼전사거리점 | Score: 90 | Lat: 37.5035350116859
+  술창고 | Score: 85 | Lat: 37.50324911640015
+  요리취향 | Score: 96 | Lat: 37.50492284963593
+  미강식당 | Score: 96 | Lat: 37.50626055174282
+  삼미리식당 잠실신천점 | Score: 95 | Lat: 37.51088471776009
+  배고픈돼지 | Score: 91 | Lat: 37.510126852825
+  대패감성 잠실본점 | Score: 91 | Lat: 37.50983223960763
+  잠실생삼겹살 | Score: 96 | Lat: 37.509161887161
+  엉터리생고기무한대패 잠실새내점 | Score: 92 | Lat: 37.5101974651947
+  돈담 | Score: 92 | Lat: 37.51019098120286
+  화담 | Score: 85 | Lat: 37.5105567966269
+  효자동솥뚜껑삼겹살 잠실새내점 | Score: 90 | Lat: 37.5100266945068
+  돈순장 잠실새내본점 | Score: 93 | Lat: 37.50996154823901
+  아리수만찬 잠실 | Score: 92 | Lat: 37.51884243966242
+  와인에빠진저팔계 | Score: 90 | Lat: 37.510034980486
+  백반&삼겹살차돌박이 | Score: 90 | Lat: 37.5083222458753
+  삼삼이네생고깃집 | Score: 92 | Lat: 37.5052561229508
+  목구멍 서울잠실새내점 | Score: 95 | Lat: 37.5098996058564
+  원조부안집 잠실새내점 | Score: 89 | Lat: 37.51033933096684
+  화반 방이점 | Score: 92 | Lat: 37.5131829377762
+  양철통 | Score: 92 | Lat: 37.51029767796612
+  무쇠벼루삼겹살 부대찌개 방이본점 | Score: 93 | Lat: 37.51002587345935
+  냉삼식당 방이2호점 | Score: 85 | Lat: 37.5135087692189
+  명륜진사갈비 송파방이점 | Score: 92 | Lat: 37.5139533583455
+  당산오돌 방이점 | Score: 92 | Lat: 37.5105630309937
+  방이굴림만두떼굴 | Score: 96 | Lat: 37.51162605970936
+  청선 방이본점 | Score: 92 | Lat: 37.5150391713025
+  굽돌집 잠실방이직영점 | Score: 94 | Lat: 37.51181294169983
+  방이돈가 | Score: 92 | Lat: 37.5121298886276
+  방이뚝배기 | Score: 95 | Lat: 37.51134674497855
+  전설의우대갈비 잠실 석촌호수직영점 | Score: 98 | Lat: 37.512988772525
+  청춘 | Score: 96 | Lat: 37.5135585074911
+  숙수돈가 | Score: 90 | Lat: 37.5099163782522
+  노다지 | Score: 93 | Lat: 37.5026711330009
+  돈블랑 석촌호수점 | Score: 92 | Lat: 37.51142852223295
+  화사랑화로구이 | Score: 92 | Lat: 37.5097518331267
+  영심이네매일밥상 | Score: 92 | Lat: 37.5048433175151
+  아우네철판삼겹 | Score: 91 | Lat: 37.5081819060675
+  우리식당 우리정육점 | Score: 92 | Lat: 37.50723219697961
+  홍돈 | Score: 93 | Lat: 37.5035072618379
+  김삼부대 석촌역점 | Score: 90 | Lat: 37.50512106507291
+  나루터생고기 | Score: 92 | Lat: 37.5103889683791
+  돈필살 | Score: 93 | Lat: 37.51089887418357
+  두루애 송파점 | Score: 95 | Lat: 37.5086711583311
+  가감정육식당 | Score: 96 | Lat: 37.50462150330256
+  나리식당 잠실점 | Score: 92 | Lat: 37.50793294872902
+  잠수교집 3호점 | Score: 84 | Lat: 37.505903872861936
+  호숫가냉삼 | Score: 92 | Lat: 37.506858553728
+  석촌집 | Score: 92 | Lat: 37.5054914444922
+  하남돼지집 송파석촌점 | Score: 92 | Lat: 37.5062268456879
+  정돈식당 | Score: 90 | Lat: 37.50251157531281
+  대박집 | Score: 90 | Lat: 37.5037105755494
+  대원 | Score: 88 | Lat: 37.4996245850014
+  포크꿀꿀농장 | Score: 95 | Lat: 37.50642510994374
+  태릉고기촌 | Score: 92 | Lat: 37.50585707218806
+  이가장 | Score: 95 | Lat: 37.4998693406316
+  대현굴국밥 | Score: 95 | Lat: 37.503059835820864
+  임금돼지 잠실점 | Score: 92 | Lat: 37.50805753948151
+  고고생고기 | Score: 88 | Lat: 37.5011772151465
+  곱분이곱창 송파중앙점 | Score: 92 | Lat: 37.5007507823619
+  냉육점 | Score: 95 | Lat: 37.50063472573397
+  서울쭈꾸미쌈겹 | Score: 92 | Lat: 37.49943494357005
+  무쇠돌이생삼겹 본점 | Score: 89 | Lat: 37.5019261478751
+  고기공원 잠실본점 | Score: 92 | Lat: 37.5059629000615
+  노마진 정육식당 | Score: 92 | Lat: 37.502123394805
+  석촌한돈가든 | Score: 92 | Lat: 37.5027077002027
+  부농정육식당 | Score: 91 | Lat: 37.500405031009215
+  본가감자탕삼겹살 | Score: 92 | Lat: 37.5025450964638
+  삼전동고기집 | Score: 92 | Lat: 37.50353573486427
+  상상오리 잠실본점 | Score: 91 | Lat: 37.5000258047483
+  삼전정육식당 | Score: 92 | Lat: 37.499867209753
+  명품수제갈비 | Score: 90 | Lat: 37.507671886165
+  우성숯불갈비 | Score: 90 | Lat: 37.5105242863364
+  백제갈비 | Score: 92 | Lat: 37.5155311918743
+  묵힘 | Score: 96 | Lat: 37.5131588073553
+  몽화로 | Score: 95 | Lat: 37.5107499511635
+  광양불고기 | Score: 93 | Lat: 37.50502448144549
+  해운대연탄생갈비 송파가락점 | Score: 96 | Lat: 37.50073689882338
+  육식사관학교 송파점 | Score: 92 | Lat: 37.4998368985427
+  무한소 신천본점 | Score: 92 | Lat: 37.5096796997855
+  별미곱창 잠실점 | Score: 93 | Lat: 37.50990279583053
+  신천무한리필 | Score: 88 | Lat: 37.51021087330296
+  신천돼지 | Score: 95 | Lat: 37.5094996526123
+  후발대 잠실직영점 | Score: 89 | Lat: 37.5110800927465
+  오마이양대창 잠실점 | Score: 96 | Lat: 37.5054581771249
+  마싯소 방이본점 | Score: 95 | Lat: 37.5156721767299
+  우리한돈 방이본관 | Score: 96 | Lat: 37.5141748412748
+  토닭토닭 | Score: 88 | Lat: 37.5108951884026
+  야키니쿠스미카 | Score: 92 | Lat: 37.5081857393201
+  일일양 석촌호수점 | Score: 96 | Lat: 37.50607533857261
+  원광 | Score: 93 | Lat: 37.5051795694818
+  한우전문 육회이야기 잠실점 | Score: 90 | Lat: 37.50495166885523
+  30년불멸의닭발 | Score: 92 | Lat: 37.5023795620488
+  토마루해물칼국수 | Score: 90 | Lat: 37.5058970528978
+  편백재샤브칼국수 | Score: 90 | Lat: 37.51112451539741
+  베테랑칼국수 롯데백화점 잠실점 | Score: 92 | Lat: 37.512019511346
+  신천닭칼국수 | Score: 91 | Lat: 37.5121072272061
+  신천샤브칼국수 | Score: 92 | Lat: 37.5109298010933
+  팔당족발&닭발 잠실직영점 | Score: 95 | Lat: 37.5051975865097
+  박만배아리랑보쌈 잠실새내점 | Score: 95 | Lat: 37.5076818296293
+  봉평메밀막국수 | Score: 93 | Lat: 37.5108425947887
+  대진물산 | Score: 92 | Lat: 37.51882407199245
+  평이담백 뼈칼국수 방이점 | Score: 95 | Lat: 37.509282963209
+  선비칼국수 송파방이점 | Score: 92 | Lat: 37.5160707330373
+  문어세상해천탕 잠실본점 | Score: 92 | Lat: 37.5099058184777
+  등촌샤브칼국수 방이본점 | Score: 92 | Lat: 37.5148053040577
+  조개진 | Score: 92 | Lat: 37.5142166336754
+  바지락칼국수 | Score: 90 | Lat: 37.50208921424778
+  수보리밥 잠실본점 | Score: 96 | Lat: 37.5092104467531
+  원산만두 | Score: 90 | Lat: 37.50702459176038
+  열둘 칼국수 | Score: 92 | Lat: 37.5018984532421
+  봉평발아메밀막국수 발아메밀본점 | Score: 91 | Lat: 37.5048860211986
+  미당 | Score: 92 | Lat: 37.50617505509966
+  등촌샤브칼국수 잠실본점 | Score: 90 | Lat: 37.5063751267907
+  공릉동 멸치국수 | Score: 88 | Lat: 37.52740084771454
+  을밀대 롯데백화점 잠실점 | Score: 90 | Lat: 37.512132696251065
+  전복죽주는냉면집 롯데백화점 잠실점 | Score: 90 | Lat: 37.5120023960656
+  서래냉면 | Score: 92 | Lat: 37.51352977076141
+  개성칡냉면 | Score: 82 | Lat: 37.4894859132029
+  춘천100%순메밀막국수&냉면 송파점 | Score: 96 | Lat: 37.4996354901556
+  충성칡냉면 건대점 | Score: 95 | Lat: 37.5331403890194
+  송천면옥 | Score: 85 | Lat: 37.5096548058294
+  속초코다리칡냉면&보쌈 | Score: 90 | Lat: 37.5037240169036
+  개롱골목냉면 | Score: 85 | Lat: 37.4973156149539
+  삼봉냉면 | Score: 90 | Lat: 37.5171758879273
+  을밀대 잠실점 | Score: 90 | Lat: 37.512817895449096
+  오늘칡냉면 | Score: 92 | Lat: 37.49361989559242
+  청춘소면 | Score: 90 | Lat: 37.5120856031269
+  제일제면소 올림픽공원점 | Score: 85 | Lat: 37.5168312790774
+  도이티 운남쌀국수 | Score: 92 | Lat: 37.5103718535673
+  금금 송리단길점 | Score: 92 | Lat: 37.50898820781327
+  돈까스집 잠실점 | Score: 92 | Lat: 37.5071386023123
+  미소야 잠실본점 | Score: 95 | Lat: 37.50473214853043
+  댓짱돈까스 롯데백화점잠실점 | Score: 89 | Lat: 37.51208655436689
+  브라운돈까스 잠실롯데마트점 | Score: 91 | Lat: 37.5116761770896
+  하루맘마 | Score: 92 | Lat: 37.50748616171794
+  카츠젠 방이본점 | Score: 92 | Lat: 37.50955578204504
+  바삭한식당 | Score: 92 | Lat: 37.50682531358272
+  가츠몽 방이점 | Score: 90 | Lat: 37.51489530890669
+  동경규동 방이점 | Score: 89 | Lat: 37.5121609105995
+  동경규동 한성백제점 | Score: 89 | Lat: 37.51422838587733
+  시골보리밥&돈까스 | Score: 90 | Lat: 37.5107568149417
+  스시선 방이점 | Score: 90 | Lat: 37.5130838821319
+  백소정 잠실본점 | Score: 96 | Lat: 37.5142870839067
+  카츠젠 | Score: 89 | Lat: 37.5055892753715
+  헤세드 송리단길점 | Score: 91 | Lat: 37.50937021297213
+  두물머리양평해장국 | Score: 90 | Lat: 37.50575848738893
+  저스트카츠 석촌호수점 | Score: 92 | Lat: 37.505466416486335
+  마초야 송파점 | Score: 92 | Lat: 37.5025633001415
+  미타 우동 본점 | Score: 92 | Lat: 37.50665703166728
+  행복한우동가게 석촌호수점 | Score: 92 | Lat: 37.5051944473126
+  동양카츠 송파점 | Score: 90 | Lat: 37.5003413804211

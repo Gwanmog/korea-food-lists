@@ -1,3 +1,7 @@
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -9,22 +13,19 @@ import time
 import random
 import os
 import re
-import requests
 import json
 from google import genai
 from dotenv import load_dotenv
 from google.genai import types
 
-LOCAL_MODEL = "qwen2.5:3b"
 # Pathing setup
 script_dir = os.path.dirname(os.path.abspath(__file__))
 env_path = os.path.join(script_dir, 'soul-food-api', '.env')
 load_dotenv(dotenv_path=env_path)
 
-# Initialize Gemini for the fallback
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
+CSV_FILENAME = os.path.join(script_dir, 'neon_guide_audited_final.csv')
 
 
 def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_text):
@@ -43,29 +44,42 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
         =========================================
         STEP 1: UNDERSTAND WHAT THE SCORE MEANS
         =========================================
-        A score of 70-79 = decent spot with real flaws. Mixed reviews, "just okay" comments, and some complaints are NORMAL and EXPECTED. Do NOT flag.
-        A score of 80-87 = genuinely good place. Occasional complaints are fine. Only flag if MOST reviews describe serious problems.
-        A score of 88-100 = exceptional. Flag if reviews are mediocre or show consistent serious complaints.
+        A score of 70-79 = decent spot with real flaws. Mixed reviews and some complaints are NORMAL. Do NOT flag.
+        A score of 80-87 = genuinely good place. Only flag if MOST reviews describe serious problems.
+        A score of 88-94 = exceptional neighborhood staple. Flag if reviews show consistent serious complaints.
+        A score of 95-100 = destination-worthy. ANY credible serious complaint justifies a flag — these restaurants require flawless evidence.
 
         =========================================
-        STEP 2: THE FAIL TEST — ALL THREE MUST BE TRUE TO USE TEMPLATE 2
+        STEP 2: THE FAIL TEST
         =========================================
         Condition A: The AI score is 83 or higher.
         Condition B: MULTIPLE reviews (not just one) describe bad food, hostile staff, food safety issues, or outright fraud.
         Condition C: The complaints are SERIOUS — not just preferences or minor inconveniences.
+        Condition D (FRAUD EXCEPTION): If ANY review contains "사기" (scam/fraud) or an obviously fake claim
+        (e.g., "this restaurant saved my life", "죽다 살아났어요"), this AUTOMATICALLY satisfies the FAIL test
+        regardless of the score level — even below 83.
+
+        ALL of A+B+C must be true to fail, OR Condition D alone is sufficient.
 
         THE FOLLOWING ARE NOT SERIOUS COMPLAINTS — DO NOT FLAG FOR THESE:
         - Wait times or long lines
-        - Portion size being "a bit small"
-        - Price being "a bit expensive"
+        - A single offhand mention of price or portions being slightly off
         - One negative review among mostly positive ones
-        - Staff being busy or not super friendly
+        - Staff being busy or not super attentive
         - Noise level or seating comfort
         - A kiosk, screen, or environment issue
         - "Could be better" or "room for improvement" comments
         - Reviews that are mixed but lean positive overall
 
-        IF IN DOUBT → USE TEMPLATE 1. The AI score was carefully calculated. Trust it unless the contradiction is severe and obvious.
+        THESE ARE SERIOUS — DO FLAG FOR THESE:
+        - MULTIPLE reviews mentioning both overpriced AND small portions together
+        - Hostile, rude, threatening, or coercive staff behavior (무서웠어요, 불친절, 강요)
+        - Reviews containing "사기" or explicit contradiction (praises food + calls it a scam)
+        - Repeated food quality complaints across multiple posts (잡내, 맛없어요, 질이 떨어졌어요)
+
+        IF IN DOUBT:
+        - For scores under 90 → USE TEMPLATE 1 (trust the AI score)
+        - For scores 95 or above → USE TEMPLATE 2 (err on the side of flagging — destination-tier restaurants require flawless evidence)
 
         =========================================
         STEP 3: THE UPGRADE TEST — USE TEMPLATE 3 ONLY IF:
@@ -80,7 +94,7 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
         If your output does not exactly match one template, the result is INVALID.
 
         =========================================
-        TEMPLATE 1: THE PASS (DEFAULT — use this when in doubt)
+        TEMPLATE 1: THE PASS (DEFAULT for scores under 90 when in doubt)
         Use this if reviews are positive, neutral, mixed-but-leaning-positive, or contain only minor nitpicks.
         {{
             "justified": "Yes",
@@ -92,7 +106,7 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
 
         =========================================
         TEMPLATE 2: THE FAIL / FLAG
-        Use ONLY if ALL THREE conditions above are met: score is 83+, MULTIPLE reviews describe BAD FOOD or HOSTILE STAFF or FRAUD, and the complaints are serious.
+        Use if the FAIL conditions above are met, OR for scores 95+ when any credible serious complaint exists.
         {{
             "justified": "No",
             "comments": "[Your summary here]",
@@ -115,74 +129,34 @@ def analyze_receipts_with_fallback(restaurant_name, original_score, receipts_tex
         OUTPUT: Provide ONLY the chosen JSON template with the text fields filled in. No other text.
         """
 
-    # 1. Try Local Ollama First
     try:
-        model_name = "qwen2.5:3b"
-        print(f"   🧠 Asking Local Qwen ({model_name})...")
-
-        response = requests.post(
-            'http://localhost:11434/api/generate',
-            json={
-                "model": model_name,
-                "prompt": prompt,
-                "stream": False
-                # 🚨 REMOVED "format": "json" - Let Qwen speak freely!
-            },
-            timeout=180
+        print(f"   🧠 Asking Gemini...")
+        gemini_response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                temperature=0.2
+            )
         )
-        response.raise_for_status()
-
-        raw_text = response.json().get('response', '')
-        print(f"   [DEBUG] Raw Qwen output: {repr(raw_text)}")
-
-        # 1. Strip markdown
-        clean_text = raw_text.replace('```json', '').replace('```', '').strip()
-
-        # 2. 🚨 Extract ONLY the JSON dictionary, ignoring the "thinking"
-        json_match = re.search(r'(\{.*\})', clean_text, re.DOTALL)
-
-        if json_match:
-            clean_text = json_match.group(1)
-        else:
-            raise ValueError("Qwen rambled too much and never output a valid JSON dictionary!")
-
-        # Parse the text into a Python dictionary
+        clean_text = gemini_response.text.replace('```json', '').replace('```', '').strip()
         result = json.loads(clean_text)
 
-        # 3. 🛡️ THE PYTHON SAFETY NET
-        # Force the manual_flag to align perfectly with the justified verdict
+        # 🛡️ Force manual_flag to align with justified verdict
         if result.get("justified") == "No":
             if not result.get("manual_flag"):
                 print("   🛡️ [Python Override] AI failed the restaurant but forgot to flag. Forcing flag to True.")
             result["manual_flag"] = True
-
         elif result.get("justified") == "Yes":
             if result.get("manual_flag"):
                 print("   🛡️ [Python Override] AI passed the restaurant but left the flag on. Forcing flag to False.")
             result["manual_flag"] = False
 
-        # Finally, return the corrected dictionary
         return result
 
     except Exception as e:
-        print(f"   ⚠️ Local Qwen failed ({e}). Gracefully degrading to Gemini...")
-
-        # 2. Fallback to Gemini
-        try:
-            gemini_response = client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    temperature=0.2
-                )
-            )
-            # Clean formatting to ensure pure JSON
-            clean_text = gemini_response.text.replace('```json', '').replace('```', '').strip()
-            return json.loads(clean_text)
-        except Exception as gemini_e:
-            print(f"   ❌ Both Local AI and Gemini faLeiled: {gemini_e}")
-            return None
+        print(f"   ❌ Gemini auditor failed permanently ({e}). Skipping restaurant.")
+        return None
 
 
 def setup_driver():

@@ -18,14 +18,12 @@ if not API_KEY:
 
 client = genai.Client(api_key=API_KEY)
 
-# Define your local model here so it's easy to change later
-LOCAL_MODEL = "qwen2.5:3b"
 
 
 def get_kakao_categories(keyword, strict_mode=False):
     """
     Acts as a Pre-Flight Coordinator.
-    Tries Local Qwen first, falls back to Gemini.
+    Uses Gemini to translate a food keyword into Kakao Map category labels.
     """
     if strict_mode:
         print(f"🔒 STRICT MODE ON: Bypassing AI. Locking target strictly to '{keyword}'.")
@@ -33,14 +31,13 @@ def get_kakao_categories(keyword, strict_mode=False):
 
     print(f"🧠 Coordinator: Translating '{keyword}' into Kakao categories...")
 
-    # 🚨 THE FIX: Explicitly ask for a JSON Object (Dictionary) to satisfy Ollama's format requirement
     instruction = f"""
     You understand common category labels used in Kakao Map restaurant listings.
 
     The user will provide a food or restaurant keyword.
 
     Your task:
-    Return a MAXIMUM of 3 specific Kakao Map-style category labels 
+    Return a MAXIMUM of 3 specific Kakao Map-style category labels
     that restaurants serving this keyword would most likely be registered under.
 
     Rules:
@@ -62,49 +59,28 @@ def get_kakao_categories(keyword, strict_mode=False):
     """
 
     try:
-        print(f"   [Coordinator] Asking Local {LOCAL_MODEL}...")
-        response = requests.post(
-            'http://localhost:11434/api/generate',
-            json={"model": LOCAL_MODEL, "prompt": instruction, "stream": False, "format": "json"},
-            timeout=30
-        )
-        response.raise_for_status()
-
-        # 🚨 THE FIX: Extract the list using the dictionary key
-        result_dict = json.loads(response.json()['response'])
-        categories = result_dict.get("categories", [])
-
-        if isinstance(categories, list) and len(categories) > 0:
-            categories = categories[:3]
-            print(f"   ✅ Categories locked in by Local AI: {categories}")
-            return categories
-        else:
-            raise ValueError("Local AI returned JSON, but the 'categories' list was missing or empty.")
-
-    except Exception as e:
-        print(f"   ⚠️ Local AI failed ({e}). Gracefully degrading to Gemini...")
-        try:
-            gemini_response = client.models.generate_content(
-                model='gemini-2.5-flash-lite',
-                contents=f"Keyword: {keyword}",
-                config=types.GenerateContentConfig(
-                    system_instruction=instruction,
-                    response_mime_type="application/json",
-                    temperature=0.1
-                )
+        print(f"   [Coordinator] Asking Gemini...")
+        gemini_response = client.models.generate_content(
+            model='gemini-2.5-flash-lite',
+            contents=f"Keyword: {keyword}",
+            config=types.GenerateContentConfig(
+                system_instruction=instruction,
+                response_mime_type="application/json",
+                temperature=0.1
             )
+        )
 
-            result_dict = json.loads(gemini_response.text)
-            categories = result_dict.get("categories", [])[:3]
+        result_dict = json.loads(gemini_response.text)
+        categories = result_dict.get("categories", [])[:3]
 
-            if not categories:
-                categories = [keyword]  # Ultimate fallback
+        if not categories:
+            categories = [keyword]
 
-            print(f"   ✅ Categories locked in by Gemini: {categories}")
-            return categories
-        except Exception as gemini_e:
-            print(f"   ❌ Both AI systems failed: {gemini_e}. Defaulting to keyword only.")
-            return [keyword]
+        print(f"   ✅ Categories locked in by Gemini: {categories}")
+        return categories
+    except Exception as e:
+        print(f"   ❌ Gemini failed: {e}. Defaulting to keyword only.")
+        return [keyword]
 
 def get_image_bytes(image_url):
     """Fetches the raw bytes of an image to feed to the AIs."""
@@ -196,7 +172,7 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     Extract objective facts strictly under these 5 criteria:
     1. Quality of ingredients (식재료의 품질)
     2. Mastery of technique (맛과 조리 기술)
-    3. Personality of the chef (사장의 개성)
+    3. Experience (서비스, 직원 태도, 식사 분위기)
     4. Value for money (가성비)
     5. Consistency (일관성)
 
@@ -204,8 +180,26 @@ def evaluate_restaurant(restaurant_name, scraped_blog_data, search_keyword):
     If the sponsored ratio exceeds 50%, aggressively remove hyperbolic adjectives ("환상적인", "최고의", "인생맛집"), emotional language, and marketing tone. Extract ONLY cold, verifiable statements. If something cannot be objectively supported, exclude it.
     </task_3_fact_extraction>
 
+    <task_4_red_flag_detection>
+    Regardless of sponsorship ratio, scan ALL reviews for these serious problem patterns and list any that apply in red_flags.
+    Apply stricter detection than you would for positive signals — a single credible complaint is enough to flag.
+
+    - "hostile_staff": Any mention of rude, threatening, or coercive staff behavior.
+      Signal words: 무서웠어요, 불친절, 강요, 소리질렀어요, 욕설, 갑질
+    - "fraud_indicator": A review that contains "사기" or that simultaneously praises the restaurant AND labels it a scam or fraud.
+      Also flag: reviews where the same post uses both highly positive and highly negative labels for the same experience.
+    - "fake_review": Extreme implausible hyperbole that reads as astroturfing, not genuine emotion.
+      Signal phrases: 죽다 살아났어요, 생명을 구해줬어요, 죽기 전에 꼭, or any claim that food had a life-saving or supernatural effect.
+    - "quality_decline": Explicit complaints about food quality appearing in MULTIPLE reviews (not just one).
+      Signal words: 잡내, 비린내, 맛없어요, 퍽퍽한, 질이 떨어졌어요, 예전만 못해요
+    - "price_value_mismatch": Reviews in MULTIPLE posts that explicitly combine price complaints with small portions.
+      Signal combination: 비싸요 + 양이 적어요, or 가성비가 나빠요, or 가격 대비 실망
+
+    Leave red_flags as an empty list [] if none of the above are detected.
+    </task_4_red_flag_detection>
+
     <output_format>
-Respond ONLY with a valid JSON object. Do not include markdown code blocks. 
+Respond ONLY with a valid JSON object. Do not include markdown code blocks.
 Use the exact structure below:
 
 {{
@@ -216,20 +210,18 @@ Use the exact structure below:
     }},
     "serves_target_food": (boolean, must be false if is_generic_franchise_or_diner is true),
     "sponsored_ratio": "string (e.g., '4/10 sponsored')",
+    "red_flags": ["hostile_staff", "fraud_indicator"],
     "extracted_facts_ko": "Korean summary organized by the 5 criteria. The FIRST line must explicitly state the sponsored ratio."
 }}
     </output_format>
     """
-
-    full_analyst_prompt = f"{analyst_instruction}\n\nAnalyze these reviews for {restaurant_name}:\n\n{combined_text}"
-    analyst_data = None
 
     analyst_data = None
     max_retries = 3
 
     for attempt in range(max_retries):
         try:
-            print(f"   [Junior Analyst] Asking Cloud Gemini (Attempt {attempt + 1}/{max_retries})...")
+            print(f"   [Junior Analyst] Asking Gemini (Attempt {attempt + 1}/{max_retries})...")
             payload_contents: list[Any] = [f"Analyze these reviews for {restaurant_name}:\n\n{combined_text}"]
             if image_bytes:
                 payload_contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"))
@@ -245,7 +237,7 @@ Use the exact structure below:
             )
             analyst_data = json.loads(gemini_response.text)
             print("   ✅ Gemini successfully extracted facts!")
-            break  # Success! Break out of the retry loop
+            break
 
         except Exception as e:
             error_str = str(e)
@@ -253,19 +245,8 @@ Use the exact structure below:
                 print(f"   ⏳ Server overloaded (503). Waiting 3 seconds before retry...")
                 time.sleep(3)
             else:
-                print(f"   ⚠️ Cloud AI failed permanently ({e}). Falling back to Local {LOCAL_MODEL}...")
-
-                # --- LOCAL FALLBACK BLOCK GOES HERE ---
-                try:
-                    payload = {"model": LOCAL_MODEL, "prompt": full_analyst_prompt, "stream": False, "format": "json"}
-                    response = requests.post('http://localhost:11434/api/generate', json=payload, timeout=90)
-                    response.raise_for_status()
-                    analyst_data = json.loads(response.json()['response'])
-                    print("   ✅ Local AI successfully extracted facts!")
-                except Exception as local_e:
-                    print(f"   ❌ Both AI systems failed Junior Analyst stage: {local_e}")
-                    return None
-                break  # Break out of the loop after local attempt
+                print(f"   ❌ Gemini analyst failed permanently ({e}). Skipping restaurant.")
+                return None
 
     # ==========================================
     # 🛡️ THE BULLETPROOF DATA UNWRAPPER
@@ -294,8 +275,10 @@ Use the exact structure below:
         return {"score": 0, "award_level": "None", "justification": f"Does not specialize in {search_keyword}."}
 
     extracted_facts = analyst_data.get("extracted_facts_ko", "")
+    red_flags = analyst_data.get("red_flags", [])
     print(
-        f"   ✅ Facts extracted. Sponsorship: {analyst_data.get('sponsored_ratio', 'Unknown')}. Handing to Head Critic.")
+        f"   ✅ Facts extracted. Sponsorship: {analyst_data.get('sponsored_ratio', 'Unknown')}. "
+        f"Red flags: {red_flags if red_flags else 'None'}. Handing to Head Critic.")
 
     # ==========================================
     # PHASE 2: The Head Critic (The Michelin Judge)
@@ -309,24 +292,41 @@ Use the exact structure below:
         </role>
 
         <input_data>
-        The Junior Analyst has provided a summary of objective facts, including a "Sponsored Ratio" (협찬 비율).
+        The Junior Analyst has provided a summary of objective facts, including a "Sponsored Ratio" (협찬 비율) and any detected red_flags.
         </input_data>
 
         <scoring_rules>
         Score the restaurant out of 100. You MUST build the final score by assigning up to 20 points in each of these 5 categories:
         1. ingredients (Quality and sourcing of raw materials)
         2. technique (Mastery of flavor, cooking execution, temperature control)
-        3. personality (Uniqueness of the chef, signature identity vs. generic)
+        3. experience (Service quality, hospitality, staff conduct, dining atmosphere — including how the chef's personality or lack of care manifests in the guest's experience)
         4. value (Price relative to quality/portion)
         5. consistency (Evidence of long-term reputation and repeat local customers)
+
+        POLARITY RULE: Negative reviews carry MORE weight than positive ones at equal frequency.
+        A restaurant where multiple reviewers explicitly say "맛없어요" or "잡내" cannot score above 80 in technique or ingredients,
+        regardless of how many positive mentions exist. One clear, specific complaint outweighs three vague compliments.
         </scoring_rules>
 
         <sponsorship_weighting_rule>
-        Read the Sponsored Ratio carefully. 
+        Read the Sponsored Ratio carefully.
         - If the sponsored ratio is >= 75%: You MUST set "sponsorship_penalty_applied" to true. You must heavily deduct points from the "consistency" and "value" categories. The final calculated total score MUST NOT exceed 70. No exceptions.
         - Else if the sponsored ratio is >= 50%: You MUST set "sponsorship_penalty_applied" to true. You must heavily deduct points from the "consistency" and "value" categories. The final calculated total score MUST NOT exceed 80. No exceptions.
         - If the sponsored ratio is < 50%: Set "sponsorship_penalty_applied" to false. Score normally based purely on the culinary facts.
         </sponsorship_weighting_rule>
+
+        <red_flags_rule>
+        The Junior Analyst may have identified red_flags. Apply these mandatory caps BEFORE calculating the final score.
+        If multiple red_flags are present, apply ALL applicable caps — do not average them.
+
+        - "hostile_staff": experience MUST NOT exceed 8/20.
+        - "fraud_indicator": value MUST NOT exceed 6/20. consistency MUST NOT exceed 6/20. Final score MUST NOT exceed 72.
+        - "fake_review": Treat ALL positive facts as unverified. Score as if you had only neutral or negative facts. Final score MUST NOT exceed 75.
+        - "quality_decline": technique MUST NOT exceed 10/20. ingredients MUST NOT exceed 12/20.
+        - "price_value_mismatch": value MUST NOT exceed 8/20.
+
+        If a red_flag cap conflicts with a sponsorship cap, apply whichever is lower.
+        </red_flags_rule>
 
         <award_levels>
         - 95-100: "3 Neon Hearts" (Flawless execution, destination-worthy)
@@ -343,7 +343,7 @@ Use the exact structure below:
             "score_breakdown": {{
                 "ingredients": (int 0-20),
                 "technique": (int 0-20),
-                "personality": (int 0-20),
+                "experience": (int 0-20),
                 "value": (int 0-20),
                 "consistency": (int 0-20),
                 "sponsorship_penalty_applied": (boolean)
@@ -352,18 +352,22 @@ Use the exact structure below:
             "award_level": "string (e.g., '2 Neon Hearts' or 'None')",
             "description_en": "A punchy, honest 2-sentence English description reflecting the criteria.",
             "description_ko": "A natural, 2-sentence Korean description.",
-            "justification": "1 sentence explaining the score breakdown. If a sponsorship penalty was applied, explicitly state that here."
+            "justification": "1 sentence explaining the score breakdown. If a sponsorship penalty or red_flag cap was applied, explicitly state that here."
         }}
         </output_format>
     """
 
-    full_critic_prompt = f"{critic_instruction}\n\nCritique this summary for {restaurant_name}:\n\n{extracted_facts}"
+    red_flags_str = json.dumps(red_flags)
+    critic_contents = (
+        f"Red flags detected by analyst: {red_flags_str}\n\n"
+        f"Critique this summary for {restaurant_name}:\n\n{extracted_facts}"
+    )
 
     try:
-        print(f"   [Head Critic] Asking Cloud Gemini first...")
+        print(f"   [Head Critic] Asking Gemini...")
         gemini_response = client.models.generate_content(
             model='gemini-2.5-flash',
-            contents=f"Critique this summary for {restaurant_name}:\n\n{extracted_facts}",
+            contents=critic_contents,
             config=types.GenerateContentConfig(
                 system_instruction=critic_instruction,
                 response_mime_type="application/json",
@@ -372,23 +376,10 @@ Use the exact structure below:
         )
         critic_data = json.loads(gemini_response.text)
         critic_data['sponsored_ratio'] = analyst_data.get('sponsored_ratio', 'unknown')
+        critic_data['red_flags'] = red_flags
         print("   ✅ Gemini successfully scored the restaurant!")
         return critic_data
 
     except Exception as gemini_e:
-        print(f"   ⚠️ Gemini failed ({gemini_e}). Gracefully degrading to Local {LOCAL_MODEL}...")
-        try:
-            response = requests.post(
-                'http://localhost:11434/api/generate',
-                json={"model": LOCAL_MODEL, "prompt": full_critic_prompt, "stream": False, "format": "json"},
-                timeout=45
-            )
-            response.raise_for_status()
-            critic_data = json.loads(response.json()['response'])
-            critic_data['sponsored_ratio'] = analyst_data.get('sponsored_ratio', 'unknown')
-            print("   ✅ Local AI successfully scored the restaurant!")
-            return critic_data
-
-        except Exception as local_e:
-            print(f"   ❌ Both AI systems failed Head Critic stage: {local_e}")
-            return None
+        print(f"   ❌ Gemini critic failed permanently ({gemini_e}). Skipping restaurant.")
+        return None
