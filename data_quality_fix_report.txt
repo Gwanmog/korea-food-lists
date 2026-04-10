@@ -1,9 +1,9 @@
 DATA QUALITY FIX REPORT
 ======================================================================
 
-Original row count:  769
-Final row count:     769
-Total removed:       0
+Original row count:  360
+Final row count:     359
+Total removed:       1
 
 PASS 1 — REVOKED ENTRIES (0 removed)
 ----------------------------------------------------------------------
@@ -11,11 +11,12 @@ Criteria: Justification contains 'Supreme Court Overruled' AND 'Revoked'
 Cause: pandas type mismatch — score not zeroed but justification was updated
 
 
-PASS 2 — SPONSORED CAP VIOLATIONS (0 removed)
+PASS 2 — SPONSORED CAP VIOLATIONS (1 removed)
 ----------------------------------------------------------------------
 Criteria: Score > 84 AND 'significant deductions' AND 'sponsored' in Justification
 Cause: critic_agent did not enforce the ≤84 sponsorship cap correctly
 
+  백순대본가새맛 신촌연대점 | Score: 93 | The score of 93 reflects high marks across all categories, particularly for the exceptional quality of ingredients, mast
 
 PASS 3 — DUPLICATES (0 removed)
 ----------------------------------------------------------------------
