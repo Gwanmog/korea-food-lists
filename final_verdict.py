@@ -1,9 +1,32 @@
+import sys
+import os
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import pandas as pd
 
 
 def supreme_court_audit(csv_path, output_path):
     print("⚖️ Convening the Supreme Court for final manual review audit...")
-    df = pd.read_csv(csv_path)
+
+    # 🛡️ PROTECTION: When rebuilding from queue (csv_path ≠ output_path), load the
+    # existing audited_final so already-approved restaurants are preserved with their
+    # proper audited data — not the potentially stale queue entry.
+    # In-place cleanup passes (csv_path == output_path) are unaffected.
+    protected_df = None
+    protected_names = set()
+    if csv_path != output_path and os.path.exists(output_path):
+        try:
+            existing = pd.read_csv(output_path, encoding='utf-8-sig',
+                                   on_bad_lines='skip', engine='python')
+            existing['Score'] = pd.to_numeric(existing['Score'], errors='coerce').fillna(0)
+            protected_df = existing[existing['Score'] >= 70].copy()
+            protected_names = set(protected_df['Restaurant Name'].astype(str).str.strip())
+            print(f"🛡️ Protected: {len(protected_names)} restaurants already in guide at Score ≥ 70")
+        except Exception as e:
+            print(f"⚠️ Could not load protection list: {e}")
+
+    df = pd.read_csv(csv_path, encoding='utf-8-sig', on_bad_lines='skip', engine='python')
 
     # Ensure columns exist
     if 'Upgrade Recommended' not in df.columns:
@@ -286,14 +309,58 @@ def supreme_court_audit(csv_path, output_path):
     low_score_mask = df['Score'] < 70
     upgrade_mask = df['Upgrade Recommended'].astype(str).str.strip().str.lower().isin(['true', '1', '1.0'])
 
-    quarantine_mask = needs_review_mask | low_score_mask | upgrade_mask
+    # 🛡️ Restaurants already in the guide at Score ≥ 70 are protected from demotion.
+    # Their stale queue scores cannot quarantine them — only reclassify.py can re-evaluate.
+    protection_mask = df['Restaurant Name'].astype(str).str.strip().isin(protected_names)
+    if protection_mask.sum() > 0:
+        print(f"   🛡️ Shielding {protection_mask.sum()} already-audited restaurants from demotion.")
+
+    quarantine_mask = (needs_review_mask | low_score_mask | upgrade_mask) & ~protection_mask
 
     upgrade_count = upgrade_mask.sum()
     if upgrade_count > 0:
         print(f"   ⬆️ {upgrade_count} restaurants flagged for upgrade routed to Appellate Court.")
 
-    quarantine_df = df[quarantine_mask]
+    quarantine_df = df[quarantine_mask].copy()
     clean_df = df[~quarantine_mask]
+
+    # ==========================================
+    # 🔄 RECLASSIFY ELIGIBLE FLAG
+    # ==========================================
+    # Marks quarantined restaurants that failed due to category mismatch rather than
+    # genuine quality failure — candidates for a second chance under a different keyword.
+    # Criteria:
+    #   1. Score between 55 and 84 (too low to pass, not so low it's just bad food)
+    #   2. Rating Justified != No (Naver receipts didn't actively condemn the place)
+    #   3. Upgrade Recommended is False (not an appellate court case)
+    #   4. Score != 0 (not a Supreme Court revocation)
+    if not quarantine_df.empty:
+        score_col = pd.to_numeric(quarantine_df['Score'], errors='coerce').fillna(0)
+        rating_justified = quarantine_df.get('Rating Justified', pd.Series([''] * len(quarantine_df), index=quarantine_df.index)) \
+                                        .astype(str).str.strip().str.lower()
+        upgrade_col = quarantine_df.get('Upgrade Recommended', pd.Series(['false'] * len(quarantine_df), index=quarantine_df.index)) \
+                                   .astype(str).str.strip().str.lower()
+
+        reclassify_mask = (
+            (score_col >= 55) &
+            (score_col <= 84) &
+            (rating_justified != 'no') &
+            (~upgrade_col.isin(['true', '1', '1.0'])) &
+            (score_col != 0)
+        )
+
+        quarantine_df['Reclassify Eligible'] = reclassify_mask
+        eligible_count = reclassify_mask.sum()
+        if eligible_count > 0:
+            print(f"   🔄 {eligible_count} quarantined restaurants flagged as Reclassify Eligible.")
+
+    # 🛡️ For the rebuild case: replace the stale queue rows for protected restaurants
+    # with their proper audited_final rows (correct scores, complete audit data).
+    # New passing entries from the queue are appended after.
+    if protected_df is not None and not protected_df.empty:
+        new_entries = clean_df[~clean_df['Restaurant Name'].astype(str).str.strip().isin(protected_names)]
+        clean_df = pd.concat([protected_df, new_entries], ignore_index=True)
+        print(f"   🛡️ Restored {len(protected_df)} protected restaurants | {len(new_entries)} new entries added.")
 
     # Save the files
     if not quarantine_df.empty:

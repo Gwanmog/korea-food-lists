@@ -5,7 +5,11 @@ import random
 import csv
 import sys
 import subprocess
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
+
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 from naver_agent import search_naver_blogs, scrape_naver_blog_text
 from critic_agent import evaluate_restaurant, get_kakao_categories
@@ -21,17 +25,29 @@ KAKAO_API_KEY = os.getenv("KAKAO_REST_API_KEY")
 # ⚙️ THE SEOUL MASTER QUEUE (ALL 25 DISTRICTS)
 # ==========================================
 NEIGHBORHOODS = [
-    "잠실동"
+    "청담동",
+    "삼성동"
 ]
 # 🎯 THE TARGET DICTIONARY
 # Format: "Kakao Search Bait": ("Gemini Master Target", Strict_Mode_Boolean)
 KEYWORDS = {
-    # Late Night & Chicken
-    "치맥": ("치맥", False)
+    "치맥": ("치맥", False),
+    "삼겹살": ("삼겹살", False),
+    "한우": ("한우구이", False),
+    "비빔밥": ("비빔밥", False),
+    "짜장면": ("짜장면", False),
+    "곱창": ("곱창", False),
+    "냉면": ("냉면", False),
+    "카페": ("카페", False),
+    "갈비": ("갈비", False),
+    "순대국밥": ("순대국밥", False),
 }
 
 MAX_PLACES_PER_SEARCH = 45
 CSV_FILENAME = os.path.join(script_dir, 'neon_guide_review_queue.csv')
+QUEUE_FILE = CSV_FILENAME  # alias for import by reclassify.py
+SKIP_CACHE_FILE = os.path.join(script_dir, 'skip_cache.csv')
+SKIP_CACHE_TTL_DAYS = 365
 
 # ==========================================
 
@@ -98,6 +114,40 @@ def append_to_csv(row_dict):
         writer.writerow(row_dict)
 
 
+def load_skip_cache():
+    """Load (restaurant_name, keyword) pairs blocked within the TTL window."""
+    blocked = set()
+    if not os.path.isfile(SKIP_CACHE_FILE):
+        return blocked
+    cutoff = datetime.now() - timedelta(days=SKIP_CACHE_TTL_DAYS)
+    with open(SKIP_CACHE_FILE, 'r', encoding='utf-8-sig') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            try:
+                last_attempted = datetime.strptime(row['Last Attempted'], '%Y-%m-%d')
+                if last_attempted >= cutoff:
+                    blocked.add((row['Restaurant Name'], row['Keyword']))
+            except (ValueError, KeyError):
+                pass
+    print(f"🚫 Skip Cache: {len(blocked)} (restaurant, keyword) pairs blocked within TTL.")
+    return blocked
+
+
+def write_skip_cache(restaurant_name, keyword, reason):
+    """Record a failed (restaurant, keyword) pair so it won't be re-scraped within the TTL."""
+    file_exists = os.path.isfile(SKIP_CACHE_FILE)
+    with open(SKIP_CACHE_FILE, 'a', newline='', encoding='utf-8-sig') as f:
+        writer = csv.DictWriter(f, fieldnames=['Restaurant Name', 'Keyword', 'Last Attempted', 'Reason'])
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow({
+            'Restaurant Name': restaurant_name,
+            'Keyword': keyword,
+            'Last Attempted': datetime.now().strftime('%Y-%m-%d'),
+            'Reason': reason,
+        })
+
+
 def load_existing_restaurants():
     """Reads ALL CSVs to memorize places we've already scored across multiple runs."""
     seen_names = set()
@@ -151,6 +201,7 @@ def is_strong_hit(place, keyword, valid_categories, expected_neighborhood):
 
 def run_massive_pipeline():
     seen_places = load_existing_restaurants()
+    skip_cache = load_skip_cache()
 
     # 🔄 Unpack all three variables!
     for search_bait, (master_target, is_strict) in KEYWORDS.items():
@@ -179,8 +230,12 @@ def run_massive_pipeline():
                     print(f"⏭️ Skipping {restaurant_name} (Already in CSV).")
                     continue
 
-                seen_places.add(restaurant_name)
-                # FIX 1: Use search_bait instead of keyword in the print statement
+                # Check skip cache for this specific (restaurant, keyword) pair.
+                # A restaurant blocked on one keyword can still be picked up by another.
+                if (restaurant_name, search_bait) in skip_cache:
+                    print(f"⏭️ Skip Cache: {restaurant_name} blocked for '{search_bait}' (tried within last year).")
+                    continue
+
                 print(f"\n🕵️ Investigating: {restaurant_name} ({neighborhood} / {search_bait})")
 
                 # --- A. Get Naver Blogs ---
@@ -189,8 +244,6 @@ def run_massive_pipeline():
                     continue
 
                 # 🚀 THE FAST-PASS FILTER 🚀
-                # Dynamically look for the actual food we are searching for!
-                # Replace 'search_keyword' and 'target_keyword' with whatever variables your loop uses.
                 fast_pass_terms = [search_bait, master_target]
 
                 passed_fast_pass = False
@@ -205,8 +258,15 @@ def run_massive_pipeline():
                 if not passed_fast_pass:
                     print(
                         f"⏭️ Fast-Pass Failed: {restaurant_name}. No mention of '{search_bait}' or '{master_target}'. Skipping AI.")
+                    # Cache this (name, keyword) pair — but don't add to seen_places so
+                    # other keywords can still discover this restaurant in the same run.
+                    write_skip_cache(restaurant_name, search_bait, 'fast_pass_fail')
+                    skip_cache.add((restaurant_name, search_bait))
                     continue
                 # 🚀 ------------------------ 🚀
+
+                # Claim the restaurant now to prevent double-scoring under other keywords this run.
+                seen_places.add(restaurant_name)
 
                 print(f"✅ Fast-Pass Passed! Scraping full blogs for {restaurant_name}...")
 
@@ -239,7 +299,6 @@ def run_massive_pipeline():
 
                     row = {
                         "Neighborhood": neighborhood,
-                        # FIX 2: Save it under the master_target so your lists stay clean!
                         "Keyword": master_target,
                         "Restaurant Name": restaurant_name,
                         "Score": score,
@@ -254,7 +313,14 @@ def run_massive_pipeline():
                     }
 
                     append_to_csv(row)
+
+                    # Cache below-threshold scores so we don't re-scrape them next run
+                    # under the same keyword. They can still surface via other keywords.
+                    if score < 70:
+                        write_skip_cache(restaurant_name, search_bait, 'below_threshold')
+                        skip_cache.add((restaurant_name, search_bait))
                 else:
+                    # Gemini failed transiently — don't cache, allow a clean retry next run.
                     print(f"❌ AI failed to evaluate {restaurant_name}.")
 
                 time.sleep(random.uniform(4.0, 7.0))
@@ -288,6 +354,21 @@ if __name__ == "__main__":
         subprocess.run([sys.executable, "final_verdict.py"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"\n❌ The Final Verdict encountered an error: {e}")
+
+    # 3.2. Trigger the Reclassification Engine
+    print("\n" + "=" * 50)
+    print("🔄 PHASE 3.2: Running Reclassification Engine...")
+    print("=" * 50 + "\n")
+    try:
+        reclassify_result = subprocess.run([sys.executable, "reclassify.py"], check=False)
+        if reclassify_result.returncode == 1:
+            # Promotions occurred — re-run receipt_auditor + final_verdict to process them
+            print("\n>>> Promotions detected. Re-running receipt auditor on promoted entries...")
+            subprocess.run([sys.executable, "receipt_auditor.py"], check=False)
+            print("\n>>> Re-running final_verdict to incorporate promoted entries...")
+            subprocess.run([sys.executable, "final_verdict.py"], check=False)
+    except FileNotFoundError:
+        print("\n❌ Could not find 'reclassify.py'.")
 
     # 3.5. Trigger the Appellate Court
     print("\n" + "=" * 50)
@@ -334,18 +415,50 @@ if __name__ == "__main__":
     print("🚀 PHASE 7: Deploying to Production...")
     print("=" * 50 + "\n")
     try:
-        # Using the exact relative paths based on your project tree
-        subprocess.run(["git", "add", "site/places.geojson", "data/restaurant_vectors.index"], check=True)
+        import re as _re, csv as _csv
+
+        def _next_patch_ma():
+            r = subprocess.run(['git', 'log', '--oneline', '-1'],
+                               capture_output=True, text=True, encoding='utf-8', cwd=script_dir)
+            if not r.stdout:
+                return 'next'
+            m = _re.search(r'Patch ([\d]+)\.([\d]+)', r.stdout)
+            if m:
+                return f"{m.group(1)}.{int(m.group(2)) + 1}"
+            return 'next'
+
+        def _count_csv_ma(filename):
+            p = os.path.join(script_dir, filename)
+            if not os.path.exists(p):
+                return 0
+            with open(p, encoding='utf-8-sig') as f:
+                return sum(1 for _ in _csv.DictReader(f))
+
+        patch = _next_patch_ma()
+        total_clean = _count_csv_ma('neon_guide_audited_final.csv')
+        total_quar = _count_csv_ma('needs_human_attention.csv')
+        hoods_swept = ', '.join(NEIGHBORHOODS)
+
+        commit_msg = (
+            f"Patch {patch}: Web sweep — {hoods_swept}\n\n"
+            f"{total_clean} restaurants in guide | {total_quar} in quarantine\n\n"
+            f"Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        )
+
+        subprocess.run(["git", "add",
+            "site/places.geojson",
+            "data/restaurant_vectors.index",
+            "neon_guide_audited_final.csv",
+            "needs_human_attention.csv",
+        ], check=True, cwd=script_dir)
 
         # Git commit throws a non-zero exit code if there are no changes.
-        # We capture the output instead of checking=True so it doesn't crash the script.
         commit_process = subprocess.run(
-            ["git", "commit", "-m", "🤖 Auto-deploy: Master Agent pipeline finished"],
-            capture_output=True, text=True
+            ["git", "commit", "-m", commit_msg],
+            capture_output=True, text=True, cwd=script_dir
         )
 
         if commit_process.returncode == 0:
-            # Changes were committed, safe to push!
             print("📦 Changes committed. Pushing to GitHub...")
             subprocess.run(["git", "push"], check=True)
             print("\n🏆 ENTIRE PIPELINE DEPLOYED SUCCESSFULLY!")

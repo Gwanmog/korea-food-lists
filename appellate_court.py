@@ -1,3 +1,7 @@
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import os
 import json
 import csv
@@ -211,8 +215,8 @@ def run_appellate_court():
         pd.DataFrame(remaining_quarantine).to_csv(QUARANTINE_FILE, index=False, encoding='utf-8-sig')
         print(f"\n⚠️ {len(remaining_quarantine)} places remain in {QUARANTINE_FILE}.")
     else:
-        # If empty, delete the file or clear it
-        os.remove(QUARANTINE_FILE)
+        # Write an empty file with headers rather than deleting it
+        pd.DataFrame(columns=df_quarantine.columns).to_csv(QUARANTINE_FILE, index=False, encoding='utf-8-sig')
         print(f"\n🎉 Quarantine file is completely clear!")
 
     # 2. Merge Pardoned Rows back into the Clean File

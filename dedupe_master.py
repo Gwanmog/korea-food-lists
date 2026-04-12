@@ -1,3 +1,7 @@
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import pandas as pd
 import math
 import json
@@ -78,7 +82,7 @@ def run_merge():
     # 1. Load the Audited CSV
     script_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(script_dir, 'neon_guide_review_queue.csv')
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(csv_path, on_bad_lines='skip', engine='python', encoding='utf-8-sig')
 
     # 2. Filter for ONLY the winning restaurants
     # Strip whitespace to ensure safe matching
