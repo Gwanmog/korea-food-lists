@@ -1,4 +1,8 @@
 from __future__ import annotations
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import math
 import argparse
 import csv
@@ -55,6 +59,7 @@ class Place:
     korean_query: str | None = None
     name_ko: str | None = None  # NEW: Official Korean Name (e.g. 정육면체)
     address_ko: str | None = None  # NEW: Official Korean Address
+    description_ko: str | None = None  # Customer-facing Korean description
 
 
 # -------------------------
@@ -573,10 +578,17 @@ def load_neon_guide(filename: str) -> list[Place]:
                 m = re.search(r'kakao\.com/(\d+)', kakao_url)
                 if m: kakao_id = m.group(1)
 
-            desc_en = row.get("Description EN", "")
-            justification = row.get("Justification", "")
             tier_phrase = get_excellence_tier(score)
-            full_desc = f"{tier_phrase}\n\n{desc_en}\n\nInspector Notes: {justification}"
+            guide_desc_en = (
+                row.get("Guide Description", "").strip()
+                or row.get("Description EN", "").strip()
+            )
+            guide_desc_ko = (
+                row.get("Guide Description KO", "").strip()
+                or row.get("Description KO", "").strip()
+            )
+            full_desc = f"{tier_phrase}\n\n{guide_desc_en}" if guide_desc_en else tier_phrase
+            full_desc_ko = guide_desc_ko or guide_desc_en
 
             p = Place(
                 source="neon",  # Changed to "neon" to match your app.js logic for yellow circles
@@ -587,7 +599,8 @@ def load_neon_guide(filename: str) -> list[Place]:
                 cuisine=row.get("Category", "Craft Beer / Dining"),
                 price=None, phone=None, url=None, year="2026",
                 description=full_desc, latitude=lat, longitude=lon,
-                captured_at=captured_at, kakao_id=kakao_id, kakao_url=kakao_url
+                captured_at=captured_at, kakao_id=kakao_id, kakao_url=kakao_url,
+                description_ko=full_desc_ko
             )
             out.append(p)
 
