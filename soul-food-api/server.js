@@ -46,7 +46,9 @@ const placesData = JSON.parse(fs.readFileSync(geojsonPath, 'utf8'));
 console.log(`🗺️ Loaded map data with ${placesData.features.length} locations.`);
 
 // 3. FAISS Retrieval Engine
-async function searchFAISS(query) {
+// allowedIds: optional array of vector_ids to score against (viewport subset).
+// When provided, Python scores only those vectors. When null, global top-20 search.
+async function searchFAISS(query, allowedIds = null) {
     try {
         const result = await embeddingModel.embedContent(query);
         const vector = result.embedding.values;
@@ -64,7 +66,10 @@ async function searchFAISS(query) {
                 resolve([]);
             }, 10000);
 
-            pythonProcess.stdin.write(JSON.stringify(vector));
+            const payload = allowedIds
+                ? JSON.stringify({ vector, allowed_ids: allowedIds })
+                : JSON.stringify(vector);
+            pythonProcess.stdin.write(payload);
             pythonProcess.stdin.end();
 
             let outputData = '';
@@ -103,13 +108,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
 
     console.log(`[AI Request] Lang: ${targetLang} | User asked: "${userQuery}"`);
 
-    // 1. THE RAG RETRIEVAL: Ask FAISS for the best semantic matches (top 20 candidates)
-    console.log(`[Step 1] Calling Gemini embeddings...`);
-    const vectorIds = await searchFAISS(userQuery);
-    console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds);
-    const safeVectorIds = vectorIds.map(id => String(id));
-
-    // 2. THE JOIN: Grab rich metadata for all 20 candidates
+    // 2. THE JOIN helper
     const toRow = f => ({
         name: f.properties.name,
         cuisine: f.properties.cuisine,
@@ -120,12 +119,17 @@ app.post('/chat', searchLimiter, async (req, res) => {
         lon: f.geometry.coordinates[0]
     });
 
-    const allCandidates = placesData.features.filter(f =>
-        f.properties.vector_id && safeVectorIds.includes(String(f.properties.vector_id))
-    );
+    const joinIds = (ids) => {
+        const safe = ids.map(id => String(id));
+        return placesData.features.filter(f =>
+            f.properties.vector_id != null && safe.includes(String(f.properties.vector_id))
+        );
+    };
 
-    // 3. LOCATION FILTER: prefer restaurants inside the user's current map viewport,
-    //    UNLESS the user explicitly named a neighbourhood — then search globally.
+    // 3. LOCATION FILTER — three plans:
+    //   Plan B: user named a neighbourhood → global FAISS search, trust their words
+    //   Plan A: map window provided → FAISS scoped to in-view restaurants (correct order: location first, then semantic rank)
+    //   Plan C: map window provided but no in-view results → global FAISS, tell user results are from elsewhere
     const SEOUL_NEIGHBOURHOODS = [
         // English
         'gangnam','hongdae','itaewon','sinchon','insadong','myeongdong','jongno',
@@ -143,27 +147,53 @@ app.post('/chat', searchLimiter, async (req, res) => {
     const queryLower = userQuery.toLowerCase();
     const userNamedLocation = SEOUL_NEIGHBOURHOODS.some(n => queryLower.includes(n));
 
-    let bestMatches, locationNote;
+    let bestMatches, locationNote, vectorIds;
+
     if (userNamedLocation) {
-        // User explicitly asked about a place — trust their words, search globally
-        bestMatches  = allCandidates.map(toRow);
+        // Plan B: named neighbourhood — global search, Gemini checks coordinates
+        console.log(`[Step 1] Plan B: named location — global FAISS search`);
+        vectorIds = await searchFAISS(userQuery);
+        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+        bestMatches  = joinIds(vectorIds).map(toRow);
         locationNote = "The user has named a specific neighbourhood. Recommend only restaurants that match that area per their request.";
+
     } else if (mapWindow) {
-        const inView = allCandidates.filter(f => {
+        // Plan A: scope FAISS to restaurants already in the viewport
+        const inViewFeatures = placesData.features.filter(f => {
             const [lon, lat] = f.geometry.coordinates;
             return lat >= mapWindow.south && lat <= mapWindow.north &&
                    lon >= mapWindow.west  && lon <= mapWindow.east;
         });
+        const inViewIds = inViewFeatures
+            .map(f => f.properties.vector_id)
+            .filter(id => id != null)
+            .map(Number);
 
-        if (inView.length >= 2) {
-            bestMatches  = inView.map(toRow);
-            locationNote = "All options below are within the user's current map view.";
-        } else {
-            bestMatches  = allCandidates.map(toRow);
-            locationNote = "NOTE: There were not enough strong matches in the user's current map area, so results may be from elsewhere in Seoul. Mention this briefly and suggest they pan the map.";
+        console.log(`[Step 1] Plan A: ${inViewIds.length} in-view restaurants with vectors`);
+
+        if (inViewIds.length > 0) {
+            vectorIds = await searchFAISS(userQuery, inViewIds);
+            console.log(`[Step 2] Viewport-scoped FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+            bestMatches = joinIds(vectorIds).map(toRow);
         }
+
+        if (!bestMatches || bestMatches.length === 0) {
+            // Plan C: nothing matched in view — fall back to global and say so
+            console.log(`[Step 1C] Plan C: no in-view matches — falling back to global FAISS`);
+            vectorIds = await searchFAISS(userQuery);
+            console.log(`[Step 2C] Global FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+            bestMatches  = joinIds(vectorIds).map(toRow);
+            locationNote = "NOTE: There were no strong matches in the user's current map view. The results below are from elsewhere in Seoul. Start your response by briefly letting the user know you couldn't find anything on their current screen, but found some good options in other neighbourhoods — and suggest they pan the map.";
+        } else {
+            locationNote = "All options below are within the user's current map view.";
+        }
+
     } else {
-        bestMatches  = allCandidates.map(toRow);
+        // No location context at all — global search
+        console.log(`[Step 1] No location context — global FAISS search`);
+        vectorIds = await searchFAISS(userQuery);
+        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+        bestMatches  = joinIds(vectorIds).map(toRow);
         locationNote = "";
     }
 
@@ -187,6 +217,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
       - Based ONLY on the list above, recommend the top 1-3 best matches.
       - Explain WHY each fits their request based on the description.
       - Keep it brief, accurate, and friendly.
+      - IMPORTANT: Our database does NOT contain operating hours or closed-day information. If the user asks about a specific day or time (e.g. "open on Monday"), briefly acknowledge you cannot confirm hours, then recommend the best matches based on food type and quality alone. Never say you found zero results just because hours data is missing.
     `;
 
     console.log(`[Step 3] Sending ${bestMatches.length} matches to Gemini chat...`);

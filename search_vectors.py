@@ -18,32 +18,50 @@ sys.stderr = open(os.devnull, 'w')
 
 def search():
     try:
-        # 1. Read the raw vector array piped from Node.js
         input_data = sys.stdin.read()
         if not input_data:
             return
 
-        vector = json.loads(input_data)
+        parsed = json.loads(input_data)
+
+        # Accept either a raw vector array (legacy) or {vector, allowed_ids}
+        if isinstance(parsed, list):
+            vector = parsed
+            allowed_ids = None
+        else:
+            vector = parsed['vector']
+            allowed_ids = parsed.get('allowed_ids')  # list of int vector IDs, or None
+
         vector_np = np.array([vector], dtype=np.float32)
 
-        # 2. Load FAISS and search
-        # Check if file exists first to avoid a hard crash
         if not os.path.exists(FAISS_INDEX_PATH):
-            print(json.dumps([]))
+            sys.__stdout__.write(json.dumps([]))
             return
 
-        index = faiss.read_index(FAISS_INDEX_PATH)  # Fixed the variable name!
-        distances, indices = index.search(vector_np, 20)
+        index = faiss.read_index(FAISS_INDEX_PATH)
 
-        # 3. Print ONLY the IDs as a JSON string
-        # This is the only thing that should go to stdout
-        result_ids = [int(idx) for idx in indices[0] if idx != -1]
+        if allowed_ids:
+            # Score only the in-view subset by reconstructing their vectors
+            valid_ids = [i for i in allowed_ids if 0 <= i < index.ntotal]
+            if not valid_ids:
+                sys.__stdout__.write(json.dumps([]))
+                return
 
-        # We write directly to the original stdout to ensure it's clean
+            subset_vectors = np.array([index.reconstruct(i) for i in valid_ids], dtype=np.float32)
+            diffs = subset_vectors - vector_np
+            distances = np.sum(diffs ** 2, axis=1)
+
+            k = min(20, len(valid_ids))
+            sorted_indices = np.argsort(distances)[:k]
+            result_ids = [valid_ids[i] for i in sorted_indices]
+        else:
+            # Global search across all restaurants
+            distances, indices = index.search(vector_np, 20)
+            result_ids = [int(idx) for idx in indices[0] if idx != -1]
+
         sys.__stdout__.write(json.dumps(result_ids))
 
     except Exception:
-        # If anything goes wrong, return empty list so the server doesn't crash
         sys.__stdout__.write(json.dumps([]))
 
 
