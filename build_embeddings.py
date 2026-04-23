@@ -1,3 +1,7 @@
+import sys
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 import json
 import os
 import time
@@ -124,9 +128,10 @@ def build_retrieval_system():
         desc_en = props.get('description') or props.get('description_en') or ""
         verdict_en = props.get('justification') or ""
         category = props.get('category') or ""
+        cuisine = props.get('cuisine') or ""
 
-        # Data Quality Gate
-        if len(desc_en.strip()) < 10 and not category.strip():
+        # Data Quality Gate — need at least one meaningful signal to embed
+        if len(desc_en.strip()) < 10 and not category.strip() and not cuisine.strip():
             print(f"  Skipping {name}: not enough text to embed.")
             continue
 
@@ -171,6 +176,7 @@ def build_retrieval_system():
 
         rich_text = (
             f"이름: {name}. "
+            f"{'카테고리: ' + cuisine + '.' if cuisine else ''}"
             f"설명: {desc_final}. "
             f"{'평가: ' + verdict_final + '.' if verdict_final else ''}"
         ).strip()
