@@ -281,7 +281,7 @@ Current repaired files both **PASS**; both historical degraded files **FAIL**.
       test can't meet the floors and must not be able to overwrite production input
 - [x] `data/raw/` now version-controlled
 - [x] Standalone CLI: `python scrape_validation.py michelin data/raw/michelin.csv`
-- [ ] Fold into the Phase 7 test suite so CI runs it too
+- [x] Folded into the Phase 7 suite ( runs  over the current raw captures)
 
 **Two design notes for whoever tunes this:**
 - Aliasing detection uses **prefix overlap, not equality** — the real incident had `cuisine`
@@ -860,9 +860,27 @@ or tier label; no `/translate` call fires for a restaurant already in the datase
       and documents `dedupe_master.py` as a live pipeline stage (it is dead code).
 - [ ] **Rotate credentials.** `soul-food-api/.env` is correctly gitignored — confirm no key ever
       landed in history across 126 commits.
-- [ ] **Add tests.** There are none. Minimum: a data-integrity suite asserting no duplicate
-      `kakao_id`, no pin outside the Seoul bbox, every pin has a `vector_id`, tier distribution
-      within expected bounds.
+- [x] **Add tests.** `test_data_integrity.py` — **18 checks, all passing.** Self-contained
+      (`python test_data_integrity.py`, exit 0/1, `-v` for detail); pytest isn't installed and
+      wasn't worth adding as a dependency for this.
+
+      Every assertion exists because that bug actually shipped: Michelin stars present,
+      RIBBON_THREE present, no duplicate `kakao_id`, no non-Seoul addresses, `cuisine` not
+      aliased onto `address`, tier vocabulary known, multi-guide pins carry their awards, no
+      auditor-rejected restaurant live, tier distribution not inflated, no emoji boilerplate in
+      descriptions, bilingual coverage floors, cuisine language purity, FAISS/map row-count sync,
+      contiguous `vector_id`s, and — the one that would have caught the 57-instead-of-1 filter
+      bug — **every tier used for filtering maps to a pill that exists in `index.html`**.
+      It also folds in 1.5 by running `scrape_validation` over the current raw captures.
+
+      **Verified by injecting regressions, not just by passing:** stripping the stars,
+      duplicating a `kakao_id`, and pushing 40% of Neon to 3 hearts each produced the expected
+      failure and a non-zero exit; the fixture was then restored byte-identical.
+
+      One test bug found and fixed in the process: the filter-pill check originally demanded a
+      pill for the human-readable Neon labels ("1 Neon Heart"), which are display text and never
+      used as a lookup key — it now mirrors `guideVisible()`'s actual per-guide lookup.
+- [ ] Wire the suite into CI so it runs on every push (there is no CI yet).
 - [ ] Make the pipeline resumable and idempotent — currently a mid-run failure leaves partial state
       across a dozen CSVs.
 - [ ] Consolidate the CSV sprawl (`neon_guide_review_queue`, `neon_guide_audited_final`,
