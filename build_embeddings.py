@@ -177,8 +177,20 @@ def build_retrieval_system():
         desc_final = desc_ko or desc_en
         verdict_final = verdict_ko or verdict_en
 
+        # Location was entirely absent from the embedded text (Overhaul 4.1), so the index
+        # could not answer "near Itaewon" at all — which is why server.js carries a
+        # hardcoded neighbourhood list and viewport-scoping to compensate. The 동 and 구
+        # are stated explicitly as well as inside the address, because a bare address
+        # string buries the neighbourhood among road numbers and floor labels.
+        district = props.get('district') or ""
+        neighborhood = props.get('neighborhood') or ""
+        address_ko = props.get('address_ko') or props.get('address') or ""
+        location_bits = " ".join(x for x in ("서울", district, neighborhood) if x)
+
         rich_text = (
             f"이름: {name}. "
+            f"{'위치: ' + location_bits + '. ' if location_bits.strip() != '서울' else ''}"
+            f"{'주소: ' + address_ko + '. ' if address_ko else ''}"
             f"{'카테고리: ' + cuisine + '.' if cuisine else ''}"
             f"설명: {desc_final}. "
             f"{'평가: ' + verdict_final + '.' if verdict_final else ''}"

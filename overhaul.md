@@ -604,16 +604,58 @@ Six months have passed. Seoul restaurant churn is high. Some meaningful number o
 
 *Goal: stop patching a retrieval problem in the orchestration layer.*
 
-### 4.1 Put location into the embeddings `[ ]`
+### 4.1 Put location into the embeddings `[x]` — done 2026-08-09
+
+**Measured, not asserted. Location accuracy across 7 neighbourhood queries: 51% → 68%**
+(share of the top 20 actually in the named 구).
+
+| query | before | after |
+|---|---|---|
+| 강남 삼겹살 | 1/20 | **6/20** |
+| 종로 국밥 | 3/20 | **8/20** |
+| grilled pork belly in Gangnam | 3/20 | **9/20** |
+| 홍대 술집 | 14/20 | 17/20 |
+| 이태원 브런치 | 13/20 | 15/20 |
+| restaurants near Itaewon | 17/20 | **20/20** |
+| 잠실 치킨 | 20/20 | 20/20 |
+
+**The baseline was misleading in a useful way.** 51% looked mediocre but was actually
+*accidental*: queries scored well only where restaurant names happen to contain the
+neighbourhood ("생활맥주 잠실점"), so the match was on the name, not the location. Where names
+don't carry it — 강남 삼겹살 at 1/20 — retrieval was close to random.
+
+**Where the 동 came from.** Korean addresses here are road-based (도로명주소), so 구 extracts
+cleanly but the 동 appears in only 5 of 2,267. It lives in Kakao's *lot-based* address (지번),
+which was already in the ledger and unused. Pulling from there yields **176 distinct
+neighbourhoods across 1,855 pins**, versus the 41 the Neon CSV could have given.
+
+Each pin now carries `district` (구 — 2,255 pins, all 25) and `neighborhood` (동). Both are
+stated explicitly in `rich_text` *and* the address is included, because a raw address buries
+the neighbourhood among road numbers and floor labels.
+
+**Correction to this item's original claim.** It said this would let us delete
+`SEOUL_NEIGHBOURHOODS` in `server.js`. That was wrong — the list does two jobs, and only one
+is fixed here:
+1. *Compensating for location-blind embeddings* — fixed.
+2. *Intent detection* — deciding whether the user named a place at all, which selects
+   viewport-scoped vs global search. **Still required.**
+
+So the list can be simplified but not removed. 강남 삼겹살 at 6/20 also shows the job isn't
+finished: exact neighbourhood tokens are a lexical-match problem, which is **4.5's** territory
+(hybrid retrieval), not something denser embeddings alone will solve.
+
+<details><summary>Original problem statement (superseded)</summary>
 
 `build_embeddings.py:177-182` builds `rich_text` from name + cuisine + description + verdict.
 **There is no address and no neighbourhood in it.** That single omission is why `server.js:133-145`
 carries a hardcoded 60-item neighbourhood list and three fallback "Plans" — all of it compensating
 for an index that cannot answer "near Itaewon."
 
-- [ ] Add `address_ko`, neighbourhood (dong), and district (gu) to `rich_text`
-- [ ] Re-embed and confirm neighbourhood queries work **without** the hardcoded list
-- [ ] Delete or shrink `SEOUL_NEIGHBOURHOODS` in `server.js` once the index handles it
+- [x] Add `address_ko`, neighbourhood (dong), and district (gu) to `rich_text`
+- [x] Re-embed and measure (51% → 68%)
+- [ ] Simplify `SEOUL_NEIGHBOURHOODS` — it can shrink, but not disappear (see above)
+
+</details>
 
 ### 4.2 Remove tier boilerplate from vectors `[x]` — done 2026-08-09 (shipped with 2.3/2.4)
 Every Neon vector used to begin with the same tier phrase. Removed; the tier now lives in its

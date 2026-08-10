@@ -78,6 +78,11 @@ class Place:
     # Blue Ribbon and Neon ship Korean, so the label was mixed-language for everyone
     # regardless of the UI toggle. Populated from data/cuisine_map.json.
     cuisine_ko: str | None = None
+    # Location tokens, extracted once at build time so the embeddings can carry them.
+    # `district` is the 구 (25 across Seoul), `neighborhood` the 동 (~183 seen).
+    # Road-name addresses rarely contain the 동, so it comes from Kakao's lot address.
+    district: str | None = None
+    neighborhood: str | None = None
 
 
 PLACE_FIELDS = {f.name for f in fields(Place)}
@@ -202,15 +207,29 @@ def _backfill_address_from_kakao(p: Place, doc: dict | None):
     """
     if not doc or not isinstance(doc, dict):
         return
-    korean = (doc.get("road_address_name") or doc.get("address_name") or "").strip()
-    if not korean:
-        return
-    if not (p.address_ko or "").strip():
-        p.address_ko = korean
-    if not (p.address or "").strip():
-        p.address = korean
+    road = (doc.get("road_address_name") or "").strip()
+    lot = (doc.get("address_name") or "").strip()
+    korean = road or lot
+    if korean:
+        if not (p.address_ko or "").strip():
+            p.address_ko = korean
+        if not (p.address or "").strip():
+            p.address = korean
     if not (p.name_ko or "").strip() and (doc.get("place_name") or "").strip():
         p.name_ko = doc["place_name"].strip()
+
+    # Location tokens for the embeddings (Overhaul 4.1). Always set, even when the guide
+    # already supplied an address — the 동 in particular is only reliably available from
+    # Kakao's lot-based address, since road-name addresses omit it.
+    for source_addr in (lot, road, p.address_ko or "", p.address or ""):
+        if not p.district:
+            m = re.search(r"([가-힣]+구)(?:\s|$|,)", source_addr)
+            if m:
+                p.district = m.group(1)
+        if not p.neighborhood:
+            m = re.search(r"([가-힣]+[0-9]*가?동)(?:\s|$|,)", source_addr)
+            if m:
+                p.neighborhood = m.group(1)
 
 
 def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[Place]:
