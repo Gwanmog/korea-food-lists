@@ -333,7 +333,45 @@ leaves the previous data intact. Re-running 1.1's repair after a fresh scrape is
 
 ---
 
-### 1.6 Re-scrape both guides `[ ]`
+### 1.6 Re-scrape both guides `[!]` — BLOCKED 2026-08-09, needs a decision
+
+**Attempted and stopped safely. Both scrapers are dead — the sites changed their access
+posture during the six months the pipeline sat idle.** No production data was touched.
+
+| Guide | Result | Diagnosis |
+|---|---|---|
+| Michelin | `HTTP 202`, empty/challenge body | **AWS WAF JavaScript challenge** (`window.awsWafCookieDomainList`, `gokuProps`, served via CloudFront). Not a selector or header problem — better headers only change an empty body into the 2 KB challenge page itself. |
+| Blue Ribbon | `403` with params, `404` without | **The `/api/v1/*` endpoints are gone.** Every variant tried (`/api/v1/restaurants`, `/api/v2/…`, `/api/restaurants`, `…/search`) returns the SPA's HTML 404 fallback. The site itself is fine (homepage 200, 96 KB) — the API moved or was versioned away. |
+
+**1.5 worked exactly as designed.** `--test-limit` caught the Michelin failure before any
+network write, and the guard would have refused the empty result regardless. The live map is
+untouched and still serving the repaired February data. This is the system doing its job:
+six months ago this same failure silently shipped.
+
+**Decision needed — these are different problems with different answers.**
+
+*Michelin (WAF challenge).* Getting past it means deliberately defeating an anti-bot control
+the site owner put in place. That is a judgement call for Alexander, not one to make silently.
+Worth weighing: **the Michelin Guide updates once a year** (the 2026 Seoul & Busan ceremony has
+already happened), and Seoul is ~200 restaurants of which only the ~92 starred/Bib entries carry
+tier information that matters. Annual manual curation is genuinely defensible here and sidesteps
+the question entirely.
+  - [ ] Option A: manual/annual tier curation from the published guide (recommended)
+  - [ ] Option B: drive a real browser (Selenium is already a project dependency) — works, but
+        is deliberate circumvention, brittle, and needs re-fixing whenever the challenge changes
+  - [ ] Option C: look for an official Michelin data feed / licensing route
+
+*Blue Ribbon (API moved).* Much less fraught — this is a public SPA calling its own public API.
+The fastest fix is to read the current endpoint off the network tab:
+  - [ ] Open `bluer.co.kr`, search Seoul, copy the request URL the page itself issues, and point
+        `scrape_bluer_run()` at it. Two minutes of Alexander's time beats an hour of guessing.
+
+**Until this is resolved, guide data stays at the 2026-02-14 capture.** Note the 2026 guide was
+announced with a *"record number of new and promoted starred restaurants,"* so our 27 one-star /
+8 two-star counts are probably understated. The one number we did verify against the live guide
+is correct: **Mingles is Korea's only three-star restaurant.**
+
+<details><summary>Original task description</summary>
 
 Current data is from **2026-02-14** — roughly six months and two guide news cycles stale.
 `build_map_list.py fetch` already does this.
@@ -344,6 +382,8 @@ Current data is from **2026-02-14** — roughly six months and two guide news cy
 - [ ] Record `captured_at` per source and surface "guide data as of {date}" in the UI
 
 **Acceptance criteria:** a written diff report, reviewed before the new data goes live.
+
+</details>
 
 ---
 
