@@ -326,7 +326,12 @@ function renderPopup(p) {
   const googleSearch = `https://www.google.com/maps/search/${enc(p.name + " Seoul")}`;
 
   let meta = [];
-  if (p.cuisine) meta.push(`🍴 ${esc(p.cuisine)}`);
+  // Cuisine in the reader's language. Sources disagree on language, so this line used
+  // to be mixed English/Korean for everyone regardless of the toggle.
+  const cuisineLabel = (currentLang === 'ko')
+    ? (p.cuisine_ko || p.cuisine)
+    : (p.cuisine || p.cuisine_ko);
+  if (cuisineLabel) meta.push(`🍴 ${esc(cuisineLabel)}`);
   if (p.price) meta.push(`💰 ${esc(p.price)}`);
   // The address was never shown in the popup at all. Prefer the reader's language,
   // fall back to whichever we have.

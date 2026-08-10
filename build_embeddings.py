@@ -128,7 +128,10 @@ def build_retrieval_system():
         desc_en = props.get('description') or props.get('description_en') or ""
         verdict_en = props.get('justification') or ""
         category = props.get('category') or ""
-        cuisine = props.get('cuisine') or ""
+        # rich_text below is Korean, so use the Korean cuisine label. Michelin ships
+        # English cuisines, which previously left an English fragment sitting inside
+        # otherwise-Korean embedded text for ~200 restaurants (Overhaul 5.5.4).
+        cuisine = props.get('cuisine_ko') or props.get('cuisine') or ""
 
         # Data Quality Gate — need at least one meaningful signal to embed
         if len(desc_en.strip()) < 10 and not category.strip() and not cuisine.strip():

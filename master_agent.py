@@ -399,6 +399,23 @@ if __name__ == "__main__":
     except FileNotFoundError:
         print("\n❌ Could not find 'generate_guide_descriptions.py'.")
 
+    # 4.75. Translate any cuisine label we haven't seen before.
+    # MUST run before PHASE 5. A sweep with a new keyword (say 막국수) produces a cuisine
+    # value that isn't in data/cuisine_map.json, and build_map_list falls back to using
+    # the raw Korean string in the English field — the mixed-language bug 5.5.4 fixed,
+    # reappearing for every newly added dish. This is idempotent and only calls the API
+    # for values it has never seen, so it costs nothing on an unchanged sweep.
+    print("\n" + "=" * 50)
+    print("🌐 PHASE 4.75: Updating bilingual cuisine labels...")
+    print("=" * 50 + "\n")
+    try:
+        subprocess.run([sys.executable, "build_cuisine_map.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"\n⚠️ Cuisine map update failed: {e}")
+        print("   Continuing — unmapped cuisines fall back to their original language.")
+    except FileNotFoundError:
+        print("\n❌ Could not find 'build_cuisine_map.py'.")
+
     # 5. Build the Raw Map Data
     print("\n" + "=" * 50)
     print("🗺️ PHASE 5: Building places.geojson...")

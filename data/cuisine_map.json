@@ -1,0 +1,3638 @@
+{
+  "American": {
+    "en": "American",
+    "ko": "미국식"
+  },
+  "American, American Pizza": {
+    "en": "American, American Pizza",
+    "ko": "미국식, 미국식피자"
+  },
+  "American, American Pizza, Bar, Craft Beer Bar": {
+    "en": "American, American Pizza, Bar, Craft Beer Bar",
+    "ko": "미국식, 미국식피자, 바, 크래프트맥주바"
+  },
+  "Asian": {
+    "en": "Asian",
+    "ko": "아시아 음식"
+  },
+  "Asian, Cafe/Coffee/Tea, Cafe": {
+    "en": "Asian, Cafe/Coffee/Tea, Cafe",
+    "ko": "아시아식, 카페/커피/티, 카페"
+  },
+  "Asian, Indian": {
+    "en": "Asian, Indian",
+    "ko": "아시아식, 인도식"
+  },
+  "Asian, Indian, Nepalese": {
+    "en": "Asian, Indian, Nepalese",
+    "ko": "아시아식, 인도식, 네팔식"
+  },
+  "Asian, Middle Eastern, Jordanian, Syrian": {
+    "en": "Asian, Middle Eastern, Jordanian, Syrian",
+    "ko": "아시아식, 중동식, 요르단식, 시리아식"
+  },
+  "Asian, Nepalese": {
+    "en": "Asian, Nepalese",
+    "ko": "아시아식, 네팔식"
+  },
+  "Asian, Thai": {
+    "en": "Asian, Thai",
+    "ko": "아시아식, 태국식"
+  },
+  "Asian, Vietnamese": {
+    "en": "Asian, Vietnamese",
+    "ko": "아시아식, 베트남식"
+  },
+  "Australian Style, Australian Brunch, Other, Brunch Cafe": {
+    "en": "Australian Style, Australian Brunch, Other, Brunch Cafe",
+    "ko": "호주식, 호주식브런치, 기타, 브런치카페"
+  },
+  "Bakery": {
+    "en": "Bakery",
+    "ko": "베이커리"
+  },
+  "Bakery, Bagels, Cafe/Coffee/Tea, Cafe": {
+    "en": "Bakery, Bagels, Cafe/Coffee/Tea, Cafe",
+    "ko": "베이커리, 베이글, 카페/커피/티, 카페"
+  },
+  "Bakery, Bread": {
+    "en": "Bakery, Bread",
+    "ko": "베이커리, 식빵"
+  },
+  "Bakery, Dessert/Sweets, Dessert Shop": {
+    "en": "Bakery, Dessert/Sweets, Dessert Shop",
+    "ko": "베이커리, 디저트/스위트, 디저트전문점"
+  },
+  "Bakery, Dessert/Sweets, Dessert Shop, Sandwiches": {
+    "en": "Bakery, Dessert/Sweets, Dessert Shop, Sandwiches",
+    "ko": "베이커리, 디저트/스위트, 디저트전문점, 샌드위치"
+  },
+  "Bakery, Dessert/Sweets, Tarts": {
+    "en": "Bakery, Dessert/Sweets, Tarts",
+    "ko": "베이커리, 디저트/스위트, 타르트"
+  },
+  "Bakery, Pancakes": {
+    "en": "Bakery, Pancakes",
+    "ko": "베이커리, 팬케이크"
+  },
+  "Bakery, Pancakes, American": {
+    "en": "Bakery, Pancakes, American",
+    "ko": "베이커리, 팬케이크, 미국식"
+  },
+  "Bakery, Pastries": {
+    "en": "Bakery, Pastries",
+    "ko": "베이커리, 페이스트리"
+  },
+  "Bakery, Sandwiches": {
+    "en": "Bakery, Sandwiches",
+    "ko": "베이커리, 샌드위치"
+  },
+  "Bakery, Sandwiches, American, European, Mediterranean": {
+    "en": "Bakery, Sandwiches, American, European, Mediterranean",
+    "ko": "베이커리, 샌드위치, 미국식, 유럽식, 지중해식"
+  },
+  "Bakery, Sandwiches, Other, Brunch Cafe": {
+    "en": "Bakery, Sandwiches, Other, Brunch Cafe",
+    "ko": "베이커리, 샌드위치, 기타, 브런치카페"
+  },
+  "Bar": {
+    "en": "Bar",
+    "ko": "바"
+  },
+  "Bar, Champagne Bar": {
+    "en": "Bar, Champagne Bar",
+    "ko": "바, 샴페인바"
+  },
+  "Bar, Cocktail Bar": {
+    "en": "Bar, Cocktail Bar",
+    "ko": "바, 칵테일바"
+  },
+  "Bar, Cocktail Bar, Whiskey Bar": {
+    "en": "Bar, Cocktail Bar, Whiskey Bar",
+    "ko": "바, 칵테일바, 위스키바"
+  },
+  "Bar, Other, Steak": {
+    "en": "Bar, Other, Steak",
+    "ko": "바, 기타, 스테이크"
+  },
+  "Bar, Whiskey Bar": {
+    "en": "Bar, Whiskey Bar",
+    "ko": "바, 위스키바"
+  },
+  "Bar, Whiskey Bar, Rooftop Bar": {
+    "en": "Bar, Whiskey Bar, Rooftop Bar",
+    "ko": "바, 위스키바, 루프탑바"
+  },
+  "Bar, Wine Bar": {
+    "en": "Bar, Wine Bar",
+    "ko": "바, 와인바"
+  },
+  "Bar, Wine Bar, European, Portuguese": {
+    "en": "Bar, Wine Bar, European, Portuguese",
+    "ko": "바, 와인바, 유럽식, 포르투갈식"
+  },
+  "Bar, Wine Bar, Other, Brunch Cafe": {
+    "en": "Bar, Wine Bar, Other, Brunch Cafe",
+    "ko": "바, 와인바, 기타, 브런치카페"
+  },
+  "Barbecue": {
+    "en": "Barbecue",
+    "ko": "바비큐"
+  },
+  "Bindaetteok": {
+    "en": "Bindaetteok",
+    "ko": "빈대떡"
+  },
+  "Brewery": {
+    "en": "Brewery",
+    "ko": "양조장"
+  },
+  "Bulgogi": {
+    "en": "Bulgogi",
+    "ko": "불고기"
+  },
+  "Bunsik": {
+    "en": "Bunsik",
+    "ko": "분식"
+  },
+  "Cafe/Coffee/Tea, Black Tea Specialty Shop": {
+    "en": "Cafe/Coffee/Tea, Black Tea Specialty Shop",
+    "ko": "카페/커피/티, 홍차전문점"
+  },
+  "Cafe/Coffee/Tea, Book Cafe, Bakery": {
+    "en": "Cafe/Coffee/Tea, Book Cafe, Bakery",
+    "ko": "카페/커피/티, 북카페, 베이커리"
+  },
+  "Cafe/Coffee/Tea, Cafe": {
+    "en": "Cafe/Coffee/Tea, Cafe",
+    "ko": "카페/커피/티, 카페"
+  },
+  "Cafe/Coffee/Tea, Cafe, Bakery": {
+    "en": "Cafe/Coffee/Tea, Cafe, Bakery",
+    "ko": "카페/커피/티, 카페, 베이커리"
+  },
+  "Cafe/Coffee/Tea, Cafe, Bakery, Salt Bread": {
+    "en": "Cafe/Coffee/Tea, Cafe, Bakery, Salt Bread",
+    "ko": "카페/커피/티, 카페, 베이커리, 소금빵"
+  },
+  "Cafe/Coffee/Tea, Cafe, European, German": {
+    "en": "Cafe/Coffee/Tea, Cafe, European, German",
+    "ko": "카페/커피/티, 카페, 유럽식, 독일식"
+  },
+  "Cafe/Coffee/Tea, Chinese Tea Specialty Shop": {
+    "en": "Cafe/Coffee/Tea, Chinese Tea Specialty Shop",
+    "ko": "카페/커피/티, 중국차전문점"
+  },
+  "Cafe/Coffee/Tea, Coffee Specialty Shop": {
+    "en": "Cafe/Coffee/Tea, Coffee Specialty Shop",
+    "ko": "카페/커피/티, 커피전문점"
+  },
+  "Cafe/Coffee/Tea, Coffee Specialty Shop, Dessert/Sweets, Dessert Specialty Shop": {
+    "en": "Cafe/Coffee/Tea, Coffee Specialty Shop, Dessert/Sweets, Dessert Specialty Shop",
+    "ko": "카페/커피/티, 커피전문점, 디저트/스위트, 디저트전문점"
+  },
+  "Cafe/Coffee/Tea, Espresso Bar": {
+    "en": "Cafe/Coffee/Tea, Espresso Bar",
+    "ko": "카페/커피/티, 에스프레소바"
+  },
+  "Cafe/Coffee/Tea, Espresso Bar, Coffee Specialty Shop": {
+    "en": "Cafe/Coffee/Tea, Espresso Bar, Coffee Specialty Shop",
+    "ko": "카페/커피/티, 에스프레소바, 커피전문점"
+  },
+  "Cafe/Coffee/Tea, Traditional Tea Specialty Shop": {
+    "en": "Cafe/Coffee/Tea, Traditional Tea Specialty Shop",
+    "ko": "카페/커피/티, 전통차전문점"
+  },
+  "Cafe/Coffee/Tea, Traditional Tea Specialty Shop, Dessert/Sweets, Sweet Red Bean Porridge": {
+    "en": "Cafe/Coffee/Tea, Traditional Tea Specialty Shop, Dessert/Sweets, Sweet Red Bean Porridge",
+    "ko": "카페/커피/티, 전통차전문점, 디저트/스위트, 단팥죽"
+  },
+  "Chicken": {
+    "en": "Chicken",
+    "ko": "치킨"
+  },
+  "Chimaek": {
+    "en": "Chimaek",
+    "ko": "치맥"
+  },
+  "Chinese": {
+    "en": "Chinese",
+    "ko": "중식"
+  },
+  "Chinese Bar, Chinese, Chinese Dumplings": {
+    "en": "Chinese Bar, Chinese, Chinese Dumplings",
+    "ko": "중식주점, 중식, 중국만두"
+  },
+  "Chinese Bar, Chinese, General Chinese": {
+    "en": "Chinese Bar, Chinese, General Chinese",
+    "ko": "중식주점, 중식, 일반중식"
+  },
+  "Chinese, American Chinese": {
+    "en": "Chinese, American Chinese",
+    "ko": "중식, 미국식중식"
+  },
+  "Chinese, Beef Noodle Soup, Taiwanese Chinese": {
+    "en": "Chinese, Beef Noodle Soup, Taiwanese Chinese",
+    "ko": "중식, 우육면, 대만식중식"
+  },
+  "Chinese, Beijing-style Chinese, General Chinese, Peking Duck": {
+    "en": "Chinese, Beijing-style Chinese, General Chinese, Peking Duck",
+    "ko": "중식, 북경식중식, 일반중식, 북경오리"
+  },
+  "Chinese, Beijing-style Chinese, Peking Duck": {
+    "en": "Chinese, Beijing-style Chinese, Peking Duck",
+    "ko": "중식, 북경식중식, 북경오리"
+  },
+  "Chinese, Cantonese": {
+    "en": "Chinese, Cantonese",
+    "ko": "중식, 광동식중식"
+  },
+  "Chinese, Cantonese Chinese, Dim Sum": {
+    "en": "Chinese, Cantonese Chinese, Dim Sum",
+    "ko": "중식, 광동식중식, 딤섬"
+  },
+  "Chinese, Chinese Dumplings": {
+    "en": "Chinese, Chinese Dumplings",
+    "ko": "중식, 중국만두"
+  },
+  "Chinese, Chinese Dumplings, General Chinese": {
+    "en": "Chinese, Chinese Dumplings, General Chinese",
+    "ko": "중식, 중국만두, 일반중식"
+  },
+  "Chinese, Chinese Dumplings, Taiwanese Chinese": {
+    "en": "Chinese, Chinese Dumplings, Taiwanese Chinese",
+    "ko": "중식, 중국만두, 대만식중식"
+  },
+  "Chinese, Chinese Noodles, Chinese Dumplings, Xiaolongbao": {
+    "en": "Chinese, Chinese Noodles, Chinese Dumplings, Xiaolongbao",
+    "ko": "중식, 중국식국수, 중국만두, 샤오룽바오"
+  },
+  "Chinese, Dim Sum, Hong Kong Style": {
+    "en": "Chinese, Dim Sum, Hong Kong Style",
+    "ko": "중식, 딤섬, 홍콩식중식"
+  },
+  "Chinese, Fusion Chinese": {
+    "en": "Chinese, Fusion Chinese",
+    "ko": "중식, 퓨전중식"
+  },
+  "Chinese, General Chinese": {
+    "en": "Chinese, General Chinese",
+    "ko": "중식, 일반중식"
+  },
+  "Chinese, General Chinese, Dim Sum, Peking Duck": {
+    "en": "Chinese, General Chinese, Dim Sum, Peking Duck",
+    "ko": "중식, 일반중식, 딤섬, 북경오리"
+  },
+  "Chinese, General Chinese, Peking Duck": {
+    "en": "Chinese, General Chinese, Peking Duck",
+    "ko": "중식, 일반중식, 북경오리"
+  },
+  "Chinese, General Chinese, Sichuan Chinese": {
+    "en": "Chinese, General Chinese, Sichuan Chinese",
+    "ko": "중식, 일반중식, 사천식중식"
+  },
+  "Chinese, Hong Kong Chinese, Cantonese Chinese": {
+    "en": "Chinese, Hong Kong Chinese, Cantonese Chinese",
+    "ko": "중식, 홍콩식중식, 광동식중식"
+  },
+  "Chinese, Hong Kong-style Chinese": {
+    "en": "Chinese, Hong Kong-style Chinese",
+    "ko": "중식, 홍콩식중식"
+  },
+  "Chinese, Hong Kong-style Chinese, Cafe/Coffee/Tea, Chinese Tea Specialty Shop": {
+    "en": "Chinese, Hong Kong-style Chinese, Cafe/Coffee/Tea, Chinese Tea Specialty Shop",
+    "ko": "중식, 홍콩식중식, 카페/커피/티, 중국차전문점"
+  },
+  "Chinese, Hong Kong-style Chinese, Dim Sum": {
+    "en": "Chinese, Hong Kong-style Chinese, Dim Sum",
+    "ko": "중식, 홍콩식중식, 딤섬"
+  },
+  "Chinese, Hot Pot": {
+    "en": "Chinese, Hot Pot",
+    "ko": "중식, 훠궈"
+  },
+  "Chinese, Hot Pot, Sichuan Chinese": {
+    "en": "Chinese, Hot Pot, Sichuan Chinese",
+    "ko": "중식, 훠궈, 사천식중식"
+  },
+  "Chinese, Lamb Skewers, Northeastern Chinese": {
+    "en": "Chinese, Lamb Skewers, Northeastern Chinese",
+    "ko": "중식, 양꼬치, 동북식중식"
+  },
+  "Chinese, Malatang, Sichuan": {
+    "en": "Chinese, Malatang, Sichuan",
+    "ko": "중식, 마라탕, 사천식중식"
+  },
+  "Chinese, Modern Chinese, Dim Sum": {
+    "en": "Chinese, Modern Chinese, Dim Sum",
+    "ko": "중식, 모던차이니즈, 딤섬"
+  },
+  "Chinese, Sichuan Chinese": {
+    "en": "Chinese, Sichuan Chinese",
+    "ko": "중식, 사천식중식"
+  },
+  "Chinese, Taiwanese": {
+    "en": "Chinese, Taiwanese",
+    "ko": "중식, 대만식중식"
+  },
+  "Chueotang": {
+    "en": "Chueotang",
+    "ko": "추어탕"
+  },
+  "Contemporary": {
+    "en": "Contemporary",
+    "ko": "컨템포러리"
+  },
+  "Contemporary, French": {
+    "en": "Contemporary, French",
+    "ko": "컨템포러리, 프랑스식"
+  },
+  "Contemporary, Innovative Cuisine, Japanese, Chinese, Modern Chinese": {
+    "en": "Contemporary, Innovative Cuisine, Japanese, Chinese, Modern Chinese",
+    "ko": "컨템포러리, 이노베이티브퀴진, 일식, 중식, 모던차이니즈"
+  },
+  "Contemporary, Molecular Gastronomy": {
+    "en": "Contemporary, Molecular Gastronomy",
+    "ko": "컨템포러리, 분자요리"
+  },
+  "Craft Beer": {
+    "en": "Craft Beer",
+    "ko": "수제맥주"
+  },
+  "Dessert": {
+    "en": "Dessert",
+    "ko": "디저트"
+  },
+  "Dessert/Sweets, Baked Goods, Dessert Specialty Store": {
+    "en": "Dessert/Sweets, Baked Goods, Dessert Specialty Store",
+    "ko": "디저트/스위트, 구움과자, 디저트전문점"
+  },
+  "Dessert/Sweets, Bingsu": {
+    "en": "Dessert/Sweets, Bingsu",
+    "ko": "디저트/스위트, 빙수"
+  },
+  "Dessert/Sweets, Cake": {
+    "en": "Dessert/Sweets, Cake",
+    "ko": "디저트/스위트, 케이크"
+  },
+  "Dessert/Sweets, Cake, Cafe/Coffee/Tea, Cafe": {
+    "en": "Dessert/Sweets, Cake, Cafe/Coffee/Tea, Cafe",
+    "ko": "디저트/스위트, 케이크, 카페/커피/티, 카페"
+  },
+  "Dessert/Sweets, Cake, Dessert Specialty Store": {
+    "en": "Dessert/Sweets, Cake, Dessert Specialty Store",
+    "ko": "디저트/스위트, 케이크, 디저트전문점"
+  },
+  "Dessert/Sweets, Chinese Dessert": {
+    "en": "Dessert/Sweets, Chinese Dessert",
+    "ko": "디저트/스위트, 중국디저트"
+  },
+  "Dessert/Sweets, Chocolate": {
+    "en": "Dessert/Sweets, Chocolate",
+    "ko": "디저트/스위트, 초콜릿"
+  },
+  "Dessert/Sweets, Cookie, Caramel, Dessert Specialty Store": {
+    "en": "Dessert/Sweets, Cookie, Caramel, Dessert Specialty Store",
+    "ko": "디저트/스위트, 쿠키, 캐러멜, 디저트전문점"
+  },
+  "Dessert/Sweets, Cookie, Macaron, Dessert Specialty Store": {
+    "en": "Dessert/Sweets, Cookie, Macaron, Dessert Specialty Store",
+    "ko": "디저트/스위트, 쿠키, 마카롱, 디저트전문점"
+  },
+  "Dessert/Sweets, Dessert Specialty Store": {
+    "en": "Dessert/Sweets, Dessert Specialty Store",
+    "ko": "디저트/스위트, 디저트전문점"
+  },
+  "Dessert/Sweets, Gelato": {
+    "en": "Dessert/Sweets, Gelato",
+    "ko": "디저트/스위트, 젤라토"
+  },
+  "Dessert/Sweets, Ice Cream": {
+    "en": "Dessert/Sweets, Ice Cream",
+    "ko": "디저트/스위트, 아이스크림"
+  },
+  "Dessert/Sweets, Japanese Dessert": {
+    "en": "Dessert/Sweets, Japanese Dessert",
+    "ko": "디저트/스위트, 일본디저트"
+  },
+  "Dessert/Sweets, Kaymak, Cafe/Coffee/Tea, Coffee Shop": {
+    "en": "Dessert/Sweets, Kaymak, Cafe/Coffee/Tea, Coffee Shop",
+    "ko": "디저트/스위트, 카이막, 카페/커피/티, 커피전문점"
+  },
+  "Dessert/Sweets, Korean Dessert, Bingsu": {
+    "en": "Dessert/Sweets, Korean Dessert, Bingsu",
+    "ko": "디저트/스위트, 한식디저트, 빙수"
+  },
+  "Dessert/Sweets, Korean Dessert, Cafe/Coffee/Tea, Traditional Tea House": {
+    "en": "Dessert/Sweets, Korean Dessert, Cafe/Coffee/Tea, Traditional Tea House",
+    "ko": "디저트/스위트, 한식디저트, 카페/커피/티, 전통차전문점"
+  },
+  "Dessert/Sweets, Korean Dessert, Hangwa": {
+    "en": "Dessert/Sweets, Korean Dessert, Hangwa",
+    "ko": "디저트/스위트, 한식디저트, 한과"
+  },
+  "Dessert/Sweets, Live Dessert": {
+    "en": "Dessert/Sweets, Live Dessert",
+    "ko": "디저트/스위트, 라이브디저트"
+  },
+  "Dessert/Sweets, Macaron, Dessert Specialty Store": {
+    "en": "Dessert/Sweets, Macaron, Dessert Specialty Store",
+    "ko": "디저트/스위트, 마카롱, 디저트전문점"
+  },
+  "Dessert/Sweets, Tart": {
+    "en": "Dessert/Sweets, Tart",
+    "ko": "디저트/스위트, 타르트"
+  },
+  "Dessert/Sweets, Tteok (Rice Cake)": {
+    "en": "Dessert/Sweets, Tteok (Rice Cake)",
+    "ko": "디저트/스위트, 떡"
+  },
+  "Dim Sum": {
+    "en": "Dim Sum",
+    "ko": "딤섬"
+  },
+  "Doganitang": {
+    "en": "Doganitang",
+    "ko": "도가니탕"
+  },
+  "Donkatsu": {
+    "en": "Donkatsu",
+    "ko": "돈까스"
+  },
+  "Driver's Restaurant": {
+    "en": "Driver's Restaurant",
+    "ko": "기사식당"
+  },
+  "Dubu": {
+    "en": "Dubu",
+    "ko": "두부"
+  },
+  "Dwaeji-gukbap": {
+    "en": "Dwaeji-gukbap",
+    "ko": "돼지국밥"
+  },
+  "European, British": {
+    "en": "European, British",
+    "ko": "유럽식, 영국식"
+  },
+  "European, Mediterranean, Spanish": {
+    "en": "European, Mediterranean, Spanish",
+    "ko": "유럽식, 지중해식, 스페인식"
+  },
+  "European, Nordic": {
+    "en": "European, Nordic",
+    "ko": "유럽식, 북유럽식"
+  },
+  "European, Swiss": {
+    "en": "European, Swiss",
+    "ko": "유럽식, 스위스식"
+  },
+  "French": {
+    "en": "French",
+    "ko": "프렌치"
+  },
+  "French Contemporary": {
+    "en": "French Contemporary",
+    "ko": "프렌치 컨템포러리"
+  },
+  "French, Bar, Wine Bar": {
+    "en": "French, Bar, Wine Bar",
+    "ko": "프랑스식, 바, 와인바"
+  },
+  "French, French Bistro": {
+    "en": "French, French Bistro",
+    "ko": "프랑스식, 프렌치비스트로"
+  },
+  "French, French Bistro, Bar, Jazz Bar": {
+    "en": "French, French Bistro, Bar, Jazz Bar",
+    "ko": "프랑스식, 프렌치비스트로, 바, 재즈바"
+  },
+  "French, French Bistro, Bar, Wine Bar": {
+    "en": "French, French Bistro, Bar, Wine Bar",
+    "ko": "프랑스식, 프렌치비스트로, 바, 와인바"
+  },
+  "French, French Bistro, Other, Charcuterie": {
+    "en": "French, French Bistro, Other, Charcuterie",
+    "ko": "프랑스식, 프렌치비스트로, 기타, 샤퀴테리"
+  },
+  "French, French Home Cooking": {
+    "en": "French, French Home Cooking",
+    "ko": "프랑스식, 프랑스가정식"
+  },
+  "Gamjatang": {
+    "en": "Gamjatang",
+    "ko": "감자탕"
+  },
+  "Gejang": {
+    "en": "Gejang",
+    "ko": "게장"
+  },
+  "Gomtang": {
+    "en": "Gomtang",
+    "ko": "곰탕"
+  },
+  "Gopchang": {
+    "en": "Gopchang",
+    "ko": "곱창"
+  },
+  "Grilled Meats": {
+    "en": "Grilled Meats",
+    "ko": "고기집"
+  },
+  "Gukbap": {
+    "en": "Gukbap",
+    "ko": "국밥"
+  },
+  "Haemul Pajeon": {
+    "en": "Haemul Pajeon",
+    "ko": "해물파전"
+  },
+  "Innovative": {
+    "en": "Innovative",
+    "ko": "이노베이티브"
+  },
+  "Italian": {
+    "en": "Italian",
+    "ko": "이탈리안"
+  },
+  "Italian Contemporary": {
+    "en": "Italian Contemporary",
+    "ko": "이탈리안 컨템포러리"
+  },
+  "Italian, Bakery, Sandwich": {
+    "en": "Italian, Bakery, Sandwich",
+    "ko": "이탈리아식, 베이커리, 샌드위치"
+  },
+  "Italian, Bar, Cafe/Coffee/Tea, Cafe": {
+    "en": "Italian, Bar, Cafe/Coffee/Tea, Cafe",
+    "ko": "이탈리아식, 바, 카페/커피/티, 카페"
+  },
+  "Italian, Other, Vegetarian Dishes": {
+    "en": "Italian, Other, Vegetarian Dishes",
+    "ko": "이탈리아식, 기타, 채소요리"
+  },
+  "Italian, Pasta": {
+    "en": "Italian, Pasta",
+    "ko": "이탈리아식, 파스타"
+  },
+  "Italian, Pasta, Pizza": {
+    "en": "Italian, Pasta, Pizza",
+    "ko": "이탈리아식, 파스타, 피자"
+  },
+  "Italian, Pizza": {
+    "en": "Italian, Pizza",
+    "ko": "이탈리아식, 피자"
+  },
+  "Italian, Pizza, Pasta": {
+    "en": "Italian, Pizza, Pasta",
+    "ko": "이탈리아식, 피자, 파스타"
+  },
+  "Japanese": {
+    "en": "Japanese",
+    "ko": "일식"
+  },
+  "Japanese Izakaya, Kushiage": {
+    "en": "Japanese Izakaya, Kushiage",
+    "ko": "일식주점, 쿠시아게"
+  },
+  "Japanese Pub, Izakaya": {
+    "en": "Japanese Pub, Izakaya",
+    "ko": "일식주점, 이자카야"
+  },
+  "Japanese Pub, Izakaya, Japanese, Sukiyaki, Hinoki Steamed": {
+    "en": "Japanese Pub, Izakaya, Japanese, Sukiyaki, Hinoki Steamed",
+    "ko": "일식주점, 이자카야, 일식, 스키야키, 편백찜"
+  },
+  "Japanese Pub, Izakaya, Japanese, Sushi": {
+    "en": "Japanese Pub, Izakaya, Japanese, Sushi",
+    "ko": "일식주점, 이자카야, 일식, 스시"
+  },
+  "Japanese Pub, Kushikatsu": {
+    "en": "Japanese Pub, Kushikatsu",
+    "ko": "일식주점, 쿠시카츠"
+  },
+  "Japanese Pub, Kushiyaki": {
+    "en": "Japanese Pub, Kushiyaki",
+    "ko": "일식주점, 쿠시야키"
+  },
+  "Japanese Pub, Oden Bar": {
+    "en": "Japanese Pub, Oden Bar",
+    "ko": "일식주점, 오뎅바"
+  },
+  "Japanese Pub, Robatayaki": {
+    "en": "Japanese Pub, Robatayaki",
+    "ko": "일식주점, 로바다야키"
+  },
+  "Japanese Pub, Yakitori": {
+    "en": "Japanese Pub, Yakitori",
+    "ko": "일식주점, 야키토리"
+  },
+  "Japanese, Conveyor Belt Sushi": {
+    "en": "Japanese, Conveyor Belt Sushi",
+    "ko": "일식, 회전스시"
+  },
+  "Japanese, Hinoki Steamed, Shabu-shabu": {
+    "en": "Japanese, Hinoki Steamed, Shabu-shabu",
+    "ko": "일식, 편백찜, 일식샤부샤부"
+  },
+  "Japanese, Homestyle Japanese": {
+    "en": "Japanese, Homestyle Japanese",
+    "ko": "일식, 일본가정식"
+  },
+  "Japanese, Homestyle Japanese, Japanese Pub, Izakaya": {
+    "en": "Japanese, Homestyle Japanese, Japanese Pub, Izakaya",
+    "ko": "일식, 일본가정식, 일식주점, 이자카야"
+  },
+  "Japanese, Kaiseki": {
+    "en": "Japanese, Kaiseki",
+    "ko": "일식, 가이세키"
+  },
+  "Japanese, Kaiseki, Sushi, Teppanyaki": {
+    "en": "Japanese, Kaiseki, Sushi, Teppanyaki",
+    "ko": "일식, 가이세키, 스시, 데판야키"
+  },
+  "Japanese, Kaisen-don": {
+    "en": "Japanese, Kaisen-don",
+    "ko": "일식, 카이센동"
+  },
+  "Japanese, Maguro": {
+    "en": "Japanese, Maguro",
+    "ko": "일식, 일식참치"
+  },
+  "Japanese, Mazesoba, Ramen": {
+    "en": "Japanese, Mazesoba, Ramen",
+    "ko": "일식, 마제소바, 라멘"
+  },
+  "Japanese, Modern Japanese": {
+    "en": "Japanese, Modern Japanese",
+    "ko": "일식, 모던재패니즈"
+  },
+  "Japanese, Okonomiyaki": {
+    "en": "Japanese, Okonomiyaki",
+    "ko": "일식, 오코노미야키"
+  },
+  "Japanese, Omakase": {
+    "en": "Japanese, Omakase",
+    "ko": "일식, 일식오마카세"
+  },
+  "Japanese, Ramen": {
+    "en": "Japanese, Ramen",
+    "ko": "일식, 라멘"
+  },
+  "Japanese, Shabu-shabu": {
+    "en": "Japanese, Shabu-shabu",
+    "ko": "일식, 일식샤부샤부"
+  },
+  "Japanese, Soba": {
+    "en": "Japanese, Soba",
+    "ko": "일식, 소바"
+  },
+  "Japanese, Soba, Udon": {
+    "en": "Japanese, Soba, Udon",
+    "ko": "일식, 소바, 일식우동"
+  },
+  "Japanese, Sukiyaki": {
+    "en": "Japanese, Sukiyaki",
+    "ko": "일식, 스키야키"
+  },
+  "Japanese, Sushi": {
+    "en": "Japanese, Sushi",
+    "ko": "일식, 스시"
+  },
+  "Japanese, Sushi, Kaiseki": {
+    "en": "Japanese, Sushi, Kaiseki",
+    "ko": "일식, 스시, 가이세키"
+  },
+  "Japanese, Sushi, Teppanyaki": {
+    "en": "Japanese, Sushi, Teppanyaki",
+    "ko": "일식, 스시, 데판야키"
+  },
+  "Japanese, Tempura": {
+    "en": "Japanese, Tempura",
+    "ko": "일식, 덴푸라"
+  },
+  "Japanese, Tempura, Tendon": {
+    "en": "Japanese, Tempura, Tendon",
+    "ko": "일식, 덴푸라, 텐동"
+  },
+  "Japanese, Tonkatsu": {
+    "en": "Japanese, Tonkatsu",
+    "ko": "일식, 일식돈가스"
+  },
+  "Japanese, Udon": {
+    "en": "Japanese, Udon",
+    "ko": "일식, 일식우동"
+  },
+  "Japanese, Udon, Donburi": {
+    "en": "Japanese, Udon, Donburi",
+    "ko": "일식, 일식우동, 일식덮밥"
+  },
+  "Japanese, Udon, Soba": {
+    "en": "Japanese, Udon, Soba",
+    "ko": "일식, 일식우동, 소바"
+  },
+  "Japanese, Unagi": {
+    "en": "Japanese, Unagi",
+    "ko": "일식, 일식장어"
+  },
+  "Japanese, Unagi, Kaiseki": {
+    "en": "Japanese, Unagi, Kaiseki",
+    "ko": "일식, 일식장어, 가이세키"
+  },
+  "Jeyuk-bokkeum": {
+    "en": "Jeyuk-bokkeum",
+    "ko": "제육볶음"
+  },
+  "Jjukkumi": {
+    "en": "Jjukkumi",
+    "ko": "쭈꾸미"
+  },
+  "Jokbal": {
+    "en": "Jokbal",
+    "ko": "족발"
+  },
+  "Kalguksu": {
+    "en": "Kalguksu",
+    "ko": "칼국수"
+  },
+  "Korean": {
+    "en": "Korean",
+    "ko": "한식"
+  },
+  "Korean (Freshwater Fish/Seafood), Chueotang": {
+    "en": "Korean (Freshwater Fish/Seafood), Chueotang",
+    "ko": "한식(민물어패류), 추어탕"
+  },
+  "Korean (Freshwater Fish/Seafood), Eel": {
+    "en": "Korean (Freshwater Fish/Seafood), Eel",
+    "ko": "한식(민물어패류), 장어"
+  },
+  "Korean (Freshwater Fish/Seafood), Spicy Freshwater Fish Stew": {
+    "en": "Korean (Freshwater Fish/Seafood), Spicy Freshwater Fish Stew",
+    "ko": "한식(민물어패류), 민물매운탕"
+  },
+  "Korean (General Korean), Baekban, Korean (Seafood), Braised Fish, Grilled Fish": {
+    "en": "Korean (General Korean), Baekban, Korean (Seafood), Braised Fish, Grilled Fish",
+    "ko": "한식(일반한식), 백반, 한식(어패류), 생선조림, 생선구이"
+  },
+  "Korean (General Korean), Baekban, Tofu, Korean (Seafood), Saengtae-tang": {
+    "en": "Korean (General Korean), Baekban, Tofu, Korean (Seafood), Saengtae-tang",
+    "ko": "한식(일반한식), 백반, 두부, 한식(어패류), 생태탕"
+  },
+  "Korean (General Korean), Biji, Korean (Noodles), Kongguksu, Mandu": {
+    "en": "Korean (General Korean), Biji, Korean (Noodles), Kongguksu, Mandu",
+    "ko": "한식(일반한식), 비지, 한식(면류), 콩국수, 만두"
+  },
+  "Korean (General Korean), Fusion Korean": {
+    "en": "Korean (General Korean), Fusion Korean",
+    "ko": "한식(일반한식), 퓨전한식"
+  },
+  "Korean (General Korean), Fusion Korean, Italian": {
+    "en": "Korean (General Korean), Fusion Korean, Italian",
+    "ko": "한식(일반한식), 퓨전한식, 이탈리아식"
+  },
+  "Korean (General Korean), General Korean Cuisine": {
+    "en": "Korean (General Korean), General Korean Cuisine",
+    "ko": "한식(일반한식), 일반한식"
+  },
+  "Korean (General Korean), General Korean Cuisine, Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Yukgaejang": {
+    "en": "Korean (General Korean), General Korean Cuisine, Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Yukgaejang",
+    "ko": "한식(일반한식), 일반한식, 한식(육류), 소곱창, 한식(탕/국/찌개/전골), 육개장"
+  },
+  "Korean (General Korean), General Korean Cuisine, Korean (Noodles), Kalguksu": {
+    "en": "Korean (General Korean), General Korean Cuisine, Korean (Noodles), Kalguksu",
+    "ko": "한식(일반한식), 일반한식, 한식(면류), 칼국수"
+  },
+  "Korean (General Korean), General Korean Cuisine, Korean (Seafood), Gejang, Korean (Meat), Beef Bulgogi": {
+    "en": "Korean (General Korean), General Korean Cuisine, Korean (Seafood), Gejang, Korean (Meat), Beef Bulgogi",
+    "ko": "한식(일반한식), 일반한식, 한식(어패류), 게장, 한식(육류), 소불고기"
+  },
+  "Korean (General Korean), General Korean Cuisine, Modern Korean, Korean (Meat), Beef Bulgogi": {
+    "en": "Korean (General Korean), General Korean Cuisine, Modern Korean, Korean (Meat), Beef Bulgogi",
+    "ko": "한식(일반한식), 일반한식, 모던한식, 한식(육류), 소불고기"
+  },
+  "Korean (General Korean), General Korean Cuisine, North Korean Cuisine, Korean (Seafood), Pomfret": {
+    "en": "Korean (General Korean), General Korean Cuisine, North Korean Cuisine, Korean (Seafood), Pomfret",
+    "ko": "한식(일반한식), 일반한식, 이북음식, 한식(어패류), 병어"
+  },
+  "Korean (General Korean), Hanjeongsik": {
+    "en": "Korean (General Korean), Hanjeongsik",
+    "ko": "한식(일반한식), 한정식"
+  },
+  "Korean (General Korean), Hanjeongsik, Gaeseong Cuisine": {
+    "en": "Korean (General Korean), Hanjeongsik, Gaeseong Cuisine",
+    "ko": "한식(일반한식), 한정식, 개성음식"
+  },
+  "Korean (General Korean), Hanjeongsik, General Korean Cuisine": {
+    "en": "Korean (General Korean), Hanjeongsik, General Korean Cuisine",
+    "ko": "한식(일반한식), 한정식, 일반한식"
+  },
+  "Korean (General Korean), Hanjeongsik, Gyeongsang-do Cuisine": {
+    "en": "Korean (General Korean), Hanjeongsik, Gyeongsang-do Cuisine",
+    "ko": "한식(일반한식), 한정식, 경상도음식"
+  },
+  "Korean (General Korean), Hanjeongsik, Namdo Cuisine": {
+    "en": "Korean (General Korean), Hanjeongsik, Namdo Cuisine",
+    "ko": "한식(일반한식), 한정식, 남도음식"
+  },
+  "Korean (General Korean), Jeju Cuisine, General Korean Cuisine": {
+    "en": "Korean (General Korean), Jeju Cuisine, General Korean Cuisine",
+    "ko": "한식(일반한식), 제주음식, 일반한식"
+  },
+  "Korean (General Korean), Medicinal Cuisine, Hanjeongsik": {
+    "en": "Korean (General Korean), Medicinal Cuisine, Hanjeongsik",
+    "ko": "한식(일반한식), 약선요리, 한정식"
+  },
+  "Korean (General Korean), Modern Korean": {
+    "en": "Korean (General Korean), Modern Korean",
+    "ko": "한식(일반한식), 모던한식"
+  },
+  "Korean (General Korean), Modern Korean, Fusion Korean": {
+    "en": "Korean (General Korean), Modern Korean, Fusion Korean",
+    "ko": "한식(일반한식), 모던한식, 퓨전한식"
+  },
+  "Korean (General Korean), Modern Korean, Hanjeongsik": {
+    "en": "Korean (General Korean), Modern Korean, Hanjeongsik",
+    "ko": "한식(일반한식), 모던한식, 한정식"
+  },
+  "Korean (General Korean), Modern Korean, Korean Pub": {
+    "en": "Korean (General Korean), Modern Korean, Korean Pub",
+    "ko": "한식(일반한식), 모던한식, 한식주점"
+  },
+  "Korean (General Korean), Modern Korean, New Korean": {
+    "en": "Korean (General Korean), Modern Korean, New Korean",
+    "ko": "한식(일반한식), 모던한식, 뉴코리안"
+  },
+  "Korean (General Korean), Muk, General Korean Cuisine, Korean (Noodles), Kalguksu": {
+    "en": "Korean (General Korean), Muk, General Korean Cuisine, Korean (Noodles), Kalguksu",
+    "ko": "한식(일반한식), 묵, 일반한식, 한식(면류), 칼국수"
+  },
+  "Korean (General Korean), North Korean Cuisine, Korean (Noodles), Pyeongyang Naengmyeon": {
+    "en": "Korean (General Korean), North Korean Cuisine, Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(일반한식), 이북음식, 한식(면류), 평양냉면"
+  },
+  "Korean (General Korean), Temple Food": {
+    "en": "Korean (General Korean), Temple Food",
+    "ko": "한식(일반한식), 사찰요리"
+  },
+  "Korean (General Korean), Temple Food, Other, Vegan": {
+    "en": "Korean (General Korean), Temple Food, Other, Vegan",
+    "ko": "한식(일반한식), 사찰요리, 기타, 비건"
+  },
+  "Korean (General), Tofu, Korean (Meat), Bossam": {
+    "en": "Korean (General), Tofu, Korean (Meat), Bossam",
+    "ko": "한식(일반한식), 두부, 한식(육류), 보쌈"
+  },
+  "Korean (General), Traditional Korean, Korean (Noodles), Mandu-guk, Mandu": {
+    "en": "Korean (General), Traditional Korean, Korean (Noodles), Mandu-guk, Mandu",
+    "ko": "한식(일반한식), 일반한식, 한식(면류), 만둣국, 만두"
+  },
+  "Korean (General), Traditional Korean, Modern Korean": {
+    "en": "Korean (General), Traditional Korean, Modern Korean",
+    "ko": "한식(일반한식), 일반한식, 모던한식"
+  },
+  "Korean (Meat), Beef Bulgogi, Grilled Beef": {
+    "en": "Korean (Meat), Beef Bulgogi, Grilled Beef",
+    "ko": "한식(육류), 소불고기, 소고기구이"
+  },
+  "Korean (Meat), Beef Bulgogi, Korean (General Korean), General Korean Cuisine, Gondrebap": {
+    "en": "Korean (Meat), Beef Bulgogi, Korean (General Korean), General Korean Cuisine, Gondrebap",
+    "ko": "한식(육류), 소불고기, 한식(일반한식), 일반한식, 곤드레밥"
+  },
+  "Korean (Meat), Beef Bulgogi, Korean (Seafood), Nakji, Korean (Soup/Stew/Hot Pot), Seonji Haejangguk": {
+    "en": "Korean (Meat), Beef Bulgogi, Korean (Seafood), Nakji, Korean (Soup/Stew/Hot Pot), Seonji Haejangguk",
+    "ko": "한식(육류), 소불고기, 한식(어패류), 낙지, 한식(탕/국/찌개/전골), 선지해장국"
+  },
+  "Korean (Meat), Beef Bulgogi, Samgyeopsal, Korean (Soup/Stew/Hot Pot), Kimchi-jjigae": {
+    "en": "Korean (Meat), Beef Bulgogi, Samgyeopsal, Korean (Soup/Stew/Hot Pot), Kimchi-jjigae",
+    "ko": "한식(육류), 소불고기, 삼겹살, 한식(탕/국/찌개/전골), 김치찌개"
+  },
+  "Korean (Meat), Beef Gopchang": {
+    "en": "Korean (Meat), Beef Gopchang",
+    "ko": "한식(육류), 소곱창"
+  },
+  "Korean (Meat), Beef Gopchang, Beef Large Intestines & Tripe": {
+    "en": "Korean (Meat), Beef Gopchang, Beef Large Intestines & Tripe",
+    "ko": "한식(육류), 소곱창, 소양대창"
+  },
+  "Korean (Meat), Beef Gopchang, Grilled Beef": {
+    "en": "Korean (Meat), Beef Gopchang, Grilled Beef",
+    "ko": "한식(육류), 소곱창, 소고기구이"
+  },
+  "Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Gopchang-jeongol": {
+    "en": "Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Gopchang-jeongol",
+    "ko": "한식(육류), 소곱창, 한식(탕/국/찌개/전골), 곱창전골"
+  },
+  "Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Gopchang-jeongol, Beef Large Intestines & Tripe": {
+    "en": "Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Gopchang-jeongol, Beef Large Intestines & Tripe",
+    "ko": "한식(육류), 소곱창, 한식(탕/국/찌개/전골), 곱창전골, 소양대창"
+  },
+  "Korean (Meat), Beef Large Intestines & Tripe": {
+    "en": "Korean (Meat), Beef Large Intestines & Tripe",
+    "ko": "한식(육류), 소양대창"
+  },
+  "Korean (Meat), Beef Ribs": {
+    "en": "Korean (Meat), Beef Ribs",
+    "ko": "한식(육류), 소갈비"
+  },
+  "Korean (Meat), Beef Ribs, Beef Bulgogi": {
+    "en": "Korean (Meat), Beef Ribs, Beef Bulgogi",
+    "ko": "한식(육류), 소갈비, 소불고기"
+  },
+  "Korean (Meat), Beef Ribs, Grilled Beef": {
+    "en": "Korean (Meat), Beef Ribs, Grilled Beef",
+    "ko": "한식(육류), 소갈비, 소고기구이"
+  },
+  "Korean (Meat), Beef Ribs, Korean (Soups/Stews/Hot Pots), Yukgaejang": {
+    "en": "Korean (Meat), Beef Ribs, Korean (Soups/Stews/Hot Pots), Yukgaejang",
+    "ko": "한식(육류), 소갈비, 한식(탕/국/찌개/전골), 육개장"
+  },
+  "Korean (Meat), Beef Ribs, Pork Ribs": {
+    "en": "Korean (Meat), Beef Ribs, Pork Ribs",
+    "ko": "한식(육류), 소갈비, 돼지갈비"
+  },
+  "Korean (Meat), Bossam": {
+    "en": "Korean (Meat), Bossam",
+    "ko": "한식(육류), 보쌈"
+  },
+  "Korean (Meat), Bossam, Korean (Noodles), Makguksu": {
+    "en": "Korean (Meat), Bossam, Korean (Noodles), Makguksu",
+    "ko": "한식(육류), 보쌈, 한식(면류), 막국수"
+  },
+  "Korean (Meat), Braised Oxtail, Korean (Soup/Stew/Hot Pot), Kkorigomtang, Suyuk": {
+    "en": "Korean (Meat), Braised Oxtail, Korean (Soup/Stew/Hot Pot), Kkorigomtang, Suyuk",
+    "ko": "한식(육류), 소꼬리찜, 한식(탕/국/찌개/전골), 꼬리곰탕, 수육"
+  },
+  "Korean (Meat), Grilled Beef": {
+    "en": "Korean (Meat), Grilled Beef",
+    "ko": "한식(육류), 소고기구이"
+  },
+  "Korean (Meat), Grilled Beef, Beef Bulgogi, Yukhoe Sashimi": {
+    "en": "Korean (Meat), Grilled Beef, Beef Bulgogi, Yukhoe Sashimi",
+    "ko": "한식(육류), 소고기구이, 소불고기, 육사시미"
+  },
+  "Korean (Meat), Grilled Beef, Beef Gopchang": {
+    "en": "Korean (Meat), Grilled Beef, Beef Gopchang",
+    "ko": "한식(육류), 소고기구이, 소곱창"
+  },
+  "Korean (Meat), Grilled Beef, Beef Ribs": {
+    "en": "Korean (Meat), Grilled Beef, Beef Ribs",
+    "ko": "한식(육류), 소고기구이, 소갈비"
+  },
+  "Korean (Meat), Grilled Beef, Grilled Pork": {
+    "en": "Korean (Meat), Grilled Beef, Grilled Pork",
+    "ko": "한식(육류), 소고기구이, 돼지고기구이"
+  },
+  "Korean (Meat), Grilled Beef, Grilled Pork, Korean (Noodles), Pyeongyang Naengmyeon": {
+    "en": "Korean (Meat), Grilled Beef, Grilled Pork, Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(육류), 소고기구이, 돼지고기구이, 한식(면류), 평양냉면"
+  },
+  "Korean (Meat), Grilled Beef, Hanwoo Omakase": {
+    "en": "Korean (Meat), Grilled Beef, Hanwoo Omakase",
+    "ko": "한식(육류), 소고기구이, 한우오마카세"
+  },
+  "Korean (Meat), Grilled Beef, Korean (Soup/Stew/Hot Pot), Gomtang": {
+    "en": "Korean (Meat), Grilled Beef, Korean (Soup/Stew/Hot Pot), Gomtang",
+    "ko": "한식(육류), 소고기구이, 한식(탕/국/찌개/전골), 곰탕"
+  },
+  "Korean (Meat), Grilled Beef, Pork Bulgogi, Grilled Pork": {
+    "en": "Korean (Meat), Grilled Beef, Pork Bulgogi, Grilled Pork",
+    "ko": "한식(육류), 소고기구이, 돼지불고기, 돼지고기구이"
+  },
+  "Korean (Meat), Grilled Beef, Pork Ribs": {
+    "en": "Korean (Meat), Grilled Beef, Pork Ribs",
+    "ko": "한식(육류), 소고기구이, 돼지갈비"
+  },
+  "Korean (Meat), Grilled Pork": {
+    "en": "Korean (Meat), Grilled Pork",
+    "ko": "한식(육류), 돼지고기구이"
+  },
+  "Korean (Meat), Grilled Pork, Grilled Beef": {
+    "en": "Korean (Meat), Grilled Pork, Grilled Beef",
+    "ko": "한식(육류), 돼지고기구이, 소고기구이"
+  },
+  "Korean (Meat), Grilled Pork, Pork Ribs": {
+    "en": "Korean (Meat), Grilled Pork, Pork Ribs",
+    "ko": "한식(육류), 돼지고기구이, 돼지갈비"
+  },
+  "Korean (Meat), Hanwoo Omakase": {
+    "en": "Korean (Meat), Hanwoo Omakase",
+    "ko": "한식(육류), 한우오마카세"
+  },
+  "Korean (Meat), Hanwoo Omakase, Grilled Beef, French": {
+    "en": "Korean (Meat), Hanwoo Omakase, Grilled Beef, French",
+    "ko": "한식(육류), 한우오마카세, 소고기구이, 프랑스식"
+  },
+  "Korean (Meat), Jokbal": {
+    "en": "Korean (Meat), Jokbal",
+    "ko": "한식(육류), 족발"
+  },
+  "Korean (Meat), Jokbal, Bossam": {
+    "en": "Korean (Meat), Jokbal, Bossam",
+    "ko": "한식(육류), 족발, 보쌈"
+  },
+  "Korean (Meat), Lamb": {
+    "en": "Korean (Meat), Lamb",
+    "ko": "한식(육류), 양고기"
+  },
+  "Korean (Meat), Pork Back Ribs": {
+    "en": "Korean (Meat), Pork Back Ribs",
+    "ko": "한식(육류), 돼지등갈비"
+  },
+  "Korean (Meat), Pork Bulgogi, Beef Bulgogi, Korean (General Korean Cuisine), General Korean Cuisine": {
+    "en": "Korean (Meat), Pork Bulgogi, Beef Bulgogi, Korean (General Korean Cuisine), General Korean Cuisine",
+    "ko": "한식(육류), 돼지불고기, 소불고기, 한식(일반한식), 일반한식"
+  },
+  "Korean (Meat), Pork Ribs": {
+    "en": "Korean (Meat), Pork Ribs",
+    "ko": "한식(육류), 돼지갈비"
+  },
+  "Korean (Meat), Pork Ribs, Grilled Beef, Korean (Noodles), Pyeongyang Naengmyeon": {
+    "en": "Korean (Meat), Pork Ribs, Grilled Beef, Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(육류), 돼지갈비, 소고기구이, 한식(면류), 평양냉면"
+  },
+  "Korean (Meat), Pork Ribs, Grilled Pork": {
+    "en": "Korean (Meat), Pork Ribs, Grilled Pork",
+    "ko": "한식(육류), 돼지갈비, 돼지고기구이"
+  },
+  "Korean (Meat), Pork Ribs, Pork Back Ribs": {
+    "en": "Korean (Meat), Pork Ribs, Pork Back Ribs",
+    "ko": "한식(육류), 돼지갈비, 돼지등갈비"
+  },
+  "Korean (Meat), Samgyeopsal": {
+    "en": "Korean (Meat), Samgyeopsal",
+    "ko": "한식(육류), 삼겹살"
+  },
+  "Korean (Meat), Samgyeopsal, Grilled Pork": {
+    "en": "Korean (Meat), Samgyeopsal, Grilled Pork",
+    "ko": "한식(육류), 삼겹살, 돼지고기구이"
+  },
+  "Korean (Meat), Samgyeopsal, Korean (Soups/Stews/Hot Pots), Seonji Haejangguk": {
+    "en": "Korean (Meat), Samgyeopsal, Korean (Soups/Stews/Hot Pots), Seonji Haejangguk",
+    "ko": "한식(육류), 삼겹살, 한식(탕/국/찌개/전골), 선지해장국"
+  },
+  "Korean (Meat), Sundae": {
+    "en": "Korean (Meat), Sundae",
+    "ko": "한식(육류), 순대"
+  },
+  "Korean (Meat), Sundae, Korean (General), North Korean Cuisine, Modern Korean": {
+    "en": "Korean (Meat), Sundae, Korean (General), North Korean Cuisine, Modern Korean",
+    "ko": "한식(육류), 순대, 한식(일반한식), 이북음식, 모던한식"
+  },
+  "Korean (Meat), Suyuk": {
+    "en": "Korean (Meat), Suyuk",
+    "ko": "한식(육류), 수육"
+  },
+  "Korean (Meat), Suyuk, Korean (Noodles), Hamheung Naengmyeon": {
+    "en": "Korean (Meat), Suyuk, Korean (Noodles), Hamheung Naengmyeon",
+    "ko": "한식(육류), 수육, 한식(면류), 함흥냉면"
+  },
+  "Korean (Meat), Woode-galbi, Grilled Pork": {
+    "en": "Korean (Meat), Woode-galbi, Grilled Pork",
+    "ko": "한식(육류), 우대갈비, 돼지고기구이"
+  },
+  "Korean (Meat), Yukhoe, Grilled Beef": {
+    "en": "Korean (Meat), Yukhoe, Grilled Beef",
+    "ko": "한식(육류), 육사시미, 소고기구이"
+  },
+  "Korean (Noodles), Bibim Naengmyeon, Korean (Meat), Braised Short Ribs, Manduguk": {
+    "en": "Korean (Noodles), Bibim Naengmyeon, Korean (Meat), Braised Short Ribs, Manduguk",
+    "ko": "한식(면류), 비빔냉면, 한식(육류), 소갈비찜, 만둣국"
+  },
+  "Korean (Noodles), Bibim Naengmyeon, Korean (Meat), Grilled Beef": {
+    "en": "Korean (Noodles), Bibim Naengmyeon, Korean (Meat), Grilled Beef",
+    "ko": "한식(면류), 비빔냉면, 한식(육류), 소고기구이"
+  },
+  "Korean (Noodles), Hamheung Naengmyeon": {
+    "en": "Korean (Noodles), Hamheung Naengmyeon",
+    "ko": "한식(면류), 함흥냉면"
+  },
+  "Korean (Noodles), Hamheung Naengmyeon, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Hamheung Naengmyeon, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 함흥냉면, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Kalguksu": {
+    "en": "Korean (Noodles), Kalguksu",
+    "ko": "한식(면류), 칼국수"
+  },
+  "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 칼국수, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk, Grilled Beef": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk, Grilled Beef",
+    "ko": "한식(면류), 칼국수, 한식(육류), 수육, 소고기구이"
+  },
+  "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk, Korean (Seafood), Octopus": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk, Korean (Seafood), Octopus",
+    "ko": "한식(면류), 칼국수, 한식(육류), 수육, 한식(어패류), 문어"
+  },
+  "Korean (Noodles), Kalguksu, Korean (Poultry), Baeksuk": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Poultry), Baeksuk",
+    "ko": "한식(면류), 칼국수, 한식(가금류), 닭백숙"
+  },
+  "Korean (Noodles), Kalguksu, Korean (Seafood), Octopus, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Seafood), Octopus, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 칼국수, 한식(어패류), 문어, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Kalguksu, Mandu, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Kalguksu, Mandu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 칼국수, 만두, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Kongguksu": {
+    "en": "Korean (Noodles), Kongguksu",
+    "ko": "한식(면류), 콩국수"
+  },
+  "Korean (Noodles), Kongguksu, Kalguksu, Bibim Guksu": {
+    "en": "Korean (Noodles), Kongguksu, Kalguksu, Bibim Guksu",
+    "ko": "한식(면류), 콩국수, 칼국수, 비빔국수"
+  },
+  "Korean (Noodles), Kongguksu, Kalguksu, Mandu": {
+    "en": "Korean (Noodles), Kongguksu, Kalguksu, Mandu",
+    "ko": "한식(면류), 콩국수, 칼국수, 만두"
+  },
+  "Korean (Noodles), Kongguksu, Korean (General Korean), General Korean Cuisine": {
+    "en": "Korean (Noodles), Kongguksu, Korean (General Korean), General Korean Cuisine",
+    "ko": "한식(면류), 콩국수, 한식(일반한식), 일반한식"
+  },
+  "Korean (Noodles), Makguksu": {
+    "en": "Korean (Noodles), Makguksu",
+    "ko": "한식(면류), 막국수"
+  },
+  "Korean (Noodles), Makguksu, Korean (Meat), Bossam": {
+    "en": "Korean (Noodles), Makguksu, Korean (Meat), Bossam",
+    "ko": "한식(면류), 막국수, 한식(육류), 보쌈"
+  },
+  "Korean (Noodles), Makguksu, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Makguksu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 막국수, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Makguksu, Korean (Poultry), Dakgomtang": {
+    "en": "Korean (Noodles), Makguksu, Korean (Poultry), Dakgomtang",
+    "ko": "한식(면류), 막국수, 한식(가금류), 닭곰탕"
+  },
+  "Korean (Noodles), Makguksu, Korean (Soups/Stew/Hot Pot), Beef Gukbap": {
+    "en": "Korean (Noodles), Makguksu, Korean (Soups/Stew/Hot Pot), Beef Gukbap",
+    "ko": "한식(면류), 막국수, 한식(탕/국/찌개/전골), 소고기국밥"
+  },
+  "Korean (Noodles), Mandu": {
+    "en": "Korean (Noodles), Mandu",
+    "ko": "한식(면류), 만두"
+  },
+  "Korean (Noodles), Mandu, Tteokguk": {
+    "en": "Korean (Noodles), Mandu, Tteokguk",
+    "ko": "한식(면류), 만두, 떡국"
+  },
+  "Korean (Noodles), Mandu-guk": {
+    "en": "Korean (Noodles), Mandu-guk",
+    "ko": "한식(면류), 만둣국"
+  },
+  "Korean (Noodles), Manduguk, Kalguksu, Bibim Guksu": {
+    "en": "Korean (Noodles), Manduguk, Kalguksu, Bibim Guksu",
+    "ko": "한식(면류), 만둣국, 칼국수, 비빔국수"
+  },
+  "Korean (Noodles), Manduguk, Korean (Meat), Bossam": {
+    "en": "Korean (Noodles), Manduguk, Korean (Meat), Bossam",
+    "ko": "한식(면류), 만둣국, 한식(육류), 보쌈"
+  },
+  "Korean (Noodles), Manduguk, Korean (Soups/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Manduguk, Korean (Soups/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 만둣국, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Manduguk, Korean (Soups/Stew/Hot Pot), Mandu Jeongol, Korean (Meat), Bossam": {
+    "en": "Korean (Noodles), Manduguk, Korean (Soups/Stew/Hot Pot), Mandu Jeongol, Korean (Meat), Bossam",
+    "ko": "한식(면류), 만둣국, 한식(탕/국/찌개/전골), 만두전골, 한식(육류), 보쌈"
+  },
+  "Korean (Noodles), Manduguk, Mandu": {
+    "en": "Korean (Noodles), Manduguk, Mandu",
+    "ko": "한식(면류), 만둣국, 만두"
+  },
+  "Korean (Noodles), Mul Naengmyeon, Bibim Naengmyeon, Mandu": {
+    "en": "Korean (Noodles), Mul Naengmyeon, Bibim Naengmyeon, Mandu",
+    "ko": "한식(면류), 물냉면, 비빔냉면, 만두"
+  },
+  "Korean (Noodles), Noodles": {
+    "en": "Korean (Noodles), Noodles",
+    "ko": "한식(면류), 국수"
+  },
+  "Korean (Noodles), Noodles, Other, Shabu-shabu": {
+    "en": "Korean (Noodles), Noodles, Other, Shabu-shabu",
+    "ko": "한식(면류), 국수, 기타, 샤브샤브"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(면류), 평양냉면"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Boiled Pork, Suyuk": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Boiled Pork, Suyuk",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 제육, 수육"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Jeyuk, Mandu": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Jeyuk, Mandu",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 제육, 만두"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk, Korean (Soups/Stew/Hot Pot), Eobok Jaengban": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk, Korean (Soups/Stew/Hot Pot), Eobok Jaengban",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 수육, 한식(탕/국/찌개/전골), 어복쟁반"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Poultry), Dakmuchim": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Poultry), Dakmuchim",
+    "ko": "한식(면류), 평양냉면, 한식(가금류), 닭무침"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Soup/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Beef Bulgogi": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Soup/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Beef Bulgogi",
+    "ko": "한식(면류), 평양냉면, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 소불고기"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Soups/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Soups/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 평양냉면, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Mandu": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Mandu",
+    "ko": "한식(면류), 평양냉면, 만두"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Mandu, Korean (Meat), Boiled Pork": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Mandu, Korean (Meat), Boiled Pork",
+    "ko": "한식(면류), 평양냉면, 만두, 한식(육류), 제육"
+  },
+  "Korean (Noodles), Pyeongyang Naengmyeon, Mandu, Korean (Meat), Suyuk": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Mandu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 평양냉면, 만두, 한식(육류), 수육"
+  },
+  "Korean (Noodles), Sujebi": {
+    "en": "Korean (Noodles), Sujebi",
+    "ko": "한식(면류), 수제비"
+  },
+  "Korean (Poultry), BBQ Chicken": {
+    "en": "Korean (Poultry), BBQ Chicken",
+    "ko": "한식(가금류), 바비큐치킨"
+  },
+  "Korean (Poultry), Baeksuk, Korean (Noodles), Sujebi": {
+    "en": "Korean (Poultry), Baeksuk, Korean (Noodles), Sujebi",
+    "ko": "한식(가금류), 닭백숙, 한식(면류), 수제비"
+  },
+  "Korean (Poultry), Braised Chicken, Korean (Noodles), Mandu, Makguksu": {
+    "en": "Korean (Poultry), Braised Chicken, Korean (Noodles), Mandu, Makguksu",
+    "ko": "한식(가금류), 닭찜, 한식(면류), 만두, 막국수"
+  },
+  "Korean (Poultry), Dakbokkeumtang": {
+    "en": "Korean (Poultry), Dakbokkeumtang",
+    "ko": "한식(가금류), 닭볶음탕"
+  },
+  "Korean (Poultry), Dakbokkeumtang, Samgyetang": {
+    "en": "Korean (Poultry), Dakbokkeumtang, Samgyetang",
+    "ko": "한식(가금류), 닭볶음탕, 삼계탕"
+  },
+  "Korean (Poultry), Dakgalbi": {
+    "en": "Korean (Poultry), Dakgalbi",
+    "ko": "한식(가금류), 닭갈비"
+  },
+  "Korean (Poultry), Dakgalbi, Korean (Soup/Stew/Hot Pot), Budae Jjigae": {
+    "en": "Korean (Poultry), Dakgalbi, Korean (Soup/Stew/Hot Pot), Budae Jjigae",
+    "ko": "한식(가금류), 닭갈비, 한식(탕/국/찌개/전골), 부대찌개"
+  },
+  "Korean (Poultry), Dakgomtang": {
+    "en": "Korean (Poultry), Dakgomtang",
+    "ko": "한식(가금류), 닭곰탕"
+  },
+  "Korean (Poultry), Dakgomtang, Dakbokkeumtang, Dak Suyuk": {
+    "en": "Korean (Poultry), Dakgomtang, Dakbokkeumtang, Dak Suyuk",
+    "ko": "한식(가금류), 닭곰탕, 닭볶음탕, 닭수육"
+  },
+  "Korean (Poultry), Duck Course Meal": {
+    "en": "Korean (Poultry), Duck Course Meal",
+    "ko": "한식(가금류), 오리코스"
+  },
+  "Korean (Poultry), Fried Chicken": {
+    "en": "Korean (Poultry), Fried Chicken",
+    "ko": "한식(가금류), 프라이드치킨"
+  },
+  "Korean (Poultry), Grilled Chicken": {
+    "en": "Korean (Poultry), Grilled Chicken",
+    "ko": "한식(가금류), 닭구이"
+  },
+  "Korean (Poultry), Samgyetang": {
+    "en": "Korean (Poultry), Samgyetang",
+    "ko": "한식(가금류), 삼계탕"
+  },
+  "Korean (Poultry), Samgyetang, Dakbokkeumtang": {
+    "en": "Korean (Poultry), Samgyetang, Dakbokkeumtang",
+    "ko": "한식(가금류), 삼계탕, 닭볶음탕"
+  },
+  "Korean (Seafood), Anglerfish, Gejang": {
+    "en": "Korean (Seafood), Anglerfish, Gejang",
+    "ko": "한식(어패류), 아귀, 게장"
+  },
+  "Korean (Seafood), Blue Crab, Anglerfish": {
+    "en": "Korean (Seafood), Blue Crab, Anglerfish",
+    "ko": "한식(어패류), 꽃게, 아귀"
+  },
+  "Korean (Seafood), Cod Soup": {
+    "en": "Korean (Seafood), Cod Soup",
+    "ko": "한식(어패류), 대구탕"
+  },
+  "Korean (Seafood), Dotari Ssukguk, Meongge Bibimbap, Sashimi": {
+    "en": "Korean (Seafood), Dotari Ssukguk, Meongge Bibimbap, Sashimi",
+    "ko": "한식(어패류), 도다리쑥국, 멍게비빔밥, 생선회"
+  },
+  "Korean (Seafood), Gejang": {
+    "en": "Korean (Seafood), Gejang",
+    "ko": "한식(어패류), 게장"
+  },
+  "Korean (Seafood), Gejang, Blue Crab": {
+    "en": "Korean (Seafood), Gejang, Blue Crab",
+    "ko": "한식(어패류), 게장, 꽃게"
+  },
+  "Korean (Seafood), Gulbi, Gejang, Korean (General Korean Cuisine), Hanjeongsik": {
+    "en": "Korean (Seafood), Gulbi, Gejang, Korean (General Korean Cuisine), Hanjeongsik",
+    "ko": "한식(어패류), 굴비, 게장, 한식(일반한식), 한정식"
+  },
+  "Korean (Seafood), Hagfish": {
+    "en": "Korean (Seafood), Hagfish",
+    "ko": "한식(어패류), 곰장어"
+  },
+  "Korean (Seafood), Hongeo": {
+    "en": "Korean (Seafood), Hongeo",
+    "ko": "한식(어패류), 홍어"
+  },
+  "Korean (Seafood), Hongeo, Nakji": {
+    "en": "Korean (Seafood), Hongeo, Nakji",
+    "ko": "한식(어패류), 홍어, 낙지"
+  },
+  "Korean (Seafood), Jjukkumi": {
+    "en": "Korean (Seafood), Jjukkumi",
+    "ko": "한식(어패류), 주꾸미"
+  },
+  "Korean (Seafood), Nakji": {
+    "en": "Korean (Seafood), Nakji",
+    "ko": "한식(어패류), 낙지"
+  },
+  "Korean (Seafood), Pike Conger, Sashimi": {
+    "en": "Korean (Seafood), Pike Conger, Sashimi",
+    "ko": "한식(어패류), 갯장어, 생선회"
+  },
+  "Korean (Seafood), Pufferfish": {
+    "en": "Korean (Seafood), Pufferfish",
+    "ko": "한식(어패류), 복"
+  },
+  "Korean (Seafood), Saengtaetang": {
+    "en": "Korean (Seafood), Saengtaetang",
+    "ko": "한식(어패류), 생태탕"
+  },
+  "Korean (Seafood), Saengtaetang, Sashimi": {
+    "en": "Korean (Seafood), Saengtaetang, Sashimi",
+    "ko": "한식(어패류), 생태탕, 생선회"
+  },
+  "Korean (Seafood), Sashimi": {
+    "en": "Korean (Seafood), Sashimi",
+    "ko": "한식(어패류), 생선회"
+  },
+  "Korean (Seafood), Sashimi, Mulhoe, Gwamegi": {
+    "en": "Korean (Seafood), Sashimi, Mulhoe, Gwamegi",
+    "ko": "한식(어패류), 생선회, 물회, 과메기"
+  },
+  "Korean (Seafood), Sashimi, Whale": {
+    "en": "Korean (Seafood), Sashimi, Whale",
+    "ko": "한식(어패류), 생선회, 고래"
+  },
+  "Korean (Seafood), Sashimi, Yellowtail": {
+    "en": "Korean (Seafood), Sashimi, Yellowtail",
+    "ko": "한식(어패류), 생선회, 방어"
+  },
+  "Korean (Seafood), Seafood, Sashimi, Conger Eel": {
+    "en": "Korean (Seafood), Seafood, Sashimi, Conger Eel",
+    "ko": "한식(어패류), 해물, 생선회, 붕장어"
+  },
+  "Korean (Seafood), Squid": {
+    "en": "Korean (Seafood), Squid",
+    "ko": "한식(어패류), 오징어"
+  },
+  "Korean (Seafood), Squid, Nakji": {
+    "en": "Korean (Seafood), Squid, Nakji",
+    "ko": "한식(어패류), 오징어, 낙지"
+  },
+  "Korean (Seafood), Tuna": {
+    "en": "Korean (Seafood), Tuna",
+    "ko": "한식(어패류), 참치"
+  },
+  "Korean (Soup/Stew/Hot Pot), Budae Jjigae": {
+    "en": "Korean (Soup/Stew/Hot Pot), Budae Jjigae",
+    "ko": "한식(탕/국/찌개/전골), 부대찌개"
+  },
+  "Korean (Soup/Stew/Hot Pot), Dogani-tang, Seolleongtang, Kkori Gomtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Dogani-tang, Seolleongtang, Kkori Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 도가니탕, 설렁탕, 꼬리곰탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Dwaeji Gukbap, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Dwaeji Gukbap, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 돼지국밥, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Dwaeji Gukbap, Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Dwaeji Gukbap, Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 돼지국밥, 한식(면류), 평양냉면, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Eobok Jaengban, Korean (General), General Korean Cuisine, Korean (Noodles), Mandu": {
+    "en": "Korean (Soup/Stew/Hot Pot), Eobok Jaengban, Korean (General), General Korean Cuisine, Korean (Noodles), Mandu",
+    "ko": "한식(탕/국/찌개/전골), 어복쟁반, 한식(일반한식), 일반한식, 한식(면류), 만두"
+  },
+  "Korean (Soup/Stew/Hot Pot), Gamjatang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gamjatang",
+    "ko": "한식(탕/국/찌개/전골), 감자탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Garit-gukbap, Korean (General Korean), North Korean Cuisine": {
+    "en": "Korean (Soup/Stew/Hot Pot), Garit-gukbap, Korean (General Korean), North Korean Cuisine",
+    "ko": "한식(탕/국/찌개/전골), 가릿국밥, 한식(일반한식), 이북음식"
+  },
+  "Korean (Soup/Stew/Hot Pot), Gomtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 곰탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Gomtang, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gomtang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 곰탕, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Gopchang-jeongol": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gopchang-jeongol",
+    "ko": "한식(탕/국/찌개/전골), 곱창전골"
+  },
+  "Korean (Soup/Stew/Hot Pot), Gopchang-jeongol, Korean (Noodles), Guksu": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gopchang-jeongol, Korean (Noodles), Guksu",
+    "ko": "한식(탕/국/찌개/전골), 곱창전골, 한식(면류), 국수"
+  },
+  "Korean (Soup/Stew/Hot Pot), Kkori Gomtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Dogani-tang, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Dogani-tang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕, 도가니탕, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Gomtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕, 곰탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Seolleongtang, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Seolleongtang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕, 설렁탕, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Kongguk, Korean (General), Dubu, Korean (Seafood), Hwangtae": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kongguk, Korean (General), Dubu, Korean (Seafood), Hwangtae",
+    "ko": "한식(탕/국/찌개/전골), 콩국, 한식(일반한식), 두부, 한식(어패류), 황태"
+  },
+  "Korean (Soup/Stew/Hot Pot), Mandu-jeongol, Korean (Noodles), Kalguksu, Mandu": {
+    "en": "Korean (Soup/Stew/Hot Pot), Mandu-jeongol, Korean (Noodles), Kalguksu, Mandu",
+    "ko": "한식(탕/국/찌개/전골), 만두전골, 한식(면류), 칼국수, 만두"
+  },
+  "Korean (Soup/Stew/Hot Pot), Pork Gomtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Pork Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 돼지곰탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seolleongtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seolleongtang, Dogani-tang, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Dogani-tang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 도가니탕, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seolleongtang, Kkori Gomtang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Kkori Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 꼬리곰탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seolleongtang, Kkori Gomtang, Dogani-tang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Kkori Gomtang, Dogani-tang",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 꼬리곰탕, 도가니탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seolleongtang, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Gopchang-jeongol, So Naejang-tang": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Gopchang-jeongol, So Naejang-tang",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 곱창전골, 소내장탕"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Korean (Meat), Sogogi-gui": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Korean (Meat), Sogogi-gui",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 한식(육류), 소고기구이"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Other, Shabu-shabu, Korean (Meat), Sogogi-gui": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Other, Shabu-shabu, Korean (Meat), Sogogi-gui",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 기타, 샤브샤브, 한식(육류), 소고기구이"
+  },
+  "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Ppyeodagwi Haejangguk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Ppyeodagwi Haejangguk",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 뼈다귀해장국"
+  },
+  "Korean (Soup/Stew/Hot Pot), Sogogi Gukbap, Korean (Meat), Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sogogi Gukbap, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 소고기국밥, 한식(육류), 수육"
+  },
+  "Korean (Soup/Stew/Hot Pot), Sundae Gukbap": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sundae Gukbap",
+    "ko": "한식(탕/국/찌개/전골), 순대국밥"
+  },
+  "Korean (Soup/Stew/Hot Pot), Sundae Gukbap, Korean (Meat), Sundae": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sundae Gukbap, Korean (Meat), Sundae",
+    "ko": "한식(탕/국/찌개/전골), 순대국밥, 한식(육류), 순대"
+  },
+  "Korean (Soup/Stew/Hot Pot), Sundaetguk, Korean (Meat), Sundae": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sundaetguk, Korean (Meat), Sundae",
+    "ko": "한식(탕/국/찌개/전골), 순댓국, 한식(육류), 순대"
+  },
+  "Korean (Soup/Stew/Hot Pot), Yukgaejang, Korean (Meat), So Bulgogi, Suyuk": {
+    "en": "Korean (Soup/Stew/Hot Pot), Yukgaejang, Korean (Meat), So Bulgogi, Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 육개장, 한식(육류), 소불고기, 수육"
+  },
+  "Korean Contemporary": {
+    "en": "Korean Contemporary",
+    "ko": "한식 컨템포러리"
+  },
+  "Korean Pub": {
+    "en": "Korean Pub",
+    "ko": "한식주점"
+  },
+  "Korean Pub, Korean (General), Fusion Korean": {
+    "en": "Korean Pub, Korean (General), Fusion Korean",
+    "ko": "한식주점, 한식(일반한식), 퓨전한식"
+  },
+  "Korean Pub, Korean (General), General Korean Cuisine, Korean (Seafood), Bugeotguk": {
+    "en": "Korean Pub, Korean (General), General Korean Cuisine, Korean (Seafood), Bugeotguk",
+    "ko": "한식주점, 한식(일반한식), 일반한식, 한식(어패류), 북엇국"
+  },
+  "Korean Pub, Korean (Seafood), Seafood": {
+    "en": "Korean Pub, Korean (Seafood), Seafood",
+    "ko": "한식주점, 한식(어패류), 해물"
+  },
+  "Korean Pub, Seafood Pocha": {
+    "en": "Korean Pub, Seafood Pocha",
+    "ko": "한식주점, 해물포차"
+  },
+  "Korean Pub, Seafood Pocha, Korean (Seafood), Seafood, Shrimp": {
+    "en": "Korean Pub, Seafood Pocha, Korean (Seafood), Seafood, Shrimp",
+    "ko": "한식주점, 해물포차, 한식(어패류), 해물, 새우"
+  },
+  "Kushiage": {
+    "en": "Kushiage",
+    "ko": "쿠시아게"
+  },
+  "Latin American, Brazilian": {
+    "en": "Latin American, Brazilian",
+    "ko": "중남미식, 브라질식"
+  },
+  "Latin American, Mexican": {
+    "en": "Latin American, Mexican",
+    "ko": "중남미식, 멕시코식"
+  },
+  "Makchang": {
+    "en": "Makchang",
+    "ko": "막창"
+  },
+  "Makgeolli": {
+    "en": "Makgeolli",
+    "ko": "막걸리"
+  },
+  "Mandu": {
+    "en": "Mandu",
+    "ko": "만두"
+  },
+  "Meats and Grills": {
+    "en": "Meats and Grills",
+    "ko": "육류 및 그릴"
+  },
+  "Mediterranean Cuisine": {
+    "en": "Mediterranean Cuisine",
+    "ko": "지중해 음식"
+  },
+  "Memil-guksu": {
+    "en": "Memil-guksu",
+    "ko": "메밀국수"
+  },
+  "Mexican": {
+    "en": "Mexican",
+    "ko": "멕시칸"
+  },
+  "Modern Cuisine": {
+    "en": "Modern Cuisine",
+    "ko": "모던 퀴진"
+  },
+  "Naengmyeon": {
+    "en": "Naengmyeon",
+    "ko": "냉면"
+  },
+  "Noodles": {
+    "en": "Noodles",
+    "ko": "면 요리"
+  },
+  "Other, BBQ": {
+    "en": "Other, BBQ",
+    "ko": "기타, 바비큐"
+  },
+  "Other, Brunch Cafe": {
+    "en": "Other, Brunch Cafe",
+    "ko": "기타, 브런치카페"
+  },
+  "Other, Brunch Cafe, European, Northern European": {
+    "en": "Other, Brunch Cafe, European, Northern European",
+    "ko": "기타, 브런치카페, 유럽식, 북유럽식"
+  },
+  "Other, Buffet": {
+    "en": "Other, Buffet",
+    "ko": "기타, 뷔페"
+  },
+  "Other, Casual Western": {
+    "en": "Other, Casual Western",
+    "ko": "기타, 경양식"
+  },
+  "Other, Charcuterie": {
+    "en": "Other, Charcuterie",
+    "ko": "기타, 샤퀴테리"
+  },
+  "Other, Charcuterie, Bakery, Sandwich": {
+    "en": "Other, Charcuterie, Bakery, Sandwich",
+    "ko": "기타, 샤퀴테리, 베이커리, 샌드위치"
+  },
+  "Other, Charcuterie, European, German": {
+    "en": "Other, Charcuterie, European, German",
+    "ko": "기타, 샤퀴테리, 유럽식, 독일식"
+  },
+  "Other, Dining Bar, Bar, Wine Bar": {
+    "en": "Other, Dining Bar, Bar, Wine Bar",
+    "ko": "기타, 다이닝바, 바, 와인바"
+  },
+  "Other, Dining Bar, French, Bar, Wine Bar": {
+    "en": "Other, Dining Bar, French, Bar, Wine Bar",
+    "ko": "기타, 다이닝바, 프랑스식, 바, 와인바"
+  },
+  "Other, Donkatsu": {
+    "en": "Other, Donkatsu",
+    "ko": "기타, 돈가스"
+  },
+  "Other, Fusion": {
+    "en": "Other, Fusion",
+    "ko": "기타, 퓨전"
+  },
+  "Other, Grill, Steak": {
+    "en": "Other, Grill, Steak",
+    "ko": "기타, 그릴, 스테이크"
+  },
+  "Other, Hambak Steak": {
+    "en": "Other, Hambak Steak",
+    "ko": "기타, 함박스테이크"
+  },
+  "Other, Salad, Diet Food": {
+    "en": "Other, Salad, Diet Food",
+    "ko": "기타, 샐러드, 다이어트식"
+  },
+  "Other, Seafood Buffet, Crab": {
+    "en": "Other, Seafood Buffet, Crab",
+    "ko": "기타, 뷔페_해산물, 크랩"
+  },
+  "Other, Shabu-shabu, Korean (Meat), Grilled Beef": {
+    "en": "Other, Shabu-shabu, Korean (Meat), Grilled Beef",
+    "ko": "기타, 샤브샤브, 한식(육류), 소고기구이"
+  },
+  "Other, Steak": {
+    "en": "Other, Steak",
+    "ko": "기타, 스테이크"
+  },
+  "Other, Steak, American": {
+    "en": "Other, Steak, American",
+    "ko": "기타, 스테이크, 미국식"
+  },
+  "Other, Vegan": {
+    "en": "Other, Vegan",
+    "ko": "기타, 비건"
+  },
+  "Other, Vegan, Vegetable Dishes": {
+    "en": "Other, Vegan, Vegetable Dishes",
+    "ko": "기타, 비건, 채소요리"
+  },
+  "Other, Vegetable Dishes, Bar, Wine Bar": {
+    "en": "Other, Vegetable Dishes, Bar, Wine Bar",
+    "ko": "기타, 채소요리, 바, 와인바"
+  },
+  "Other, Western Food": {
+    "en": "Other, Western Food",
+    "ko": "기타, 양식"
+  },
+  "Pork Gukbap": {
+    "en": "Pork Gukbap",
+    "ko": "돼지국밥"
+  },
+  "Pork Ribs": {
+    "en": "Pork Ribs",
+    "ko": "돼지갈비"
+  },
+  "Pub": {
+    "en": "Pub",
+    "ko": "술집"
+  },
+  "Ramen": {
+    "en": "Ramen",
+    "ko": "라멘"
+  },
+  "Samgyeopsal": {
+    "en": "Samgyeopsal",
+    "ko": "삼겹살"
+  },
+  "Samgyetang": {
+    "en": "Samgyetang",
+    "ko": "삼계탕"
+  },
+  "Seolleongtang": {
+    "en": "Seolleongtang",
+    "ko": "설렁탕"
+  },
+  "Soba": {
+    "en": "Soba",
+    "ko": "소바"
+  },
+  "Spanish": {
+    "en": "Spanish",
+    "ko": "스페인식"
+  },
+  "Spanish, Tapas Bar": {
+    "en": "Spanish, Tapas Bar",
+    "ko": "스페인식, 타파스바"
+  },
+  "Steakhouse": {
+    "en": "Steakhouse",
+    "ko": "스테이크"
+  },
+  "Sujebi": {
+    "en": "Sujebi",
+    "ko": "수제비"
+  },
+  "Sundaeguk": {
+    "en": "Sundaeguk",
+    "ko": "순대국"
+  },
+  "Sushi": {
+    "en": "Sushi",
+    "ko": "스시"
+  },
+  "Teppanyaki": {
+    "en": "Teppanyaki",
+    "ko": "철판요리"
+  },
+  "Thai": {
+    "en": "Thai",
+    "ko": "태국 음식"
+  },
+  "Tteokbokki": {
+    "en": "Tteokbokki",
+    "ko": "떡볶이"
+  },
+  "Udon": {
+    "en": "Udon",
+    "ko": "우동"
+  },
+  "Vegan": {
+    "en": "Vegan",
+    "ko": "비건"
+  },
+  "Vegetarian": {
+    "en": "Vegetarian",
+    "ko": "채식"
+  },
+  "Yakitori": {
+    "en": "Yakitori",
+    "ko": "야키토리"
+  },
+  "Yukhoe": {
+    "en": "Yukhoe",
+    "ko": "육회"
+  },
+  "감자탕": {
+    "en": "Gamjatang",
+    "ko": "감자탕"
+  },
+  "게장": {
+    "en": "Gejang",
+    "ko": "게장"
+  },
+  "고기집": {
+    "en": "Grilled Meats",
+    "ko": "고기집"
+  },
+  "곰탕": {
+    "en": "Gomtang",
+    "ko": "곰탕"
+  },
+  "곱창": {
+    "en": "Gopchang",
+    "ko": "곱창"
+  },
+  "국밥": {
+    "en": "Gukbap",
+    "ko": "국밥"
+  },
+  "국수": {
+    "en": "Noodles",
+    "ko": "국수"
+  },
+  "기사식당": {
+    "en": "Driver's Restaurant",
+    "ko": "기사식당"
+  },
+  "기타, 경양식": {
+    "en": "Other, Casual Western",
+    "ko": "기타, 경양식"
+  },
+  "기타, 그릴, 스테이크": {
+    "en": "Other, Grill, Steak",
+    "ko": "기타, 그릴, 스테이크"
+  },
+  "기타, 다이닝바, 바, 와인바": {
+    "en": "Other, Dining Bar, Bar, Wine Bar",
+    "ko": "기타, 다이닝바, 바, 와인바"
+  },
+  "기타, 다이닝바, 프랑스식, 바, 와인바": {
+    "en": "Other, Dining Bar, French, Bar, Wine Bar",
+    "ko": "기타, 다이닝바, 프랑스식, 바, 와인바"
+  },
+  "기타, 돈가스": {
+    "en": "Other, Donkatsu",
+    "ko": "기타, 돈가스"
+  },
+  "기타, 바비큐": {
+    "en": "Other, BBQ",
+    "ko": "기타, 바비큐"
+  },
+  "기타, 뷔페": {
+    "en": "Other, Buffet",
+    "ko": "기타, 뷔페"
+  },
+  "기타, 뷔페_해산물, 크랩": {
+    "en": "Other, Seafood Buffet, Crab",
+    "ko": "기타, 뷔페_해산물, 크랩"
+  },
+  "기타, 브런치카페": {
+    "en": "Other, Brunch Cafe",
+    "ko": "기타, 브런치카페"
+  },
+  "기타, 브런치카페, 유럽식, 북유럽식": {
+    "en": "Other, Brunch Cafe, European, Northern European",
+    "ko": "기타, 브런치카페, 유럽식, 북유럽식"
+  },
+  "기타, 비건": {
+    "en": "Other, Vegan",
+    "ko": "기타, 비건"
+  },
+  "기타, 비건, 채소요리": {
+    "en": "Other, Vegan, Vegetable Dishes",
+    "ko": "기타, 비건, 채소요리"
+  },
+  "기타, 샐러드, 다이어트식": {
+    "en": "Other, Salad, Diet Food",
+    "ko": "기타, 샐러드, 다이어트식"
+  },
+  "기타, 샤브샤브, 한식(육류), 소고기구이": {
+    "en": "Other, Shabu-shabu, Korean (Meat), Grilled Beef",
+    "ko": "기타, 샤브샤브, 한식(육류), 소고기구이"
+  },
+  "기타, 샤퀴테리": {
+    "en": "Other, Charcuterie",
+    "ko": "기타, 샤퀴테리"
+  },
+  "기타, 샤퀴테리, 베이커리, 샌드위치": {
+    "en": "Other, Charcuterie, Bakery, Sandwich",
+    "ko": "기타, 샤퀴테리, 베이커리, 샌드위치"
+  },
+  "기타, 샤퀴테리, 유럽식, 독일식": {
+    "en": "Other, Charcuterie, European, German",
+    "ko": "기타, 샤퀴테리, 유럽식, 독일식"
+  },
+  "기타, 스테이크": {
+    "en": "Other, Steak",
+    "ko": "기타, 스테이크"
+  },
+  "기타, 스테이크, 미국식": {
+    "en": "Other, Steak, American",
+    "ko": "기타, 스테이크, 미국식"
+  },
+  "기타, 양식": {
+    "en": "Other, Western Food",
+    "ko": "기타, 양식"
+  },
+  "기타, 채소요리, 바, 와인바": {
+    "en": "Other, Vegetable Dishes, Bar, Wine Bar",
+    "ko": "기타, 채소요리, 바, 와인바"
+  },
+  "기타, 퓨전": {
+    "en": "Other, Fusion",
+    "ko": "기타, 퓨전"
+  },
+  "기타, 함박스테이크": {
+    "en": "Other, Hambak Steak",
+    "ko": "기타, 함박스테이크"
+  },
+  "냉면": {
+    "en": "Naengmyeon",
+    "ko": "냉면"
+  },
+  "도가니탕": {
+    "en": "Doganitang",
+    "ko": "도가니탕"
+  },
+  "돈까스": {
+    "en": "Donkatsu",
+    "ko": "돈까스"
+  },
+  "돼지갈비": {
+    "en": "Pork Ribs",
+    "ko": "돼지갈비"
+  },
+  "돼지국밥": {
+    "en": "Pork Gukbap",
+    "ko": "돼지국밥"
+  },
+  "두부": {
+    "en": "Dubu",
+    "ko": "두부"
+  },
+  "디저트": {
+    "en": "Dessert",
+    "ko": "디저트"
+  },
+  "디저트/스위트, 구움과자, 디저트전문점": {
+    "en": "Dessert/Sweets, Baked Goods, Dessert Specialty Store",
+    "ko": "디저트/스위트, 구움과자, 디저트전문점"
+  },
+  "디저트/스위트, 디저트전문점": {
+    "en": "Dessert/Sweets, Dessert Specialty Store",
+    "ko": "디저트/스위트, 디저트전문점"
+  },
+  "디저트/스위트, 떡": {
+    "en": "Dessert/Sweets, Tteok (Rice Cake)",
+    "ko": "디저트/스위트, 떡"
+  },
+  "디저트/스위트, 라이브디저트": {
+    "en": "Dessert/Sweets, Live Dessert",
+    "ko": "디저트/스위트, 라이브디저트"
+  },
+  "디저트/스위트, 마카롱, 디저트전문점": {
+    "en": "Dessert/Sweets, Macaron, Dessert Specialty Store",
+    "ko": "디저트/스위트, 마카롱, 디저트전문점"
+  },
+  "디저트/스위트, 빙수": {
+    "en": "Dessert/Sweets, Bingsu",
+    "ko": "디저트/스위트, 빙수"
+  },
+  "디저트/스위트, 아이스크림": {
+    "en": "Dessert/Sweets, Ice Cream",
+    "ko": "디저트/스위트, 아이스크림"
+  },
+  "디저트/스위트, 일본디저트": {
+    "en": "Dessert/Sweets, Japanese Dessert",
+    "ko": "디저트/스위트, 일본디저트"
+  },
+  "디저트/스위트, 젤라토": {
+    "en": "Dessert/Sweets, Gelato",
+    "ko": "디저트/스위트, 젤라토"
+  },
+  "디저트/스위트, 중국디저트": {
+    "en": "Dessert/Sweets, Chinese Dessert",
+    "ko": "디저트/스위트, 중국디저트"
+  },
+  "디저트/스위트, 초콜릿": {
+    "en": "Dessert/Sweets, Chocolate",
+    "ko": "디저트/스위트, 초콜릿"
+  },
+  "디저트/스위트, 카이막, 카페/커피/티, 커피전문점": {
+    "en": "Dessert/Sweets, Kaymak, Cafe/Coffee/Tea, Coffee Shop",
+    "ko": "디저트/스위트, 카이막, 카페/커피/티, 커피전문점"
+  },
+  "디저트/스위트, 케이크": {
+    "en": "Dessert/Sweets, Cake",
+    "ko": "디저트/스위트, 케이크"
+  },
+  "디저트/스위트, 케이크, 디저트전문점": {
+    "en": "Dessert/Sweets, Cake, Dessert Specialty Store",
+    "ko": "디저트/스위트, 케이크, 디저트전문점"
+  },
+  "디저트/스위트, 케이크, 카페/커피/티, 카페": {
+    "en": "Dessert/Sweets, Cake, Cafe/Coffee/Tea, Cafe",
+    "ko": "디저트/스위트, 케이크, 카페/커피/티, 카페"
+  },
+  "디저트/스위트, 쿠키, 마카롱, 디저트전문점": {
+    "en": "Dessert/Sweets, Cookie, Macaron, Dessert Specialty Store",
+    "ko": "디저트/스위트, 쿠키, 마카롱, 디저트전문점"
+  },
+  "디저트/스위트, 쿠키, 캐러멜, 디저트전문점": {
+    "en": "Dessert/Sweets, Cookie, Caramel, Dessert Specialty Store",
+    "ko": "디저트/스위트, 쿠키, 캐러멜, 디저트전문점"
+  },
+  "디저트/스위트, 타르트": {
+    "en": "Dessert/Sweets, Tart",
+    "ko": "디저트/스위트, 타르트"
+  },
+  "디저트/스위트, 한식디저트, 빙수": {
+    "en": "Dessert/Sweets, Korean Dessert, Bingsu",
+    "ko": "디저트/스위트, 한식디저트, 빙수"
+  },
+  "디저트/스위트, 한식디저트, 카페/커피/티, 전통차전문점": {
+    "en": "Dessert/Sweets, Korean Dessert, Cafe/Coffee/Tea, Traditional Tea House",
+    "ko": "디저트/스위트, 한식디저트, 카페/커피/티, 전통차전문점"
+  },
+  "디저트/스위트, 한식디저트, 한과": {
+    "en": "Dessert/Sweets, Korean Dessert, Hangwa",
+    "ko": "디저트/스위트, 한식디저트, 한과"
+  },
+  "딤섬": {
+    "en": "Dim Sum",
+    "ko": "딤섬"
+  },
+  "떡볶이": {
+    "en": "Tteokbokki",
+    "ko": "떡볶이"
+  },
+  "라멘": {
+    "en": "Ramen",
+    "ko": "라멘"
+  },
+  "막걸리": {
+    "en": "Makgeolli",
+    "ko": "막걸리"
+  },
+  "막창": {
+    "en": "Makchang",
+    "ko": "막창"
+  },
+  "만두": {
+    "en": "Mandu",
+    "ko": "만두"
+  },
+  "메밀국수": {
+    "en": "Memil-guksu",
+    "ko": "메밀국수"
+  },
+  "멕시칸": {
+    "en": "Mexican",
+    "ko": "멕시칸"
+  },
+  "면 요리": {
+    "en": "Noodles",
+    "ko": "면 요리"
+  },
+  "모던 퀴진": {
+    "en": "Modern Cuisine",
+    "ko": "모던 퀴진"
+  },
+  "미국식": {
+    "en": "American",
+    "ko": "미국식"
+  },
+  "미국식, 미국식피자": {
+    "en": "American, American Pizza",
+    "ko": "미국식, 미국식피자"
+  },
+  "미국식, 미국식피자, 바, 크래프트맥주바": {
+    "en": "American, American Pizza, Bar, Craft Beer Bar",
+    "ko": "미국식, 미국식피자, 바, 크래프트맥주바"
+  },
+  "바": {
+    "en": "Bar",
+    "ko": "바"
+  },
+  "바, 기타, 스테이크": {
+    "en": "Bar, Other, Steak",
+    "ko": "바, 기타, 스테이크"
+  },
+  "바, 샴페인바": {
+    "en": "Bar, Champagne Bar",
+    "ko": "바, 샴페인바"
+  },
+  "바, 와인바": {
+    "en": "Bar, Wine Bar",
+    "ko": "바, 와인바"
+  },
+  "바, 와인바, 기타, 브런치카페": {
+    "en": "Bar, Wine Bar, Other, Brunch Cafe",
+    "ko": "바, 와인바, 기타, 브런치카페"
+  },
+  "바, 와인바, 유럽식, 포르투갈식": {
+    "en": "Bar, Wine Bar, European, Portuguese",
+    "ko": "바, 와인바, 유럽식, 포르투갈식"
+  },
+  "바, 위스키바": {
+    "en": "Bar, Whiskey Bar",
+    "ko": "바, 위스키바"
+  },
+  "바, 위스키바, 루프탑바": {
+    "en": "Bar, Whiskey Bar, Rooftop Bar",
+    "ko": "바, 위스키바, 루프탑바"
+  },
+  "바, 칵테일바": {
+    "en": "Bar, Cocktail Bar",
+    "ko": "바, 칵테일바"
+  },
+  "바, 칵테일바, 위스키바": {
+    "en": "Bar, Cocktail Bar, Whiskey Bar",
+    "ko": "바, 칵테일바, 위스키바"
+  },
+  "바비큐": {
+    "en": "Barbecue",
+    "ko": "바비큐"
+  },
+  "베이커리": {
+    "en": "Bakery",
+    "ko": "베이커리"
+  },
+  "베이커리, 디저트/스위트, 디저트전문점": {
+    "en": "Bakery, Dessert/Sweets, Dessert Shop",
+    "ko": "베이커리, 디저트/스위트, 디저트전문점"
+  },
+  "베이커리, 디저트/스위트, 디저트전문점, 샌드위치": {
+    "en": "Bakery, Dessert/Sweets, Dessert Shop, Sandwiches",
+    "ko": "베이커리, 디저트/스위트, 디저트전문점, 샌드위치"
+  },
+  "베이커리, 디저트/스위트, 타르트": {
+    "en": "Bakery, Dessert/Sweets, Tarts",
+    "ko": "베이커리, 디저트/스위트, 타르트"
+  },
+  "베이커리, 베이글, 카페/커피/티, 카페": {
+    "en": "Bakery, Bagels, Cafe/Coffee/Tea, Cafe",
+    "ko": "베이커리, 베이글, 카페/커피/티, 카페"
+  },
+  "베이커리, 샌드위치": {
+    "en": "Bakery, Sandwiches",
+    "ko": "베이커리, 샌드위치"
+  },
+  "베이커리, 샌드위치, 기타, 브런치카페": {
+    "en": "Bakery, Sandwiches, Other, Brunch Cafe",
+    "ko": "베이커리, 샌드위치, 기타, 브런치카페"
+  },
+  "베이커리, 샌드위치, 미국식, 유럽식, 지중해식": {
+    "en": "Bakery, Sandwiches, American, European, Mediterranean",
+    "ko": "베이커리, 샌드위치, 미국식, 유럽식, 지중해식"
+  },
+  "베이커리, 식빵": {
+    "en": "Bakery, Bread",
+    "ko": "베이커리, 식빵"
+  },
+  "베이커리, 팬케이크": {
+    "en": "Bakery, Pancakes",
+    "ko": "베이커리, 팬케이크"
+  },
+  "베이커리, 팬케이크, 미국식": {
+    "en": "Bakery, Pancakes, American",
+    "ko": "베이커리, 팬케이크, 미국식"
+  },
+  "베이커리, 페이스트리": {
+    "en": "Bakery, Pastries",
+    "ko": "베이커리, 페이스트리"
+  },
+  "분식": {
+    "en": "Bunsik",
+    "ko": "분식"
+  },
+  "불고기": {
+    "en": "Bulgogi",
+    "ko": "불고기"
+  },
+  "비건": {
+    "en": "Vegan",
+    "ko": "비건"
+  },
+  "빈대떡": {
+    "en": "Bindaetteok",
+    "ko": "빈대떡"
+  },
+  "삼겹살": {
+    "en": "Samgyeopsal",
+    "ko": "삼겹살"
+  },
+  "삼계탕": {
+    "en": "Samgyetang",
+    "ko": "삼계탕"
+  },
+  "설렁탕": {
+    "en": "Seolleongtang",
+    "ko": "설렁탕"
+  },
+  "소바": {
+    "en": "Soba",
+    "ko": "소바"
+  },
+  "수제맥주": {
+    "en": "Craft Beer",
+    "ko": "수제맥주"
+  },
+  "수제비": {
+    "en": "Sujebi",
+    "ko": "수제비"
+  },
+  "순대국": {
+    "en": "Sundaeguk",
+    "ko": "순대국"
+  },
+  "술집": {
+    "en": "Pub",
+    "ko": "술집"
+  },
+  "스시": {
+    "en": "Sushi",
+    "ko": "스시"
+  },
+  "스테이크": {
+    "en": "Steakhouse",
+    "ko": "스테이크"
+  },
+  "스페인식": {
+    "en": "Spanish",
+    "ko": "스페인식"
+  },
+  "스페인식, 타파스바": {
+    "en": "Spanish, Tapas Bar",
+    "ko": "스페인식, 타파스바"
+  },
+  "아시아 음식": {
+    "en": "Asian",
+    "ko": "아시아 음식"
+  },
+  "아시아식": {
+    "en": "Asian",
+    "ko": "아시아식"
+  },
+  "아시아식, 네팔식": {
+    "en": "Asian, Nepalese",
+    "ko": "아시아식, 네팔식"
+  },
+  "아시아식, 베트남식": {
+    "en": "Asian, Vietnamese",
+    "ko": "아시아식, 베트남식"
+  },
+  "아시아식, 인도식": {
+    "en": "Asian, Indian",
+    "ko": "아시아식, 인도식"
+  },
+  "아시아식, 인도식, 네팔식": {
+    "en": "Asian, Indian, Nepalese",
+    "ko": "아시아식, 인도식, 네팔식"
+  },
+  "아시아식, 중동식, 요르단식, 시리아식": {
+    "en": "Asian, Middle Eastern, Jordanian, Syrian",
+    "ko": "아시아식, 중동식, 요르단식, 시리아식"
+  },
+  "아시아식, 카페/커피/티, 카페": {
+    "en": "Asian, Cafe/Coffee/Tea, Cafe",
+    "ko": "아시아식, 카페/커피/티, 카페"
+  },
+  "아시아식, 태국식": {
+    "en": "Asian, Thai",
+    "ko": "아시아식, 태국식"
+  },
+  "야키토리": {
+    "en": "Yakitori",
+    "ko": "야키토리"
+  },
+  "양조장": {
+    "en": "Brewery",
+    "ko": "양조장"
+  },
+  "우동": {
+    "en": "Udon",
+    "ko": "우동"
+  },
+  "유럽식, 북유럽식": {
+    "en": "European, Nordic",
+    "ko": "유럽식, 북유럽식"
+  },
+  "유럽식, 스위스식": {
+    "en": "European, Swiss",
+    "ko": "유럽식, 스위스식"
+  },
+  "유럽식, 영국식": {
+    "en": "European, British",
+    "ko": "유럽식, 영국식"
+  },
+  "유럽식, 지중해식, 스페인식": {
+    "en": "European, Mediterranean, Spanish",
+    "ko": "유럽식, 지중해식, 스페인식"
+  },
+  "육류 및 그릴": {
+    "en": "Meats and Grills",
+    "ko": "육류 및 그릴"
+  },
+  "육회": {
+    "en": "Yukhoe",
+    "ko": "육회"
+  },
+  "이노베이티브": {
+    "en": "Innovative",
+    "ko": "이노베이티브"
+  },
+  "이탈리아식": {
+    "en": "Italian",
+    "ko": "이탈리아식"
+  },
+  "이탈리아식, 기타, 채소요리": {
+    "en": "Italian, Other, Vegetarian Dishes",
+    "ko": "이탈리아식, 기타, 채소요리"
+  },
+  "이탈리아식, 바, 카페/커피/티, 카페": {
+    "en": "Italian, Bar, Cafe/Coffee/Tea, Cafe",
+    "ko": "이탈리아식, 바, 카페/커피/티, 카페"
+  },
+  "이탈리아식, 베이커리, 샌드위치": {
+    "en": "Italian, Bakery, Sandwich",
+    "ko": "이탈리아식, 베이커리, 샌드위치"
+  },
+  "이탈리아식, 파스타": {
+    "en": "Italian, Pasta",
+    "ko": "이탈리아식, 파스타"
+  },
+  "이탈리아식, 파스타, 피자": {
+    "en": "Italian, Pasta, Pizza",
+    "ko": "이탈리아식, 파스타, 피자"
+  },
+  "이탈리아식, 피자": {
+    "en": "Italian, Pizza",
+    "ko": "이탈리아식, 피자"
+  },
+  "이탈리아식, 피자, 파스타": {
+    "en": "Italian, Pizza, Pasta",
+    "ko": "이탈리아식, 피자, 파스타"
+  },
+  "이탈리안": {
+    "en": "Italian",
+    "ko": "이탈리안"
+  },
+  "이탈리안 컨템포러리": {
+    "en": "Italian Contemporary",
+    "ko": "이탈리안 컨템포러리"
+  },
+  "일식": {
+    "en": "Japanese",
+    "ko": "일식"
+  },
+  "일식, 가이세키": {
+    "en": "Japanese, Kaiseki",
+    "ko": "일식, 가이세키"
+  },
+  "일식, 가이세키, 스시, 데판야키": {
+    "en": "Japanese, Kaiseki, Sushi, Teppanyaki",
+    "ko": "일식, 가이세키, 스시, 데판야키"
+  },
+  "일식, 덴푸라": {
+    "en": "Japanese, Tempura",
+    "ko": "일식, 덴푸라"
+  },
+  "일식, 덴푸라, 텐동": {
+    "en": "Japanese, Tempura, Tendon",
+    "ko": "일식, 덴푸라, 텐동"
+  },
+  "일식, 라멘": {
+    "en": "Japanese, Ramen",
+    "ko": "일식, 라멘"
+  },
+  "일식, 마제소바, 라멘": {
+    "en": "Japanese, Mazesoba, Ramen",
+    "ko": "일식, 마제소바, 라멘"
+  },
+  "일식, 모던재패니즈": {
+    "en": "Japanese, Modern Japanese",
+    "ko": "일식, 모던재패니즈"
+  },
+  "일식, 소바": {
+    "en": "Japanese, Soba",
+    "ko": "일식, 소바"
+  },
+  "일식, 소바, 일식우동": {
+    "en": "Japanese, Soba, Udon",
+    "ko": "일식, 소바, 일식우동"
+  },
+  "일식, 스시": {
+    "en": "Japanese, Sushi",
+    "ko": "일식, 스시"
+  },
+  "일식, 스시, 가이세키": {
+    "en": "Japanese, Sushi, Kaiseki",
+    "ko": "일식, 스시, 가이세키"
+  },
+  "일식, 스시, 데판야키": {
+    "en": "Japanese, Sushi, Teppanyaki",
+    "ko": "일식, 스시, 데판야키"
+  },
+  "일식, 스키야키": {
+    "en": "Japanese, Sukiyaki",
+    "ko": "일식, 스키야키"
+  },
+  "일식, 오코노미야키": {
+    "en": "Japanese, Okonomiyaki",
+    "ko": "일식, 오코노미야키"
+  },
+  "일식, 일본가정식": {
+    "en": "Japanese, Homestyle Japanese",
+    "ko": "일식, 일본가정식"
+  },
+  "일식, 일본가정식, 일식주점, 이자카야": {
+    "en": "Japanese, Homestyle Japanese, Japanese Pub, Izakaya",
+    "ko": "일식, 일본가정식, 일식주점, 이자카야"
+  },
+  "일식, 일식돈가스": {
+    "en": "Japanese, Tonkatsu",
+    "ko": "일식, 일식돈가스"
+  },
+  "일식, 일식샤부샤부": {
+    "en": "Japanese, Shabu-shabu",
+    "ko": "일식, 일식샤부샤부"
+  },
+  "일식, 일식오마카세": {
+    "en": "Japanese, Omakase",
+    "ko": "일식, 일식오마카세"
+  },
+  "일식, 일식우동": {
+    "en": "Japanese, Udon",
+    "ko": "일식, 일식우동"
+  },
+  "일식, 일식우동, 소바": {
+    "en": "Japanese, Udon, Soba",
+    "ko": "일식, 일식우동, 소바"
+  },
+  "일식, 일식우동, 일식덮밥": {
+    "en": "Japanese, Udon, Donburi",
+    "ko": "일식, 일식우동, 일식덮밥"
+  },
+  "일식, 일식장어": {
+    "en": "Japanese, Unagi",
+    "ko": "일식, 일식장어"
+  },
+  "일식, 일식장어, 가이세키": {
+    "en": "Japanese, Unagi, Kaiseki",
+    "ko": "일식, 일식장어, 가이세키"
+  },
+  "일식, 일식참치": {
+    "en": "Japanese, Maguro",
+    "ko": "일식, 일식참치"
+  },
+  "일식, 카이센동": {
+    "en": "Japanese, Kaisen-don",
+    "ko": "일식, 카이센동"
+  },
+  "일식, 편백찜, 일식샤부샤부": {
+    "en": "Japanese, Hinoki Steamed, Shabu-shabu",
+    "ko": "일식, 편백찜, 일식샤부샤부"
+  },
+  "일식, 회전스시": {
+    "en": "Japanese, Conveyor Belt Sushi",
+    "ko": "일식, 회전스시"
+  },
+  "일식주점, 로바다야키": {
+    "en": "Japanese Pub, Robatayaki",
+    "ko": "일식주점, 로바다야키"
+  },
+  "일식주점, 야키토리": {
+    "en": "Japanese Pub, Yakitori",
+    "ko": "일식주점, 야키토리"
+  },
+  "일식주점, 오뎅바": {
+    "en": "Japanese Pub, Oden Bar",
+    "ko": "일식주점, 오뎅바"
+  },
+  "일식주점, 이자카야": {
+    "en": "Japanese Pub, Izakaya",
+    "ko": "일식주점, 이자카야"
+  },
+  "일식주점, 이자카야, 일식, 스시": {
+    "en": "Japanese Pub, Izakaya, Japanese, Sushi",
+    "ko": "일식주점, 이자카야, 일식, 스시"
+  },
+  "일식주점, 이자카야, 일식, 스키야키, 편백찜": {
+    "en": "Japanese Pub, Izakaya, Japanese, Sukiyaki, Hinoki Steamed",
+    "ko": "일식주점, 이자카야, 일식, 스키야키, 편백찜"
+  },
+  "일식주점, 쿠시아게": {
+    "en": "Japanese Izakaya, Kushiage",
+    "ko": "일식주점, 쿠시아게"
+  },
+  "일식주점, 쿠시야키": {
+    "en": "Japanese Pub, Kushiyaki",
+    "ko": "일식주점, 쿠시야키"
+  },
+  "일식주점, 쿠시카츠": {
+    "en": "Japanese Pub, Kushikatsu",
+    "ko": "일식주점, 쿠시카츠"
+  },
+  "제육볶음": {
+    "en": "Jeyuk-bokkeum",
+    "ko": "제육볶음"
+  },
+  "족발": {
+    "en": "Jokbal",
+    "ko": "족발"
+  },
+  "중남미식, 멕시코식": {
+    "en": "Latin American, Mexican",
+    "ko": "중남미식, 멕시코식"
+  },
+  "중남미식, 브라질식": {
+    "en": "Latin American, Brazilian",
+    "ko": "중남미식, 브라질식"
+  },
+  "중식": {
+    "en": "Chinese",
+    "ko": "중식"
+  },
+  "중식, 광동식중식": {
+    "en": "Chinese, Cantonese",
+    "ko": "중식, 광동식중식"
+  },
+  "중식, 광동식중식, 딤섬": {
+    "en": "Chinese, Cantonese Chinese, Dim Sum",
+    "ko": "중식, 광동식중식, 딤섬"
+  },
+  "중식, 대만식중식": {
+    "en": "Chinese, Taiwanese",
+    "ko": "중식, 대만식중식"
+  },
+  "중식, 딤섬, 홍콩식중식": {
+    "en": "Chinese, Dim Sum, Hong Kong Style",
+    "ko": "중식, 딤섬, 홍콩식중식"
+  },
+  "중식, 마라탕, 사천식중식": {
+    "en": "Chinese, Malatang, Sichuan",
+    "ko": "중식, 마라탕, 사천식중식"
+  },
+  "중식, 모던차이니즈, 딤섬": {
+    "en": "Chinese, Modern Chinese, Dim Sum",
+    "ko": "중식, 모던차이니즈, 딤섬"
+  },
+  "중식, 미국식중식": {
+    "en": "Chinese, American Chinese",
+    "ko": "중식, 미국식중식"
+  },
+  "중식, 북경식중식, 북경오리": {
+    "en": "Chinese, Beijing-style Chinese, Peking Duck",
+    "ko": "중식, 북경식중식, 북경오리"
+  },
+  "중식, 북경식중식, 일반중식, 북경오리": {
+    "en": "Chinese, Beijing-style Chinese, General Chinese, Peking Duck",
+    "ko": "중식, 북경식중식, 일반중식, 북경오리"
+  },
+  "중식, 사천식중식": {
+    "en": "Chinese, Sichuan Chinese",
+    "ko": "중식, 사천식중식"
+  },
+  "중식, 양꼬치, 동북식중식": {
+    "en": "Chinese, Lamb Skewers, Northeastern Chinese",
+    "ko": "중식, 양꼬치, 동북식중식"
+  },
+  "중식, 우육면, 대만식중식": {
+    "en": "Chinese, Beef Noodle Soup, Taiwanese Chinese",
+    "ko": "중식, 우육면, 대만식중식"
+  },
+  "중식, 일반중식": {
+    "en": "Chinese, General Chinese",
+    "ko": "중식, 일반중식"
+  },
+  "중식, 일반중식, 딤섬, 북경오리": {
+    "en": "Chinese, General Chinese, Dim Sum, Peking Duck",
+    "ko": "중식, 일반중식, 딤섬, 북경오리"
+  },
+  "중식, 일반중식, 북경오리": {
+    "en": "Chinese, General Chinese, Peking Duck",
+    "ko": "중식, 일반중식, 북경오리"
+  },
+  "중식, 일반중식, 사천식중식": {
+    "en": "Chinese, General Chinese, Sichuan Chinese",
+    "ko": "중식, 일반중식, 사천식중식"
+  },
+  "중식, 중국만두": {
+    "en": "Chinese, Chinese Dumplings",
+    "ko": "중식, 중국만두"
+  },
+  "중식, 중국만두, 대만식중식": {
+    "en": "Chinese, Chinese Dumplings, Taiwanese Chinese",
+    "ko": "중식, 중국만두, 대만식중식"
+  },
+  "중식, 중국만두, 일반중식": {
+    "en": "Chinese, Chinese Dumplings, General Chinese",
+    "ko": "중식, 중국만두, 일반중식"
+  },
+  "중식, 중국식국수, 중국만두, 샤오룽바오": {
+    "en": "Chinese, Chinese Noodles, Chinese Dumplings, Xiaolongbao",
+    "ko": "중식, 중국식국수, 중국만두, 샤오룽바오"
+  },
+  "중식, 퓨전중식": {
+    "en": "Chinese, Fusion Chinese",
+    "ko": "중식, 퓨전중식"
+  },
+  "중식, 홍콩식중식": {
+    "en": "Chinese, Hong Kong-style Chinese",
+    "ko": "중식, 홍콩식중식"
+  },
+  "중식, 홍콩식중식, 광동식중식": {
+    "en": "Chinese, Hong Kong Chinese, Cantonese Chinese",
+    "ko": "중식, 홍콩식중식, 광동식중식"
+  },
+  "중식, 홍콩식중식, 딤섬": {
+    "en": "Chinese, Hong Kong-style Chinese, Dim Sum",
+    "ko": "중식, 홍콩식중식, 딤섬"
+  },
+  "중식, 홍콩식중식, 카페/커피/티, 중국차전문점": {
+    "en": "Chinese, Hong Kong-style Chinese, Cafe/Coffee/Tea, Chinese Tea Specialty Shop",
+    "ko": "중식, 홍콩식중식, 카페/커피/티, 중국차전문점"
+  },
+  "중식, 훠궈": {
+    "en": "Chinese, Hot Pot",
+    "ko": "중식, 훠궈"
+  },
+  "중식, 훠궈, 사천식중식": {
+    "en": "Chinese, Hot Pot, Sichuan Chinese",
+    "ko": "중식, 훠궈, 사천식중식"
+  },
+  "중식주점, 중식, 일반중식": {
+    "en": "Chinese Bar, Chinese, General Chinese",
+    "ko": "중식주점, 중식, 일반중식"
+  },
+  "중식주점, 중식, 중국만두": {
+    "en": "Chinese Bar, Chinese, Chinese Dumplings",
+    "ko": "중식주점, 중식, 중국만두"
+  },
+  "지중해 음식": {
+    "en": "Mediterranean Cuisine",
+    "ko": "지중해 음식"
+  },
+  "쭈꾸미": {
+    "en": "Jjukkumi",
+    "ko": "쭈꾸미"
+  },
+  "채식": {
+    "en": "Vegetarian",
+    "ko": "채식"
+  },
+  "철판요리": {
+    "en": "Teppanyaki",
+    "ko": "철판요리"
+  },
+  "추어탕": {
+    "en": "Chueotang",
+    "ko": "추어탕"
+  },
+  "치맥": {
+    "en": "Chimaek",
+    "ko": "치맥"
+  },
+  "치킨": {
+    "en": "Chicken",
+    "ko": "치킨"
+  },
+  "카페/커피/티, 북카페, 베이커리": {
+    "en": "Cafe/Coffee/Tea, Book Cafe, Bakery",
+    "ko": "카페/커피/티, 북카페, 베이커리"
+  },
+  "카페/커피/티, 에스프레소바": {
+    "en": "Cafe/Coffee/Tea, Espresso Bar",
+    "ko": "카페/커피/티, 에스프레소바"
+  },
+  "카페/커피/티, 에스프레소바, 커피전문점": {
+    "en": "Cafe/Coffee/Tea, Espresso Bar, Coffee Specialty Shop",
+    "ko": "카페/커피/티, 에스프레소바, 커피전문점"
+  },
+  "카페/커피/티, 전통차전문점": {
+    "en": "Cafe/Coffee/Tea, Traditional Tea Specialty Shop",
+    "ko": "카페/커피/티, 전통차전문점"
+  },
+  "카페/커피/티, 전통차전문점, 디저트/스위트, 단팥죽": {
+    "en": "Cafe/Coffee/Tea, Traditional Tea Specialty Shop, Dessert/Sweets, Sweet Red Bean Porridge",
+    "ko": "카페/커피/티, 전통차전문점, 디저트/스위트, 단팥죽"
+  },
+  "카페/커피/티, 중국차전문점": {
+    "en": "Cafe/Coffee/Tea, Chinese Tea Specialty Shop",
+    "ko": "카페/커피/티, 중국차전문점"
+  },
+  "카페/커피/티, 카페": {
+    "en": "Cafe/Coffee/Tea, Cafe",
+    "ko": "카페/커피/티, 카페"
+  },
+  "카페/커피/티, 카페, 베이커리": {
+    "en": "Cafe/Coffee/Tea, Cafe, Bakery",
+    "ko": "카페/커피/티, 카페, 베이커리"
+  },
+  "카페/커피/티, 카페, 베이커리, 소금빵": {
+    "en": "Cafe/Coffee/Tea, Cafe, Bakery, Salt Bread",
+    "ko": "카페/커피/티, 카페, 베이커리, 소금빵"
+  },
+  "카페/커피/티, 카페, 유럽식, 독일식": {
+    "en": "Cafe/Coffee/Tea, Cafe, European, German",
+    "ko": "카페/커피/티, 카페, 유럽식, 독일식"
+  },
+  "카페/커피/티, 커피전문점": {
+    "en": "Cafe/Coffee/Tea, Coffee Specialty Shop",
+    "ko": "카페/커피/티, 커피전문점"
+  },
+  "카페/커피/티, 커피전문점, 디저트/스위트, 디저트전문점": {
+    "en": "Cafe/Coffee/Tea, Coffee Specialty Shop, Dessert/Sweets, Dessert Specialty Shop",
+    "ko": "카페/커피/티, 커피전문점, 디저트/스위트, 디저트전문점"
+  },
+  "카페/커피/티, 홍차전문점": {
+    "en": "Cafe/Coffee/Tea, Black Tea Specialty Shop",
+    "ko": "카페/커피/티, 홍차전문점"
+  },
+  "칼국수": {
+    "en": "Kalguksu",
+    "ko": "칼국수"
+  },
+  "컨템포러리": {
+    "en": "Contemporary",
+    "ko": "컨템포러리"
+  },
+  "컨템포러리, 분자요리": {
+    "en": "Contemporary, Molecular Gastronomy",
+    "ko": "컨템포러리, 분자요리"
+  },
+  "컨템포러리, 이노베이티브퀴진, 일식, 중식, 모던차이니즈": {
+    "en": "Contemporary, Innovative Cuisine, Japanese, Chinese, Modern Chinese",
+    "ko": "컨템포러리, 이노베이티브퀴진, 일식, 중식, 모던차이니즈"
+  },
+  "컨템포러리, 프랑스식": {
+    "en": "Contemporary, French",
+    "ko": "컨템포러리, 프랑스식"
+  },
+  "쿠시아게": {
+    "en": "Kushiage",
+    "ko": "쿠시아게"
+  },
+  "태국 음식": {
+    "en": "Thai",
+    "ko": "태국 음식"
+  },
+  "프랑스식": {
+    "en": "French",
+    "ko": "프랑스식"
+  },
+  "프랑스식, 바, 와인바": {
+    "en": "French, Bar, Wine Bar",
+    "ko": "프랑스식, 바, 와인바"
+  },
+  "프랑스식, 프랑스가정식": {
+    "en": "French, French Home Cooking",
+    "ko": "프랑스식, 프랑스가정식"
+  },
+  "프랑스식, 프렌치비스트로": {
+    "en": "French, French Bistro",
+    "ko": "프랑스식, 프렌치비스트로"
+  },
+  "프랑스식, 프렌치비스트로, 기타, 샤퀴테리": {
+    "en": "French, French Bistro, Other, Charcuterie",
+    "ko": "프랑스식, 프렌치비스트로, 기타, 샤퀴테리"
+  },
+  "프랑스식, 프렌치비스트로, 바, 와인바": {
+    "en": "French, French Bistro, Bar, Wine Bar",
+    "ko": "프랑스식, 프렌치비스트로, 바, 와인바"
+  },
+  "프랑스식, 프렌치비스트로, 바, 재즈바": {
+    "en": "French, French Bistro, Bar, Jazz Bar",
+    "ko": "프랑스식, 프렌치비스트로, 바, 재즈바"
+  },
+  "프렌치": {
+    "en": "French",
+    "ko": "프렌치"
+  },
+  "프렌치 컨템포러리": {
+    "en": "French Contemporary",
+    "ko": "프렌치 컨템포러리"
+  },
+  "한식": {
+    "en": "Korean",
+    "ko": "한식"
+  },
+  "한식 컨템포러리": {
+    "en": "Korean Contemporary",
+    "ko": "한식 컨템포러리"
+  },
+  "한식(가금류), 닭갈비": {
+    "en": "Korean (Poultry), Dakgalbi",
+    "ko": "한식(가금류), 닭갈비"
+  },
+  "한식(가금류), 닭갈비, 한식(탕/국/찌개/전골), 부대찌개": {
+    "en": "Korean (Poultry), Dakgalbi, Korean (Soup/Stew/Hot Pot), Budae Jjigae",
+    "ko": "한식(가금류), 닭갈비, 한식(탕/국/찌개/전골), 부대찌개"
+  },
+  "한식(가금류), 닭곰탕": {
+    "en": "Korean (Poultry), Dakgomtang",
+    "ko": "한식(가금류), 닭곰탕"
+  },
+  "한식(가금류), 닭곰탕, 닭볶음탕, 닭수육": {
+    "en": "Korean (Poultry), Dakgomtang, Dakbokkeumtang, Dak Suyuk",
+    "ko": "한식(가금류), 닭곰탕, 닭볶음탕, 닭수육"
+  },
+  "한식(가금류), 닭구이": {
+    "en": "Korean (Poultry), Grilled Chicken",
+    "ko": "한식(가금류), 닭구이"
+  },
+  "한식(가금류), 닭백숙, 한식(면류), 수제비": {
+    "en": "Korean (Poultry), Baeksuk, Korean (Noodles), Sujebi",
+    "ko": "한식(가금류), 닭백숙, 한식(면류), 수제비"
+  },
+  "한식(가금류), 닭볶음탕": {
+    "en": "Korean (Poultry), Dakbokkeumtang",
+    "ko": "한식(가금류), 닭볶음탕"
+  },
+  "한식(가금류), 닭볶음탕, 삼계탕": {
+    "en": "Korean (Poultry), Dakbokkeumtang, Samgyetang",
+    "ko": "한식(가금류), 닭볶음탕, 삼계탕"
+  },
+  "한식(가금류), 닭찜, 한식(면류), 만두, 막국수": {
+    "en": "Korean (Poultry), Braised Chicken, Korean (Noodles), Mandu, Makguksu",
+    "ko": "한식(가금류), 닭찜, 한식(면류), 만두, 막국수"
+  },
+  "한식(가금류), 바비큐치킨": {
+    "en": "Korean (Poultry), BBQ Chicken",
+    "ko": "한식(가금류), 바비큐치킨"
+  },
+  "한식(가금류), 삼계탕": {
+    "en": "Korean (Poultry), Samgyetang",
+    "ko": "한식(가금류), 삼계탕"
+  },
+  "한식(가금류), 삼계탕, 닭볶음탕": {
+    "en": "Korean (Poultry), Samgyetang, Dakbokkeumtang",
+    "ko": "한식(가금류), 삼계탕, 닭볶음탕"
+  },
+  "한식(가금류), 오리코스": {
+    "en": "Korean (Poultry), Duck Course Meal",
+    "ko": "한식(가금류), 오리코스"
+  },
+  "한식(가금류), 프라이드치킨": {
+    "en": "Korean (Poultry), Fried Chicken",
+    "ko": "한식(가금류), 프라이드치킨"
+  },
+  "한식(면류), 국수": {
+    "en": "Korean (Noodles), Noodles",
+    "ko": "한식(면류), 국수"
+  },
+  "한식(면류), 국수, 기타, 샤브샤브": {
+    "en": "Korean (Noodles), Noodles, Other, Shabu-shabu",
+    "ko": "한식(면류), 국수, 기타, 샤브샤브"
+  },
+  "한식(면류), 막국수": {
+    "en": "Korean (Noodles), Makguksu",
+    "ko": "한식(면류), 막국수"
+  },
+  "한식(면류), 막국수, 한식(가금류), 닭곰탕": {
+    "en": "Korean (Noodles), Makguksu, Korean (Poultry), Dakgomtang",
+    "ko": "한식(면류), 막국수, 한식(가금류), 닭곰탕"
+  },
+  "한식(면류), 막국수, 한식(육류), 보쌈": {
+    "en": "Korean (Noodles), Makguksu, Korean (Meat), Bossam",
+    "ko": "한식(면류), 막국수, 한식(육류), 보쌈"
+  },
+  "한식(면류), 막국수, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Makguksu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 막국수, 한식(육류), 수육"
+  },
+  "한식(면류), 막국수, 한식(탕/국/찌개/전골), 소고기국밥": {
+    "en": "Korean (Noodles), Makguksu, Korean (Soups/Stew/Hot Pot), Beef Gukbap",
+    "ko": "한식(면류), 막국수, 한식(탕/국/찌개/전골), 소고기국밥"
+  },
+  "한식(면류), 만두": {
+    "en": "Korean (Noodles), Mandu",
+    "ko": "한식(면류), 만두"
+  },
+  "한식(면류), 만두, 떡국": {
+    "en": "Korean (Noodles), Mandu, Tteokguk",
+    "ko": "한식(면류), 만두, 떡국"
+  },
+  "한식(면류), 만둣국": {
+    "en": "Korean (Noodles), Mandu-guk",
+    "ko": "한식(면류), 만둣국"
+  },
+  "한식(면류), 만둣국, 만두": {
+    "en": "Korean (Noodles), Manduguk, Mandu",
+    "ko": "한식(면류), 만둣국, 만두"
+  },
+  "한식(면류), 만둣국, 칼국수, 비빔국수": {
+    "en": "Korean (Noodles), Manduguk, Kalguksu, Bibim Guksu",
+    "ko": "한식(면류), 만둣국, 칼국수, 비빔국수"
+  },
+  "한식(면류), 만둣국, 한식(육류), 보쌈": {
+    "en": "Korean (Noodles), Manduguk, Korean (Meat), Bossam",
+    "ko": "한식(면류), 만둣국, 한식(육류), 보쌈"
+  },
+  "한식(면류), 만둣국, 한식(탕/국/찌개/전골), 만두전골, 한식(육류), 보쌈": {
+    "en": "Korean (Noodles), Manduguk, Korean (Soups/Stew/Hot Pot), Mandu Jeongol, Korean (Meat), Bossam",
+    "ko": "한식(면류), 만둣국, 한식(탕/국/찌개/전골), 만두전골, 한식(육류), 보쌈"
+  },
+  "한식(면류), 만둣국, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Manduguk, Korean (Soups/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 만둣국, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 수육"
+  },
+  "한식(면류), 물냉면, 비빔냉면, 만두": {
+    "en": "Korean (Noodles), Mul Naengmyeon, Bibim Naengmyeon, Mandu",
+    "ko": "한식(면류), 물냉면, 비빔냉면, 만두"
+  },
+  "한식(면류), 비빔냉면, 한식(육류), 소갈비찜, 만둣국": {
+    "en": "Korean (Noodles), Bibim Naengmyeon, Korean (Meat), Braised Short Ribs, Manduguk",
+    "ko": "한식(면류), 비빔냉면, 한식(육류), 소갈비찜, 만둣국"
+  },
+  "한식(면류), 비빔냉면, 한식(육류), 소고기구이": {
+    "en": "Korean (Noodles), Bibim Naengmyeon, Korean (Meat), Grilled Beef",
+    "ko": "한식(면류), 비빔냉면, 한식(육류), 소고기구이"
+  },
+  "한식(면류), 수제비": {
+    "en": "Korean (Noodles), Sujebi",
+    "ko": "한식(면류), 수제비"
+  },
+  "한식(면류), 칼국수": {
+    "en": "Korean (Noodles), Kalguksu",
+    "ko": "한식(면류), 칼국수"
+  },
+  "한식(면류), 칼국수, 만두, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Kalguksu, Mandu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 칼국수, 만두, 한식(육류), 수육"
+  },
+  "한식(면류), 칼국수, 한식(가금류), 닭백숙": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Poultry), Baeksuk",
+    "ko": "한식(면류), 칼국수, 한식(가금류), 닭백숙"
+  },
+  "한식(면류), 칼국수, 한식(어패류), 문어, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Seafood), Octopus, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 칼국수, 한식(어패류), 문어, 한식(육류), 수육"
+  },
+  "한식(면류), 칼국수, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 칼국수, 한식(육류), 수육"
+  },
+  "한식(면류), 칼국수, 한식(육류), 수육, 소고기구이": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk, Grilled Beef",
+    "ko": "한식(면류), 칼국수, 한식(육류), 수육, 소고기구이"
+  },
+  "한식(면류), 칼국수, 한식(육류), 수육, 한식(어패류), 문어": {
+    "en": "Korean (Noodles), Kalguksu, Korean (Meat), Suyuk, Korean (Seafood), Octopus",
+    "ko": "한식(면류), 칼국수, 한식(육류), 수육, 한식(어패류), 문어"
+  },
+  "한식(면류), 콩국수": {
+    "en": "Korean (Noodles), Kongguksu",
+    "ko": "한식(면류), 콩국수"
+  },
+  "한식(면류), 콩국수, 칼국수, 만두": {
+    "en": "Korean (Noodles), Kongguksu, Kalguksu, Mandu",
+    "ko": "한식(면류), 콩국수, 칼국수, 만두"
+  },
+  "한식(면류), 콩국수, 칼국수, 비빔국수": {
+    "en": "Korean (Noodles), Kongguksu, Kalguksu, Bibim Guksu",
+    "ko": "한식(면류), 콩국수, 칼국수, 비빔국수"
+  },
+  "한식(면류), 콩국수, 한식(일반한식), 일반한식": {
+    "en": "Korean (Noodles), Kongguksu, Korean (General Korean), General Korean Cuisine",
+    "ko": "한식(면류), 콩국수, 한식(일반한식), 일반한식"
+  },
+  "한식(면류), 평양냉면": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(면류), 평양냉면"
+  },
+  "한식(면류), 평양냉면, 만두": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Mandu",
+    "ko": "한식(면류), 평양냉면, 만두"
+  },
+  "한식(면류), 평양냉면, 만두, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Mandu, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 평양냉면, 만두, 한식(육류), 수육"
+  },
+  "한식(면류), 평양냉면, 만두, 한식(육류), 제육": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Mandu, Korean (Meat), Boiled Pork",
+    "ko": "한식(면류), 평양냉면, 만두, 한식(육류), 제육"
+  },
+  "한식(면류), 평양냉면, 한식(가금류), 닭무침": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Poultry), Dakmuchim",
+    "ko": "한식(면류), 평양냉면, 한식(가금류), 닭무침"
+  },
+  "한식(면류), 평양냉면, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 수육"
+  },
+  "한식(면류), 평양냉면, 한식(육류), 수육, 한식(탕/국/찌개/전골), 어복쟁반": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk, Korean (Soups/Stew/Hot Pot), Eobok Jaengban",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 수육, 한식(탕/국/찌개/전골), 어복쟁반"
+  },
+  "한식(면류), 평양냉면, 한식(육류), 제육, 만두": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Jeyuk, Mandu",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 제육, 만두"
+  },
+  "한식(면류), 평양냉면, 한식(육류), 제육, 수육": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Boiled Pork, Suyuk",
+    "ko": "한식(면류), 평양냉면, 한식(육류), 제육, 수육"
+  },
+  "한식(면류), 평양냉면, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 소불고기": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Soup/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Beef Bulgogi",
+    "ko": "한식(면류), 평양냉면, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 소불고기"
+  },
+  "한식(면류), 평양냉면, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Pyeongyang Naengmyeon, Korean (Soups/Stew/Hot Pot), Eobok Jaengban, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 평양냉면, 한식(탕/국/찌개/전골), 어복쟁반, 한식(육류), 수육"
+  },
+  "한식(면류), 함흥냉면": {
+    "en": "Korean (Noodles), Hamheung Naengmyeon",
+    "ko": "한식(면류), 함흥냉면"
+  },
+  "한식(면류), 함흥냉면, 한식(육류), 수육": {
+    "en": "Korean (Noodles), Hamheung Naengmyeon, Korean (Meat), Suyuk",
+    "ko": "한식(면류), 함흥냉면, 한식(육류), 수육"
+  },
+  "한식(민물어패류), 민물매운탕": {
+    "en": "Korean (Freshwater Fish/Seafood), Spicy Freshwater Fish Stew",
+    "ko": "한식(민물어패류), 민물매운탕"
+  },
+  "한식(민물어패류), 장어": {
+    "en": "Korean (Freshwater Fish/Seafood), Eel",
+    "ko": "한식(민물어패류), 장어"
+  },
+  "한식(민물어패류), 추어탕": {
+    "en": "Korean (Freshwater Fish/Seafood), Chueotang",
+    "ko": "한식(민물어패류), 추어탕"
+  },
+  "한식(어패류), 갯장어, 생선회": {
+    "en": "Korean (Seafood), Pike Conger, Sashimi",
+    "ko": "한식(어패류), 갯장어, 생선회"
+  },
+  "한식(어패류), 게장": {
+    "en": "Korean (Seafood), Gejang",
+    "ko": "한식(어패류), 게장"
+  },
+  "한식(어패류), 게장, 꽃게": {
+    "en": "Korean (Seafood), Gejang, Blue Crab",
+    "ko": "한식(어패류), 게장, 꽃게"
+  },
+  "한식(어패류), 곰장어": {
+    "en": "Korean (Seafood), Hagfish",
+    "ko": "한식(어패류), 곰장어"
+  },
+  "한식(어패류), 굴비, 게장, 한식(일반한식), 한정식": {
+    "en": "Korean (Seafood), Gulbi, Gejang, Korean (General Korean Cuisine), Hanjeongsik",
+    "ko": "한식(어패류), 굴비, 게장, 한식(일반한식), 한정식"
+  },
+  "한식(어패류), 꽃게, 아귀": {
+    "en": "Korean (Seafood), Blue Crab, Anglerfish",
+    "ko": "한식(어패류), 꽃게, 아귀"
+  },
+  "한식(어패류), 낙지": {
+    "en": "Korean (Seafood), Nakji",
+    "ko": "한식(어패류), 낙지"
+  },
+  "한식(어패류), 대구탕": {
+    "en": "Korean (Seafood), Cod Soup",
+    "ko": "한식(어패류), 대구탕"
+  },
+  "한식(어패류), 도다리쑥국, 멍게비빔밥, 생선회": {
+    "en": "Korean (Seafood), Dotari Ssukguk, Meongge Bibimbap, Sashimi",
+    "ko": "한식(어패류), 도다리쑥국, 멍게비빔밥, 생선회"
+  },
+  "한식(어패류), 복": {
+    "en": "Korean (Seafood), Pufferfish",
+    "ko": "한식(어패류), 복"
+  },
+  "한식(어패류), 생선회": {
+    "en": "Korean (Seafood), Sashimi",
+    "ko": "한식(어패류), 생선회"
+  },
+  "한식(어패류), 생선회, 고래": {
+    "en": "Korean (Seafood), Sashimi, Whale",
+    "ko": "한식(어패류), 생선회, 고래"
+  },
+  "한식(어패류), 생선회, 물회, 과메기": {
+    "en": "Korean (Seafood), Sashimi, Mulhoe, Gwamegi",
+    "ko": "한식(어패류), 생선회, 물회, 과메기"
+  },
+  "한식(어패류), 생선회, 방어": {
+    "en": "Korean (Seafood), Sashimi, Yellowtail",
+    "ko": "한식(어패류), 생선회, 방어"
+  },
+  "한식(어패류), 생태탕": {
+    "en": "Korean (Seafood), Saengtaetang",
+    "ko": "한식(어패류), 생태탕"
+  },
+  "한식(어패류), 생태탕, 생선회": {
+    "en": "Korean (Seafood), Saengtaetang, Sashimi",
+    "ko": "한식(어패류), 생태탕, 생선회"
+  },
+  "한식(어패류), 아귀, 게장": {
+    "en": "Korean (Seafood), Anglerfish, Gejang",
+    "ko": "한식(어패류), 아귀, 게장"
+  },
+  "한식(어패류), 오징어": {
+    "en": "Korean (Seafood), Squid",
+    "ko": "한식(어패류), 오징어"
+  },
+  "한식(어패류), 오징어, 낙지": {
+    "en": "Korean (Seafood), Squid, Nakji",
+    "ko": "한식(어패류), 오징어, 낙지"
+  },
+  "한식(어패류), 주꾸미": {
+    "en": "Korean (Seafood), Jjukkumi",
+    "ko": "한식(어패류), 주꾸미"
+  },
+  "한식(어패류), 참치": {
+    "en": "Korean (Seafood), Tuna",
+    "ko": "한식(어패류), 참치"
+  },
+  "한식(어패류), 해물, 생선회, 붕장어": {
+    "en": "Korean (Seafood), Seafood, Sashimi, Conger Eel",
+    "ko": "한식(어패류), 해물, 생선회, 붕장어"
+  },
+  "한식(어패류), 홍어": {
+    "en": "Korean (Seafood), Hongeo",
+    "ko": "한식(어패류), 홍어"
+  },
+  "한식(어패류), 홍어, 낙지": {
+    "en": "Korean (Seafood), Hongeo, Nakji",
+    "ko": "한식(어패류), 홍어, 낙지"
+  },
+  "한식(육류), 돼지갈비": {
+    "en": "Korean (Meat), Pork Ribs",
+    "ko": "한식(육류), 돼지갈비"
+  },
+  "한식(육류), 돼지갈비, 돼지고기구이": {
+    "en": "Korean (Meat), Pork Ribs, Grilled Pork",
+    "ko": "한식(육류), 돼지갈비, 돼지고기구이"
+  },
+  "한식(육류), 돼지갈비, 돼지등갈비": {
+    "en": "Korean (Meat), Pork Ribs, Pork Back Ribs",
+    "ko": "한식(육류), 돼지갈비, 돼지등갈비"
+  },
+  "한식(육류), 돼지갈비, 소고기구이, 한식(면류), 평양냉면": {
+    "en": "Korean (Meat), Pork Ribs, Grilled Beef, Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(육류), 돼지갈비, 소고기구이, 한식(면류), 평양냉면"
+  },
+  "한식(육류), 돼지고기구이": {
+    "en": "Korean (Meat), Grilled Pork",
+    "ko": "한식(육류), 돼지고기구이"
+  },
+  "한식(육류), 돼지고기구이, 돼지갈비": {
+    "en": "Korean (Meat), Grilled Pork, Pork Ribs",
+    "ko": "한식(육류), 돼지고기구이, 돼지갈비"
+  },
+  "한식(육류), 돼지고기구이, 소고기구이": {
+    "en": "Korean (Meat), Grilled Pork, Grilled Beef",
+    "ko": "한식(육류), 돼지고기구이, 소고기구이"
+  },
+  "한식(육류), 돼지등갈비": {
+    "en": "Korean (Meat), Pork Back Ribs",
+    "ko": "한식(육류), 돼지등갈비"
+  },
+  "한식(육류), 돼지불고기, 소불고기, 한식(일반한식), 일반한식": {
+    "en": "Korean (Meat), Pork Bulgogi, Beef Bulgogi, Korean (General Korean Cuisine), General Korean Cuisine",
+    "ko": "한식(육류), 돼지불고기, 소불고기, 한식(일반한식), 일반한식"
+  },
+  "한식(육류), 보쌈": {
+    "en": "Korean (Meat), Bossam",
+    "ko": "한식(육류), 보쌈"
+  },
+  "한식(육류), 보쌈, 한식(면류), 막국수": {
+    "en": "Korean (Meat), Bossam, Korean (Noodles), Makguksu",
+    "ko": "한식(육류), 보쌈, 한식(면류), 막국수"
+  },
+  "한식(육류), 삼겹살": {
+    "en": "Korean (Meat), Samgyeopsal",
+    "ko": "한식(육류), 삼겹살"
+  },
+  "한식(육류), 삼겹살, 돼지고기구이": {
+    "en": "Korean (Meat), Samgyeopsal, Grilled Pork",
+    "ko": "한식(육류), 삼겹살, 돼지고기구이"
+  },
+  "한식(육류), 삼겹살, 한식(탕/국/찌개/전골), 선지해장국": {
+    "en": "Korean (Meat), Samgyeopsal, Korean (Soups/Stews/Hot Pots), Seonji Haejangguk",
+    "ko": "한식(육류), 삼겹살, 한식(탕/국/찌개/전골), 선지해장국"
+  },
+  "한식(육류), 소갈비": {
+    "en": "Korean (Meat), Beef Ribs",
+    "ko": "한식(육류), 소갈비"
+  },
+  "한식(육류), 소갈비, 돼지갈비": {
+    "en": "Korean (Meat), Beef Ribs, Pork Ribs",
+    "ko": "한식(육류), 소갈비, 돼지갈비"
+  },
+  "한식(육류), 소갈비, 소고기구이": {
+    "en": "Korean (Meat), Beef Ribs, Grilled Beef",
+    "ko": "한식(육류), 소갈비, 소고기구이"
+  },
+  "한식(육류), 소갈비, 소불고기": {
+    "en": "Korean (Meat), Beef Ribs, Beef Bulgogi",
+    "ko": "한식(육류), 소갈비, 소불고기"
+  },
+  "한식(육류), 소갈비, 한식(탕/국/찌개/전골), 육개장": {
+    "en": "Korean (Meat), Beef Ribs, Korean (Soups/Stews/Hot Pots), Yukgaejang",
+    "ko": "한식(육류), 소갈비, 한식(탕/국/찌개/전골), 육개장"
+  },
+  "한식(육류), 소고기구이": {
+    "en": "Korean (Meat), Grilled Beef",
+    "ko": "한식(육류), 소고기구이"
+  },
+  "한식(육류), 소고기구이, 돼지갈비": {
+    "en": "Korean (Meat), Grilled Beef, Pork Ribs",
+    "ko": "한식(육류), 소고기구이, 돼지갈비"
+  },
+  "한식(육류), 소고기구이, 돼지고기구이": {
+    "en": "Korean (Meat), Grilled Beef, Grilled Pork",
+    "ko": "한식(육류), 소고기구이, 돼지고기구이"
+  },
+  "한식(육류), 소고기구이, 돼지고기구이, 한식(면류), 평양냉면": {
+    "en": "Korean (Meat), Grilled Beef, Grilled Pork, Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(육류), 소고기구이, 돼지고기구이, 한식(면류), 평양냉면"
+  },
+  "한식(육류), 소고기구이, 돼지불고기, 돼지고기구이": {
+    "en": "Korean (Meat), Grilled Beef, Pork Bulgogi, Grilled Pork",
+    "ko": "한식(육류), 소고기구이, 돼지불고기, 돼지고기구이"
+  },
+  "한식(육류), 소고기구이, 소갈비": {
+    "en": "Korean (Meat), Grilled Beef, Beef Ribs",
+    "ko": "한식(육류), 소고기구이, 소갈비"
+  },
+  "한식(육류), 소고기구이, 소곱창": {
+    "en": "Korean (Meat), Grilled Beef, Beef Gopchang",
+    "ko": "한식(육류), 소고기구이, 소곱창"
+  },
+  "한식(육류), 소고기구이, 소불고기, 육사시미": {
+    "en": "Korean (Meat), Grilled Beef, Beef Bulgogi, Yukhoe Sashimi",
+    "ko": "한식(육류), 소고기구이, 소불고기, 육사시미"
+  },
+  "한식(육류), 소고기구이, 한식(탕/국/찌개/전골), 곰탕": {
+    "en": "Korean (Meat), Grilled Beef, Korean (Soup/Stew/Hot Pot), Gomtang",
+    "ko": "한식(육류), 소고기구이, 한식(탕/국/찌개/전골), 곰탕"
+  },
+  "한식(육류), 소고기구이, 한우오마카세": {
+    "en": "Korean (Meat), Grilled Beef, Hanwoo Omakase",
+    "ko": "한식(육류), 소고기구이, 한우오마카세"
+  },
+  "한식(육류), 소곱창": {
+    "en": "Korean (Meat), Beef Gopchang",
+    "ko": "한식(육류), 소곱창"
+  },
+  "한식(육류), 소곱창, 소고기구이": {
+    "en": "Korean (Meat), Beef Gopchang, Grilled Beef",
+    "ko": "한식(육류), 소곱창, 소고기구이"
+  },
+  "한식(육류), 소곱창, 소양대창": {
+    "en": "Korean (Meat), Beef Gopchang, Beef Large Intestines & Tripe",
+    "ko": "한식(육류), 소곱창, 소양대창"
+  },
+  "한식(육류), 소곱창, 한식(탕/국/찌개/전골), 곱창전골": {
+    "en": "Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Gopchang-jeongol",
+    "ko": "한식(육류), 소곱창, 한식(탕/국/찌개/전골), 곱창전골"
+  },
+  "한식(육류), 소곱창, 한식(탕/국/찌개/전골), 곱창전골, 소양대창": {
+    "en": "Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Gopchang-jeongol, Beef Large Intestines & Tripe",
+    "ko": "한식(육류), 소곱창, 한식(탕/국/찌개/전골), 곱창전골, 소양대창"
+  },
+  "한식(육류), 소꼬리찜, 한식(탕/국/찌개/전골), 꼬리곰탕, 수육": {
+    "en": "Korean (Meat), Braised Oxtail, Korean (Soup/Stew/Hot Pot), Kkorigomtang, Suyuk",
+    "ko": "한식(육류), 소꼬리찜, 한식(탕/국/찌개/전골), 꼬리곰탕, 수육"
+  },
+  "한식(육류), 소불고기, 삼겹살, 한식(탕/국/찌개/전골), 김치찌개": {
+    "en": "Korean (Meat), Beef Bulgogi, Samgyeopsal, Korean (Soup/Stew/Hot Pot), Kimchi-jjigae",
+    "ko": "한식(육류), 소불고기, 삼겹살, 한식(탕/국/찌개/전골), 김치찌개"
+  },
+  "한식(육류), 소불고기, 소고기구이": {
+    "en": "Korean (Meat), Beef Bulgogi, Grilled Beef",
+    "ko": "한식(육류), 소불고기, 소고기구이"
+  },
+  "한식(육류), 소불고기, 한식(어패류), 낙지, 한식(탕/국/찌개/전골), 선지해장국": {
+    "en": "Korean (Meat), Beef Bulgogi, Korean (Seafood), Nakji, Korean (Soup/Stew/Hot Pot), Seonji Haejangguk",
+    "ko": "한식(육류), 소불고기, 한식(어패류), 낙지, 한식(탕/국/찌개/전골), 선지해장국"
+  },
+  "한식(육류), 소불고기, 한식(일반한식), 일반한식, 곤드레밥": {
+    "en": "Korean (Meat), Beef Bulgogi, Korean (General Korean), General Korean Cuisine, Gondrebap",
+    "ko": "한식(육류), 소불고기, 한식(일반한식), 일반한식, 곤드레밥"
+  },
+  "한식(육류), 소양대창": {
+    "en": "Korean (Meat), Beef Large Intestines & Tripe",
+    "ko": "한식(육류), 소양대창"
+  },
+  "한식(육류), 수육": {
+    "en": "Korean (Meat), Suyuk",
+    "ko": "한식(육류), 수육"
+  },
+  "한식(육류), 수육, 한식(면류), 함흥냉면": {
+    "en": "Korean (Meat), Suyuk, Korean (Noodles), Hamheung Naengmyeon",
+    "ko": "한식(육류), 수육, 한식(면류), 함흥냉면"
+  },
+  "한식(육류), 순대": {
+    "en": "Korean (Meat), Sundae",
+    "ko": "한식(육류), 순대"
+  },
+  "한식(육류), 순대, 한식(일반한식), 이북음식, 모던한식": {
+    "en": "Korean (Meat), Sundae, Korean (General), North Korean Cuisine, Modern Korean",
+    "ko": "한식(육류), 순대, 한식(일반한식), 이북음식, 모던한식"
+  },
+  "한식(육류), 양고기": {
+    "en": "Korean (Meat), Lamb",
+    "ko": "한식(육류), 양고기"
+  },
+  "한식(육류), 우대갈비, 돼지고기구이": {
+    "en": "Korean (Meat), Woode-galbi, Grilled Pork",
+    "ko": "한식(육류), 우대갈비, 돼지고기구이"
+  },
+  "한식(육류), 육사시미, 소고기구이": {
+    "en": "Korean (Meat), Yukhoe, Grilled Beef",
+    "ko": "한식(육류), 육사시미, 소고기구이"
+  },
+  "한식(육류), 족발": {
+    "en": "Korean (Meat), Jokbal",
+    "ko": "한식(육류), 족발"
+  },
+  "한식(육류), 족발, 보쌈": {
+    "en": "Korean (Meat), Jokbal, Bossam",
+    "ko": "한식(육류), 족발, 보쌈"
+  },
+  "한식(육류), 한우오마카세": {
+    "en": "Korean (Meat), Hanwoo Omakase",
+    "ko": "한식(육류), 한우오마카세"
+  },
+  "한식(육류), 한우오마카세, 소고기구이, 프랑스식": {
+    "en": "Korean (Meat), Hanwoo Omakase, Grilled Beef, French",
+    "ko": "한식(육류), 한우오마카세, 소고기구이, 프랑스식"
+  },
+  "한식(일반한식), 두부, 한식(육류), 보쌈": {
+    "en": "Korean (General), Tofu, Korean (Meat), Bossam",
+    "ko": "한식(일반한식), 두부, 한식(육류), 보쌈"
+  },
+  "한식(일반한식), 모던한식": {
+    "en": "Korean (General Korean), Modern Korean",
+    "ko": "한식(일반한식), 모던한식"
+  },
+  "한식(일반한식), 모던한식, 뉴코리안": {
+    "en": "Korean (General Korean), Modern Korean, New Korean",
+    "ko": "한식(일반한식), 모던한식, 뉴코리안"
+  },
+  "한식(일반한식), 모던한식, 퓨전한식": {
+    "en": "Korean (General Korean), Modern Korean, Fusion Korean",
+    "ko": "한식(일반한식), 모던한식, 퓨전한식"
+  },
+  "한식(일반한식), 모던한식, 한식주점": {
+    "en": "Korean (General Korean), Modern Korean, Korean Pub",
+    "ko": "한식(일반한식), 모던한식, 한식주점"
+  },
+  "한식(일반한식), 모던한식, 한정식": {
+    "en": "Korean (General Korean), Modern Korean, Hanjeongsik",
+    "ko": "한식(일반한식), 모던한식, 한정식"
+  },
+  "한식(일반한식), 묵, 일반한식, 한식(면류), 칼국수": {
+    "en": "Korean (General Korean), Muk, General Korean Cuisine, Korean (Noodles), Kalguksu",
+    "ko": "한식(일반한식), 묵, 일반한식, 한식(면류), 칼국수"
+  },
+  "한식(일반한식), 백반, 두부, 한식(어패류), 생태탕": {
+    "en": "Korean (General Korean), Baekban, Tofu, Korean (Seafood), Saengtae-tang",
+    "ko": "한식(일반한식), 백반, 두부, 한식(어패류), 생태탕"
+  },
+  "한식(일반한식), 백반, 한식(어패류), 생선조림, 생선구이": {
+    "en": "Korean (General Korean), Baekban, Korean (Seafood), Braised Fish, Grilled Fish",
+    "ko": "한식(일반한식), 백반, 한식(어패류), 생선조림, 생선구이"
+  },
+  "한식(일반한식), 비지, 한식(면류), 콩국수, 만두": {
+    "en": "Korean (General Korean), Biji, Korean (Noodles), Kongguksu, Mandu",
+    "ko": "한식(일반한식), 비지, 한식(면류), 콩국수, 만두"
+  },
+  "한식(일반한식), 사찰요리": {
+    "en": "Korean (General Korean), Temple Food",
+    "ko": "한식(일반한식), 사찰요리"
+  },
+  "한식(일반한식), 사찰요리, 기타, 비건": {
+    "en": "Korean (General Korean), Temple Food, Other, Vegan",
+    "ko": "한식(일반한식), 사찰요리, 기타, 비건"
+  },
+  "한식(일반한식), 약선요리, 한정식": {
+    "en": "Korean (General Korean), Medicinal Cuisine, Hanjeongsik",
+    "ko": "한식(일반한식), 약선요리, 한정식"
+  },
+  "한식(일반한식), 이북음식, 한식(면류), 평양냉면": {
+    "en": "Korean (General Korean), North Korean Cuisine, Korean (Noodles), Pyeongyang Naengmyeon",
+    "ko": "한식(일반한식), 이북음식, 한식(면류), 평양냉면"
+  },
+  "한식(일반한식), 일반한식": {
+    "en": "Korean (General Korean), General Korean Cuisine",
+    "ko": "한식(일반한식), 일반한식"
+  },
+  "한식(일반한식), 일반한식, 모던한식": {
+    "en": "Korean (General), Traditional Korean, Modern Korean",
+    "ko": "한식(일반한식), 일반한식, 모던한식"
+  },
+  "한식(일반한식), 일반한식, 모던한식, 한식(육류), 소불고기": {
+    "en": "Korean (General Korean), General Korean Cuisine, Modern Korean, Korean (Meat), Beef Bulgogi",
+    "ko": "한식(일반한식), 일반한식, 모던한식, 한식(육류), 소불고기"
+  },
+  "한식(일반한식), 일반한식, 이북음식, 한식(어패류), 병어": {
+    "en": "Korean (General Korean), General Korean Cuisine, North Korean Cuisine, Korean (Seafood), Pomfret",
+    "ko": "한식(일반한식), 일반한식, 이북음식, 한식(어패류), 병어"
+  },
+  "한식(일반한식), 일반한식, 한식(면류), 만둣국, 만두": {
+    "en": "Korean (General), Traditional Korean, Korean (Noodles), Mandu-guk, Mandu",
+    "ko": "한식(일반한식), 일반한식, 한식(면류), 만둣국, 만두"
+  },
+  "한식(일반한식), 일반한식, 한식(면류), 칼국수": {
+    "en": "Korean (General Korean), General Korean Cuisine, Korean (Noodles), Kalguksu",
+    "ko": "한식(일반한식), 일반한식, 한식(면류), 칼국수"
+  },
+  "한식(일반한식), 일반한식, 한식(어패류), 게장, 한식(육류), 소불고기": {
+    "en": "Korean (General Korean), General Korean Cuisine, Korean (Seafood), Gejang, Korean (Meat), Beef Bulgogi",
+    "ko": "한식(일반한식), 일반한식, 한식(어패류), 게장, 한식(육류), 소불고기"
+  },
+  "한식(일반한식), 일반한식, 한식(육류), 소곱창, 한식(탕/국/찌개/전골), 육개장": {
+    "en": "Korean (General Korean), General Korean Cuisine, Korean (Meat), Beef Gopchang, Korean (Soup/Stew/Hot Pot), Yukgaejang",
+    "ko": "한식(일반한식), 일반한식, 한식(육류), 소곱창, 한식(탕/국/찌개/전골), 육개장"
+  },
+  "한식(일반한식), 제주음식, 일반한식": {
+    "en": "Korean (General Korean), Jeju Cuisine, General Korean Cuisine",
+    "ko": "한식(일반한식), 제주음식, 일반한식"
+  },
+  "한식(일반한식), 퓨전한식": {
+    "en": "Korean (General Korean), Fusion Korean",
+    "ko": "한식(일반한식), 퓨전한식"
+  },
+  "한식(일반한식), 퓨전한식, 이탈리아식": {
+    "en": "Korean (General Korean), Fusion Korean, Italian",
+    "ko": "한식(일반한식), 퓨전한식, 이탈리아식"
+  },
+  "한식(일반한식), 한정식": {
+    "en": "Korean (General Korean), Hanjeongsik",
+    "ko": "한식(일반한식), 한정식"
+  },
+  "한식(일반한식), 한정식, 개성음식": {
+    "en": "Korean (General Korean), Hanjeongsik, Gaeseong Cuisine",
+    "ko": "한식(일반한식), 한정식, 개성음식"
+  },
+  "한식(일반한식), 한정식, 경상도음식": {
+    "en": "Korean (General Korean), Hanjeongsik, Gyeongsang-do Cuisine",
+    "ko": "한식(일반한식), 한정식, 경상도음식"
+  },
+  "한식(일반한식), 한정식, 남도음식": {
+    "en": "Korean (General Korean), Hanjeongsik, Namdo Cuisine",
+    "ko": "한식(일반한식), 한정식, 남도음식"
+  },
+  "한식(일반한식), 한정식, 일반한식": {
+    "en": "Korean (General Korean), Hanjeongsik, General Korean Cuisine",
+    "ko": "한식(일반한식), 한정식, 일반한식"
+  },
+  "한식(탕/국/찌개/전골), 가릿국밥, 한식(일반한식), 이북음식": {
+    "en": "Korean (Soup/Stew/Hot Pot), Garit-gukbap, Korean (General Korean), North Korean Cuisine",
+    "ko": "한식(탕/국/찌개/전골), 가릿국밥, 한식(일반한식), 이북음식"
+  },
+  "한식(탕/국/찌개/전골), 감자탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gamjatang",
+    "ko": "한식(탕/국/찌개/전골), 감자탕"
+  },
+  "한식(탕/국/찌개/전골), 곰탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 곰탕"
+  },
+  "한식(탕/국/찌개/전골), 곰탕, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gomtang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 곰탕, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 곱창전골": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gopchang-jeongol",
+    "ko": "한식(탕/국/찌개/전골), 곱창전골"
+  },
+  "한식(탕/국/찌개/전골), 곱창전골, 한식(면류), 국수": {
+    "en": "Korean (Soup/Stew/Hot Pot), Gopchang-jeongol, Korean (Noodles), Guksu",
+    "ko": "한식(탕/국/찌개/전골), 곱창전골, 한식(면류), 국수"
+  },
+  "한식(탕/국/찌개/전골), 꼬리곰탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕"
+  },
+  "한식(탕/국/찌개/전골), 꼬리곰탕, 곰탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕, 곰탕"
+  },
+  "한식(탕/국/찌개/전골), 꼬리곰탕, 도가니탕, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Dogani-tang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕, 도가니탕, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 꼬리곰탕, 설렁탕, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kkori Gomtang, Seolleongtang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 꼬리곰탕, 설렁탕, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 도가니탕, 설렁탕, 꼬리곰탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Dogani-tang, Seolleongtang, Kkori Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 도가니탕, 설렁탕, 꼬리곰탕"
+  },
+  "한식(탕/국/찌개/전골), 돼지곰탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Pork Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 돼지곰탕"
+  },
+  "한식(탕/국/찌개/전골), 돼지국밥, 한식(면류), 평양냉면, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Dwaeji Gukbap, Korean (Noodles), Pyeongyang Naengmyeon, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 돼지국밥, 한식(면류), 평양냉면, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 돼지국밥, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Dwaeji Gukbap, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 돼지국밥, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 만두전골, 한식(면류), 칼국수, 만두": {
+    "en": "Korean (Soup/Stew/Hot Pot), Mandu-jeongol, Korean (Noodles), Kalguksu, Mandu",
+    "ko": "한식(탕/국/찌개/전골), 만두전골, 한식(면류), 칼국수, 만두"
+  },
+  "한식(탕/국/찌개/전골), 부대찌개": {
+    "en": "Korean (Soup/Stew/Hot Pot), Budae Jjigae",
+    "ko": "한식(탕/국/찌개/전골), 부대찌개"
+  },
+  "한식(탕/국/찌개/전골), 선지해장국": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국"
+  },
+  "한식(탕/국/찌개/전골), 선지해장국, 곱창전골, 소내장탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Gopchang-jeongol, So Naejang-tang",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 곱창전골, 소내장탕"
+  },
+  "한식(탕/국/찌개/전골), 선지해장국, 기타, 샤브샤브, 한식(육류), 소고기구이": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Other, Shabu-shabu, Korean (Meat), Sogogi-gui",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 기타, 샤브샤브, 한식(육류), 소고기구이"
+  },
+  "한식(탕/국/찌개/전골), 선지해장국, 뼈다귀해장국": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Ppyeodagwi Haejangguk",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 뼈다귀해장국"
+  },
+  "한식(탕/국/찌개/전골), 선지해장국, 한식(육류), 소고기구이": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seonji Haejangguk, Korean (Meat), Sogogi-gui",
+    "ko": "한식(탕/국/찌개/전골), 선지해장국, 한식(육류), 소고기구이"
+  },
+  "한식(탕/국/찌개/전골), 설렁탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕"
+  },
+  "한식(탕/국/찌개/전골), 설렁탕, 꼬리곰탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Kkori Gomtang",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 꼬리곰탕"
+  },
+  "한식(탕/국/찌개/전골), 설렁탕, 꼬리곰탕, 도가니탕": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Kkori Gomtang, Dogani-tang",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 꼬리곰탕, 도가니탕"
+  },
+  "한식(탕/국/찌개/전골), 설렁탕, 도가니탕, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Dogani-tang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 도가니탕, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 설렁탕, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Seolleongtang, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 설렁탕, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 소고기국밥, 한식(육류), 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sogogi Gukbap, Korean (Meat), Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 소고기국밥, 한식(육류), 수육"
+  },
+  "한식(탕/국/찌개/전골), 순대국밥": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sundae Gukbap",
+    "ko": "한식(탕/국/찌개/전골), 순대국밥"
+  },
+  "한식(탕/국/찌개/전골), 순대국밥, 한식(육류), 순대": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sundae Gukbap, Korean (Meat), Sundae",
+    "ko": "한식(탕/국/찌개/전골), 순대국밥, 한식(육류), 순대"
+  },
+  "한식(탕/국/찌개/전골), 순댓국, 한식(육류), 순대": {
+    "en": "Korean (Soup/Stew/Hot Pot), Sundaetguk, Korean (Meat), Sundae",
+    "ko": "한식(탕/국/찌개/전골), 순댓국, 한식(육류), 순대"
+  },
+  "한식(탕/국/찌개/전골), 어복쟁반, 한식(일반한식), 일반한식, 한식(면류), 만두": {
+    "en": "Korean (Soup/Stew/Hot Pot), Eobok Jaengban, Korean (General), General Korean Cuisine, Korean (Noodles), Mandu",
+    "ko": "한식(탕/국/찌개/전골), 어복쟁반, 한식(일반한식), 일반한식, 한식(면류), 만두"
+  },
+  "한식(탕/국/찌개/전골), 육개장, 한식(육류), 소불고기, 수육": {
+    "en": "Korean (Soup/Stew/Hot Pot), Yukgaejang, Korean (Meat), So Bulgogi, Suyuk",
+    "ko": "한식(탕/국/찌개/전골), 육개장, 한식(육류), 소불고기, 수육"
+  },
+  "한식(탕/국/찌개/전골), 콩국, 한식(일반한식), 두부, 한식(어패류), 황태": {
+    "en": "Korean (Soup/Stew/Hot Pot), Kongguk, Korean (General), Dubu, Korean (Seafood), Hwangtae",
+    "ko": "한식(탕/국/찌개/전골), 콩국, 한식(일반한식), 두부, 한식(어패류), 황태"
+  },
+  "한식주점": {
+    "en": "Korean Pub",
+    "ko": "한식주점"
+  },
+  "한식주점, 한식(어패류), 해물": {
+    "en": "Korean Pub, Korean (Seafood), Seafood",
+    "ko": "한식주점, 한식(어패류), 해물"
+  },
+  "한식주점, 한식(일반한식), 일반한식, 한식(어패류), 북엇국": {
+    "en": "Korean Pub, Korean (General), General Korean Cuisine, Korean (Seafood), Bugeotguk",
+    "ko": "한식주점, 한식(일반한식), 일반한식, 한식(어패류), 북엇국"
+  },
+  "한식주점, 한식(일반한식), 퓨전한식": {
+    "en": "Korean Pub, Korean (General), Fusion Korean",
+    "ko": "한식주점, 한식(일반한식), 퓨전한식"
+  },
+  "한식주점, 해물포차": {
+    "en": "Korean Pub, Seafood Pocha",
+    "ko": "한식주점, 해물포차"
+  },
+  "한식주점, 해물포차, 한식(어패류), 해물, 새우": {
+    "en": "Korean Pub, Seafood Pocha, Korean (Seafood), Seafood, Shrimp",
+    "ko": "한식주점, 해물포차, 한식(어패류), 해물, 새우"
+  },
+  "해물파전": {
+    "en": "Haemul Pajeon",
+    "ko": "해물파전"
+  },
+  "호주식, 호주식브런치, 기타, 브런치카페": {
+    "en": "Australian Style, Australian Brunch, Other, Brunch Cafe",
+    "ko": "호주식, 호주식브런치, 기타, 브런치카페"
+  }
+}

@@ -74,6 +74,10 @@ class Place:
     # emoji-independent, so the frontend can filter on it instead of sniffing the
     # description text for "✨" — which broke as soon as the description changed.
     tier: str | None = None
+    # Cuisine in the reader's language. Sources disagree: Michelin ships English,
+    # Blue Ribbon and Neon ship Korean, so the label was mixed-language for everyone
+    # regardless of the UI toggle. Populated from data/cuisine_map.json.
+    cuisine_ko: str | None = None
 
 
 PLACE_FIELDS = {f.name for f in fields(Place)}
@@ -738,6 +742,52 @@ def write_geojson(places: list[Place]):
     print(f"[io] wrote {len(features)} features to {path}")
 
 
+def apply_cuisine_map(places: list[Place]) -> list[Place]:
+    """
+    Normalise `cuisine` to English and fill `cuisine_ko`, using the cached bilingual
+    lookup built by build_cuisine_map.py.
+
+    Overhaul 5.5.4. Falls back to the original string in both languages when a value
+    isn't in the map, so an unmapped cuisine degrades to today's behaviour rather than
+    vanishing from the popup.
+    """
+    path = Path("data/cuisine_map.json")
+    if not path.exists():
+        print("[cuisine] data/cuisine_map.json missing — run build_cuisine_map.py. Skipping.")
+        return places
+
+    with open(path, "r", encoding="utf-8") as f:
+        cmap = json.load(f)
+
+    mapped = 0
+    unmapped_values: set[str] = set()
+    for p in places:
+        raw = (p.cuisine or "").strip()
+        if not raw:
+            continue
+        entry = cmap.get(raw)
+        if entry:
+            p.cuisine = entry.get("en") or raw
+            p.cuisine_ko = entry.get("ko") or raw
+            mapped += 1
+        else:
+            p.cuisine_ko = raw
+            unmapped_values.add(raw)
+
+    print(f"[cuisine] bilingual labels applied to {mapped} places")
+    if unmapped_values:
+        # Loud on purpose. Silent fallback is how a new dish keyword would quietly ship
+        # Korean text in the English field, which is the bug 5.5.4 exists to prevent.
+        print(f"[cuisine] ⚠️ {len(unmapped_values)} UNMAPPED cuisine value(s) — these will "
+              f"show in their original language to both audiences:")
+        for v in sorted(unmapped_values)[:10]:
+            print(f"           {v!r}")
+        if len(unmapped_values) > 10:
+            print(f"           ... and {len(unmapped_values) - 10} more")
+        print("           Fix: run `python build_cuisine_map.py`, then rebuild.")
+    return places
+
+
 def merge_duplicate_places(places: list[Place]) -> list[Place]:
     """
     Collapse the same physical restaurant into one pin, carrying every guide's award.
@@ -881,6 +931,7 @@ def main():
         enrich_places_with_ledger(all_places, KakaoLedger(DIR_CACHE / "kakao_ledger.json"))
 
         merged = merge_duplicate_places(all_places)
+        apply_cuisine_map(merged)
         write_geojson(merged)
 
 if __name__ == "__main__":

@@ -766,13 +766,67 @@ is a second, independent cause of the location weakness that 4.1 addresses.
 - [ ] Populate neon addresses from the Kakao ledger (already resolved during enrichment)
 - [ ] Show the address in the popup — it currently renders cuisine/price/phone only
 
-### 5.5.4 `cuisine` is whatever language the source used `[ ]`
+### 5.5.4 `cuisine` is whatever language the source used `[x]` — done 2026-08-09
+
+**Fixed via a cached bilingual lookup — `build_cuisine_map.py` → `data/cuisine_map.json`.**
+
+Only ~437 distinct cuisine values exist across 2,267 restaurants (labels repeat heavily), so
+translating distinct values once and caching costs 9 API calls instead of thousands, and makes
+every rebuild free. Same pattern as `data/translation_cache.json`. Idempotent — re-running only
+translates values it hasn't seen.
+
+`build_map_list.py::apply_cuisine_map()` then normalises `cuisine` to English and fills
+`cuisine_ko`, falling back to the original string in both languages if a value is unmapped, so
+a gap degrades to the old behaviour rather than producing an empty label.
+
+| source | before | after |
+|---|---|---|
+| michelin | 200 English, 0 Korean | **100% English `cuisine` + 100% Korean `cuisine_ko`** |
+| blueribbon | mostly Korean | same |
+| neon | 1,228 Korean, 0 English | same |
+
+Samples: `Barbecue ↔ 바비큐`, `Jeyuk-bokkeum ↔ 제육볶음`, `Naengmyeon ↔ 냉면` (romanised Korean
+dish names preserved rather than over-translated), `한식(육류), 돼지갈비 → Korean (Meat), Pork Ribs`.
+
+**Also fixed the embedding side.** `build_embeddings.py` builds a Korean `rich_text` but was
+splicing in the raw `cuisine`, so ~200 Michelin restaurants had an English fragment
+(`카테고리: Barbecue`) inside otherwise-Korean embedded text. Now uses `cuisine_ko`.
+
+**Future-proofed against new dishes and re-scrapes.** Three things had to be true, and the
+first two were wrong on the first attempt:
+
+1. **`build_cuisine_map.py` reads the build INPUTS**, not `places.geojson`. Reading the output
+   left it permanently one build behind — a new dish keyword would only become visible after it
+   had already shipped untranslated. It now reads `neon_guide_audited_final.csv`'s `Category`
+   column and `data/raw/*.csv`, so a new value is translated *before* the build consumes it.
+   Verified: 25 values are discoverable from source files that do not exist on the built map.
+2. **The map is idempotent.** After a build, `cuisine` holds the English form, so the next run
+   saw "Chicken" as a brand-new value and the map grew every time (437 → 884). `expand_aliases()`
+   registers both language forms as keys pointing at the same pair, so re-runs cost nothing.
+   Verified: consecutive runs report `needing translation: 0`.
+3. **It runs automatically.** New `PHASE 4.75` in `master_agent.py`, before the map build.
+   Idempotent, so an unchanged sweep makes no API calls.
+
+And if something still slips through, `apply_cuisine_map()` now **prints a loud warning naming
+the unmapped values** instead of silently falling back — silent fallback is precisely how Korean
+text would end up in the English field again.
+
+**Phase 5.5 is complete.** Toggling to KR no longer leaks English into a pin's title,
+description, cuisine, or address, and no `/translate` call fires for a restaurant in the dataset.
+
+<details><summary>Original problem statement (superseded)</summary>
 Michelin cuisine is English (`Barbecue`), Blue Ribbon and Neon are Korean (`디저트/스위트`, `치킨`).
 The popup's 🍴 line is mixed-language for every user regardless of the toggle. This string is also
 embedded into the search vector, so it's a retrieval issue too.
 
 - [ ] Normalise to a bilingual `cuisine` / `cuisine_ko` pair
 - [ ] Audit the rest of the UI for untranslated strings (badges, tier names, filter pills)
+
+</details>
+
+**Still open in 5.5:** tier names and filter pill labels are English-only in both modes
+("Neon Vetted", "Selected", "Bib"). Lower priority than the data-level fixes above, but it is
+the last English leak in KR mode.
 
 **Acceptance criteria:** toggle to KR and no English leaks into a pin's title, description, cuisine,
 or tier label; no `/translate` call fires for a restaurant already in the dataset.
