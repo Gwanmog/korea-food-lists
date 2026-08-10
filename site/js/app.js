@@ -158,25 +158,43 @@ if (locBtn) locBtn.onclick = () => {
 // --- FILTERS ---
 const filters = {
   michelin: $('f_michelin'), blu: $('f_blu'), neon: $('f_neon'),
-  m3: $('f_m3'), m2: $('f_m2'), m1: $('f_m1'), bib: $('f_bib'),
+  m3: $('f_m3'), m2: $('f_m2'), m1: $('f_m1'), bib: $('f_bib'), m_sel: $('f_m_sel'),
   r3: $('f_r3'), r2: $('f_r2'), r1: $('f_r1'),
   n3: $('f_n3'), n2: $('f_n2'), n1: $('f_n1'), n_vetted: $('f_n_vetted')
 };
 
 const filterChildren = {
-  michelin: ['m3', 'm2', 'm1', 'bib'],
+  michelin: ['m3', 'm2', 'm1', 'bib', 'm_sel'],
   blu: ['r3', 'r2', 'r1'],
   neon: ['n3', 'n2', 'n1', 'n_vetted']
 };
 
-// Neon tier code -> filter key. Reads the `tier` property emitted by build_map_list.py
-// instead of sniffing the description for an emoji, which coupled filtering to the
-// description text and broke the moment that text changed.
-const NEON_TIER_FILTER = {
-  NEON_3: 'n3',
-  NEON_2: 'n2',
-  NEON_1: 'n1',
-  NEON_VETTED: 'n_vetted'
+// Complete tier -> pill mapping for every guide.
+//
+// These have to be EXHAUSTIVE. The filters used to work by exclusion ("hide this if its
+// pill is off"), which silently let through any tier that matched none of the patterns —
+// and "Selected" had no pill at all, so 108 of 200 Michelin restaurants could never be
+// filtered. Ticking only ⭐⭐⭐ still showed 57 places. Matching is now inclusive: a pin
+// shows only if its own tier's pill is ticked.
+const TIER_FILTER = {
+  michelin: {
+    '3 STARS': 'm3',
+    '2 STARS': 'm2',
+    '1 STAR': 'm1',
+    'BIB GOURMAND': 'bib',
+    'SELECTED': 'm_sel'
+  },
+  blueribbon: {
+    'RIBBON_THREE': 'r3',
+    'RIBBON_TWO': 'r2',
+    'RIBBON_ONE': 'r1'
+  },
+  neon: {
+    'NEON_3': 'n3',
+    'NEON_2': 'n2',
+    'NEON_1': 'n1',
+    'NEON_VETTED': 'n_vetted'
+  }
 };
 
 function handleFilterChange(key) {
@@ -187,12 +205,14 @@ function handleFilterChange(key) {
       if (filters[childKey]) filters[childKey].checked = state;
     });
   }
-  // Child toggled → if all children unchecked, uncheck parent
+  // Child toggled → the parent simply reflects "is ANY tier of this guide showing?".
+  // It used to only re-check when EVERY child was checked, so unchecking all tiers
+  // switched the source off and checking one tier back on left the source stuck off —
+  // and since passes() gates on the source, the map went blank until you re-ticked
+  // every tier. Same rule in both directions removes the stickiness.
   for (const [parentKey, children] of Object.entries(filterChildren)) {
     if (children.includes(key) && filters[parentKey]) {
-      const anyChecked = children.some(k => filters[k]?.checked);
-      if (!anyChecked) filters[parentKey].checked = false;
-      else if (children.every(k => filters[k]?.checked)) filters[parentKey].checked = true;
+      filters[parentKey].checked = children.some(k => filters[k]?.checked);
     }
   }
   updateSelectAllBtn();
@@ -224,41 +244,42 @@ if (selectAllBtn) {
 // --- FILTER LOGIC ---
 function passes(p) {
   const src = (p.source || "").toLowerCase();
-
-  if (filters.michelin && src.includes("michelin") && !filters.michelin.checked) return false;
-  if (filters.blu && src.includes("blue") && !filters.blu.checked) return false;
-  if (filters.neon && src.includes("neon") && !filters.neon.checked) return false;
-
   const cat = (p.category || "").toUpperCase();
-  const desc = (p.description || "");
 
-  // Each guide is checked independently, not as an if/else chain. A pin can now hold
-  // several guides' awards at once (see merge_duplicate_places), and the old chain only
-  // ever evaluated the primary guide's tier filters — so a Michelin + RIBBON_TWO pin
-  // silently ignored the 🔵🔵 pill.
+  // NOTE: source visibility is decided inside guideVisible() below, not up front.
+  // Rejecting a pin because ONE of its guides is unticked was wrong for merged pins:
+  // unticking Blue Ribbon also hid all 92 Michelin+Blue Ribbon restaurants, even though
+  // they are still Michelin restaurants and Michelin was ticked.
   const awards = Array.isArray(p.awards) ? p.awards : [];
   const tierOf = guide => {
     const a = awards.find(x => x.guide === guide);
-    return (a && a.tier ? a.tier : "").toUpperCase();
+    return (a && a.tier ? a.tier : "").trim().toUpperCase();
   };
 
-  if (src.includes("michelin")) {
-    const mt = tierOf("michelin") || cat;
-    if (filters.m3 && mt.includes("3 STAR") && !filters.m3.checked) return false;
-    if (filters.m2 && mt.includes("2 STAR") && !filters.m2.checked) return false;
-    if (filters.m1 && mt.includes("1 STAR") && !filters.m1.checked) return false;
-    if (filters.bib && mt.includes("BIB") && !filters.bib.checked) return false;
-  }
-  if (src.includes("blue")) {
-    const bt = tierOf("blueribbon") || cat;
-    if (filters.r3 && bt.includes("THREE") && !filters.r3.checked) return false;
-    if (filters.r2 && bt.includes("TWO") && !filters.r2.checked) return false;
-    if (filters.r1 && bt.includes("ONE") && !filters.r1.checked) return false;
-  }
-  if (src.includes("neon")) {
-    const key = NEON_TIER_FILTER[p.tier];
-    if (key && filters[key] && !filters[key].checked) return false;
-  }
+  // A pin is visible if ANY guide it holds is showing at a ticked tier. Checked
+  // per-guide (not as an if/else chain) so a pin carrying several guides' awards
+  // honours every one of their filters.
+  let anyGuideVisible = false;
+
+  const guideVisible = (guideKey, sourceMatch, tierValue) => {
+    if (!sourceMatch) return;
+    if (filters[guideKey] && !filters[guideKey].checked) return;
+    const pillKey = TIER_FILTER[guideKey === 'blu' ? 'blueribbon' : guideKey][tierValue];
+    if (!pillKey) {
+      // Unmapped tier: show it rather than hiding data silently, but it means
+      // TIER_FILTER is missing an entry — add it rather than relying on this.
+      anyGuideVisible = true;
+      return;
+    }
+    if (filters[pillKey] && !filters[pillKey].checked) return;
+    anyGuideVisible = true;
+  };
+
+  guideVisible('michelin', src.includes('michelin'), tierOf('michelin') || cat);
+  guideVisible('blu', src.includes('blue'), tierOf('blueribbon') || cat);
+  guideVisible('neon', src.includes('neon'), (p.tier || '').toUpperCase());
+
+  if (!anyGuideVisible) return false;
 
   if (window.favoritesOnly && !favoritesManager.isFavorited(p.vector_id)) return false;
 
