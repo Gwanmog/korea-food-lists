@@ -6,6 +6,7 @@ if sys.stdout.encoding != 'utf-8':
 import math
 import argparse
 import csv
+from collections import Counter
 import json
 import os
 import re
@@ -91,6 +92,10 @@ PLACE_FIELDS = {f.name for f in fields(Place)}
 # Also the order awards are listed in, and the order sources appear in the
 # space-joined `source` string that the frontend matches with .includes().
 GUIDE_PRIORITY = ["michelin", "blueribbon", "neon"]
+
+# How far the guide's scraped coordinate and Kakao's may differ before we geocode the
+# restaurant's address to decide which one is right (Overhaul 1.4).
+COORD_ARBITRATE_M = 50
 
 
 # -------------------------
@@ -232,6 +237,60 @@ def _backfill_address_from_kakao(p: Place, doc: dict | None):
                 p.neighborhood = m.group(1)
 
 
+def _arbitrate_coords(p: Place, scraped: tuple | None, kakao: tuple | None,
+                      s: requests.Session, api_key: str, geo_cache: dict) -> str:
+    """
+    When the guide's scraped coordinates and Kakao's disagree, let the ADDRESS decide.
+
+    Overhaul 1.4. Measured on 10 of the largest disagreements: the scraped coordinate was
+    closer to the true address 8 times (by up to 466m), and Kakao's was closer twice —
+    including Yukjeon Hoekwan, where Kakao sat 2m from the address and the scraped value
+    was 2,564m out. That is the pin fixed by hand in Patch 1.475.
+
+    So neither source is reliably right and a fixed preference regresses one group or the
+    other. Geocoding the restaurant's own address settles it objectively. Only runs when
+    the two disagree by more than COORD_ARBITRATE_M, so it costs a handful of calls, and
+    results are cached in the ledger.
+    """
+    if not scraped or not kakao:
+        return "single-source"
+    gap = haversine_distance(scraped[0], scraped[1], kakao[0], kakao[1])
+    if gap <= COORD_ARBITRATE_M:
+        return "agree"
+
+    addr = (p.address_ko or p.address or "").replace(", Seoul", "").strip()
+    if not addr:
+        return "no-address"
+
+    truth = geo_cache.get(addr, "miss")
+    if truth == "miss":
+        truth = None
+        try:
+            r = s.get("https://dapi.kakao.com/v2/local/search/address.json",
+                      params={"query": addr[:80], "analyze_type": "similar"},
+                      headers={"Authorization": f"KakaoAK {api_key}"}, timeout=10)
+            docs = r.json().get("documents", []) if r.status_code == 200 else []
+            if docs:
+                truth = (float(docs[0]["y"]), float(docs[0]["x"]))
+        except (requests.RequestException, ValueError, KeyError):
+            truth = None
+        geo_cache[addr] = truth
+        time.sleep(0.05)
+
+    if not truth:
+        # Can't arbitrate — keep Kakao, the prior behaviour.
+        p.latitude, p.longitude = kakao
+        return "ungeocodable"
+
+    d_scraped = haversine_distance(scraped[0], scraped[1], truth[0], truth[1])
+    d_kakao = haversine_distance(kakao[0], kakao[1], truth[0], truth[1])
+    if d_scraped <= d_kakao:
+        p.latitude, p.longitude = scraped
+        return "scraped"
+    p.latitude, p.longitude = kakao
+    return "kakao"
+
+
 def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[Place]:
     api_key = kakao_rest_key()
     if not api_key:
@@ -243,28 +302,44 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
 
     hits, misses, api_calls = 0, 0, 0
     out: list[Place] = []
+    geo_cache: dict = {}
+    arb = Counter()
 
     for p in places:
         has_coords = isinstance(p.latitude, float) and isinstance(p.longitude, float)
+        # Remember what the guide itself scraped, before Kakao gets a chance to overwrite it.
+        scraped_coords = (p.latitude, p.longitude) if has_coords else None
         cached = ledger.get(p.name, p.address)
 
         if cached and cached.get("found") is not False:
             hits += 1
-            if has_coords and cached.get("y") and cached.get("x"):
-                dist = haversine_distance(p.latitude, p.longitude, float(cached["y"]), float(cached["x"]))
-                if dist > 2000:
-                    print(f"[sanity] Rejecting cached ID for {p.name} (Distance {dist:.0f}m)")
+            kakao_coords = None
+            if cached.get("y") and cached.get("x"):
+                try:
+                    kakao_coords = (float(cached["y"]), float(cached["x"]))
+                except (TypeError, ValueError):
+                    kakao_coords = None
+
+            p.kakao_id = cached.get("id")
+            p.kakao_url = cached.get("place_url")
+            _backfill_address_from_kakao(p, cached)
+
+            if not has_coords and kakao_coords:
+                p.latitude, p.longitude = kakao_coords
+                arb["kakao-only"] += 1
+            else:
+                # Both sources present — the address decides which one is right.
+                arb[_arbitrate_coords(p, scraped_coords, kakao_coords, s, api_key, geo_cache)] += 1
+
+            # Drop the Kakao ID when the two disagree wildly: it's a different restaurant.
+            if scraped_coords and kakao_coords:
+                if haversine_distance(*scraped_coords, *kakao_coords) > 2000:
+                    print(f"[sanity] Kakao match for {p.name} is "
+                          f"{haversine_distance(*scraped_coords, *kakao_coords):.0f}m from the "
+                          f"scraped location — dropping the ID, keeping the arbitrated coords.")
                     p.kakao_id = None
                     p.kakao_url = None
-                else:
-                    p.kakao_id = cached.get("id")
-                    p.kakao_url = cached.get("place_url")
-            else:
-                p.kakao_id = cached.get("id")
-                p.kakao_url = cached.get("place_url")
-                if not has_coords and cached.get("y"): p.latitude = float(cached["y"])
-                if not has_coords and cached.get("x"): p.longitude = float(cached["x"])
-            _backfill_address_from_kakao(p, cached)
+
             out.append(p)
             continue
 
@@ -338,6 +413,8 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
         if api_calls % 10 == 0: time.sleep(0.5)
 
     ledger.save()
+    if arb:
+        print(f"[coords] arbitration: {dict(arb)}")
     return out
 
 
@@ -632,6 +709,23 @@ def load_raw(filename: str) -> list[Place]:
 
             # Drop any column that isn't a Place field so the dataclass can't panic.
             row = {k: v for k, v in row.items() if k in PLACE_FIELDS}
+
+            # Coordinates must be floats (Overhaul 1.4). csv.DictReader yields strings, and
+            # enrich_places_with_ledger() gates on `isinstance(p.latitude, float)` — so with
+            # strings, has_coords was ALWAYS False. Two consequences: the scraped coordinates
+            # were silently discarded in favour of whatever Kakao matched, and the 2,000m
+            # sanity check that guards against a bad Kakao match never ran on the cache-hit
+            # path. That is the likely cause of the one-off "pin in the wrong place" fixes in
+            # the git history.
+            for key in ("latitude", "longitude"):
+                raw = str(row.get(key, "") or "").strip()
+                if raw and raw.lower() != "nan":
+                    try:
+                        row[key] = float(raw)
+                    except ValueError:
+                        row[key] = None
+                else:
+                    row[key] = None
 
             out.append(Place(**row))
     return out

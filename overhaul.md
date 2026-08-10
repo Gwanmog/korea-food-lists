@@ -222,7 +222,47 @@ It is documented as Phase 3 of the pipeline in `README.md` but is **dead code**:
 
 ---
 
-### 1.4 Pin coordinates silently defer to the Kakao ledger `[ ]`
+### 1.4 Pin coordinates silently defer to the Kakao ledger `[x]` — done 2026-08-10
+
+**Alexander flagged this independently** ("Michelin pins had an annoying habit of showing up
+where the restaurant absolutely wasn't"), which is what made it worth chasing.
+
+**The diagnosis was right, but the obvious fix was wrong — and measuring caught it.**
+
+Casting `latitude`/`longitude` to `float` in `load_raw()` makes `has_coords` true and stops
+the scraped coordinate being discarded. That alone moved 718 pins. Geocoding the ten largest
+movements against each restaurant's own address showed **8 improved (by up to 466m) but 2 got
+worse** — and one of those two was **Yukjeon Hoekwan**, where Kakao sat **2m** from the true
+address and the scraped value was **2,564m** out. That is the exact pin hand-fixed in Patch
+1.475. Shipping the naive fix would have re-broken the pin Alexander had already noticed.
+
+**So neither source is reliably right.** A fixed preference for either one regresses a real
+group of restaurants. The address is the only neutral arbiter, and we have it for 99.5% of pins.
+
+`_arbitrate_coords()` geocodes the restaurant's own address **only when the two sources disagree
+by more than `COORD_ARBITRATE_M` (50m)** and keeps whichever is closer. Results cached per
+address. On the full build: **2,324 agreed, 30 chose the scraped value, 15 chose Kakao** — so
+45 geocode calls, not 2,268.
+
+| restaurant | before | after | |
+|---|---|---|---|
+| 모에기 | 466m | **0m** | improved |
+| 금룡 | 395m | **0m** | improved |
+| 툇마루밥상 | 312m | **6m** | improved |
+| GORDON RAMSAY burger | 260m | **14m** | improved |
+| 타마유라 | 207m | **0m** | improved |
+| 두툼 | 178m | **0m** | improved |
+| 부산갈비 | 5m | 5m | protected (naive fix broke this to 281m) |
+| 태극당 | 2m | 2m | protected (naive fix broke this to 214m) |
+| **Yukjeon Hoekwan** | 2m | **2m** | **protected** (naive fix broke this to 2,564m) |
+
+**6 improved, 0 worse.**
+
+The old `>2000m` sanity check also had its logic backwards — it assumed the scraped coordinate
+was truth and threw away Kakao's. It now drops only the Kakao **ID** (a >2km gap means it
+matched a different restaurant) while keeping the arbitrated coordinates.
+
+<details><summary>Original problem statement (superseded)</summary>
 
 **Found while fixing 1.2 — not yet fixed, deliberately not bundled.**
 
@@ -241,10 +281,11 @@ This is very likely the root cause of the one-off pin fixes in the git history
 Not fixed in the same pass as 1.2 because casting to `float` flips which coordinate source
 wins and would move a large number of pins — that deserves its own before/after diff.
 
-- [ ] Cast `latitude`/`longitude` to `float` in `load_raw()`
-- [ ] Re-run the build and produce a diff of how far each pin moved
-- [ ] Review the largest movements by hand before accepting
-- [ ] Re-run `audit_michelin_coords.py` afterwards to confirm the improvement
+- [x] Cast `latitude`/`longitude` to `float` in `load_raw()`
+- [x] Diff pin movement and verify the largest against geocoded addresses
+- [x] Arbitrate by address rather than trusting either source
+
+</details>
 
 ---
 
