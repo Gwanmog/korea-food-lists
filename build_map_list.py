@@ -10,7 +10,7 @@ import json
 import os
 import re
 import time
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, fields
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -18,7 +18,13 @@ from urllib.parse import urlencode, urljoin
 
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
 from slugify import slugify
+
+# Same convention as master_agent.py / critic_agent.py: keys live in soul-food-api/.env.
+# Without this, kakao_rest_key() returns None and ledger enrichment silently no-ops,
+# which leaves every place without a kakao_id and defeats deduplication.
+load_dotenv(dotenv_path=Path(__file__).resolve().parent / "soul-food-api" / ".env")
 
 # -------------------------
 # Constants & Config
@@ -60,6 +66,22 @@ class Place:
     name_ko: str | None = None  # NEW: Official Korean Name (e.g. 정육면체)
     address_ko: str | None = None  # NEW: Official Korean Address
     description_ko: str | None = None  # Customer-facing Korean description
+    # Every guide that recognises this restaurant, e.g.
+    # [{"guide": "michelin", "tier": "1 Star"}, {"guide": "blueribbon", "tier": "RIBBON_TWO"}]
+    # `category` stays the primary guide's tier so existing frontend logic keeps working.
+    awards: list | None = None
+    # Machine-readable tier code (NEON_3 / NEON_2 / NEON_1 / NEON_VETTED). Language- and
+    # emoji-independent, so the frontend can filter on it instead of sniffing the
+    # description text for "✨" — which broke as soon as the description changed.
+    tier: str | None = None
+
+
+PLACE_FIELDS = {f.name for f in fields(Place)}
+
+# Which guide wins when one restaurant is recognised by several.
+# Also the order awards are listed in, and the order sources appear in the
+# space-joined `source` string that the frontend matches with .includes().
+GUIDE_PRIORITY = ["michelin", "blueribbon", "neon"]
 
 
 # -------------------------
@@ -163,6 +185,30 @@ def kakao_local_keyword_search(s: requests.Session, api_key: str, query: str, x:
         return []
 
 
+def _backfill_address_from_kakao(p: Place, doc: dict | None):
+    """
+    Copy Kakao's official Korean address onto the Place when we don't already have one.
+
+    Neon Guide entries are built with address=None/address_ko=None (load_neon_guide), so
+    ~60% of the map carried no address in either language — invisible in the popup, and
+    invisible to the AI, which reads `address_ko || address` when ranking by location.
+    Kakao already returns road_address_name for these; we just never stored it.
+
+    Only fills blanks — never overwrites an address the guide itself supplied.
+    """
+    if not doc or not isinstance(doc, dict):
+        return
+    korean = (doc.get("road_address_name") or doc.get("address_name") or "").strip()
+    if not korean:
+        return
+    if not (p.address_ko or "").strip():
+        p.address_ko = korean
+    if not (p.address or "").strip():
+        p.address = korean
+    if not (p.name_ko or "").strip() and (doc.get("place_name") or "").strip():
+        p.name_ko = doc["place_name"].strip()
+
+
 def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[Place]:
     api_key = kakao_rest_key()
     if not api_key:
@@ -195,6 +241,7 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
                 p.kakao_url = cached.get("place_url")
                 if not has_coords and cached.get("y"): p.latitude = float(cached["y"])
                 if not has_coords and cached.get("x"): p.longitude = float(cached["x"])
+            _backfill_address_from_kakao(p, cached)
             out.append(p)
             continue
 
@@ -258,6 +305,7 @@ def enrich_places_with_ledger(places: list[Place], ledger: KakaoLedger) -> list[
             if not has_coords:
                 if found_doc.get("y"): p.latitude = float(found_doc["y"])
                 if found_doc.get("x"): p.longitude = float(found_doc["x"])
+            _backfill_address_from_kakao(p, found_doc)
         else:
             ledger.update(p.name, p.address,
                           {"found": False} if not has_coords else {"found": True, "x": str(p.longitude),
@@ -515,17 +563,18 @@ def load_raw(filename: str) -> list[Place]:
         reader = csv.DictReader(f)
         for row in reader:
 
-            # --- 🚨 THE BUG FIX ---
-            # 1. Map the new AI Ghostwriter column to the standard map column
+            # Map the AI Ghostwriter column onto the standard map column.
             if 'description_en' in row:
                 if row['description_en'].strip():  # If the AI actually wrote something
                     row['description'] = row['description_en']
-                del row['description_en']  # Delete the extra key so the dataclass doesn't panic
+                del row['description_en']
 
-            # 2. Delete the Korean column (we are just keeping the English/bilingual one for the map)
-            if 'description_ko' in row:
-                del row['description_ko']
-            # ----------------------
+            # Korean descriptions written by the Ghostwriter are kept: they are native
+            # Korean, better than re-translating the English in build_embeddings.py,
+            # and they save an API call per restaurant.
+
+            # Drop any column that isn't a Place field so the dataclass can't panic.
+            row = {k: v for k, v in row.items() if k in PLACE_FIELDS}
 
             out.append(Place(**row))
     return out
@@ -544,16 +593,37 @@ def load_neon_guide(filename: str) -> list[Place]:
     out = []
     captured_at = utc_now_iso()
 
-    # --- The Abstraction Mapping ---
-    def get_excellence_tier(score: int) -> str:
-        if score >= 90:
-            return "✨ Exceptional Gastronomic Experience"
-        elif score >= 80:
-            return "🌟 Highly Recommended"
-        elif score >= 70:
-            return "👍 Worth a Visit"
-        else:
-            return "📌 Notable Mention"
+    # ==========================================
+    # 🏅 NEON TIERS — broad vetted floor, scarce peak
+    # ==========================================
+    # Overhaul 2.3. The old mapping awarded a tier to everything (>=90 "Exceptional",
+    # >=80 "Highly Recommended"), which is how 44% of the guide ended up holding 2-3
+    # hearts. These thresholds are global — a score means the same thing regardless of
+    # dish, so a heart means the same thing everywhere on the map.
+    #
+    # Thresholds are expressed as scores rather than percentages on purpose: scores are
+    # coarse integers with large tie groups (125 restaurants share 90), so a percentage
+    # cutoff would slice a tie group arbitrarily and put identical scores in different
+    # tiers depending on sort order.
+    #
+    # Measured against the 1,228-restaurant guide of 2026-08-09:
+    #   NEON_3       >= 98      14 places   1.1%
+    #   NEON_2       95-97      71 places   5.8%
+    #   NEON_1       91-94     174 places  14.2%
+    #   NEON_VETTED  70-90     969 places  79.0%
+    NEON_TIERS = [
+        (98, "NEON_3", "3 Neon Hearts"),
+        (95, "NEON_2", "2 Neon Hearts"),
+        (91, "NEON_1", "1 Neon Heart"),
+        (0,  "NEON_VETTED", "Neon Vetted"),
+    ]
+
+    def get_neon_tier(score: int) -> tuple[str, str]:
+        """Returns (tier_code, human_label) for a score."""
+        for threshold, code, label in NEON_TIERS:
+            if score >= threshold:
+                return code, label
+        return "NEON_VETTED", "Neon Vetted"
 
     with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -578,7 +648,7 @@ def load_neon_guide(filename: str) -> list[Place]:
                 m = re.search(r'kakao\.com/(\d+)', kakao_url)
                 if m: kakao_id = m.group(1)
 
-            tier_phrase = get_excellence_tier(score)
+            tier_code, tier_label = get_neon_tier(score)
             guide_desc_en = (
                 row.get("Guide Description", "").strip()
                 or row.get("Description EN", "").strip()
@@ -587,20 +657,27 @@ def load_neon_guide(filename: str) -> list[Place]:
                 row.get("Guide Description KO", "").strip()
                 or row.get("Description KO", "").strip()
             )
-            full_desc = f"{tier_phrase}\n\n{guide_desc_en}" if guide_desc_en else tier_phrase
-            full_desc_ko = guide_desc_ko or guide_desc_en
+            # The tier phrase used to be prepended to the description ("✨ Exceptional
+            # Gastronomic Experience\n\n..."). That string was then embedded into the
+            # search vector, so every Neon vector opened with the same boilerplate and
+            # clustered by award tier as much as by food (Overhaul 4.2). The tier now
+            # lives in its own field; the description is just the description.
+            full_desc = guide_desc_en or tier_label
+            full_desc_ko = guide_desc_ko or guide_desc_en or tier_label
 
             p = Place(
                 source="neon",  # Changed to "neon" to match your app.js logic for yellow circles
                 name=row.get("Restaurant Name", "Unknown"),
                 name_ko=row.get("Restaurant Name"),
                 address=None, address_ko=None, city="Seoul", country="South Korea",
-                category=row.get("Award Level", "Neon Approved"),
+                # Recomputed from the score — the CSV's stored "Award Level" came from
+                # the old inflated scale and is deliberately ignored.
+                category=tier_label,
                 cuisine=row.get("Category", "Craft Beer / Dining"),
                 price=None, phone=None, url=None, year="2026",
                 description=full_desc, latitude=lat, longitude=lon,
                 captured_at=captured_at, kakao_id=kakao_id, kakao_url=kakao_url,
-                description_ko=full_desc_ko
+                description_ko=full_desc_ko, tier=tier_code
             )
             out.append(p)
 
@@ -625,6 +702,92 @@ def write_geojson(places: list[Place]):
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"type": "FeatureCollection", "features": features}, f, ensure_ascii=False, indent=2)
     print(f"[io] wrote {len(features)} features to {path}")
+
+
+def merge_duplicate_places(places: list[Place]) -> list[Place]:
+    """
+    Collapse the same physical restaurant into one pin, carrying every guide's award.
+
+    The guides name the same restaurant differently — Michelin romanises ("Bongsanok"),
+    Blue Ribbon uses Hangul ("봉산옥") — so a name+address key can never match them.
+    `kakao_id` is the only reliable join, which is why ledger enrichment must run
+    BEFORE this function. Places with no resolved kakao_id fall back to a name+address
+    slug, which at worst leaves them un-merged (a duplicate pin) rather than wrongly
+    merging two different restaurants.
+
+    The surviving Place takes its scalar fields from the highest-priority guide, fills
+    any blanks from the others, and lists every award in `awards`. `source` becomes a
+    space-joined string ("michelin blueribbon") so the frontend's existing
+    `source.includes(...)` checks light up every guide's filter for that pin.
+    """
+    groups: dict[str, list[Place]] = {}
+    order: list[str] = []
+
+    for p in places:
+        kid = str(p.kakao_id).strip() if p.kakao_id else ""
+        key = f"kakao:{kid}" if kid and kid.lower() not in ("none", "nan") \
+            else f"slug:{slugify(f'{p.name} {p.address or 0}')}"
+        if key not in groups:
+            groups[key] = []
+            order.append(key)
+        groups[key].append(p)
+
+    def rank(p: Place) -> int:
+        s = (p.source or "").lower()
+        for i, g in enumerate(GUIDE_PRIORITY):
+            if g in s:
+                return i
+        return len(GUIDE_PRIORITY)
+
+    merged: list[Place] = []
+    collapsed = 0
+    multi_guide = 0
+
+    for key in order:
+        group = sorted(groups[key], key=rank)
+        primary = group[0]
+
+        if len(group) > 1:
+            collapsed += len(group) - 1
+
+            # Fill any field the primary left blank from the other guides, in priority order.
+            for other in group[1:]:
+                for f in PLACE_FIELDS:
+                    if f in ("source", "category", "awards"):
+                        continue
+                    if not getattr(primary, f, None) and getattr(other, f, None):
+                        setattr(primary, f, getattr(other, f))
+
+        # Record every guide's award, de-duplicated, in priority order.
+        awards, seen = [], set()
+        for p in group:
+            guide = next((g for g in GUIDE_PRIORITY if g in (p.source or "").lower()),
+                         (p.source or "unknown").lower())
+            tier = (p.category or "").strip()
+            if not tier or tier.lower() == "none":
+                continue
+            if (guide, tier) in seen:
+                continue
+            seen.add((guide, tier))
+            awards.append({"guide": guide, "tier": tier})
+
+        primary.awards = awards
+
+        # Space-joined so app.js's src.includes("michelin") / ("blue") / ("neon") all match.
+        guides = []
+        for p in group:
+            g = next((g for g in GUIDE_PRIORITY if g in (p.source or "").lower()), None)
+            if g and g not in guides:
+                guides.append(g)
+        if len(guides) > 1:
+            multi_guide += 1
+        primary.source = " ".join(sorted(guides, key=GUIDE_PRIORITY.index)) or primary.source
+
+        merged.append(primary)
+
+    print(f"[merge] {len(places)} records -> {len(merged)} pins "
+          f"({collapsed} duplicates collapsed, {multi_guide} pins now hold multiple guides)")
+    return merged
 
 
 def haversine_distance(lat1, lon1, lat2, lon2):
@@ -659,15 +822,15 @@ def main():
             b = load_raw("blueribbon.csv")
         n = load_neon_guide("neon_guide_audited_final.csv")
         all_places = m + b + n
-        unique = {}
-        for p in all_places:
-            key = slugify(f"{p.name} {p.address or ''}")
-            if key not in unique:
-                unique[key] = p
-            elif p.source == "michelin":
-                unique[key] = p
-        merged = list(unique.values())
-        enrich_places_with_ledger(merged, KakaoLedger(DIR_CACHE / "kakao_ledger.json"))
+        print(f"[build] loaded {len(m)} michelin + {len(b)} blueribbon + {len(n)} neon "
+              f"= {len(all_places)} records")
+
+        # Resolve kakao_id FIRST — it is the only key that can match a romanised
+        # Michelin name to its Hangul Blue Ribbon counterpart. Deduplicating before
+        # this ran is what left 104 restaurants on the map as two separate pins.
+        enrich_places_with_ledger(all_places, KakaoLedger(DIR_CACHE / "kakao_ledger.json"))
+
+        merged = merge_duplicate_places(all_places)
         write_geojson(merged)
 
 if __name__ == "__main__":

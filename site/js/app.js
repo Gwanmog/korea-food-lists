@@ -160,13 +160,23 @@ const filters = {
   michelin: $('f_michelin'), blu: $('f_blu'), neon: $('f_neon'),
   m3: $('f_m3'), m2: $('f_m2'), m1: $('f_m1'), bib: $('f_bib'),
   r3: $('f_r3'), r2: $('f_r2'), r1: $('f_r1'),
-  n_exc: $('f_n_exc'), n_high: $('f_n_high'), n_worth: $('f_n_worth')
+  n3: $('f_n3'), n2: $('f_n2'), n1: $('f_n1'), n_vetted: $('f_n_vetted')
 };
 
 const filterChildren = {
   michelin: ['m3', 'm2', 'm1', 'bib'],
   blu: ['r3', 'r2', 'r1'],
-  neon: ['n_exc', 'n_high', 'n_worth']
+  neon: ['n3', 'n2', 'n1', 'n_vetted']
+};
+
+// Neon tier code -> filter key. Reads the `tier` property emitted by build_map_list.py
+// instead of sniffing the description for an emoji, which coupled filtering to the
+// description text and broke the moment that text changed.
+const NEON_TIER_FILTER = {
+  NEON_3: 'n3',
+  NEON_2: 'n2',
+  NEON_1: 'n1',
+  NEON_VETTED: 'n_vetted'
 };
 
 function handleFilterChange(key) {
@@ -222,21 +232,32 @@ function passes(p) {
   const cat = (p.category || "").toUpperCase();
   const desc = (p.description || "");
 
+  // Each guide is checked independently, not as an if/else chain. A pin can now hold
+  // several guides' awards at once (see merge_duplicate_places), and the old chain only
+  // ever evaluated the primary guide's tier filters — so a Michelin + RIBBON_TWO pin
+  // silently ignored the 🔵🔵 pill.
+  const awards = Array.isArray(p.awards) ? p.awards : [];
+  const tierOf = guide => {
+    const a = awards.find(x => x.guide === guide);
+    return (a && a.tier ? a.tier : "").toUpperCase();
+  };
+
   if (src.includes("michelin")) {
-    if (filters.m3 && cat.includes("3 STAR") && !filters.m3.checked) return false;
-    if (filters.m2 && cat.includes("2 STAR") && !filters.m2.checked) return false;
-    if (filters.m1 && cat.includes("1 STAR") && !filters.m1.checked) return false;
-    if (filters.bib && cat.includes("BIB") && !filters.bib.checked) return false;
+    const mt = tierOf("michelin") || cat;
+    if (filters.m3 && mt.includes("3 STAR") && !filters.m3.checked) return false;
+    if (filters.m2 && mt.includes("2 STAR") && !filters.m2.checked) return false;
+    if (filters.m1 && mt.includes("1 STAR") && !filters.m1.checked) return false;
+    if (filters.bib && mt.includes("BIB") && !filters.bib.checked) return false;
   }
-  else if (src.includes("blue")) {
-    if (filters.r3 && cat.includes("THREE") && !filters.r3.checked) return false;
-    if (filters.r2 && cat.includes("TWO") && !filters.r2.checked) return false;
-    if (filters.r1 && cat.includes("ONE") && !filters.r1.checked) return false;
+  if (src.includes("blue")) {
+    const bt = tierOf("blueribbon") || cat;
+    if (filters.r3 && bt.includes("THREE") && !filters.r3.checked) return false;
+    if (filters.r2 && bt.includes("TWO") && !filters.r2.checked) return false;
+    if (filters.r1 && bt.includes("ONE") && !filters.r1.checked) return false;
   }
-  else if (src.includes("neon")) {
-    if (filters.n_exc && desc.includes("✨") && !filters.n_exc.checked) return false;
-    if (filters.n_high && desc.includes("🌟") && !filters.n_high.checked) return false;
-    if (filters.n_worth && desc.includes("👍") && !filters.n_worth.checked) return false;
+  if (src.includes("neon")) {
+    const key = NEON_TIER_FILTER[p.tier];
+    if (key && filters[key] && !filters[key].checked) return false;
   }
 
   if (window.favoritesOnly && !favoritesManager.isFavorited(p.vector_id)) return false;
@@ -269,9 +290,10 @@ function getBadge(p) {
     return "Blu";
   }
   if (s.includes("neon")) {
-    if (d.includes("✨")) return "✨ Neon";
-    if (d.includes("🌟")) return "🌟 Neon";
-    if (d.includes("👍")) return "👍 Neon";
+    if (p.tier === "NEON_3") return "💖 3";
+    if (p.tier === "NEON_2") return "💖 2";
+    if (p.tier === "NEON_1") return "💖 1";
+    if (p.tier === "NEON_VETTED") return "✅ Vetted";
     return "Neon";
   }
   return "";
@@ -285,6 +307,12 @@ function renderPopup(p) {
   let meta = [];
   if (p.cuisine) meta.push(`🍴 ${esc(p.cuisine)}`);
   if (p.price) meta.push(`💰 ${esc(p.price)}`);
+  // The address was never shown in the popup at all. Prefer the reader's language,
+  // fall back to whichever we have.
+  const addr = (currentLang === 'ko')
+    ? (p.address_ko || p.address)
+    : (p.address || p.address_ko);
+  if (addr) meta.push(`📍 ${esc(addr)}`);
   if (p.phone) meta.push(`📞 <a href="tel:${p.phone}" style="color:inherit">${esc(p.phone)}</a>`);
 
   // Save + Share buttons
@@ -309,17 +337,28 @@ function renderPopup(p) {
 
   let descHtml = "";
   if (p.description) {
-    const fullText = p.description;
+    // Every restaurant already ships a Korean description in places.geojson. We used to
+    // ignore it in KR mode and fetch the same string back over the network — a round trip
+    // for text the browser already had. Use the local field; only fall back to /translate
+    // for the rare entry that genuinely lacks one.
+    const wantKo = currentLang === 'ko';
+    const localKo = (p.description_ko || "").trim();
+    const needsFetch = wantKo && !localKo;
+    const fullText = (wantKo && localKo) ? localKo : p.description;
+
     const isLong = fullText.length > 300;
     const shortText = isLong ? fullText.substring(0, 300) + "..." : fullText;
     // Escape for use inside HTML attribute (also escape quotes)
     const attrEsc = s => esc(s).replace(/"/g, '&quot;');
     const t = I18N[currentLang];
-    if (currentLang === 'ko') {
-      descHtml = `<div class="popup-desc" data-en="${attrEsc(fullText)}" data-name="${attrEsc(p.name)}">
+
+    if (needsFetch) {
+      descHtml = `<div class="popup-desc" data-needs-translate="1" data-en="${attrEsc(p.description)}" data-name="${attrEsc(p.name)}">
         <span class="desc-text desc-loading">${t.translating}</span>
       </div>`;
     } else {
+      // Expand/collapse now works in Korean too — the KR branch previously had no expand
+      // button at all, and toggleDesc would have expanded to the English text.
       descHtml = `<div class="popup-desc" data-en="${attrEsc(fullText)}" data-name="${attrEsc(p.name)}">
         <span class="desc-text">${esc(shortText)}</span>
         ${isLong ? `<button class="desc-expand-btn" onclick="window.toggleDesc(this)">${t.readMore}</button>` : ''}
@@ -327,9 +366,14 @@ function renderPopup(p) {
     }
   }
 
-  let titleHtml = `<div class="popup-title">${esc(p.name)}</div>`;
-  if (p.name_ko && p.name_ko !== p.name) {
-    titleHtml += `<div style="font-size:12px; color:#888; margin-top:-4px; margin-bottom:6px;">${esc(p.name_ko)}</div>`;
+  // Lead with the name in the language the user is actually reading. 100% of Michelin and
+  // ~50% of Blue Ribbon names are romanised, so a Korean user was reading "Bongsanok" as
+  // the headline with 봉산옥 demoted to a grey subtitle.
+  const primaryName = (currentLang === 'ko' && p.name_ko) ? p.name_ko : p.name;
+  const secondaryName = (currentLang === 'ko' && p.name_ko) ? p.name : p.name_ko;
+  let titleHtml = `<div class="popup-title">${esc(primaryName)}</div>`;
+  if (secondaryName && secondaryName !== primaryName) {
+    titleHtml += `<div style="font-size:12px; color:#888; margin-top:-4px; margin-bottom:6px;">${esc(secondaryName)}</div>`;
   }
 
   return `
@@ -363,10 +407,9 @@ function render() {
     const score = p => {
       let s = 0;
       const c = (p.category || "").toUpperCase();
-      const d = (p.description || "");
-      if (c.includes("3 STAR") || c.includes("RIBBON_THREE") || d.includes("✨")) s += 30;
-      if (c.includes("2 STAR") || c.includes("RIBBON_TWO") || d.includes("🌟")) s += 20;
-      if (c.includes("1 STAR") || c.includes("RIBBON_ONE") || d.includes("👍")) s += 10;
+      if (c.includes("3 STAR") || c.includes("RIBBON_THREE") || p.tier === "NEON_3") s += 30;
+      if (c.includes("2 STAR") || c.includes("RIBBON_TWO") || p.tier === "NEON_2") s += 20;
+      if (c.includes("1 STAR") || c.includes("RIBBON_ONE") || p.tier === "NEON_1") s += 10;
       if (c.includes("BIB")) s += 5;
       return s;
     };
@@ -500,6 +543,8 @@ map.on('popupopen', async (e) => {
   if (!popupEl) return;
   const descEl = popupEl.querySelector('.popup-desc');
   if (!descEl) return;
+  // Rendered straight from places.geojson's description_ko — nothing to fetch.
+  if (descEl.getAttribute('data-needs-translate') !== '1') return;
   const englishText = descEl.getAttribute('data-en');
   const restaurantName = descEl.getAttribute('data-name');
   if (!englishText) return;

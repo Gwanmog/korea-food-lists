@@ -82,6 +82,61 @@ def get_kakao_categories(keyword, strict_mode=False):
         print(f"   ❌ Gemini failed: {e}. Defaulting to keyword only.")
         return [keyword]
 
+# ==========================================
+# 📋 DETERMINISTIC SPONSORSHIP DETECTION
+# ==========================================
+# Korean law requires bloggers to disclose paid/comped posts, and the disclosures use a
+# small, stable set of stock phrases. That makes this a string-matching problem, not a
+# judgement call — so we do it in Python instead of asking the LLM to count.
+#
+# Why this matters: 51% of the existing guide has NO sponsored ratio at all, which means
+# the sponsorship caps in the critic prompt (score <= 70 at >=75% sponsored, <= 80 at
+# >=50%) had nothing to act on for half the restaurants. Asking a model to count
+# occurrences across a 10k-char concatenation is exactly the kind of task it's least
+# reliable at, and it costs a token round-trip per restaurant.
+#
+# NOTE: this fixes FUTURE sweeps only. Scraped blog text is never persisted (see
+# naver_agent.scrape_naver_blog_text), so existing rows cannot be backfilled without
+# re-scraping — that happens in Overhaul Phase 3.
+SPONSORSHIP_MARKERS = [
+    # Direct payment / provision disclosures
+    "소정의 원고료", "원고료를 지원", "원고료를 제공", "원고료 지원",
+    "제품을 제공받아", "제공받아 작성", "제공 받아 작성", "무상으로 제공",
+    "무료로 제공", "지원받아 작성", "지원 받아 작성",
+    # Explicit sponsorship vocabulary
+    "협찬받", "협찬 받", "협찬을", "협찬으로", "협찬사", "협찬 제품",
+    # Paid-advertising labels
+    "유료광고", "유료 광고", "광고성 게시물", "대가성",
+    # Campaign / tester programs
+    "체험단", "서포터즈", "리뷰어단", "시식권", "초대받아", "초대 받아",
+    # Affiliate disclosures
+    "파트너스 활동", "수수료를 제공받", "일정액의 수수료",
+]
+
+
+def detect_sponsorship(scraped_blog_data):
+    """
+    Counts how many scraped posts carry a paid-content disclosure.
+
+    Returns (sponsored_count, total_count, ratio_string, ratio_float).
+    ratio_string matches the format the critic prompt expects, e.g. "4/10 sponsored".
+    """
+    total = len(scraped_blog_data)
+    if total == 0:
+        return 0, 0, "0/0 sponsored", 0.0
+
+    sponsored = 0
+    for item in scraped_blog_data:
+        text = (item.get("text") or "")
+        # Collapse whitespace so "협찬 받아" and "협찬받아" both match reliably.
+        squashed = "".join(text.split())
+        if any("".join(marker.split()) in squashed for marker in SPONSORSHIP_MARKERS):
+            sponsored += 1
+
+    ratio = sponsored / total
+    return sponsored, total, f"{sponsored}/{total} sponsored", ratio
+
+
 def get_image_bytes(image_url):
     """Fetches the raw bytes of an image to feed to the AIs."""
     if not image_url:
@@ -276,9 +331,19 @@ Use the exact structure below:
 
     extracted_facts = analyst_data.get("extracted_facts_ko", "")
     red_flags = analyst_data.get("red_flags", [])
-    print(
-        f"   ✅ Facts extracted. Sponsorship: {analyst_data.get('sponsored_ratio', 'Unknown')}. "
-        f"Red flags: {red_flags if red_flags else 'None'}. Handing to Head Critic.")
+
+    # The Python count is authoritative — it always produces a value (no more blank
+    # ratios) and doesn't depend on the model counting correctly across a long
+    # concatenation. The analyst's own guess is kept only for comparison.
+    spon_n, spon_total, sponsored_ratio, sponsored_pct = detect_sponsorship(scraped_blog_data)
+    llm_guess = analyst_data.get('sponsored_ratio', 'unknown')
+    if str(llm_guess).strip() and str(llm_guess) != sponsored_ratio:
+        print(f"   📋 Sponsorship: counted {sponsored_ratio} (model said '{llm_guess}' — using counted)")
+    else:
+        print(f"   📋 Sponsorship: {sponsored_ratio}")
+
+    print(f"   ✅ Facts extracted. Red flags: {red_flags if red_flags else 'None'}. "
+          f"Handing to Head Critic.")
 
     # ==========================================
     # PHASE 2: The Head Critic (The Michelin Judge)
@@ -350,9 +415,9 @@ Use the exact structure below:
             }},
             "score": (integer, MUST equal the exact sum of the 5 categories above),
             "award_level": "string (e.g., '2 Neon Hearts' or 'None')",
-            "description_en": "A punchy, honest 2-sentence English description reflecting the criteria.",
-            "description_ko": "A natural, 2-sentence Korean description.",
-            "justification": "1 sentence explaining the score breakdown. If a sponsorship penalty or red_flag cap was applied, explicitly state that here."
+            "description_en": "A punchy, customer-facing 2-3 sentence English description based ONLY on the blog data you just read. Mention specific dishes, techniques, or qualities that appear in the evidence. Write like a Michelin or Eater recommendation. Do NOT mention scores, sponsorship, inspector notes, or internal criteria.",
+            "description_ko": "같은 내용을 자연스러운 한국어로 2-3문장. 블로그에서 확인된 내용만 사용하고, 점수나 협찬 관련 내용은 포함하지 마세요.",
+            "justification": "1 sentence explaining the score breakdown for internal use only. If a sponsorship penalty or red_flag cap was applied, explicitly state that here."
         }}
         </output_format>
     """
@@ -360,6 +425,10 @@ Use the exact structure below:
     red_flags_str = json.dumps(red_flags)
     critic_contents = (
         f"Red flags detected by analyst: {red_flags_str}\n\n"
+        # Stated explicitly and up front so the critic applies the sponsorship caps to a
+        # verified number rather than hunting for the ratio inside the fact summary.
+        f"VERIFIED Sponsored Ratio (counted programmatically, authoritative): "
+        f"{sponsored_ratio} ({sponsored_pct:.0%})\n\n"
         f"Critique this summary for {restaurant_name}:\n\n{extracted_facts}"
     )
 
@@ -375,8 +444,26 @@ Use the exact structure below:
             )
         )
         critic_data = json.loads(gemini_response.text)
-        critic_data['sponsored_ratio'] = analyst_data.get('sponsored_ratio', 'unknown')
+        critic_data['sponsored_ratio'] = sponsored_ratio  # counted, never blank
         critic_data['red_flags'] = red_flags
+
+        # Enforce the sponsorship caps in Python rather than trusting the model to
+        # respect them. These are stated as hard rules in the critic prompt, so a score
+        # above the cap is a prompt-compliance failure, not a judgement we should keep.
+        try:
+            score = int(critic_data.get('score', 0))
+            cap = 70 if sponsored_pct >= 0.75 else (80 if sponsored_pct >= 0.50 else 100)
+            if score > cap:
+                print(f"   🔒 Sponsorship cap enforced: {score} -> {cap} ({sponsored_ratio})")
+                critic_data['score'] = cap
+                critic_data['justification'] = (
+                    f"[Sponsorship cap applied: {sponsored_ratio}] "
+                    f"{critic_data.get('justification', '')}"
+                )
+                if cap < 80:
+                    critic_data['award_level'] = 'None'
+        except (TypeError, ValueError):
+            pass
         print("   ✅ Gemini successfully scored the restaurant!")
         return critic_data
 

@@ -1,1 +1,24 @@
+# Secrets
 **/.env
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Node
+node_modules/
+
+# Editor
+# NOTE: .idea/ files are already tracked from before this rule existed, so git keeps
+# updating them (workspace.xml churns on every session). To actually stop that:
+#   git rm -r --cached .idea/
+.idea/
+
+# Run logs and backups produced by the pipeline
+*.log
+*.bak
+
+# Local safety copies taken before destructive operations. Git history already has
+# the previous versions; keeping these out avoids bloating an already-large repo.
+backups/

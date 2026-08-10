@@ -381,16 +381,23 @@ if __name__ == "__main__":
     except FileNotFoundError:
         print("\n❌ Could not find 'appellate_court.py'.")
 
-    # 4. Trigger the Deduplicator
+    # 4. Deduplication is no longer a separate phase.
+    # The old dedupe_master.py never worked: it read Latitude/Longitude columns the queue
+    # doesn't write, loaded its master list from a misspelled directory so it silently fell
+    # back to a 2-restaurant dummy list, and needed a local Ollama server the pipeline never
+    # started. Its output was read by nothing. Merging now happens inside
+    # build_map_list.py's `build` (see merge_duplicate_places), keyed on kakao_id.
+
+    # 4.5. Generate Guide Descriptions for any restaurant that doesn't have one
     print("\n" + "=" * 50)
-    print("👯 PHASE 4: Running Dedupe Master...")
+    print("✍️ PHASE 4.5: Generating Guide Descriptions...")
     print("=" * 50 + "\n")
     try:
-        subprocess.run([sys.executable, "dedupe_master.py"], check=True)
+        subprocess.run([sys.executable, "generate_guide_descriptions.py"], check=True)
     except subprocess.CalledProcessError as e:
-        print(f"\n❌ Deduplicator failed: {e}")
+        print(f"\n❌ Guide Description generator failed: {e}")
     except FileNotFoundError:
-        print("\n❌ Could not find 'dedupe_master.py'.")
+        print("\n❌ Could not find 'generate_guide_descriptions.py'.")
 
     # 5. Build the Raw Map Data
     print("\n" + "=" * 50)

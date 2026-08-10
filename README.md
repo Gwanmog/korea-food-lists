@@ -37,24 +37,29 @@ Our agents scour Naver blogs, read receipts, and score restaurants to build our 
 Fleshing out sparse data for locations that already hold Michelin or Blue Ribbon distinctions.
 4. `python enrich_guides.py` — Bypasses the strict scoring logic, scrapes Naver for context, and uses the AI Ghostwriter to generate beautiful bilingual summaries for `blueribbon.csv` so the math engine has rich text to read.
 
-### Phase 3: The Crossroads (Deduplication)
+### Phase 3: Map Assembly & Deduplication
 
-Merging the three guides so they play nicely together.
-5. `python dedupe_master.py` — Reads `michelin.csv`, `blueribbon_enriched.csv`, and `neon_guide_audited_final.csv`. Finds overlapping restaurants, merges their awards, and outputs one clean `master_deduped_places.csv`.
+Translating CSV text into actual GPS map layers, and merging the three guides so they play nicely together.
 
-### Phase 4: Map Assembly
+5. `python build_map_list.py build` — Loads all three guides, pings the Kakao API to fill in missing GPS coordinates and official Korean addresses, then **merges duplicates on `kakao_id`** and bundles everything into `site/places.geojson`.
 
-Translating CSV text into actual GPS map layers.
-6. `python build_map_list.py build` — Takes the deduped master list, pings the Kakao API to fill in any missing GPS coordinates or official Korean addresses, and bundles everything into the final `site/places.geojson` file.
+   Deduplication happens *after* Kakao enrichment on purpose: the guides name the same
+   restaurant differently (Michelin romanises "Bongsanok", Blue Ribbon writes "봉산옥"), so
+   `kakao_id` is the only key that can match them. A restaurant recognised by several guides
+   becomes **one pin** carrying every award in its `awards` array.
 
-### Phase 5: The Brain Sync (Vector Embeddings)
+### Phase 4: The Brain Sync (Vector Embeddings)
 
 Teaching the AI how to search the map.
-7. `python build_embeddings.py` — Reads the finished `places.geojson`. It takes the rich descriptions, uses Gemini to convert them into 768-dimensional math vectors, and saves them to the FAISS index (`data/restaurant_vectors.index`). It also injects a `vector_id` back into the GeoJSON.
+6. `python build_embeddings.py` — Reads the finished `places.geojson`. It takes the rich descriptions, uses Gemini to convert them into 3072-dimensional math vectors, and saves them to the FAISS index (`data/restaurant_vectors.index`). It also injects a `vector_id` back into the GeoJSON.
 
-### Phase 6: Live Production
+   ⚠️ **`places.geojson` and `restaurant_vectors.index` must always ship together.** `vector_id`
+   is positional: rebuilding the map without re-running this step leaves the API joining search
+   results against stale IDs, which silently returns the wrong restaurants or none at all.
 
-8. `npm start` (or `node server.js`) — Boots up the Node.js Express backend. Listens for user semantic queries, triggers `search_vectors.py` to calculate the nearest FAISS neighbors, and returns the exact map pins to the frontend.
+### Phase 5: Live Production
+
+7. `npm start` (or `node server.js`) — Boots up the Node.js Express backend. Listens for user semantic queries, triggers `search_vectors.py` to calculate the nearest FAISS neighbors, and returns the exact map pins to the frontend.
 
 ---
 

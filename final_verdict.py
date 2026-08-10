@@ -309,13 +309,36 @@ def supreme_court_audit(csv_path, output_path):
     low_score_mask = df['Score'] < 70
     upgrade_mask = df['Upgrade Recommended'].astype(str).str.strip().str.lower().isin(['true', '1', '1.0'])
 
+    # ⚖️ THE AUDITOR'S VERDICT IS BINDING.
+    # README core principle #1 says receipt-verified negatives revoke an award. Until now
+    # 'Rating Justified' was never a quarantine condition — it was only consulted to decide
+    # who got rescued OUT of quarantine — so restaurants the receipt auditor explicitly
+    # condemned shipped to the live map anyway. They don't any more.
+    #
+    # Only an explicit 'No' quarantines. 'Unknown' (the auditor reached the page but found
+    # only UI boilerplate) and blank (never audited) are NOT treated as failures here —
+    # absence of evidence isn't evidence of guilt, and blanket-quarantining them would
+    # empty a large part of the guide on a scraper limitation. Overhaul 2.2 backfills those
+    # and adds a `verification_level` field; that is where unverified entries get handled.
+    rating_rejected_mask = (
+        df.get('Rating Justified', pd.Series([''] * len(df), index=df.index))
+          .astype(str).str.strip().str.lower() == 'no'
+    )
+
     # 🛡️ Restaurants already in the guide at Score ≥ 70 are protected from demotion.
     # Their stale queue scores cannot quarantine them — only reclassify.py can re-evaluate.
     protection_mask = df['Restaurant Name'].astype(str).str.strip().isin(protected_names)
     if protection_mask.sum() > 0:
         print(f"   🛡️ Shielding {protection_mask.sum()} already-audited restaurants from demotion.")
 
-    quarantine_mask = (needs_review_mask | low_score_mask | upgrade_mask) & ~protection_mask
+    quarantine_mask = (
+        needs_review_mask | low_score_mask | upgrade_mask | rating_rejected_mask
+    ) & ~protection_mask
+
+    rejected_count = (rating_rejected_mask & ~protection_mask).sum()
+    if rejected_count > 0:
+        print(f"   ⚖️ {rejected_count} restaurants quarantined: receipt auditor ruled "
+              f"'Rating Justified = No'.")
 
     upgrade_count = upgrade_mask.sum()
     if upgrade_count > 0:
@@ -364,9 +387,29 @@ def supreme_court_audit(csv_path, output_path):
 
     # Save the files
     if not quarantine_df.empty:
-        quarantine_df.to_csv('needs_human_attention.csv', index=False, encoding='utf-8-sig')
+        # MERGE, don't clobber. This used to be a bare to_csv(), which meant every run
+        # threw away everything quarantined by previous runs — the quarantine pile is the
+        # rescrape/appellate work queue, so silently truncating it lost real work.
+        quarantine_path = 'needs_human_attention.csv'
+        merged_quarantine = quarantine_df
+        if os.path.exists(quarantine_path):
+            try:
+                prior = pd.read_csv(quarantine_path, encoding='utf-8-sig',
+                                    on_bad_lines='skip', engine='python')
+                incoming_names = set(quarantine_df['Restaurant Name'].astype(str).str.strip())
+                # Fresh verdicts win: drop prior rows for restaurants we just re-judged.
+                prior_kept = prior[~prior['Restaurant Name'].astype(str).str.strip()
+                                   .isin(incoming_names)]
+                merged_quarantine = pd.concat([prior_kept, quarantine_df], ignore_index=True)
+                print(f"   🗃️ Quarantine merge: {len(prior)} existing "
+                      f"({len(prior) - len(prior_kept)} superseded) + {len(quarantine_df)} new "
+                      f"= {len(merged_quarantine)}")
+            except Exception as e:
+                print(f"   ⚠️ Could not merge prior quarantine ({e}); writing new rows only.")
+
+        merged_quarantine.to_csv(quarantine_path, index=False, encoding='utf-8-sig')
         print(f"\n⚠️ QUARANTINE: Diverted {len(quarantine_df)} unverified/low-score places.")
-        print(f"   (Saved to 'needs_human_attention.csv')")
+        print(f"   (Saved to '{quarantine_path}')")
 
     clean_df.to_csv(output_path, index=False, encoding='utf-8-sig')
     print(f"\n✅ Supreme Court Audit Complete! {len(clean_df)} pristine places saved to {output_path}")

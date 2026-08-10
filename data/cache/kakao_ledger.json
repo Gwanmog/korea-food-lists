@@ -43296,5 +43296,33 @@
     "road_address_name": "서울 송파구 백제고분로37길 6",
     "x": "127.103799412262",
     "y": "37.504169990198"
+  },
+  "dainingma__8-eonju-ro-152-gil-gangnam-gu-seoul": {
+    "address_name": "서울 강남구 신사동 630-12",
+    "category_group_code": "FD6",
+    "category_group_name": "음식점",
+    "category_name": "음식점 > 중식 > 중국요리",
+    "distance": "",
+    "id": "1662626352",
+    "phone": "02-518-7400",
+    "place_name": "다이닝마",
+    "place_url": "http://place.map.kakao.com/1662626352",
+    "road_address_name": "서울 강남구 언주로152길 8",
+    "x": "127.034267391173",
+    "y": "37.5224974023329"
+  },
+  "gweonsugsu__37-apgujeong-ro-80-gil-gangnam-gu-seoul": {
+    "address_name": "서울 강남구 청담동 92-18",
+    "category_group_code": "FD6",
+    "category_group_name": "음식점",
+    "category_name": "음식점 > 한식",
+    "distance": "",
+    "id": "26875724",
+    "phone": "02-542-6268",
+    "place_name": "권숙수",
+    "place_url": "http://place.map.kakao.com/26875724",
+    "road_address_name": "서울 강남구 압구정로80길 37",
+    "x": "127.04357628821981",
+    "y": "37.52437202380092"
   }
 }
