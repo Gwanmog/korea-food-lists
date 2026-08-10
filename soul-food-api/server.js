@@ -45,9 +45,41 @@ if (!fs.existsSync(geojsonPath)) {
 const placesData = JSON.parse(fs.readFileSync(geojsonPath, 'utf8'));
 console.log(`🗺️ Loaded map data with ${placesData.features.length} locations.`);
 
+// ---- Award-aware re-ranking -------------------------------------------------
+// FAISS ranks on semantic similarity alone — it has no idea how good a restaurant is.
+// Measured before this existed: the query "제육볶음 맛집" returned 18 Neon Vetted places
+// and only 2 of the 8 제육볶음 places that actually hold a heart.
+//
+// The tier is deliberately a THUMB ON THE SCALE, not a trump card: a Vetted place that
+// genuinely nails the dish should still beat a 1-heart place that's only loosely related.
+// TIER_WEIGHT is small relative to the similarity spread for that reason.
+const TIER_WEIGHT = {
+  '3 STARS': 1.00, '2 STARS': 0.85, '1 STAR': 0.70,
+  'RIBBON_THREE': 0.85, 'RIBBON_TWO': 0.55, 'RIBBON_ONE': 0.35,
+  'BIB GOURMAND': 0.45, 'SELECTED': 0.25,
+  'NEON_3': 0.90, 'NEON_2': 0.60, 'NEON_1': 0.35, 'NEON_VETTED': 0.0,
+};
+// How much award standing can move a result. At 0.12 a top award is worth roughly a
+// tenth of the similarity range — enough to lift a strong match into view, not enough
+// to drag in something unrelated.
+const TIER_INFLUENCE = 0.12;
+
+function awardWeight(props) {
+  let best = 0;
+  const consider = tier => {
+    const w = TIER_WEIGHT[(tier || '').trim().toUpperCase()];
+    if (typeof w === 'number' && w > best) best = w;
+  };
+  // Take the strongest award the restaurant holds across every guide.
+  if (Array.isArray(props.awards)) props.awards.forEach(a => consider(a.tier));
+  consider(props.category);
+  consider(props.tier);
+  return best;
+}
+
 // 3. FAISS Retrieval Engine
 // allowedIds: optional array of vector_ids to score against (viewport subset).
-// When provided, Python scores only those vectors. When null, global top-20 search.
+// When provided, Python scores only those vectors. When null, global search.
 async function searchFAISS(query, allowedIds = null) {
     try {
         const result = await embeddingModel.embedContent(query);
@@ -79,8 +111,15 @@ async function searchFAISS(query, allowedIds = null) {
             pythonProcess.on('close', () => {
                 clearTimeout(timeout);
                 try {
-                    const vectorIds = JSON.parse(outputData.trim());
-                    resolve(vectorIds);
+                    const parsed = JSON.parse(outputData.trim());
+                    // search_vectors.py now returns [{id, similarity}]. Tolerate the old
+                    // bare-id array so a stale script can't take the endpoint down.
+                    const candidates = parsed.map(x =>
+                        typeof x === 'object' && x !== null
+                            ? { id: Number(x.id), similarity: Number(x.similarity) || 0 }
+                            : { id: Number(x), similarity: 0 }
+                    );
+                    resolve(candidates);
                 } catch (error) {
                     console.error("❌ Failed to parse FAISS results:", error);
                     resolve([]);
@@ -119,11 +158,24 @@ app.post('/chat', searchLimiter, async (req, res) => {
         lon: f.geometry.coordinates[0]
     });
 
-    const joinIds = (ids) => {
-        const safe = ids.map(id => String(id));
-        return placesData.features.filter(f =>
-            f.properties.vector_id != null && safe.includes(String(f.properties.vector_id))
-        );
+    // Join FAISS candidates back to features, re-rank by similarity blended with award
+    // standing, and trim to what we actually send the model.
+    const FINAL_RESULTS = 20;
+    const byVectorId = new Map();
+    for (const f of placesData.features) {
+        if (f.properties.vector_id != null) byVectorId.set(Number(f.properties.vector_id), f);
+    }
+
+    const joinIds = (candidates) => {
+        const scored = [];
+        for (const c of candidates) {
+            const f = byVectorId.get(c.id);
+            if (!f) continue;
+            const blended = c.similarity + TIER_INFLUENCE * awardWeight(f.properties);
+            scored.push({ f, blended });
+        }
+        scored.sort((a, b) => b.blended - a.blended);
+        return scored.slice(0, FINAL_RESULTS).map(s => s.f);
     };
 
     // 3. LOCATION FILTER — three plans:
@@ -153,7 +205,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
         // Plan B: named neighbourhood — global search, Gemini checks coordinates
         console.log(`[Step 1] Plan B: named location — global FAISS search`);
         vectorIds = await searchFAISS(userQuery);
-        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
         bestMatches  = joinIds(vectorIds).map(toRow);
         locationNote = "The user has named a specific neighbourhood. Recommend only restaurants that match that area per their request.";
 
@@ -173,7 +225,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
 
         if (inViewIds.length > 0) {
             vectorIds = await searchFAISS(userQuery, inViewIds);
-            console.log(`[Step 2] Viewport-scoped FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+            console.log(`[Step 2] Viewport-scoped FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
             bestMatches = joinIds(vectorIds).map(toRow);
         }
 
@@ -181,7 +233,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
             // Plan C: nothing matched in view — fall back to global and say so
             console.log(`[Step 1C] Plan C: no in-view matches — falling back to global FAISS`);
             vectorIds = await searchFAISS(userQuery);
-            console.log(`[Step 2C] Global FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+            console.log(`[Step 2C] Global FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
             bestMatches  = joinIds(vectorIds).map(toRow);
             locationNote = "NOTE: There were no strong matches in the user's current map view. The results below are from elsewhere in Seoul. Start your response by briefly letting the user know you couldn't find anything on their current screen, but found some good options in other neighbourhoods — and suggest they pan the map.";
         } else {
@@ -192,7 +244,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
         // No location context at all — global search
         console.log(`[Step 1] No location context — global FAISS search`);
         vectorIds = await searchFAISS(userQuery);
-        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds);
+        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
         bestMatches  = joinIds(vectorIds).map(toRow);
         locationNote = "";
     }

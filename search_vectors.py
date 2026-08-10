@@ -40,6 +40,11 @@ def search():
 
         index = faiss.read_index(FAISS_INDEX_PATH)
 
+        # Return a wider candidate pool than we ultimately show. The caller re-ranks by
+        # blending semantic similarity with award tier, which can only promote a good
+        # restaurant into the answer if it was in the pool to begin with.
+        k = int(parsed.get('k', 40)) if isinstance(parsed, dict) else 40
+
         if allowed_ids:
             # Score only the in-view subset by reconstructing their vectors
             valid_ids = [i for i in allowed_ids if 0 <= i < index.ntotal]
@@ -51,15 +56,19 @@ def search():
             diffs = subset_vectors - vector_np
             distances = np.sum(diffs ** 2, axis=1)
 
-            k = min(20, len(valid_ids))
-            sorted_indices = np.argsort(distances)[:k]
-            result_ids = [valid_ids[i] for i in sorted_indices]
+            take = min(k, len(valid_ids))
+            sorted_indices = np.argsort(distances)[:take]
+            results = [(valid_ids[i], float(distances[i])) for i in sorted_indices]
         else:
             # Global search across all restaurants
-            distances, indices = index.search(vector_np, 20)
-            result_ids = [int(idx) for idx in indices[0] if idx != -1]
+            distances, indices = index.search(vector_np, k)
+            results = [(int(idx), float(d))
+                       for idx, d in zip(indices[0], distances[0]) if idx != -1]
 
-        sys.__stdout__.write(json.dumps(result_ids))
+        # Emit distance alongside each id so the caller can blend it with tier weight.
+        # L2 distance -> a bounded similarity in (0, 1]; smaller distance = higher score.
+        payload = [{"id": i, "similarity": 1.0 / (1.0 + d)} for i, d in results]
+        sys.__stdout__.write(json.dumps(payload))
 
     except Exception:
         sys.__stdout__.write(json.dumps([]))

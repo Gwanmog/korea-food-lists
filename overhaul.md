@@ -633,7 +633,27 @@ latency entirely.
 - [ ] Load vectors once at boot; do cosine similarity in-process
 - [ ] Remove the subprocess plumbing and the viewport reconstruct loop (`search_vectors.py:50`)
 
-### 4.4b Retrieval is quality-blind — tiers don't influence ranking `[ ]`
+### 4.4b Retrieval is quality-blind — tiers don't influence ranking `[x]` — done 2026-08-09
+
+**Fixed by blended re-ranking.** `search_vectors.py` now returns a wider pool (40) with a
+similarity score per candidate; `server.js` re-ranks on
+`similarity + TIER_INFLUENCE * awardWeight()` and trims to 20 before the model sees them.
+
+`TIER_INFLUENCE = 0.12` — deliberately small. The requirement written here before building was
+*"a Vetted place that nails the dish should still beat a 1-heart place that's only loosely
+related,"* and the measured result honours it: 이구역의요리왕 (Neon Vetted) still holds a top-5 slot
+for 제육볶음 because it is a strong semantic match.
+
+| Query | Before | After |
+|---|---|---|
+| `제육볶음 맛집` | 18 Vetted / 2 hearts | **14 Vetted / 6 hearts**; top 4 are all heart-holding 제육볶음 |
+| `special occasion fine dining` | 1 starred restaurant | **2 Stars + two 1 Stars promoted in**; RIBBON_TWO 6 → 12 |
+
+6 of the 8 heart-holding 제육볶음 places now reach the pool (was 2). Backwards compatible: a
+legacy bare-vector payload still works, and `server.js` tolerates the old bare-id array so a
+stale `search_vectors.py` can't take the endpoint down.
+
+<details><summary>Original finding (superseded)</summary>
 
 **Found 2026-08-09, immediately after 2.3 made tiers meaningful.** Measured on the live index:
 
@@ -657,6 +677,8 @@ FAISS surfaced, and an 18/20 Vetted pool caps how much that helps.
       genuinely better semantic matches
 - [ ] ⚠️ Do **not** overcorrect into "hearts always win": a Vetted place that nails the dish
       should still beat a 1-heart place that's only loosely related
+
+</details>
 
 ### 4.5 Add hybrid retrieval + reranking `[ ]`
 Pure dense retrieval misses exact dish and restaurant names. Add BM25/lexical over Korean names,
