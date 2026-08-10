@@ -794,10 +794,47 @@ level only breaks ties between restaurants already serving the right food. Befor
 recommended a 3-Neon-Heart 곱창 place for "종로 국밥"; after, it correctly returns 돈맛꿀 (낙원동)
 and 유진.
 
-**⚠️ Known open case.** "잠실 삼겹살" still returns 곱창 despite **16 삼겹살 places existing in
-잠실동**, and despite lexical retrieval alone returning a *perfect* 20/20 for that query. The
-loss is downstream of retrieval — in RRF fusion, the rerank, or the answer stage. Worth
-tracing with per-stage logging; it is the clearest remaining lead on search quality.
+**~~Known open case~~ — RETRACTED 2026-08-10. There was no bug; the test harness was broken.**
+
+A previous revision of this file recorded "잠실 삼겹살 returns 곱창" as an open search defect.
+It isn't. Prompted by Alexander asking whether 곱창 and 삼겹살 might simply be related dishes,
+each stage was measured in isolation and **every one was already correct**:
+
+| stage | result for `잠실 삼겹살` |
+|---|---|
+| lexical retrieval | 20/20 삼겹살 in 잠실동 |
+| semantic retrieval | top 8 all 삼겹살 |
+| RRF fusion | top 8 all 삼겹살 in 잠실동/방이동/석촌동 |
+| LLM rerank | 20/20 삼겹살 in 잠실동 |
+| answer model | correct given that input |
+
+**The real cause: `curl` through Git Bash on Windows was mangling the UTF-8 Korean in the
+JSON body.** The server was receiving a corrupted query and answering it reasonably — which
+is why the replies looked confidently wrong ("You're looking for Jokbal?") rather than empty.
+Re-tested with `urllib` sending proper UTF-8, both cases are right:
+
+- `잠실 삼겹살` → 돈순장 잠실새내본점, samgyeopsal in Jamsil ✓
+- `종로 국밥` → ANAM, a Bib Gourmand 돼지국밥 in Jongno ✓
+
+**Lesson for whoever tests this next: do not use `curl` with non-ASCII bodies on Windows.**
+Send requests from Python (`urllib`/`requests`) or use `--data-binary @file.json`, and confirm
+against the server's own `[AI Request] User asked:` log line, which echoes what actually
+arrived.
+
+**What this invalidates:** the curl-based before/after comparisons in this session are
+unreliable and should not be cited. The Python-based measurements are unaffected — the rerank
+configuration table above never touched the HTTP layer.
+
+**One genuine finding survives from the investigation.** Answering Alexander's question
+directly: in this dataset 곱창 and 삼겹살 do *not* overlap — of 85 곱창-labelled places only 1
+mentions 삼겹살 in its description, and of 69 삼겹살-labelled places, none mention 곱창. But the
+instinct points at a real data-model limit: **a Neon place gets exactly one cuisine label —
+the keyword it was discovered under** — because `master_agent.py` claims a restaurant on first
+match to avoid double-scoring. A restaurant genuinely serving both can only ever be filed
+under one, so `cuisine_ko` means "found under this keyword", not "serves only this". Any dish
+metric built on it (including the 54% → 72% above) is measuring labels, not menus.
+- [ ] Consider a multi-label `dishes[]` field so a restaurant can be found under every dish
+      it actually does well.
 
 <details><summary>Original problem statement (superseded)</summary>
 Pure dense retrieval misses exact dish and restaurant names. Add BM25/lexical over Korean names,
