@@ -756,7 +756,48 @@ FAISS surfaced, and an 18/20 Vetted pool caps how much that helps.
 
 Cost: **1.3 ms per scan** over 2,267 places, in-process — no index, no extra dependency.
 
-- [ ] **Still open: the LLM rerank pass** over the fused top ~50 before answering.
+- [x] **LLM rerank pass** — shipped, but the story is more interesting than "it worked".
+
+**Built only after measuring headroom:** across the eval queries, **127 correct-district
+results sat at fused ranks 21–50 versus 109 in the top 20**. The right answers existed below
+the cut, so a rerank had real material to promote.
+
+**Then the measurement said my first two attempts made things worse.** Adding a second metric
+— does the result actually serve the requested *dish*, not just sit in the right district —
+changed the verdict completely:
+
+| configuration | dish match | location match |
+|---|---|---|
+| fused, no rerank | 54% | 78% |
+| flash-lite, location-first prompt | **45%** | 87% |
+| flash-lite, food-first prompt | **49%** | 77% |
+| **flash, food-first prompt** ← shipped | **72%** | 69% |
+
+flash-lite **degraded dish relevance in every configuration tried** — it returned 곱창
+restaurants for "종로 국밥" because they were in the right district. Only full `flash` with a
+food-first prompt improved the thing that actually matters for a food app.
+
+**The location dip is partly an artefact**, not a pure regression: for "강남 삼겹살" only
+**3 삼겹살 places exist in all of 강남구** versus 69 in 송파구. Serving the right dish one
+district over beats serving the wrong dish in the right one.
+
+**Two bugs found while verifying end to end:**
+- `FINAL_RESULTS` was declared inside the `/chat` handler but used by module-scope
+  `rerankCandidates()` — a ReferenceError that the rerank's own try/catch would have
+  swallowed, leaving the feature silently disabled while looking fine in the logs.
+- The reranker and the answer model were both shown **English** `cuisine` while queries are
+  usually Korean — a 국밥 query was being compared against the string "Gukbap". Both now
+  receive `cuisine_ko / cuisine`.
+
+**Answer-stage fix:** the final prompt now states that dish match comes first and that award
+level only breaks ties between restaurants already serving the right food. Before this it
+recommended a 3-Neon-Heart 곱창 place for "종로 국밥"; after, it correctly returns 돈맛꿀 (낙원동)
+and 유진.
+
+**⚠️ Known open case.** "잠실 삼겹살" still returns 곱창 despite **16 삼겹살 places existing in
+잠실동**, and despite lexical retrieval alone returning a *perfect* 20/20 for that query. The
+loss is downstream of retrieval — in RRF fusion, the rerank, or the answer stage. Worth
+tracing with per-stage logging; it is the clearest remaining lead on search quality.
 
 <details><summary>Original problem statement (superseded)</summary>
 Pure dense retrieval misses exact dish and restaurant names. Add BM25/lexical over Korean names,

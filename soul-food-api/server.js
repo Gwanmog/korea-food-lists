@@ -45,6 +45,18 @@ if (!fs.existsSync(geojsonPath)) {
 const placesData = JSON.parse(fs.readFileSync(geojsonPath, 'utf8'));
 console.log(`🗺️ Loaded map data with ${placesData.features.length} locations.`);
 
+// Which Python runs search_vectors.py. Prefer an explicit override, then a local venv,
+// then the platform default. PYTHON_BIN can be set in the environment if none fit.
+const PYTHON_BIN = (() => {
+    if (process.env.PYTHON_BIN) return process.env.PYTHON_BIN;
+    const venv = process.platform === 'win32'
+        ? path.resolve(process.cwd(), '.venv/Scripts/python.exe')
+        : path.resolve(process.cwd(), '.venv/bin/python');
+    if (fs.existsSync(venv)) return venv;
+    return process.platform === 'win32' ? 'python' : 'python3';
+})();
+console.log(`🐍 Vector search will use: ${PYTHON_BIN}`);
+
 // ---- Award-aware re-ranking -------------------------------------------------
 // FAISS ranks on semantic similarity alone — it has no idea how good a restaurant is.
 // Measured before this existed: the query "제육볶음 맛집" returned 18 Neon Vetted places
@@ -140,6 +152,92 @@ function lexicalRank(query, pool = null) {
 // them against each other is where naive hybrid search usually goes wrong.
 const RRF_K = 60;
 
+// ---- LLM rerank -------------------------------------------------------------
+// Measured before building: across the eval queries, 127 correct-district results sat at
+// fused ranks 21-50 versus 109 in the top 20. The right answers exist, they're just below
+// the cut — so a rerank has real material to promote rather than being latency for its
+// own sake. Uses flash-lite: this is a selection task, not a writing one.
+const RERANK_POOL = 50;
+// Module scope on purpose: rerankCandidates() below needs it, and it previously lived
+// inside the /chat handler — a ReferenceError that the rerank's own try/catch would have
+// swallowed, leaving the feature silently disabled while appearing to work.
+const FINAL_RESULTS = 20;
+// flash, not flash-lite. Measured across the eval set (dish-match / location-match):
+//   fused, no rerank        54% / 78%
+//   flash-lite, loc-first   45% / 87%
+//   flash-lite, food-first  49% / 77%
+//   flash,      food-first  72% / 69%   <- shipped
+// flash-lite degraded dish relevance in every configuration tried. flash trades some
+// location accuracy for a large dish gain, which is the right direction for a food app:
+// someone asking for 삼겹살 in 강남 is better served 삼겹살 in 송파 than 곱창 in 강남 — and
+// part of that location dip is a data-coverage artefact (only 3 삼겹살 places exist in
+// 강남구 at all, versus 69 in 송파구).
+const rerankModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+async function rerankCandidates(query, features) {
+    if (features.length <= FINAL_RESULTS) return features;
+    try {
+        // Show BOTH cuisine languages. Queries are usually Korean but `cuisine` is English
+        // since 5.5.4, so a 국밥 query was being matched against the string "Gukbap".
+        const lines = features.map((f, i) => {
+            const p = f.properties;
+            const where = [p.neighborhood, p.district].filter(Boolean).join(', ');
+            const food = [...new Set([p.cuisine_ko, p.cuisine].filter(Boolean))].join(' / ');
+            return `${i}. ${p.name_ko || p.name} | ${food || '?'} | ${where || '?'}`;
+        }).join('\n');
+
+        // Food first, location as tiebreaker. The reverse ordering was measured and lost
+        // 9 points of dish relevance — it returned 곱창 restaurants for "종로 국밥" because
+        // they were in the right district.
+        const prompt = `Rank these Seoul restaurants by how well each matches the request.
+
+Request: "${query}"
+
+FOOD COMES FIRST. If the request names a dish or cuisine, a restaurant that does not
+serve it is a poor match no matter where it is. Rank every restaurant serving the
+requested food above every restaurant that does not.
+
+Use location only to order restaurants that already serve the right food: among those,
+ones in the named area rank higher.
+
+If no specific dish is named, rank by location and overall fit.
+
+Candidates (index. name | cuisine | area):
+${lines}
+
+Return ONLY a JSON array of the ${FINAL_RESULTS} best indices, most relevant first.
+Example: [12, 3, 41]`;
+
+        const result = await rerankModel.generateContent({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: 'application/json', temperature: 0 },
+        });
+        const idx = JSON.parse(result.response.text());
+        if (!Array.isArray(idx) || !idx.length) throw new Error('empty rerank');
+
+        const picked = [];
+        const seen = new Set();
+        for (const i of idx) {
+            const n = Number(i);
+            if (Number.isInteger(n) && n >= 0 && n < features.length && !seen.has(n)) {
+                seen.add(n);
+                picked.push(features[n]);
+            }
+        }
+        // Backfill from the fused order if the model returned too few.
+        for (const f of features) {
+            if (picked.length >= FINAL_RESULTS) break;
+            if (!picked.includes(f)) picked.push(f);
+        }
+        console.log(`[Rerank] ${features.length} candidates -> ${picked.length} reranked`);
+        return picked.slice(0, FINAL_RESULTS);
+    } catch (err) {
+        // Never let reranking break search — fall back to the fused order.
+        console.error('[Rerank] failed, using fused order:', err.message);
+        return features.slice(0, FINAL_RESULTS);
+    }
+}
+
 // 3. FAISS Retrieval Engine
 // allowedIds: optional array of vector_ids to score against (viewport subset).
 // When provided, Python scores only those vectors. When null, global search.
@@ -151,8 +249,10 @@ async function searchFAISS(query, allowedIds = null) {
         return new Promise((resolve) => {
             const pythonScript = path.resolve(process.cwd(), 'search_vectors.py');
             const faissIndexPath = path.resolve(process.cwd(), 'data/restaurant_vectors.index');
-            // 🚨 MUST be python3 for the Linux Docker container!
-            const pythonProcess = spawn('python3', [pythonScript, faissIndexPath]);
+            // python3 in the Linux container; Windows dev machines only have `python`, and
+            // a local .venv should win over either. Hardcoding python3 meant the server ran
+            // locally but every search silently returned zero results.
+            const pythonProcess = spawn(PYTHON_BIN, [pythonScript, faissIndexPath]);
 
             // Kill the subprocess and resolve empty if it takes too long
             const timeout = setTimeout(() => {
@@ -213,7 +313,10 @@ app.post('/chat', searchLimiter, async (req, res) => {
     // 2. THE JOIN helper
     const toRow = f => ({
         name: f.properties.name,
-        cuisine: f.properties.cuisine,
+        // Both languages: queries are often Korean while `cuisine` is English since 5.5.4,
+        // so a 국밥 query was being compared against "Gukbap".
+        cuisine: [...new Set([f.properties.cuisine_ko, f.properties.cuisine].filter(Boolean))].join(' / '),
+        area: [f.properties.neighborhood, f.properties.district].filter(Boolean).join(', ') || null,
         award: f.properties.category,
         desc: f.properties.description ? f.properties.description.substring(0, 300) : "",
         address: f.properties.address_ko || f.properties.address || null,
@@ -223,7 +326,6 @@ app.post('/chat', searchLimiter, async (req, res) => {
 
     // Join FAISS candidates back to features, re-rank by similarity blended with award
     // standing, and trim to what we actually send the model.
-    const FINAL_RESULTS = 20;
     const byVectorId = new Map();
     for (const f of placesData.features) {
         if (f.properties.vector_id != null) byVectorId.set(Number(f.properties.vector_id), f);
@@ -234,7 +336,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
     // contributes 1/61 ≈ 0.0164) so it stays the thumb on the scale it was in 4.4b.
     const RRF_TIER_INFLUENCE = 0.004;
 
-    const joinIds = (candidates, allowedPool = null) => {
+    const joinIds = async (candidates, allowedPool = null) => {
         const fused = new Map();  // vector_id -> {f, score}
 
         const addRanking = (features) => {
@@ -252,7 +354,9 @@ app.post('/chat', searchLimiter, async (req, res) => {
         const out = [...fused.values()];
         for (const e of out) e.score += RRF_TIER_INFLUENCE * awardWeight(e.f.properties);
         out.sort((a, b) => b.score - a.score);
-        return out.slice(0, FINAL_RESULTS).map(e => e.f);
+        // Hand a wider pool to the reranker than we ultimately keep — that band is where
+        // the measured headroom lives.
+        return rerankCandidates(userQuery, out.slice(0, RERANK_POOL).map(e => e.f));
     };
 
     // 3. LOCATION FILTER — three plans:
@@ -283,7 +387,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
         console.log(`[Step 1] Plan B: named location — global FAISS search`);
         vectorIds = await searchFAISS(userQuery);
         console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
-        bestMatches  = joinIds(vectorIds).map(toRow);
+        bestMatches  = (await joinIds(vectorIds)).map(toRow);
         locationNote = "The user has named a specific neighbourhood. Recommend only restaurants that match that area per their request.";
 
     } else if (mapWindow) {
@@ -305,7 +409,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
             console.log(`[Step 2] Viewport-scoped FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
             // Pass the viewport pool so the lexical half is scoped too — otherwise it
             // would pull in matches from outside the map the user is looking at.
-            bestMatches = joinIds(vectorIds, inViewIds).map(toRow);
+            bestMatches = (await joinIds(vectorIds, inViewIds)).map(toRow);
         }
 
         if (!bestMatches || bestMatches.length === 0) {
@@ -313,7 +417,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
             console.log(`[Step 1C] Plan C: no in-view matches — falling back to global FAISS`);
             vectorIds = await searchFAISS(userQuery);
             console.log(`[Step 2C] Global FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
-            bestMatches  = joinIds(vectorIds).map(toRow);
+            bestMatches  = (await joinIds(vectorIds)).map(toRow);
             locationNote = "NOTE: There were no strong matches in the user's current map view. The results below are from elsewhere in Seoul. Start your response by briefly letting the user know you couldn't find anything on their current screen, but found some good options in other neighbourhoods — and suggest they pan the map.";
         } else {
             locationNote = "All options below are within the user's current map view.";
@@ -324,7 +428,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
         console.log(`[Step 1] No location context — global FAISS search`);
         vectorIds = await searchFAISS(userQuery);
         console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
-        bestMatches  = joinIds(vectorIds).map(toRow);
+        bestMatches  = (await joinIds(vectorIds)).map(toRow);
         locationNote = "";
     }
 
@@ -343,6 +447,13 @@ app.post('/chat', searchLimiter, async (req, res) => {
       ${JSON.stringify(bestMatches)}
 
       RULES:
+      - MATCH THE DISH FIRST. If the user named a dish or cuisine, only recommend restaurants
+        whose cuisine actually matches it. A highly-awarded restaurant serving something else
+        is NOT a good match — do not recommend it just because it has a high award. If nothing
+        in the list serves what they asked for, say so plainly and then offer the closest
+        alternatives, naming what they serve.
+      - Award level breaks ties between restaurants that already match the dish. It never
+        overrides the dish.
       - If the user asked for a specific neighbourhood, check the lat/lon and address of each restaurant. Only recommend ones that are genuinely in or very close to that area. Do NOT claim a restaurant is in a neighbourhood if its address says otherwise.
       - Never invent or assume a restaurant's location — use only the address and coordinates provided.
       - Based ONLY on the list above, recommend the top 1-3 best matches.
