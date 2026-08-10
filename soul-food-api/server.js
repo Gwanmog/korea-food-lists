@@ -77,6 +77,69 @@ function awardWeight(props) {
   return best;
 }
 
+// ---- Lexical retrieval (hybrid half) ----------------------------------------
+// Dense vectors are weak on exact tokens. After putting location into the embeddings
+// (4.1), "강남 삼겹살" still only returned 6/20 results actually in 강남구 — a neighbourhood
+// name is a literal string to match, not a concept to approximate. This is the lexical
+// half of hybrid retrieval; the two rankings are fused below with RRF.
+//
+// Substring containment rather than word tokenisation, deliberately: Korean doesn't
+// delimit morphemes with spaces, so "강남" must match inside "강남구" and "삼겹살" inside
+// "삼겹살집". A tokeniser would miss both without a morphological analyser.
+const LEXICAL_FIELDS = [
+    ['name', 3.0], ['name_ko', 3.0],
+    ['neighborhood', 2.5], ['district', 2.5],
+    ['cuisine', 2.0], ['cuisine_ko', 2.0],
+    ['address_ko', 1.0], ['address', 1.0],
+];
+
+const lexicalDocs = placesData.features.map(f => {
+    const parts = [];
+    for (const [field, weight] of LEXICAL_FIELDS) {
+        const v = (f.properties[field] || '').toString().toLowerCase();
+        if (v) parts.push([v, weight]);
+    }
+    return { f, parts };
+});
+
+function lexicalRank(query, pool = null) {
+    // Tokens of 2+ chars; 1-char fragments match far too much in Korean.
+    const tokens = query.toLowerCase().split(/[\s,./()]+/).filter(t => t.length >= 2);
+    if (!tokens.length) return [];
+
+    const allowed = pool ? new Set(pool) : null;
+    const scored = [];
+    for (const doc of lexicalDocs) {
+        if (allowed && !allowed.has(Number(doc.f.properties.vector_id))) continue;
+        let score = 0, matched = 0;
+        for (const tok of tokens) {
+            let best = 0;
+            for (const [text, weight] of doc.parts) {
+                if (text.includes(tok) && weight > best) best = weight;
+            }
+            if (best > 0) matched++;
+            score += best;
+        }
+        if (score > 0) scored.push({ f: doc.f, score, matched });
+    }
+    if (!scored.length) return [];
+
+    // Keep only the best token coverage available. Without this, a two-token query like
+    // "종로 국밥" surfaces 6 places matching both (all correctly in 종로구) and then 244
+    // matching only "국밥" — and those partial matches, sitting at lexical ranks 7-40,
+    // still earn enough RRF credit to push the correct results out. Measured: that
+    // naive version made 종로 국밥 *worse* than semantic alone (8/20 -> 6/20).
+    const best = Math.max(...scored.map(s => s.matched));
+    const full = scored.filter(s => s.matched === best);
+    full.sort((a, b) => b.score - a.score);
+    return full;
+}
+
+// Reciprocal Rank Fusion. Combines rankings without needing their scores to share a
+// scale — a cosine distance and a token-overlap count aren't comparable, and normalising
+// them against each other is where naive hybrid search usually goes wrong.
+const RRF_K = 60;
+
 // 3. FAISS Retrieval Engine
 // allowedIds: optional array of vector_ids to score against (viewport subset).
 // When provided, Python scores only those vectors. When null, global search.
@@ -166,16 +229,30 @@ app.post('/chat', searchLimiter, async (req, res) => {
         if (f.properties.vector_id != null) byVectorId.set(Number(f.properties.vector_id), f);
     }
 
-    const joinIds = (candidates) => {
-        const scored = [];
-        for (const c of candidates) {
-            const f = byVectorId.get(c.id);
-            if (!f) continue;
-            const blended = c.similarity + TIER_INFLUENCE * awardWeight(f.properties);
-            scored.push({ f, blended });
-        }
-        scored.sort((a, b) => b.blended - a.blended);
-        return scored.slice(0, FINAL_RESULTS).map(s => s.f);
+    // Fuse the semantic ranking with the lexical one via RRF, then let award standing
+    // nudge the result. Award influence is scaled to RRF's range (a rank-1 document
+    // contributes 1/61 ≈ 0.0164) so it stays the thumb on the scale it was in 4.4b.
+    const RRF_TIER_INFLUENCE = 0.004;
+
+    const joinIds = (candidates, allowedPool = null) => {
+        const fused = new Map();  // vector_id -> {f, score}
+
+        const addRanking = (features) => {
+            features.forEach((f, i) => {
+                const key = Number(f.properties.vector_id);
+                const entry = fused.get(key) || { f, score: 0 };
+                entry.score += 1 / (RRF_K + i + 1);
+                fused.set(key, entry);
+            });
+        };
+
+        addRanking(candidates.map(c => byVectorId.get(c.id)).filter(Boolean));
+        addRanking(lexicalRank(userQuery, allowedPool).slice(0, 40).map(s => s.f));
+
+        const out = [...fused.values()];
+        for (const e of out) e.score += RRF_TIER_INFLUENCE * awardWeight(e.f.properties);
+        out.sort((a, b) => b.score - a.score);
+        return out.slice(0, FINAL_RESULTS).map(e => e.f);
     };
 
     // 3. LOCATION FILTER — three plans:
@@ -226,7 +303,9 @@ app.post('/chat', searchLimiter, async (req, res) => {
         if (inViewIds.length > 0) {
             vectorIds = await searchFAISS(userQuery, inViewIds);
             console.log(`[Step 2] Viewport-scoped FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
-            bestMatches = joinIds(vectorIds).map(toRow);
+            // Pass the viewport pool so the lexical half is scoped too — otherwise it
+            // would pull in matches from outside the map the user is looking at.
+            bestMatches = joinIds(vectorIds, inViewIds).map(toRow);
         }
 
         if (!bestMatches || bestMatches.length === 0) {

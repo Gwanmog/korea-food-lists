@@ -723,10 +723,46 @@ FAISS surfaced, and an 18/20 Vetted pool caps how much that helps.
 
 </details>
 
-### 4.5 Add hybrid retrieval + reranking `[ ]`
+### 4.5 Add hybrid retrieval `[x]` — done 2026-08-09 (LLM rerank still open)
+
+**Location accuracy across the same 7 queries: 68% → 78%.** Cumulative for the session:
+**51% (start) → 68% (4.1 location in embeddings) → 78% (4.5 hybrid).**
+
+| query | semantic only | hybrid |
+|---|---|---|
+| 강남 삼겹살 | 6/20 | **8/20** |
+| 종로 국밥 | 8/20 | **10/20** |
+| grilled pork belly in Gangnam | 9/20 | **13/20** |
+| 이태원 브런치 | 15/20 | **19/20** |
+| 홍대 술집 | 17/20 | **19/20** |
+| 잠실 치킨 · restaurants near Itaewon | 20/20 | 20/20 |
+
+**Design decisions worth keeping:**
+
+- **Substring containment, not word tokenisation.** Korean doesn't delimit morphemes with
+  spaces, so "강남" must match inside "강남구" and "삼겹살" inside "삼겹살집". A tokeniser misses
+  both without a morphological analyser.
+- **RRF (Reciprocal Rank Fusion), not score blending.** A cosine distance and a token-overlap
+  count don't share a scale; normalising them against each other is where naive hybrid search
+  usually goes wrong. RRF only needs the rankings.
+- **Keep only the best token coverage available.** This one was found by measurement, not
+  design. The naive version made 종로 국밥 *worse* than semantic alone (8/20 → **6/20**):
+  6 places match both "종로" and "국밥" and all 6 are correctly in 종로구, but **244 match only
+  "국밥"**, and those partial matches at lexical ranks 7–40 still earned enough RRF credit to
+  push the correct results out. Filtering to best-coverage turned that regression into
+  8 → 10.
+- The viewport pool is passed through to the lexical half, so a map-scoped query can't pull in
+  matches from outside the view.
+
+Cost: **1.3 ms per scan** over 2,267 places, in-process — no index, no extra dependency.
+
+- [ ] **Still open: the LLM rerank pass** over the fused top ~50 before answering.
+
+<details><summary>Original problem statement (superseded)</summary>
 Pure dense retrieval misses exact dish and restaurant names. Add BM25/lexical over Korean names,
 dish terms, and neighbourhoods; fuse with vector scores; then rerank the top ~50 with an LLM pass
 before answering. This is where the biggest quality jump lives once 4.1–4.4 are done.
+</details>
 
 ### 4.6 Restore the evaluation harness `[ ]`
 `automated_ndcg_evaluator.py`, `run_averaged_eval.py`, and `diagnose_regressions.py` exist but are
