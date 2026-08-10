@@ -29,6 +29,17 @@ const I18N = {
     readMore: "Read more ▼",
     showLess: "Show less ▲",
     translating: "Translating... ⏳",
+    srcMichelin: "Michelin",
+    srcBlu: "Blue Ribbon",
+    srcNeon: "Neon Guide",
+    tBib: "Bib",
+    tSelected: "Selected",
+    tVetted: "Vetted",
+    bBib: "😊 Bib",
+    bMic: "Michelin",
+    bBlu: "Blue Ribbon",
+    bVetted: "✅ Vetted",
+    bNeon: "Neon",
   },
   ko: {
     placeholder: "식당 검색...",
@@ -45,6 +56,17 @@ const I18N = {
     readMore: "더 보기 ▼",
     showLess: "접기 ▲",
     translating: "번역 중... ⏳",
+    srcMichelin: "미쉐린",
+    srcBlu: "블루리본",
+    srcNeon: "네온 가이드",
+    tBib: "빕구르망",
+    tSelected: "셀렉티드",
+    tVetted: "검증됨",
+    bBib: "😊 빕구르망",
+    bMic: "미쉐린",
+    bBlu: "블루리본",
+    bVetted: "✅ 검증됨",
+    bNeon: "네온",
   }
 };
 
@@ -297,25 +319,27 @@ function getBadge(p) {
   const c = (p.category || "").toUpperCase();
   const d = (p.description || "");
 
+  const t = I18N[currentLang];
+
   if (s.includes("michelin")) {
     if (c.includes("3")) return "⭐ 3";
     if (c.includes("2")) return "⭐ 2";
     if (c.includes("1")) return "⭐ 1";
-    if (c.includes("BIB")) return "😊 Bib";
-    return "Mic";
+    if (c.includes("BIB")) return t.bBib;
+    return t.bMic;
   }
   if (s.includes("blue")) {
     if (c.includes("THREE")) return "🎀 3";
     if (c.includes("TWO")) return "🎀 2";
     if (c.includes("ONE")) return "🎀 1";
-    return "Blu";
+    return t.bBlu;
   }
   if (s.includes("neon")) {
     if (p.tier === "NEON_3") return "💖 3";
     if (p.tier === "NEON_2") return "💖 2";
     if (p.tier === "NEON_1") return "💖 1";
-    if (p.tier === "NEON_VETTED") return "✅ Vetted";
-    return "Neon";
+    if (p.tier === "NEON_VETTED") return t.bVetted;
+    return t.bNeon;
   }
   return "";
 }
