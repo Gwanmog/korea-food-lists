@@ -248,7 +248,56 @@ wins and would move a large number of pins — that deserves its own before/afte
 
 ---
 
-### 1.5 Future-proof the scrapers so this can't silently happen again `[ ]`
+### 1.5 Future-proof the scrapers so this can't silently happen again `[x]` — done 2026-08-09
+
+**Shipped as `scrape_validation.py` + `save_raw_guarded()` in `build_map_list.py`.**
+Model is **validate → dated capture → promote**; nothing overwrites the file the build
+reads until the data has passed.
+
+**Proof it works — the guard was fed the actual historical bad scrape:**
+```
+      Evett: 2 Stars -> Selected          ← diff names each restaurant losing a star
+      Exquisine: 1 Star -> Selected
+  [FAIL] Only 0 x '3 Stars' (expected >= 1)
+  [FAIL] 4 rows have a non-Korean address (['Café Riggs', 'Family Ethiopian', ...])
+  [FAIL] Columns 'address' and 'cuisine' hold the same value in 204/204 rows
+  [FAIL] Tiers present before but absent now: ['3 Stars', '2 Stars', '1 Star']
+  RESULT: FAIL — refusing to promote, previous data kept
+→ promoted? False | canonical file byte-identical afterwards? True
+```
+Current repaired files both **PASS**; both historical degraded files **FAIL**.
+
+- [x] Tier floors that abort the write (≥1 3★, ≥5 2★, ≥20 1★, ≥40 Bib, ≥1 RIBBON_THREE)
+- [x] Row count within ±20% of the previous capture, plus absolute floors
+- [x] Non-Seoul address rejection (the Washington DC check)
+- [x] Field-aliasing detection (the `cuisine == address` check)
+- [x] Tier vocabulary pinned in `GUIDE_SPECS`; an unrecognised tier **fails** rather than
+      landing on the map as an unfilterable category
+- [x] Dated captures (`michelin.<date>.csv`) + promotion to the canonical name — never
+      overwrite in place, so any regression can be diffed and rolled back
+- [x] Internal pre-promotion diff (added / removed / tier changes). **Not user-facing** —
+      the "restaurant gains a star" product feature was explicitly shelved.
+- [x] `--test-limit` runs write to `michelin.testrun.csv` and never promote — a truncated
+      test can't meet the floors and must not be able to overwrite production input
+- [x] `data/raw/` now version-controlled
+- [x] Standalone CLI: `python scrape_validation.py michelin data/raw/michelin.csv`
+- [ ] Fold into the Phase 7 test suite so CI runs it too
+
+**Two design notes for whoever tunes this:**
+- Aliasing detection uses **prefix overlap, not equality** — the real incident had `cuisine`
+  holding the address *plus* a postcode and country, so a byte-comparison missed it entirely.
+- Language variants (`name`/`name_ko`, `address`/`address_ko`) are **excluded** from aliasing
+  checks. They are legitimately identical for a Korean-sourced guide; comparing them flags
+  correct data as corruption.
+
+**A real defect the validator found on its first run:** 427 Blue Ribbon rows had the
+restaurant's own name sitting in the `description` field. Harmless on the map only because
+`load_raw()` prefers `description_en`. Cleared — but **21 pins now have no description at
+all** (their `description_en` was also empty). Empty is more honest than a name masquerading
+as a description, and they still embed via name + category, but they're candidates for
+`generate_guide_descriptions.py`.
+
+<details><summary>Original problem statement (superseded)</summary>
 
 **This is the durable fix behind 1.1.** The star data wasn't lost to a hard bug — it was lost
 because a scrape silently produced degraded output and nothing checked. `build_map_list.py fetch`
@@ -279,6 +328,8 @@ with no warning. Everything below must exist **before** running 1.5.
 
 **Acceptance criteria:** deliberately feeding the scraper a broken selector fails the run and
 leaves the previous data intact. Re-running 1.1's repair after a fresh scrape is a no-op.
+
+</details>
 
 ---
 

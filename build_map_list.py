@@ -555,6 +555,40 @@ def save_raw(places: list[Place], filename: str):
     print(f"[io] saved {len(places)} to {path}")
 
 
+def save_raw_guarded(places: list[Place], source: str, canonical_name: str) -> bool:
+    """
+    Validate a fresh scrape, and only then let it replace the file the build reads.
+
+    Overhaul 1.5. `save_raw()` overwrote unconditionally, which is how a scrape that had
+    lost every Michelin star replaced good data and shipped to the map for months. A
+    degraded scrape now aborts and leaves the previous capture in place.
+
+    Returns True if the new data was promoted.
+    """
+    from scrape_validation import validate_scrape, promote_capture
+
+    if not places:
+        print(f"[guard] {source}: scrape returned nothing — keeping previous capture.")
+        return False
+
+    rows = [asdict(p) for p in places]
+    fieldnames = list(rows[0].keys())
+    canonical = DIR_RAW / canonical_name
+
+    report = validate_scrape(rows, source,
+                             previous_path=canonical if canonical.exists() else None)
+    print(report.render())
+
+    if not report.ok:
+        print(f"[guard] {source}: NOT promoted. '{canonical_name}' is untouched.\n"
+              f"        Fix the scraper, or if the guide genuinely changed, update\n"
+              f"        GUIDE_SPECS in scrape_validation.py deliberately.")
+        return False
+
+    promote_capture(rows, source, DIR_RAW, fieldnames, canonical_name=canonical_name)
+    return True
+
+
 def load_raw(filename: str) -> list[Place]:
     path = DIR_RAW / filename
     if not path.exists(): return []
@@ -809,8 +843,24 @@ def main():
     args = parser.parse_args()
 
     if args.command == "fetch":
-        save_raw(scrape_michelin_run(limit=args.test_limit), "michelin.csv")
-        if args.test_limit == 0: save_raw(scrape_bluer_run(), "blueribbon.csv")
+        if args.test_limit:
+            # A truncated run can't satisfy the row-count and tier floors, so validating
+            # it would fail for the wrong reason. Write it somewhere harmless instead of
+            # letting a test overwrite production input.
+            print(f"[fetch] TEST MODE (limit={args.test_limit}) — writing to "
+                  f"michelin.testrun.csv, NOT promoting.")
+            save_raw(scrape_michelin_run(limit=args.test_limit), "michelin.testrun.csv")
+            return
+
+        ok_m = save_raw_guarded(scrape_michelin_run(), "michelin", "michelin.csv")
+        ok_b = save_raw_guarded(scrape_bluer_run(), "blueribbon", "blueribbon.csv")
+
+        if not (ok_m and ok_b):
+            print("\n⚠️ One or more guides failed validation and were NOT promoted.\n"
+                  "   The previous captures are still in place, so `build` is safe to run —\n"
+                  "   it will just use the older data. Investigate before re-running fetch.")
+            sys.exit(1)
+        print("\n✅ Both guides scraped, validated, and promoted.")
 
     elif args.command == "build":
         m = load_raw("michelin.csv")
