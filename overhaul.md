@@ -281,7 +281,8 @@ Current repaired files both **PASS**; both historical degraded files **FAIL**.
       test can't meet the floors and must not be able to overwrite production input
 - [x] `data/raw/` now version-controlled
 - [x] Standalone CLI: `python scrape_validation.py michelin data/raw/michelin.csv`
-- [x] Folded into the Phase 7 suite ( runs  over the current raw captures)
+- [x] Folded into the Phase 7 suite (`test_data_integrity.py` runs `scrape_validation` over
+      the current raw captures)
 
 **Two design notes for whoever tunes this:**
 - Aliasing detection uses **prefix overlap, not equality** — the real incident had `cuisine`
