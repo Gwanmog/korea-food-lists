@@ -237,8 +237,22 @@ function handleFilterChange(key) {
       filters[parentKey].checked = children.some(k => filters[k]?.checked);
     }
   }
+  syncFilterUI();
   updateSelectAllBtn();
   render();
+}
+
+// A source pill is "checked" as soon as ANY one of its tiers is showing, which means
+// a fully-on Michelin and a Michelin with only 3 Stars left look the same. Mark the
+// partial case as indeterminate so the panel shows that tiers are still filtered out.
+function syncFilterUI() {
+  for (const [parentKey, children] of Object.entries(filterChildren)) {
+    const parent = filters[parentKey];
+    if (!parent) continue;
+    const present = children.map(k => filters[k]).filter(Boolean);
+    const on = present.filter(el => el.checked).length;
+    parent.indeterminate = on > 0 && on < present.length;
+  }
 }
 
 Object.entries(filters).forEach(([key, el]) => {
@@ -258,6 +272,7 @@ if (selectAllBtn) {
   selectAllBtn.onclick = () => {
     const anyUnchecked = Object.values(filters).some(el => el && !el.checked);
     Object.values(filters).forEach(el => { if (el) el.checked = anyUnchecked; });
+    syncFilterUI();
     updateSelectAllBtn();
     render();
   };
@@ -700,6 +715,7 @@ if (favBtn) {
 // --- INIT ---
 async function init() {
   setMapLanguage('en');
+  syncFilterUI();
 
   // Auth: init and listen for login/logout
   authManager.init();

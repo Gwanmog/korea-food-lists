@@ -17,6 +17,7 @@
   --tag-text: #333333;
   --tag-border: #dddddd;
   --shadow: 0 8px 24px rgba(0,0,0,0.08);
+  --pill-on-bg: rgba(44,62,80,0.10);
 }
 
 body.dark {
@@ -38,6 +39,7 @@ body.dark {
   --tag-text: #e8ecf6;
   --tag-border: rgba(255,255,255,0.14);
   --shadow: 0 10px 30px rgba(0,0,0,0.4);
+  --pill-on-bg: rgba(100,255,218,0.14);
 }
 
 /* THE MAGIC TRICK: Dark Mode for Google Maps */
@@ -76,6 +78,12 @@ body { background: var(--bg); color: var(--text); }
 .spread { justify-content: space-between; width: 100%; }
 
 /* Buttons & Inputs */
+
+/* Filter pills have to read as ON or OFF at a glance.
+   They used to be identical chips whose only difference was the tiny native
+   checkbox glyph, so a panel that still had Bib + Selected ticked looked like
+   "only ⭐⭐⭐ is on" — and the 165 pins that correctly resulted from that state
+   looked like a broken filter. The state is now carried by the whole chip. */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -88,9 +96,35 @@ body { background: var(--bg); color: var(--text); }
   font-size: 13px;
   cursor: pointer;
   user-select: none;
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease;
 }
-.pill:hover { background: var(--hover); }
-.pill input { margin: 0; cursor: pointer; }
+.pill input { margin: 0; cursor: pointer; accent-color: var(--accent); }
+
+/* ON */
+.pill:has(input:checked) {
+  background: var(--pill-on-bg);
+  border-color: var(--accent);
+}
+
+/* OFF — dimmed and dashed, so an unticked tier is unmistakable */
+.pill:not(:has(input:checked)) {
+  opacity: 0.45;
+  color: var(--muted);
+  border-style: dashed;
+}
+
+/* PARTIAL — a source whose tiers are only some-on. Without this, a half-filtered
+   "Michelin" is indistinguishable from a fully-on one. */
+.pill:has(input:indeterminate) {
+  opacity: 1;
+  color: var(--text);
+  background: var(--pill-on-bg);
+  border-color: var(--accent);
+  border-style: dashed;
+}
+
+.pill:not(:has(input:checked)):hover { background: var(--hover); opacity: 0.8; }
+.pill:has(input:checked):hover { filter: brightness(1.15); }
 
 .btn {
   padding: 8px 14px;
