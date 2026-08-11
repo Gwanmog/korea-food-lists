@@ -238,6 +238,125 @@ Example: [12, 3, 41]`;
     }
 }
 
+// ---- Named-area filtering ---------------------------------------------------
+// Naming a neighbourhood used to do nothing but flip a sentence in the prompt: the
+// search stayed global and Gemini was *asked* to check each address. It doesn't reliably
+// hold. Reported case — "chicken in Hongdae" returned 치킨인더키친 경복궁역점, which is in
+// 종로구, 4.9km away, described as a Hongdae spot. The candidate list has to be filtered
+// before the model ever sees it; a rule the model can break isn't a filter.
+//
+// Two kinds of area, because Seoul names work two ways. A 구 is an administrative unit
+// and the dataset already carries it per restaurant, so match the field exactly. Anywhere
+// smaller (홍대, 성수, 연남) has no administrative boundary at all — it's a walkable blob
+// around a landmark — so match a radius. Using a radius for 종로 pulled in more 중구
+// restaurants than 종로구 ones; using a district for 홍대 would swallow all of 마포구.
+const DISTRICT_AREAS = [
+    { aliases: ['gangnam', '강남'],   district: '강남구' },
+    { aliases: ['seocho', '서초'],    district: '서초구' },
+    { aliases: ['jongno', '종로'],    district: '종로구' },
+    { aliases: ['mapo', '마포'],      district: '마포구' },
+    { aliases: ['yongsan', '용산'],   district: '용산구' },
+    { aliases: ['songpa', '송파'],    district: '송파구' },
+    { aliases: ['seongbuk', '성북'],  district: '성북구' },
+    { aliases: ['nowon', '노원'],     district: '노원구' },
+    { aliases: ['dobong', '도봉'],    district: '도봉구' },
+];
+
+// Radii are hand-set per area and checked against the dataset: each one is wide enough
+// to cover the area as people walk it, tight enough not to spill into the next one.
+const POINT_AREAS = [
+    { aliases: ['hongdae', '홍대'],                    lat: 37.5568, lon: 126.9237, km: 1.2 },
+    { aliases: ['yeonnam', '연남'],                    lat: 37.5602, lon: 126.9250, km: 0.8 },
+    { aliases: ['hapjeong', '합정'],                   lat: 37.5495, lon: 126.9137, km: 0.8 },
+    { aliases: ['mangwon', '망원'],                    lat: 37.5556, lon: 126.9026, km: 0.8 },
+    { aliases: ['sinchon', '신촌'],                    lat: 37.5551, lon: 126.9368, km: 1.0 },
+    { aliases: ['itaewon', '이태원'],                  lat: 37.5345, lon: 126.9946, km: 1.0 },
+    { aliases: ['insadong', '인사동'],                 lat: 37.5730, lon: 126.9856, km: 0.7 },
+    { aliases: ['myeongdong', '명동'],                 lat: 37.5636, lon: 126.9827, km: 0.8 },
+    { aliases: ['euljiro', '을지로'],                  lat: 37.5660, lon: 126.9910, km: 1.0 },
+    { aliases: ['seongsu', '성수'],                    lat: 37.5445, lon: 127.0557, km: 1.2 },
+    { aliases: ['gwanghwamun', '광화문'],              lat: 37.5720, lon: 126.9769, km: 0.9 },
+    { aliases: ['dongdaemun', '동대문'],               lat: 37.5714, lon: 127.0094, km: 1.0 },
+    { aliases: ['noryangjin', '노량진'],               lat: 37.5133, lon: 126.9424, km: 0.8 },
+    { aliases: ['yeouido', '여의도'],                  lat: 37.5216, lon: 126.9243, km: 1.3 },
+    { aliases: ['apgujeong', '압구정'],                lat: 37.5273, lon: 127.0286, km: 1.0 },
+    { aliases: ['cheongdam', '청담'],                  lat: 37.5197, lon: 127.0530, km: 1.0 },
+    { aliases: ['banpo', '반포'],                      lat: 37.5045, lon: 127.0110, km: 1.2 },
+    { aliases: ['bukchon', '북촌'],                    lat: 37.5826, lon: 126.9836, km: 0.7 },
+    { aliases: ['seochon', '서촌'],                    lat: 37.5789, lon: 126.9707, km: 0.7 },
+    { aliases: ['mullae', '문래'],                     lat: 37.5175, lon: 126.8956, km: 0.9 },
+    { aliases: ['jamsil', '잠실', 'sincheon', '신천'],  lat: 37.5133, lon: 127.1000, km: 1.5 },
+    { aliases: ['sadang', '사당'],                     lat: 37.4765, lon: 126.9816, km: 1.0 },
+    { aliases: ['konkuk', '건대'],                     lat: 37.5403, lon: 127.0695, km: 1.0 },
+    { aliases: ['daehangno', '대학로', '혜화'],         lat: 37.5820, lon: 127.0018, km: 0.8 },
+    { aliases: ['sangwang', '상왕십리'],                lat: 37.5644, lon: 127.0290, km: 0.9 },
+];
+
+const ALL_AREAS = [...DISTRICT_AREAS, ...POINT_AREAS];
+
+function haversineKm(aLat, aLon, bLat, bLon) {
+    const R = 6371, rad = Math.PI / 180;
+    const dLat = (bLat - aLat) * rad, dLon = (bLon - aLon) * rad;
+    const h = Math.sin(dLat / 2) ** 2 +
+              Math.cos(aLat * rad) * Math.cos(bLat * rad) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+// Membership never changes between requests — compute each area's members once.
+const areaMembers = new Map();
+function membersOf(area) {
+    if (areaMembers.has(area)) return areaMembers.get(area);
+    const members = placesData.features.filter(f => {
+        if (area.district) return f.properties.district === area.district;
+        const [lon, lat] = f.geometry.coordinates;
+        return haversineKm(area.lat, area.lon, lat, lon) <= area.km;
+    });
+    areaMembers.set(area, members);
+    return members;
+}
+
+// Every area the query names. "gangnam or hongdae" should search both, not pick one.
+function matchAreas(queryLower) {
+    return ALL_AREAS.filter(a => a.aliases.some(alias => queryLower.includes(alias)));
+}
+
+// Below this the filter is doing more harm than good: 사당 has 1 restaurant in the
+// dataset and 노량진 has 3, so filtering to them returns a near-empty list for every
+// query. Those areas fall back to a global search that says where the results are from.
+const MIN_AREA_POOL = 8;
+
+// ---- Link markup repair -----------------------------------------------------
+// Wrapping recommended names in [[brackets]] is an instruction in the prompt, and models
+// drop instructions: "chicken in Hongdae" came back correctly scoped but with every name
+// unbracketed, so the reply rendered with no clickable restaurants at all — the same
+// dead-end as a link that opens nothing. We know exactly which restaurants were on the
+// table, so put the markup back deterministically rather than hoping for it.
+function linkifyNames(text, rows) {
+    // Longest first, so "치킨인더키친 경복궁역점" is claimed before bare "치킨인더키친"
+    // can match inside it.
+    const names = [...new Set(rows.map(r => r.name).filter(Boolean))]
+        .sort((a, b) => b.length - a.length);
+
+    let out = text;
+    for (const name of names) {
+        const trimmed = name.trim();
+        const hasHangul = /[가-힣]/.test(trimmed);
+        // A two-letter Latin name like "ON" would match the word "on" everywhere.
+        // Korean names are distinctive enough at that length.
+        if (trimmed.length < (hasHangul ? 2 : 3)) continue;
+        if (out.includes(`[[${trimmed}]]`)) continue;  // model already linked this one
+
+        const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // The lookarounds keep us out of markup the model (or an earlier, longer name)
+        // already produced. Non-global on purpose: link the first mention, leave the
+        // rest of the prose alone.
+        const boundary = hasHangul ? '' : '\\w';
+        const re = new RegExp(`(?<![\\[${boundary}])${escaped}(?![\\]${boundary}])`);
+        if (re.test(out)) out = out.replace(re, `[[${trimmed}]]`);
+    }
+    return out;
+}
+
 // 3. FAISS Retrieval Engine
 // allowedIds: optional array of vector_ids to score against (viewport subset).
 // When provided, Python scores only those vectors. When null, global search.
@@ -312,6 +431,11 @@ app.post('/chat', searchLimiter, async (req, res) => {
 
     // 2. THE JOIN helper
     const toRow = f => ({
+        // Sent back to the browser so a [[name]] link resolves to the exact restaurant
+        // this row describes. Four restaurants in the dataset share a name outright, so
+        // the frontend matching a name against all 2268 features is a coin flip between
+        // branches — it landed on 치킨인더키친 경복궁역점 for a Hongdae recommendation.
+        id: f.properties.vector_id,
         name: f.properties.name,
         // Both languages: queries are often Korean while `cuisine` is English since 5.5.4,
         // so a 국밥 query was being compared against "Gukbap".
@@ -360,35 +484,44 @@ app.post('/chat', searchLimiter, async (req, res) => {
     };
 
     // 3. LOCATION FILTER — three plans:
-    //   Plan B: user named a neighbourhood → global FAISS search, trust their words
+    //   Plan B: user named a neighbourhood → FAISS scoped to that area
     //   Plan A: map window provided → FAISS scoped to in-view restaurants (correct order: location first, then semantic rank)
     //   Plan C: map window provided but no in-view results → global FAISS, tell user results are from elsewhere
-    const SEOUL_NEIGHBOURHOODS = [
-        // English
-        'gangnam','hongdae','itaewon','sinchon','insadong','myeongdong','jongno',
-        'mapo','yeonnam','hapjeong','mangwon','euljiro','seongsu','gwanghwamun',
-        'dongdaemun','noryangjin','yeouido','apgujeong','cheongdam','seocho',
-        'banpo','bukchon','seochon','mullae','sangwang','nowon','dobong',
-        'sincheon','sadang','konkuk','건대','혜화','daehangno',
-        // Korean
-        '강남','홍대','이태원','신촌','인사동','명동','종로','마포','연남',
-        '합정','망원','을지로','성수','광화문','동대문','노량진','여의도',
-        '압구정','청담','서초','반포','북촌','서촌','문래','노원','도봉',
-        '신천','사당','건대입구','대학로'
-    ];
-
     const queryLower = userQuery.toLowerCase();
-    const userNamedLocation = SEOUL_NEIGHBOURHOODS.some(n => queryLower.includes(n));
+    const namedAreas = matchAreas(queryLower);
 
     let bestMatches, locationNote, vectorIds;
 
-    if (userNamedLocation) {
-        // Plan B: named neighbourhood — global search, Gemini checks coordinates
-        console.log(`[Step 1] Plan B: named location — global FAISS search`);
-        vectorIds = await searchFAISS(userQuery);
-        console.log(`[Step 2] FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
-        bestMatches  = (await joinIds(vectorIds)).map(toRow);
-        locationNote = "The user has named a specific neighbourhood. Recommend only restaurants that match that area per their request.";
+    if (namedAreas.length) {
+        // Plan B: named neighbourhood — scope the candidate pool to that area so an
+        // out-of-area restaurant can't be recommended at all, rather than asking the
+        // model not to pick one.
+        const areaFeatures = [...new Set(namedAreas.flatMap(membersOf))];
+        const areaIds = areaFeatures
+            .map(f => f.properties.vector_id)
+            .filter(id => id != null)
+            .map(Number);
+        const areaLabel = namedAreas.map(a => a.district || a.aliases[0]).join(' + ');
+
+        if (areaIds.length >= MIN_AREA_POOL) {
+            console.log(`[Step 1] Plan B: named area ${areaLabel} — ${areaIds.length} restaurants in scope`);
+            vectorIds = await searchFAISS(userQuery, areaIds);
+            console.log(`[Step 2] Area-scoped FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
+            // Scope the lexical half to the same pool, or it re-imports the very
+            // restaurants the area filter just excluded.
+            bestMatches  = (await joinIds(vectorIds, areaIds)).map(toRow);
+            locationNote = `Every restaurant below is inside ${areaLabel}, so you do not need to check whether they are in the requested area — they are. Do not claim any of them is somewhere else.`;
+        }
+
+        if (!bestMatches || bestMatches.length === 0) {
+            // Too little data in that area to filter on — search globally and be
+            // upfront that the results aren't where they asked.
+            console.log(`[Step 1B] Plan B fallback: ${areaLabel} has only ${areaIds.length} restaurants — global FAISS`);
+            vectorIds = await searchFAISS(userQuery);
+            console.log(`[Step 2B] Global FAISS returned ${vectorIds.length} IDs:`, vectorIds.map(c => c.id));
+            bestMatches  = (await joinIds(vectorIds)).map(toRow);
+            locationNote = "NOTE: Our database has very few restaurants in the area the user named. The options below are from elsewhere in Seoul. Say so briefly and name the area each one is actually in — never imply they are in the requested neighbourhood.";
+        }
 
     } else if (mapWindow) {
         // Plan A: scope FAISS to restaurants already in the viewport
@@ -454,7 +587,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
         alternatives, naming what they serve.
       - Award level breaks ties between restaurants that already match the dish. It never
         overrides the dish.
-      - If the user asked for a specific neighbourhood, check the lat/lon and address of each restaurant. Only recommend ones that are genuinely in or very close to that area. Do NOT claim a restaurant is in a neighbourhood if its address says otherwise.
+      - Location has already been filtered for you where possible — follow the note above it rather than second-guessing it. Never claim a restaurant is in a neighbourhood its address contradicts; if you are unsure where one is, describe it by the area in its own address.
       - Never invent or assume a restaurant's location — use only the address and coordinates provided.
       - Based ONLY on the list above, recommend the top 1-3 best matches.
       - Explain WHY each fits their request based on the description.
@@ -467,7 +600,12 @@ app.post('/chat', searchLimiter, async (req, res) => {
     const response = await result.response;
     console.log(`[Step 4] Gemini chat responded OK`);
 
-    const responseData = { reply: response.text() };
+    const responseData = {
+      reply: linkifyNames(response.text(), bestMatches),
+      // The rows the model was given, so the client can map its [[name]] links back to
+      // specific restaurants instead of re-guessing from the name alone.
+      matches: bestMatches.map(m => ({ id: m.id, name: m.name, lat: m.lat, lon: m.lon })),
+    };
     searchCache.set(cacheKey, responseData);
     res.json(responseData);
 

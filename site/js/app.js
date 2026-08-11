@@ -587,7 +587,7 @@ function render() {
         }
         // ---------------------------------------------------
 
-        window.openRestaurantPopup(p.name);
+        focusFeature(f);
         if (window.innerWidth < 640 && $('listWrap')) {
           $('listWrap').classList.add('collapsed');
         }
@@ -747,7 +747,9 @@ async function init() {
       const feature = allFeatures.find(f => String(f.properties.vector_id) === placeId);
       if (feature) {
         window.history.replaceState({}, '', window.location.pathname);
-        window.openRestaurantPopup(feature.properties.name);
+        // Pass the feature, not its name: we already know exactly which restaurant
+        // this is, and round-tripping through a name lookup can only lose that.
+        focusFeature(feature);
       }
     }
   } catch (e) {
@@ -822,16 +824,30 @@ document.addEventListener('click', (e) => {
   }
 });
 
-function addOmniMessage(text, type) {
+function addOmniMessage(text, type, matches) {
   const div = document.createElement('div');
   div.className = `message ${type}`;
+
+  // The rows the server actually handed the model, keyed by the name it saw. Four
+  // restaurants in the dataset share a name outright (진주집, 황소곱창, 해월, 마포숯불갈비)
+  // and 47 more are a substring of a longer name, so resolving [[치킨인더키친]] against
+  // the whole dataset is a guess. Resolving it against this reply's own candidates
+  // pins it to the branch the recommendation was written about.
+  const idByName = new Map();
+  if (Array.isArray(matches)) {
+    for (const m of matches) {
+      if (m && m.name && m.id != null) idByName.set(m.name.trim(), m.id);
+    }
+  }
 
   // Parse links
   let formatted = text.replace(/\n/g, '<br>');
   formatted = formatted.replace(/\[\[(.*?)\]\]/g, (match, name) => {
-    // Escaping the name is crucial so names like "O'reilly" don't break the JS string
-    const safeName = name.replace(/'/g, "\\'");
-    return `<span class="chat-link" onclick="window.openRestaurantPopup('${safeName}')">${name}</span>`;
+    // data-* attributes rather than an inline onclick: the old version escaped only
+    // apostrophes, so a name containing a quote or backslash broke the handler.
+    const id = idByName.get(name.trim());
+    const idAttr = id != null ? ` data-place-id="${esc(String(id))}"` : '';
+    return `<span class="chat-link" data-place-name="${esc(name)}"${idAttr}>${esc(name)}</span>`;
   });
 
   div.innerHTML = formatted;
@@ -839,6 +855,19 @@ function addOmniMessage(text, type) {
   omniMessages.scrollTop = omniMessages.scrollHeight;
   return div;
 }
+
+// Delegated: chat links are rewritten on every reply, so binding once here beats
+// re-binding per message.
+omniMessages.addEventListener('click', (e) => {
+  const link = e.target.closest('.chat-link');
+  if (!link) return;
+  const id = link.dataset.placeId;
+  const feature = (id != null && id !== '')
+    ? allFeatures.find(f => String(f.properties.vector_id) === String(id))
+    : null;
+  if (feature) focusFeature(feature);
+  else window.openRestaurantPopup(link.dataset.placeName);
+});
 
 async function handleOmniSubmit() {
   const text = omniInput.value.trim();
@@ -893,7 +922,7 @@ async function handleOmniSubmit() {
       loadingMsg.remove();
 
       if (data.reply) {
-        addOmniMessage(data.reply, 'ai');
+        addOmniMessage(data.reply, 'ai', data.matches);
       } else {
         addOmniMessage("Sorry, I couldn't find anything in this area.", 'ai');
       }
@@ -908,30 +937,48 @@ omniSend.addEventListener('click', handleOmniSubmit);
 omniInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') handleOmniSubmit();
 });
-window.openRestaurantPopup = function(name) {
-    if (!name) return;
+// Resolve a name back to exactly one feature.
+//
+// Scored, not first-match. The old version walked the features and returned the first
+// one satisfying ANY rule, so a loose substring hit early in the file beat an exact
+// match later in it: [[치킨인더키친]] resolved to 치킨인더키친 경복궁역점 in 종로구 rather
+// than the restaurant of that exact name in 마포구. Ranking has to happen across
+// candidates, not within a single candidate's rules.
+function findFeatureByName(name) {
+    const wanted = (name || '').trim();
+    if (!wanted) return null;
 
-    const normalize = s => s ? s.toLowerCase().replace(/[\s\-·•]+/g, '') : '';
-    const needle = normalize(name);
-    const feature = allFeatures.find(f => {
+    const lower = wanted.toLowerCase();
+    const normalize = s => (s || '').toLowerCase().replace(/[\s\-·•]+/g, '');
+    const needle = normalize(wanted);
+
+    // A one-character token matches far too much, and a blank one matches everything —
+    // 고래불 shipped with name=" ", which as a substring of "아웃닭 홍대점" sent every
+    // multi-word chat link in the app to 강남.
+    const usable = s => typeof s === 'string' && s.trim().length >= 2;
+
+    let best = null, bestScore = 0;
+    for (const f of allFeatures) {
         const p = f.properties;
-        // 1. Exact match
-        if (p.name === name || p.name_ko === name) return true;
-        // 2. Case-insensitive
-        if (p.name?.toLowerCase() === name.toLowerCase()) return true;
-        // 3. Normalized (ignore spaces/hyphens)
-        if (normalize(p.name) === needle || normalize(p.name_ko) === needle) return true;
-        // 4. One contains the other (handles truncation or extra words)
-        if (p.name && (p.name.toLowerCase().includes(name.toLowerCase()) || name.toLowerCase().includes(p.name.toLowerCase()))) return true;
-        return false;
-    });
+        let score = 0;
+        if (p.name === wanted || p.name_ko === wanted) score = 4;
+        else if (usable(p.name) && p.name.toLowerCase() === lower) score = 3;
+        else if (needle && (normalize(p.name) === needle || normalize(p.name_ko) === needle)) score = 2;
+        else if (usable(p.name) && usable(wanted) &&
+                 (p.name.toLowerCase().includes(lower) || lower.includes(p.name.toLowerCase()))) score = 1;
 
-    if (!feature) {
-        console.warn(`Could not find restaurant: ${name}`);
-        return;
+        if (score > bestScore) { best = f; bestScore = score; }
+        if (bestScore === 4) break;
     }
+    return best;
+}
+
+// Fly to a restaurant and open its card — the same card a pin click gives you.
+function focusFeature(feature) {
+    if (!feature) return;
 
     const [lon, lat] = feature.geometry.coordinates;
+    const vid = feature.properties.vector_id;
 
     // 1. Minimize the chat so the map is visible. Don't clear filter state.
     if (omnibox)   omnibox.classList.remove('expanded');
@@ -941,20 +988,61 @@ window.openRestaurantPopup = function(name) {
         $('listWrap').classList.add('collapsed');
     }
 
-    // 2. Wait for the fly animation to finish, then open the popup.
-    //    render() fires first (registered earlier), so the marker is in the
-    //    cluster by the time our once-listener runs.
-    map.once('moveend', () => {
+    // render() refuses to rebuild the cluster while a popup is open, so an already-open
+    // card would leave the marker we're flying to absent from the map.
+    map.closePopup();
+
+    let settled = false;
+    const settle = () => {
+        if (settled) return;
+        settled = true;
+
+        // Match the marker by vector_id. Matching by name was the second half of the
+        // bug: the lookup above is fuzzy but this comparison used to be strict, so any
+        // name resolved by anything short of an exact hit flew to the right place and
+        // then opened nothing at all.
+        let target = null;
         clusterGroup.eachLayer(layer => {
-            if (layer.feature && (
-                layer.feature.properties.name === name ||
-                layer.feature.properties.name_ko === name
-            )) {
-                layer.openPopup();
+            if (!target && layer.feature && vid != null &&
+                String(layer.feature.properties.vector_id) === String(vid)) {
+                target = layer;
             }
         });
-    });
 
-    // 3. Fly to the restaurant (triggers moveend when done)
+        // hasLayer, not just "found". A marker swallowed by a cluster is still in
+        // clusterGroup.eachLayer but is not on the map, and openPopup() on it does
+        // nothing at all — silently. That is the failure the report describes, and it
+        // survives whenever the flight hasn't finished unclustering the target yet.
+        if (target && map.hasLayer(target)) {
+            target.openPopup();
+            return;
+        }
+
+        // Not displayable: clustered, excluded by an active filter, or outside the
+        // rendered set. The user asked for this restaurant by name, so show its card
+        // anyway rather than appearing to do nothing — same content a pin click gives.
+        L.popup({ autoPan: true })
+            .setLatLng([lat, lon])
+            .setContent(renderPopup(feature.properties))
+            .openOn(map);
+    };
+
+    // render() is bound to moveend earlier, so it repopulates the cluster before this runs.
+    map.once('moveend', settle);
     map.flyTo([lat, lon], 17, { animate: true, duration: 1.5 });
+    // flyTo emits no moveend when the map is already at that exact view — clicking the
+    // same link twice, or a restaurant already centred. settle() is idempotent, so this
+    // is a safety net rather than a second open.
+    setTimeout(settle, 1800);
+}
+
+window.focusFeature = focusFeature;
+
+window.openRestaurantPopup = function(name) {
+    const feature = findFeatureByName(name);
+    if (!feature) {
+        console.warn(`Could not find restaurant: ${name}`);
+        return;
+    }
+    focusFeature(feature);
 };

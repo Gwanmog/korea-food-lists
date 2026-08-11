@@ -327,6 +327,31 @@ def t_frontend_filters():
     note(f"{len(lookups)} tier values used for filtering, all mapped to real pills")
 
 
+@test("no pin carries a blank or whitespace-only name")
+def t_no_blank_names():
+    # 고래불 shipped with name=" " — Blue Ribbon pads missing English names with a space
+    # instead of leaving them empty, and " " is truthy, so every `name_en or name_kr`
+    # fallback in the pipeline stepped straight over it. A lone space is a substring of
+    # every multi-word restaurant in Seoul, so the map's "does one name contain the
+    # other" lookup matched it first and sent every chat link and sidebar click to a
+    # 강남 raw-fish restaurant.
+    blank = [p for p in PROPS if not (p.get("name") or "").strip()]
+    check(not blank,
+          f"{len(blank)} pin(s) have an empty name, e.g. vector_id "
+          f"{[p.get('vector_id') for p in blank[:3]]} — these hijack name lookups")
+
+    # Whitespace-only anywhere else is the same latent trap: truthy, so it defeats
+    # `or` fallbacks, while being empty to a reader.
+    padded = [(p.get("vector_id"), k)
+              for p in PROPS
+              for k, v in p.items()
+              if isinstance(v, str) and v and not v.strip()]
+    check(not padded,
+          f"{len(padded)} whitespace-only field(s), e.g. {padded[:3]} — "
+          f"store None instead so `or` fallbacks fire")
+    note(f"{len(PROPS)} pins, no blank names, no whitespace-padded fields")
+
+
 @test("raw guide captures still pass scrape validation")
 def t_scrape_validation():
     try:

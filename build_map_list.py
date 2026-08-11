@@ -611,11 +611,17 @@ def scrape_bluer_run() -> list[Place]:
                         found_on_page += 1
                         juso = item.get("juso") or {}
                         gps = item.get("gps") or {}
-                        description = item.get("comment") or header.get("nameEN")
+                        # Blue Ribbon pads some fields with a single space rather than
+                        # leaving them empty (고래불 came back with nameEN=" "), and " "
+                        # is truthy, so a bare `or` fallback silently keeps the padding.
+                        def clean(v):
+                            return v.strip() if isinstance(v, str) and v.strip() else None
+
+                        description = clean(item.get("comment")) or clean(header.get("nameEN"))
 
                         # Blue Ribbon has native Korean name already
-                        name_kr = header.get("nameKR")
-                        name_en = header.get("nameEN") or name_kr
+                        name_kr = clean(header.get("nameKR"))
+                        name_en = clean(header.get("nameEN")) or name_kr
 
                         p = Place(
                             source="blueribbon", name=name_en,
@@ -839,12 +845,31 @@ def write_geojson(places: list[Place]):
     DIR_SITE.mkdir(exist_ok=True)
     path = DIR_SITE / "places.geojson"
     features = []
+    blank_names = 0
     for p in places:
         if not p.latitude or not p.longitude: continue
         props = asdict(p)
         del props["latitude"]
         del props["longitude"]
         del props["captured_at"]
+
+        # Whitespace-padded strings are worse than empty ones downstream: Blue Ribbon
+        # returned nameEN=" " for 고래불, and unlike "" a lone space is truthy, so every
+        # `x or fallback` in the pipeline stepped over it and the frontend's "one name
+        # contains the other" match treated that space as a substring of every
+        # multi-word restaurant in Seoul — every chat link flew to 고래불 in 강남.
+        # Collapse them at the one chokepoint every feature passes through. "" is left
+        # alone: it is already falsy, so it behaves correctly everywhere.
+        for k, v in props.items():
+            if isinstance(v, str) and v and not v.strip():
+                props[k] = None
+        # A feature with no usable display name can't be matched or labelled. The
+        # Korean name is always present for Korean sources, so prefer it over dropping.
+        if not props.get("name"):
+            props["name"] = props.get("name_ko")
+            blank_names += 1
+        if not props.get("name"):
+            continue
         features.append({
             "type": "Feature",
             "geometry": {"type": "Point", "coordinates": [p.longitude, p.latitude]},
@@ -853,6 +878,8 @@ def write_geojson(places: list[Place]):
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"type": "FeatureCollection", "features": features}, f, ensure_ascii=False, indent=2)
     print(f"[io] wrote {len(features)} features to {path}")
+    if blank_names:
+        print(f"[io] backfilled {blank_names} blank English name(s) from name_ko")
 
 
 def apply_cuisine_map(places: list[Place]) -> list[Place]:

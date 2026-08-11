@@ -31400,7 +31400,7 @@
       },
       "properties": {
         "source": "blueribbon",
-        "name": " ",
+        "name": "고래불",
         "address": "서울특별시 강남구 논현로79길 62",
         "city": "Seoul",
         "country": "South Korea",
@@ -31410,7 +31410,7 @@
         "phone": "02-556-3677",
         "url": "",
         "year": "2026",
-        "description": " ",
+        "description": null,
         "kakao_id": "8652100",
         "kakao_url": "http://place.map.kakao.com/8652100",
         "korean_query": "",
