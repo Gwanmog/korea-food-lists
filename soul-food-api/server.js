@@ -89,6 +89,46 @@ function awardWeight(props) {
   return best;
 }
 
+// ---- Award labels for prose -------------------------------------------------
+// `category` is a display string for Michelin and Neon ("1 Star", "2 Neon Hearts") but a
+// raw enum for Blue Ribbon ("RIBBON_TWO"), and it is handed to the model as-is. The model
+// repeated it verbatim: a Korean reply told the user a restaurant was "RIBBON_TWO 등급을
+// 받은 곳". Labels are for the prompt only — every ranking path (awardWeight, TIER_WEIGHT,
+// the frontend filters) still reads the underlying codes, which are unchanged.
+//
+// Keyed on the tier alone, like TIER_WEIGHT above: tier strings are unique across guides,
+// so there is no need to know which guide a row came from.
+const AWARD_LABEL = {
+  '3 STARS': 'Michelin 3 Stars', '2 STARS': 'Michelin 2 Stars', '1 STAR': 'Michelin 1 Star',
+  'BIB GOURMAND': 'Michelin Bib Gourmand', 'SELECTED': 'Michelin Selected',
+  'RIBBON_THREE': '3 Blue Ribbons', 'RIBBON_TWO': '2 Blue Ribbons', 'RIBBON_ONE': '1 Blue Ribbon',
+  'NEON_3': '3 Neon Hearts', 'NEON_2': '2 Neon Hearts',
+  'NEON_1': '1 Neon Heart', 'NEON_VETTED': 'Neon Vetted',
+};
+
+// The point of the fallback is that a code CANNOT leak, whether or not anyone remembers
+// to extend the map above. An unmapped value is either already prose (every guide's
+// human-readable tiers are, e.g. "Bib Gourmand") and passes through, or it is enum-shaped
+// and gets unshouted into something a reader can parse. test_data_integrity.py asserts
+// that nothing in the shipped data actually needs that second branch, so a new guide
+// fails the suite rather than quietly shipping "PLATE_GOLD" to a user.
+function awardLabel(tier) {
+  const raw = (tier || '').trim();
+  if (!raw) return null;
+
+  const mapped = AWARD_LABEL[raw.toUpperCase()];
+  if (mapped) return mapped;
+
+  // Enum-shaped: underscores, or all caps. No guide labels a tier for readers in
+  // block capitals, so "GREEN STAR" is a code that escaped just as much as "GREEN_STAR".
+  const looksLikeCode = /_/.test(raw) || raw === raw.toUpperCase();
+  if (!looksLikeCode) return raw;
+
+  return raw.toLowerCase().split(/[_\s]+/).filter(Boolean)
+            .map(w => w[0].toUpperCase() + w.slice(1))
+            .join(' ');
+}
+
 // ---- Lexical retrieval (hybrid half) ----------------------------------------
 // Dense vectors are weak on exact tokens. After putting location into the embeddings
 // (4.1), "강남 삼겹살" still only returned 6/20 results actually in 강남구 — a neighbourhood
@@ -441,7 +481,7 @@ app.post('/chat', searchLimiter, async (req, res) => {
         // so a 국밥 query was being compared against "Gukbap".
         cuisine: [...new Set([f.properties.cuisine_ko, f.properties.cuisine].filter(Boolean))].join(' / '),
         area: [f.properties.neighborhood, f.properties.district].filter(Boolean).join(', ') || null,
-        award: f.properties.category,
+        award: awardLabel(f.properties.category),
         desc: f.properties.description ? f.properties.description.substring(0, 300) : "",
         address: f.properties.address_ko || f.properties.address || null,
         lat: f.geometry.coordinates[1],

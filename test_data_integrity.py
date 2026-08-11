@@ -31,6 +31,7 @@ GEOJSON = ROOT / "site" / "places.geojson"
 INDEX = ROOT / "data" / "restaurant_vectors.index"
 APP_JS = ROOT / "site" / "js" / "app.js"
 INDEX_HTML = ROOT / "site" / "index.html"
+SERVER_JS = ROOT / "soul-food-api" / "server.js"
 NEON_CSV = ROOT / "neon_guide_audited_final.csv"
 
 HANGUL = re.compile(r"[가-힣]")
@@ -350,6 +351,42 @@ def t_no_blank_names():
           f"{len(padded)} whitespace-only field(s), e.g. {padded[:3]} — "
           f"store None instead so `or` fallbacks fire")
     note(f"{len(PROPS)} pins, no blank names, no whitespace-padded fields")
+
+
+@test("no award tier reaches the user as a raw code")
+def t_award_labels_readable():
+    # `category` is display text for Michelin and Neon but an enum for Blue Ribbon, and
+    # server.js hands it to the model, which repeated it: a Korean reply described a
+    # restaurant as "RIBBON_TWO 등급을 받은 곳". awardLabel() maps the known tiers and
+    # un-shouts anything unmapped, so a code can no longer leak — but leaning on that
+    # fallback still produces clumsy prose ("PLATE_GOLD" -> "Plate Gold"), so a new guide
+    # should fail here and get a real label rather than ship the machine-generated one.
+    server = SERVER_JS.read_text(encoding="utf-8")
+    block = re.search(r"const AWARD_LABEL = \{(.*?)\n\};", server, re.S)
+    check(block, "AWARD_LABEL map not found in server.js")
+    labelled = {m.group(1).strip().upper()
+                for m in re.finditer(r"'([^']+)'\s*:\s*'[^']*'", block.group(1))}
+
+    def looks_like_code(v):
+        # Mirrors awardLabel()'s test in server.js: underscores, or block capitals.
+        return "_" in v or (v == v.upper() and any(ch.isalpha() for ch in v))
+
+    seen = set()
+    for p in PROPS:
+        if p.get("category"):
+            seen.add(p["category"].strip())
+        for a in (p.get("awards") or []):
+            if a.get("tier"):
+                seen.add(a["tier"].strip())
+
+    unmapped_codes = sorted(v for v in seen
+                            if looks_like_code(v) and v.upper() not in labelled)
+    check(not unmapped_codes,
+          f"tier(s) {unmapped_codes} are enum-shaped and have no AWARD_LABEL entry — "
+          f"they would reach the reader as machine-generated text; add real labels")
+
+    note(f"{len(seen)} distinct tier values, "
+         f"{sum(1 for v in seen if v.upper() in labelled)} explicitly labelled")
 
 
 @test("raw guide captures still pass scrape validation")
